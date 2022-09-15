@@ -31,6 +31,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "host.h"
 // #include "print.h"
 #include "debug.h"
+#undef MAX
+#undef MIN
 #include "keycode_config.h"
 #include "gpio.h" // for pin_t
 

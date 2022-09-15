@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "host.h"
 #include "keycode.h"
 #include "keyboard.h"
+#undef MIN
+#undef MAX
 #include "keymap.h"
 #include "mousekey.h"
 #include "programmable_button.h"

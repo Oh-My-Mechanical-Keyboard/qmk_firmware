@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "host.h"
 #include "util.h"
 #include "debug.h"
+#undef MIN
+#undef MAX
 #include "digitizer.h"
 
 #ifdef NKRO_ENABLE

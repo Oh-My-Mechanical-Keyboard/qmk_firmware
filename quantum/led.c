@@ -16,6 +16,8 @@
 #include "led.h"
 #include "host.h"
 #include "debug.h"
+#undef MIN
+#undef MAX
 #include "gpio.h"
 
 #ifdef BACKLIGHT_CAPS_LOCK

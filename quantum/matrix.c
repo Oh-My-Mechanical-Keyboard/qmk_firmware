@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdbool.h>
 #include <string.h>
 #include "util.h"
+#undef MIN
+#undef MAX
 #include "matrix.h"
 #include "debounce.h"
 #include "quantum.h"
