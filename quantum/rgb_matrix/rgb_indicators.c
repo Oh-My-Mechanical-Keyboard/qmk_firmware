@@ -319,7 +319,7 @@ void rgb_indicators_cycleall(void) {
 }
 #endif
 
-bool process_rgb_indicators(const uint16_t keycode, const keyrecord_t *record) {
+bool process_rgb_indicators(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RGB_INDTOG:
             if (record->event.pressed) {

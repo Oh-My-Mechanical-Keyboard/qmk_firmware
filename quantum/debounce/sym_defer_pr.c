@@ -59,7 +59,7 @@ bool debounce(matrix_row_t raw[], matrix_row_t cooked[], uint8_t num_rows, bool 
         matrix_row_t raw_row = raw[row];
 
         if (raw_row != last_raw[row]) {
-            *countdown    = DEBOUNCE;
+            *countdown    = CUSTOM_DEBOUNCE;
             last_raw[row] = raw_row;
         } else if (*countdown > elapsed) {
             *countdown -= elapsed;

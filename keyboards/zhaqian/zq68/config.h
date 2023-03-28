@@ -16,18 +16,6 @@
 
 #pragma once
 
-#include "config_common.h"
-
-#define MATRIX_ROWS 5
-#define MATRIX_COLS 15
-
-#define MATRIX_ROW_PINS { B15, A8, A9, B3, B10 }
-#define MATRIX_COL_PINS { B12, B13, B14, A15, B4, B5, B6, A2, A3, A4, A5, A6, A7, B0, B1}
-
-#define DIODE_DIRECTION COL2ROW
-
-#define DEBOUNCE 5
-
 #define LOCKING_SUPPORT_ENABLE
 #define LOCKING_RESYNC_ENABLE
 
@@ -54,8 +42,6 @@
 #endif
 
 #ifdef ENCODER_ENABLE
-#define ENCODERS_PAD_A { A0 }
-#define ENCODERS_PAD_B { A1 }
 #define ENCODER_RESOLUTION 4
 #endif
 

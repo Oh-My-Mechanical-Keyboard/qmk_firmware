@@ -14,17 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config_common.h"
-
-#define MATRIX_ROWS 4
-#define MATRIX_COLS 14
-
-#define MATRIX_ROW_PINS { B3, B5, B9, B8 }
-#define MATRIX_COL_PINS { B14, B13, B12, B0, A7, A6, A5, A4, A3, A2, A1, A0, B15, B7 }
-
-#define DIODE_DIRECTION COL2ROW
-
-#define DEBOUNCE 5
+#pragma once
 
 #define LOCKING_SUPPORT_ENABLE
 #define LOCKING_RESYNC_ENABLE
@@ -32,8 +22,6 @@
 #define FORCE_NKRO
 
 #ifdef ENCODER_ENABLE
-#define ENCODERS_PAD_A { B5 }
-#define ENCODERS_PAD_B { B6 }
 #define ENCODER_RESOLUTION 4
 #endif
 

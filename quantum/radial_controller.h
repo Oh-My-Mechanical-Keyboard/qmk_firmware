@@ -31,4 +31,4 @@ void radial_controller_event_finished(void);
 void radial_controller_button_update(bool pressed);
 void radial_controller_dial_update(bool clockwise, bool continued);
 void radial_controller_dial_finished(void);
-bool process_radial_controller(const uint16_t keycode, const keyrecord_t *record);
+bool process_radial_controller(uint16_t keycode, keyrecord_t *record);

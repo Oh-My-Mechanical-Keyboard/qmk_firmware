@@ -1,0 +1,263 @@
+// EN Template
+{
+  "label": "Indicators",
+  "content": [
+    {
+      "label": "Normally On",
+      "type": "toggle",
+      "content": ["id_rgb_indicators_override", 6, 1]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect1} != 0",
+      "label": "Caps Lock Brightness",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_rgb_indicators_brightness[1]", 6, 2, 1]
+    },
+    {
+      "label": "Caps Lock Effect",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_effect1", 6, 3, 1],
+      "options": [
+        ["All Off", 0],
+        ["Solid Color", 1],
+        ["Breathing", 2],
+        ["Cycle Breathing", 3],
+        ["Cycle All", 4],
+        ["Twinkle", 5],
+        ["Random Color", 6]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect1} != 0",
+      "label": "Caps Lock Led",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_led[1]", 6, 5, 1],
+      "options": [
+        ["All Led", 0],
+        ["Backlight", 1],
+        ["Underglow", 2],
+        ["Logo", 3],
+        ["Led 0", 4]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect1} != 0",
+      "label": "Caps Lock Color",
+      "type": "color",
+      "content": ["id_rgb_indicators_color[1]", 6, 4, 1]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect0} != 0",
+      "label": "Num Lock Brightness",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_rgb_indicators_brightness[0]", 6, 2, 0]
+    },
+    {
+      "label": "Num Lock Effect",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_effect0", 6, 3, 0],
+      "options": [
+        ["All Off", 0],
+        ["Solid Color", 1],
+        ["Breathing", 2],
+        ["Cycle Breathing", 3],
+        ["Cycle All", 4],
+        ["Twinkle", 5],
+        ["Random Color", 6]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect0} != 0",
+      "label": "Num Lock Led",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_led[0]", 6, 5, 0],
+      "options": [
+        ["All Led", 0],
+        ["Backlight", 1],
+        ["Underglow", 2],
+        ["Logo", 3],
+        ["Led 0", 4]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect0} != 0",
+      "label": "Num Lock Color",
+      "type": "color",
+      "content": ["id_rgb_indicators_color[0]", 6, 4, 0]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect2} != 0",
+      "label": "Scroll Lock Brightness",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_rgb_indicators_brightness[2]", 6, 2, 2]
+    },
+    {
+      "label": "Scroll Lock Effect",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_effect2", 6, 3, 2],
+      "options": [
+        ["All Off", 0],
+        ["Solid Color", 1],
+        ["Breathing", 2],
+        ["Cycle Breathing", 3],
+        ["Cycle All", 4],
+        ["Twinkle", 5],
+        ["Random Color", 6]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect2} != 0",
+      "label": "Scroll Lock Led",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_led[2]", 6, 5, 2],
+      "options": [
+        ["All Led", 0],
+        ["Backlight", 1],
+        ["Underglow", 2],
+        ["Logo", 3],
+        ["Led 0", 4]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect2} != 0",
+      "label": "Scroll Lock Color",
+      "type": "color",
+      "content": ["id_rgb_indicators_color[2]", 6, 4, 2]
+    }
+  ]
+}
+
+// CN Template
+{
+  "label": "\u6307\u793a\u706f",
+  "content": [
+    {
+      "label": "\u6307\u793a\u706f\u5e38\u4eae",
+      "type": "toggle",
+      "content": ["id_rgb_indicators_override", 6, 1]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect1} != 0",
+      "label": "Caps Lock \u4eae\u5ea6",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_rgb_indicators_brightness[1]", 6, 2, 1]
+    },
+    {
+      "label": "Caps Lock \u706f\u6548",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_effect1", 6, 3, 1],
+      "options": [
+        ["\u5173\u95ed", 0],
+        ["\u9759\u6001\u5355\u8272", 1],
+        ["\u5355\u8272\u547c\u5438", 2],
+        ["\u5faa\u73af\u547c\u5438", 3],
+        ["\u5f69\u8679\u5faa\u73af", 4],
+        ["\u968f\u673a\u53d8\u6362", 5],
+        ["\u968f\u673a\u8272\u5f69", 6]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect1} != 0",
+      "label": "Caps Lock \u706f\u73e0",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_led[1]", 6, 5, 1],
+      "options": [
+        ["\u5168\u90e8\u706f\u73e0", 0],
+        ["\u8f74\u706f", 1],
+        ["\u5e95\u706f", 2],
+        ["Logo\u706f", 3],
+        ["\u706f\u73e00", 4]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect1} != 0",
+      "label": "Caps Lock \u989c\u8272",
+      "type": "color",
+      "content": ["id_rgb_indicators_color[1]", 6, 4, 1]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect0} != 0",
+      "label": "Num Lock \u4eae\u5ea6",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_rgb_indicators_brightness[0]", 6, 2, 0]
+    },
+    {
+      "label": "Num Lock \u706f\u6548",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_effect0", 6, 3, 0],
+      "options": [
+        ["\u5173\u95ed", 0],
+        ["\u9759\u6001\u5355\u8272", 1],
+        ["\u5355\u8272\u547c\u5438", 2],
+        ["\u5faa\u73af\u547c\u5438", 3],
+        ["\u5f69\u8679\u5faa\u73af", 4],
+        ["\u968f\u673a\u53d8\u6362", 5],
+        ["\u968f\u673a\u8272\u5f69", 6]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect0} != 0",
+      "label": "Num Lock \u706f\u73e0",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_led[0]", 6, 5, 0],
+      "options": [
+        ["\u5168\u90e8\u706f\u73e0", 0],
+        ["\u8f74\u706f", 1],
+        ["\u5e95\u706f", 2],
+        ["Logo\u706f", 3],
+        ["\u706f\u73e00", 4]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect0} != 0",
+      "label": "Num Lock \u989c\u8272",
+      "type": "color",
+      "content": ["id_rgb_indicators_color[0]", 6, 4, 0]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect2} != 0",
+      "label": "Scroll Lock \u4eae\u5ea6",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_rgb_indicators_brightness[2]", 6, 2, 2]
+    },
+    {
+      "label": "Scroll Lock \u706f\u6548",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_effect2", 6, 3, 2],
+      "options": [
+        ["\u5173\u95ed", 0],
+        ["\u9759\u6001\u5355\u8272", 1],
+        ["\u5355\u8272\u547c\u5438", 2],
+        ["\u5faa\u73af\u547c\u5438", 3],
+        ["\u5f69\u8679\u5faa\u73af", 4],
+        ["\u968f\u673a\u53d8\u6362", 5],
+        ["\u968f\u673a\u8272\u5f69", 6]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect2} != 0",
+      "label": "Scroll Lock \u706f\u73e0",
+      "type": "dropdown",
+      "content": ["id_rgb_indicators_led[2]", 6, 5, 2],
+      "options": [
+        ["\u5168\u90e8\u706f\u73e0", 0],
+        ["\u8f74\u706f", 1],
+        ["\u5e95\u706f", 2],
+        ["Logo\u706f", 3],
+        ["\u706f\u73e00", 4]
+      ]
+    },
+    {
+      "showIf": "{id_rgb_indicators_effect2} != 0",
+      "label": "Scroll Lock \u989c\u8272",
+      "type": "color",
+      "content": ["id_rgb_indicators_color[2]", 6, 4, 2]
+    }
+  ]
+}

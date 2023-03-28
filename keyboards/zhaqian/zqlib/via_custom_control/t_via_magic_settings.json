@@ -1,0 +1,143 @@
+// EN Template
+{
+    "label": "Magic",
+    "content": [
+        {
+            "label": "Enable N-Key Rollover",
+            "type": "toggle",
+            "content": ["id_magic_nkro", 7, 1]
+        },
+        {
+            "label": "Disabled Gui",
+            "type": "toggle",
+            "content": ["id_magic_no_gui", 7, 2]
+        },
+        {
+            "label": "Treat Capslock as Ctrl",
+            "type": "toggle",
+            "content": ["id_magic_capslock_to_control", 7, 3]
+        },
+        {
+            "label": "Swap Ctrl and Capslock",
+            "type": "toggle",
+            "content": ["id_magic_swap_control_capslock", 7, 4]
+        },
+        {
+            "label": "Swap Esc and Capslock",
+            "type": "toggle",
+            "content": ["id_magic_swap_escape_capslock", 7, 5]
+        },
+        {
+            "label": "Swap Left Alt and Gui",
+            "type": "toggle",
+            "content": ["id_magic_swap_lalt_lgui", 7, 6]
+        },
+        {
+            "label": "Swap Right Alt and Gui",
+            "type": "toggle",
+            "content": ["id_magic_swap_ralt_rgui", 7, 7]
+        },
+        {
+            "label": "Swap Left Ctrl and Gui",
+            "type": "toggle",
+            "content": ["id_magic_swap_lctl_lgui", 7, 8]
+        },
+        {
+            "label": "Swap Right Ctrl and Gui",
+            "type": "toggle",
+            "content": ["id_magic_swap_rctl_rgui", 7, 9]
+        },
+        {
+            "label": "Swap ` and Esc",
+            "type": "toggle",
+            "content": ["id_magic_swap_grave_esc", 7, 10]
+        },
+        {
+            "label": "Swap \\ and Backspace",
+            "type": "toggle",
+            "content": ["id_magic_swap_backslash_backspace", 7, 11]
+        },
+        {
+            "label": "Enable Oneshot",
+            "type": "toggle",
+            "content": ["id_magic_oneshot_enable", 7, 12]
+        },
+        {
+            "label": "Enable Autocorrect",
+            "type": "toggle",
+            "content": ["id_magic_autocorrect_enable", 7, 13]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "Magic\u8bbe\u7f6e",
+    "content": [
+        {
+            "label": "\u5f00\u542f\u5168\u952e\u65e0\u51b2",
+            "type": "toggle",
+            "content": ["id_magic_nkro", 7, 1]
+        },
+        {
+            "label": "\u9501\u5b9aGui\u952e",
+            "type": "toggle",
+            "content": ["id_magic_no_gui", 7, 2]
+        },
+        {
+            "label": "Caps\u952e\u89c6\u4e3aCtrl\u952e",
+            "type": "toggle",
+            "content": ["id_magic_capslock_to_control", 7, 3]
+        },
+        {
+            "label": "\u4ea4\u6362Ctrl\u548cCaps\u952e",
+            "type": "toggle",
+            "content": ["id_magic_swap_control_capslock", 7, 4]
+        },
+        {
+            "label": "\u4ea4\u6362ESC\u548cCaps\u952e",
+            "type": "toggle",
+            "content": ["id_magic_swap_escape_capslock", 7, 5]
+        },
+        {
+            "label": "\u4ea4\u6362LAlt\u548cLGui\u952e",
+            "type": "toggle",
+            "content": ["id_magic_swap_lalt_lgui", 7, 6]
+        },
+        {
+            "label": "\u4ea4\u6362RAlt\u548cRGui\u952e",
+            "type": "toggle",
+            "content": ["id_magic_swap_ralt_rgui", 7, 7]
+        },
+        {
+            "label": "\u4ea4\u6362LCtrl\u548cLGui\u952e",
+            "type": "toggle",
+            "content": ["id_magic_swap_lctl_lgui", 7, 8]
+        },
+        {
+            "label": "\u4ea4\u6362RCtrl\u548cRGui\u952e",
+            "type": "toggle",
+            "content": ["id_magic_swap_rctl_rgui", 7, 9]
+        },
+        {
+            "label": "\u4ea4\u6362 ` \u548c Esc\u952e",
+            "type": "toggle",
+            "content": ["id_magic_swap_grave_esc", 7, 10]
+        },
+        {
+            "label": "\u4ea4\u6362 \\ \u548c Backspace\u952e",
+            "type": "toggle",
+            "content": ["id_magic_swap_backslash_backspace", 7, 11]
+        },
+        {
+            "label": "\u542f\u7528Oneshot",
+            "type": "toggle",
+            "content": ["id_magic_oneshot_enable", 7, 12]
+        },
+        {
+            "label": "\u542f\u7528\u81ea\u52a8\u6821\u6b63",
+            "type": "toggle",
+            "content": ["id_magic_autocorrect_enable", 7, 13]
+        }
+    ]
+}

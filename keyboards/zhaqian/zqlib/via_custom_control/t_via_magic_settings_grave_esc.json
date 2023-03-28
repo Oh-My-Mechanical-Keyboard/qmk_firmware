@@ -1,0 +1,53 @@
+// EN Template
+{
+    "label": "Grave Esc",
+    "content": [
+        {
+            "label": "Always send Escape if Alt is pressed",
+            "type": "toggle",
+            "content": ["id_advanced_magic_grave_esc_override[0]", 8, 11, 0]
+        },
+        {
+            "label": "Always send Escape if Ctrl is pressed",
+            "type": "toggle",
+            "content": ["id_advanced_magic_grave_esc_override[1]", 8, 11, 1]
+        },
+        {
+            "label": "Always send Escape if Gui is pressed",
+            "type": "toggle",
+            "content": ["id_advanced_magic_grave_esc_override[2]", 8, 11, 2]
+        },
+        {
+            "label": "Always send Escape if Shift is pressed",
+            "type": "toggle",
+            "content": ["id_advanced_magic_grave_esc_override[3]", 8, 11, 3]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "Grave Esc\u8bbe\u7f6e",
+    "content": [
+        {
+            "label": "Alt\u952e\u6309\u4e0b\u65f6\u53d1\u9001Esc\u6309\u952e",
+            "type": "toggle",
+            "content": ["id_advanced_magic_grave_esc_override[0]", 8, 11, 0]
+        },
+        {
+            "label": "Ctrl\u952e\u6309\u4e0b\u65f6\u53d1\u9001Esc\u6309\u952e",
+            "type": "toggle",
+            "content": ["id_advanced_magic_grave_esc_override[1]", 8, 11, 1]
+        },
+        {
+            "label": "Gui\u952e\u6309\u4e0b\u65f6\u53d1\u9001Esc\u6309\u952e",
+            "type": "toggle",
+            "content": ["id_advanced_magic_grave_esc_override[2]", 8, 11, 2]
+        },
+        {
+            "label": "Shift\u952e\u6309\u4e0b\u65f6\u53d1\u9001Esc\u6309\u952e",
+            "type": "toggle",
+            "content": ["id_advanced_magic_grave_esc_override[3]", 8, 11, 3]
+        }
+    ]
+}

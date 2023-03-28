@@ -1,0 +1,51 @@
+// EN Template
+{
+    "label": "One Shot",
+    "content": [
+        {
+            "label": "Enable Oneshot",
+            "type": "toggle",
+            "content": ["id_magic_oneshot_enable", 7, 12]
+        },
+        {
+            "showIf": "{id_magic_oneshot_enable} != 0",
+            "label": "Oneshot Tap Toggle",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_oneshot_tap_toggle", 8, 20]
+        },
+        {
+            "showIf": "{id_magic_oneshot_enable} != 0",
+            "label": "Oneshot Timeout",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_oneshot_timeout", 8, 21]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "OneShot\u8bbe\u7f6e",
+    "content": [
+        {
+            "label": "\u542f\u7528Oneshot",
+            "type": "toggle",
+            "content": ["id_magic_oneshot_enable", 7, 12]
+        },
+        {
+            "showIf": "{id_magic_oneshot_enable} != 0",
+            "label": "Oneshot\u7684\u6709\u6548\u6309\u952e\u6b21\u6570",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_oneshot_tap_toggle", 8, 20]
+        },
+        {
+            "showIf": "{id_magic_oneshot_enable} != 0",
+            "label": "Oneshot\u91ca\u653e\u65f6\u95f4",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_oneshot_timeout", 8, 21]
+        }
+    ]
+}

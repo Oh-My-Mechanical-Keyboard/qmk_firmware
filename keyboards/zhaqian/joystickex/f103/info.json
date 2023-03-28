@@ -1,0 +1,9 @@
+{
+    "processor": "STM32F103",
+    "bootloader": "uf2boot",
+    "board": "GENERIC_STM32_F103XB",
+    "matrix_pins": {
+        "cols": ["A9", "A0", "B15", "B14"],
+        "rows": ["A10", "B6", "C14"]
+    }
+}

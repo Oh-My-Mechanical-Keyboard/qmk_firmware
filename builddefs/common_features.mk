@@ -84,6 +84,13 @@ endif
 ifeq ($(strip $(MIDI_ENABLE)), yes)
     OPT_DEFS += -DMIDI_ENABLE
     MUSIC_ENABLE = yes
+    COMMON_VPATH += $(QUANTUM_PATH)/midi
+    SRC += $(QUANTUM_DIR)/midi/midi.c
+    SRC += $(QUANTUM_DIR)/midi/midi_device.c
+    SRC += $(QUANTUM_DIR)/midi/qmk_midi.c
+    SRC += $(QUANTUM_DIR)/midi/sysex_tools.c
+    SRC += $(QUANTUM_DIR)/midi/bytequeue/bytequeue.c
+    SRC += $(QUANTUM_DIR)/midi/bytequeue/interrupt_setting.c
     SRC += $(QUANTUM_DIR)/process_keycode/process_midi.c
 endif
 
@@ -615,6 +622,7 @@ ifeq ($(strip $(VIA_ENABLE)), yes)
     DYNAMIC_KEYMAP_ENABLE := yes
     RAW_ENABLE := yes
     BOOTMAGIC_ENABLE := yes
+    TRI_LAYER_ENABLE := yes
     SRC += $(QUANTUM_DIR)/via.c
     OPT_DEFS += -DVIA_ENABLE
 endif
@@ -910,6 +918,21 @@ ifeq ($(strip $(ENCODER_ENABLE)), yes)
     endif
 endif
 
+ifeq ($(strip $(AUTO_SWITCH_LAYERS_ENABLE)), yes)
+    OS_DETECTION_ENABLE := yes
+    EECONFIG_EXTENDED_FOR_ZQ := yes
+    SRC += $(QUANTUM_DIR)/auto_switch_layers.c
+	OPT_DEFS += -DAUTO_SWITCH_LAYERS_ENABLE
+endif
+
+ifeq ($(strip $(OS_DETECTION_ENABLE)), yes)
+    SRC += $(QUANTUM_DIR)/os_detection.c
+    OPT_DEFS += -DOS_DETECTION_ENABLE
+    ifeq ($(strip $(OS_DETECTION_DEBUG_ENABLE)), yes)
+        OPT_DEFS += -DOS_DETECTION_DEBUG_ENABLE
+    endif
+endif
+
 ifeq ($(strip $(JOYSTICK_TRIGGER_ENABLE)), yes)
     SRC += $(QUANTUM_DIR)/joystick_trigger.c
 	QUANTUM_LIB_SRC += analog.c
@@ -925,6 +948,7 @@ ifeq ($(strip $(RGB_MATRIX_CONTROL_ENABLE)), yes)
 	ifeq ($(strip $(RGB_MATRIX_ENABLE)), no)
         $(error RGB_MATRIX_CONTROL_ENABLE requires RGB_MATRIX_ENABLE, either disable RGB_MATRIX_CONTROL explicitly or enable RGB_MATRIX)
     endif
+    EECONFIG_EXTENDED_FOR_ZQ := yes
     SRC += $(QUANTUM_DIR)/rgb_matrix/rgb_matrix_control.c
 	OPT_DEFS += -DRGB_MATRIX_CONTROL_ENABLE
 endif
@@ -933,6 +957,7 @@ ifeq ($(strip $(UNDERGLOW_RGB_MATRIX_ENABLE)), yes)
 	ifeq ($(strip $(RGB_MATRIX_ENABLE)), no)
         $(error UNDERGLOW_RGB_MATRIX_ENABLE requires RGB_MATRIX_ENABLE, either disable UNDERGLOW_RGB_MATRIX explicitly or enable RGB_MATRIX)
     endif
+    EECONFIG_EXTENDED_FOR_ZQ := yes
     SRC += $(QUANTUM_DIR)/rgb_matrix/underglow_rgb_matrix.c
     OPT_DEFS += -DUNDERGLOW_RGB_MATRIX_ENABLE
 endif
@@ -976,6 +1001,7 @@ ifeq ($(strip $(RGB_INDICATORS_ENABLE)), yes)
 		SRC += $(QUANTUM_DIR)/rgb_matrix/dynamic_rgb_indicators.c
 		OPT_DEFS += -DDYNAMIC_RGB_INDICATORS_ENABLE
     endif
+    EECONFIG_EXTENDED_FOR_ZQ := yes
 	OPT_DEFS += -DRGB_INDICATORS_ENABLE
 endif
 
@@ -994,3 +1020,14 @@ ifeq ($(strip $(VIA_CUSTOM_CONTROL_ENABLE)), yes)
     SRC += $(QUANTUM_DIR)/via_custom_control.c
 	OPT_DEFS += -DVIA_CUSTOM_CONTROL_ENABLE
 endif
+
+ifeq ($(strip $(EECONFIG_EXTENDED_FOR_ZQ)), yes)
+    OPT_DEFS += -DEECONFIG_EXTENDED_FOR_ZHAQIAN
+endif
+
+ifeq ($(strip $(MAGIC_SETTINGS_ENABLE)), yes)
+    SRC += $(QUANTUM_DIR)/magic_settings.c
+	OPT_DEFS += -DMAGIC_SETTINGS_ENABLE
+endif
+
+

@@ -26,7 +26,7 @@ __attribute__((weak)) bool get_haptic_enabled_key(uint16_t keycode, keyrecord_t 
             if (record->tap.count == 0) return false;
             break;
         case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
-            if (record->tap.count != TAPPING_TOGGLE) return false;
+            if (record->tap.count != CUSTOM_TAPPING_TOGGLE) return false;
             break;
         case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
             if (record->tap.count == 0) return false;

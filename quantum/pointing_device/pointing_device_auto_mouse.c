@@ -301,16 +301,16 @@ bool process_auto_mouse(uint16_t keycode, keyrecord_t* record) {
         case QK_LAYER_TAP_TOGGLE ... QK_LAYER_TAP_TOGGLE_MAX:
             if (QK_LAYER_TAP_TOGGLE_GET_LAYER(keycode) == (AUTO_MOUSE_TARGET_LAYER)) {
                 auto_mouse_keyevent(record->event.pressed);
-#        if TAPPING_TOGGLE != 0
-                if (record->tap.count == TAPPING_TOGGLE) {
-                    if (record->event.pressed) {
-                        auto_mouse_context.status.mouse_key_tracker--;
-                    } else {
-                        auto_mouse_toggle();
-                        auto_mouse_context.status.mouse_key_tracker++;
+                if (CUSTOM_TAPPING_TOGGLE != 0)
+                    if (record->tap.count == CUSTOM_TAPPING_TOGGLE) {
+                        if (record->event.pressed) {
+                            auto_mouse_context.status.mouse_key_tracker--;
+                        } else {
+                            auto_mouse_toggle();
+                            auto_mouse_context.status.mouse_key_tracker++;
+                        }
                     }
                 }
-#        endif
             }
             break;
         // LT((AUTO_MOUSE_TARGET_LAYER), kc)---------------------------------------------------------------------------

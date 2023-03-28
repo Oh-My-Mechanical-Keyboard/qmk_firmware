@@ -46,13 +46,6 @@ typedef union {
     };
 } rgb_indicator_t;
 
-#define RGB_INDICATORS_EEPROM_ADDR (VIA_EEPROM_CUSTOM_CONFIG_ADDR)
-
-#define RGB_INDICATORS_EEPROM_SIZE (sizeof(rgb_indicators_config_t) * 3)
-
-#undef VIA_EEPROM_CUSTOM_CONFIG_SIZE
-#define VIA_EEPROM_CUSTOM_CONFIG_SIZE RGB_INDICATORS_EEPROM_SIZE
-
 #ifdef ENABLE_RGB_INDICATORS_ANIMATIONS
 #define ENABLE_RGB_INDICATORS_BREATHING
 #define ENABLE_RGB_INDICATORS_CYCLEBREATHING
@@ -122,4 +115,4 @@ void rgb_indicators_random(uint8_t indicator);
 void rgb_indicators_random_once(uint8_t indicator);
 #endif
 
-bool process_rgb_indicators(const uint16_t keycode, const keyrecord_t *record);
+bool process_rgb_indicators(uint16_t keycode, keyrecord_t *record);

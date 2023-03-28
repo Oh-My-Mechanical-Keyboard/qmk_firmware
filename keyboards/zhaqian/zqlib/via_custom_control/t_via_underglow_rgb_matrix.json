@@ -1,0 +1,101 @@
+// EN Template
+{
+  "label": "Underglow",
+  "content": [
+    {
+      "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+      "label": "Brightness",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_underglow_rgb_matrix_brightness", 5, 2]
+    },
+    {
+      "label": "Effect",
+      "type": "dropdown",
+      "content": ["id_underglow_rgb_matrix_effect", 5, 3],
+      "options": [
+        ["Sync", 1],
+        ["Breathing", 2],
+        ["Cycle Breathing", 3],
+        ["Cycle Band Val.", 4], 
+        ["Cycle Pinwheel Val.", 5],
+        ["Cycle All", 6],
+        ["Cycle Left/Right", 7],
+        ["Cycle Up/Down", 8],
+        ["Cycle Out/In", 9],
+        ["Cycle In/Out", 10],
+        ["Rainbow Pinwheel", 11],
+        ["Cycle Spiral", 12],
+        ["WPM Cycle Left/Right", 13],
+        ["WPM Rainbow Pinwheel", 14],
+        ["WPM Cycle Breathing", 15],
+        ["WPM Cycle Spiral", 16],
+        ["WPM Cycle In/Out", 17]
+      ]
+    },
+    {
+      "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+      "label": "Effect Speed",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_underglow_rgb_matrix_effect_speed", 5, 4]
+    },
+    {
+      "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+      "label": "Color",
+      "type": "color",
+      "content": ["id_underglow_rgb_matrix_color", 5, 5]
+    }
+  ]
+}
+
+// CN Template
+{
+  "label": "\u5e95\u706f",
+  "content": [
+    {
+      "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+      "label": "\u4eae\u5ea6",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_underglow_rgb_matrix_brightness", 5, 2]
+    },
+    {
+      "label": "\u706f\u6548",
+      "type": "dropdown",
+      "content": ["id_underglow_rgb_matrix_effect", 5, 3],
+      "options": [
+        ["\u540c\u6b65\u5168\u5c40", 1],
+        ["\u5355\u8272\u547c\u5438", 2],
+        ["\u5faa\u73af\u547c\u5438", 3],
+        ["\u5faa\u73af\u6a2a\u5411\u6eda\u52a8", 4], 
+        ["\u5faa\u73af\u98ce\u8f66", 5],
+        ["\u5f69\u8679\u5faa\u73af", 6],
+        ["\u6a2a\u5411\u5f69\u8679", 7],
+        ["\u7eb5\u5411\u5f69\u8679", 8],
+        ["\u5f69\u8679\u6f29\u6da1", 9],
+        ["\u5f69\u8679\u6d9f\u6f2a", 10],
+        ["\u5f69\u8679\u98ce\u8f66", 11],
+        ["\u5f69\u8679\u87ba\u65cb", 12],
+        ["\u53d8\u901f\u6a2a\u5411\u5f69\u8679", 13],
+        ["\u53d8\u901f\u5f69\u8679\u98ce\u8f66", 14],
+        ["\u53d8\u901f\u5faa\u73af\u547c\u5438", 15],
+        ["\u53d8\u901f\u5f69\u8679\u87ba\u65cb", 16],
+        ["\u53d8\u901f\u5f69\u8679\u6d9f\u6f2a", 17]
+      ]
+    },
+    {
+      "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+      "label": "\u901f\u5ea6",
+      "type": "range",
+      "options": [0, 255],
+      "content": ["id_underglow_rgb_matrix_effect_speed", 5, 4]
+    },
+    {
+      "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+      "label": "\u989c\u8272",
+      "type": "color",
+      "content": ["id_underglow_rgb_matrix_color", 5, 5]
+    }
+  ]
+}

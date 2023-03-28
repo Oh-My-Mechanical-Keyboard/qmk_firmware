@@ -17,6 +17,10 @@
 #include "via_custom_control.h"
 #include "via.h"
 
+#if defined(MOUSEKEY_ENABLE)
+#include "mousekey.h"
+#endif
+
 void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
     // data = [ command_id, channel_id, value_id, value_data ]
     uint8_t *command_id = &(data[0]);
@@ -34,6 +38,19 @@ void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
         return;
     }
 #endif
+
+#if defined(VIA_CUSTOM_MAGIC_SETTINGS_ENABLE)
+    if (*channel_id == id_custom_magic_setting_channel) {
+        via_custom_magic_setting_command(data, length);
+        return;
+    }
+
+    if (*channel_id == id_custom_advanced_magic_setting_channel) {
+        via_custom_advanced_magic_setting_command(data, length);
+        return;
+    }
+#endif
+
     *command_id = id_unhandled;
     *channel_id = *channel_id;  // force use of variable
 }
@@ -273,8 +290,9 @@ void via_custom_rgb_indicators_set_value(uint8_t *data) {
         }
     }
 }
+
 void via_custom_rgb_indicators_get_value(uint8_t *data) {
-        // data = [ value_id, value_data ]
+    // data = [ value_id, value_data ]
     uint8_t *value_id   = &(data[0]);
     uint8_t *value_data = &(data[1]);
     switch (*value_id) {
@@ -320,6 +338,430 @@ void via_custom_rgb_indicators_get_value(uint8_t *data) {
 
 void via_custom_rgb_indicators_save(void) {
     update_dynamic_rgb_indicators();
+}
+
+#endif
+
+#if defined(VIA_CUSTOM_MAGIC_SETTINGS_ENABLE)
+void via_custom_magic_setting_command(uint8_t *data, uint8_t length) {
+    // data = [ command_id, channel_id, value_id, value_data ]
+    uint8_t *command_id        = &(data[0]);
+    uint8_t *value_id_and_data = &(data[2]);
+
+    switch (*command_id) {
+        case id_custom_set_value: {
+            via_custom_magic_setting_set_value(value_id_and_data);
+            break;
+        }
+        case id_custom_get_value: {
+            via_custom_magic_setting_get_value(value_id_and_data);
+            break;
+        }
+        case id_custom_save: {
+            via_custom_magic_setting_save();
+            break;
+        }
+        default: {
+            *command_id = id_unhandled;
+            break;
+        }
+    }
+}
+
+void via_custom_magic_setting_set_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_magic_nkro: {
+            clear_keyboard(); 
+            keymap_config.nkro = value_data[0];
+            break;
+        }
+        case id_magic_no_gui: {
+            keymap_config.no_gui = value_data[0];
+            break;
+        }
+        case id_magic_capslock_to_control: {
+            keymap_config.capslock_to_control = value_data[0];
+            break;
+        }
+        case id_magic_swap_control_capslock: {
+            keymap_config.swap_control_capslock = value_data[0];
+            break;
+        }
+        case id_magic_swap_escape_capslock: {
+            keymap_config.swap_escape_capslock = value_data[0];
+            break;
+        }
+        case id_magic_swap_lalt_lgui: {
+            keymap_config.swap_lalt_lgui = value_data[0];
+            break;
+        }
+        case id_magic_swap_ralt_rgui: {
+            keymap_config.swap_ralt_rgui = value_data[0];
+            break;
+        }
+        case id_magic_swap_lctl_lgui: {
+            keymap_config.swap_lctl_lgui = value_data[0];
+            break;
+        }
+        case id_magic_swap_rctl_rgui: {
+            keymap_config.swap_rctl_rgui = value_data[0];
+            break;
+        }
+        case id_magic_swap_grave_esc: {
+            keymap_config.swap_grave_esc = value_data[0];
+            break;
+        }
+        case id_magic_swap_backslash_backspace: {
+            keymap_config.swap_backslash_backspace = value_data[0];
+            break;
+        }
+        case id_magic_oneshot_enable: {
+            keymap_config.oneshot_enable = value_data[0];
+            break;
+        }
+        case id_magic_autocorrect_enable: {
+            keymap_config.autocorrect_enable = value_data[0];
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+    clear_keyboard();
+}
+
+void via_custom_magic_setting_get_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_magic_nkro: {
+            value_data[0] = keymap_config.nkro;
+            break;
+        }
+        case id_magic_no_gui: {
+            value_data[0] =  keymap_config.no_gui;
+            break;
+        }
+        case id_magic_capslock_to_control: {
+            value_data[0] = keymap_config.capslock_to_control;
+            break;
+        }
+        case id_magic_swap_control_capslock: {
+            value_data[0] = keymap_config.swap_control_capslock;
+            break;
+        }
+        case id_magic_swap_escape_capslock: {
+            value_data[0] = keymap_config.swap_escape_capslock;
+            break;
+        }
+        case id_magic_swap_lalt_lgui: {
+            value_data[0] = keymap_config.swap_lalt_lgui;
+            break;
+        }
+        case id_magic_swap_ralt_rgui: {
+            value_data[0] = keymap_config.swap_ralt_rgui;
+            break;
+        }
+        case id_magic_swap_lctl_lgui: {
+            value_data[0] = keymap_config.swap_lctl_lgui;
+            break;
+        }
+        case id_magic_swap_rctl_rgui: {
+            value_data[0] = keymap_config.swap_rctl_rgui;
+            break;
+        }
+        case id_magic_swap_grave_esc: {
+            value_data[0] = keymap_config.swap_grave_esc;
+            break;
+        }
+        case id_magic_swap_backslash_backspace: {
+            value_data[0] = keymap_config.swap_backslash_backspace;
+            break;
+        }
+        case id_magic_oneshot_enable: {
+            value_data[0] = keymap_config.oneshot_enable;
+            break;
+        }
+        case id_magic_autocorrect_enable: {
+            value_data[0] = keymap_config.autocorrect_enable;
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_magic_setting_save(void) {
+    eeconfig_update_keymap(keymap_config.raw);
+}
+
+void via_custom_advanced_magic_setting_command(uint8_t *data, uint8_t length) {
+    // data = [ command_id, channel_id, value_id, value_data ]
+    uint8_t *command_id        = &(data[0]);
+    uint8_t *value_id_and_data = &(data[2]);
+
+    switch (*command_id) {
+        case id_custom_set_value: {
+            via_custom_advanced_magic_setting_set_value(value_id_and_data);
+            break;
+        }
+        case id_custom_get_value: {
+            via_custom_advanced_magic_setting_get_value(value_id_and_data);
+            break;
+        }
+        case id_custom_save: {
+            via_custom_advanced_magic_setting_save();
+            break;
+        }
+        default: {
+            *command_id = id_unhandled;
+            break;
+        }
+    }
+}
+
+void via_custom_advanced_magic_setting_set_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_advanced_magic_settings_reset: {
+            magic_settings_reset();
+            break;
+        }
+        case id_advanced_magic_debounce: {
+            clear_keyboard();
+            MAGIC_SETTINGS_SET(debounce, value_data[0]);
+            break;
+        }
+#ifdef MOUSEKEY_ENABLE
+        case id_advanced_magic_mk_delay: {
+            MAGIC_SETTINGS_SET(mk_delay, value_data[0]);
+            mk_delay = MAGIC_SETTINGS_GET(mk_delay);
+            break; 
+        }
+        case id_advanced_magic_mk_interval: {
+            MAGIC_SETTINGS_SET(mk_interval, value_data[0]);
+            mk_interval = MAGIC_SETTINGS_GET(mk_interval);
+            break; 
+        }
+        case id_advanced_magic_mk_move_delta: {
+            MAGIC_SETTINGS_SET(mk_move_delta, value_data[0]);
+            break; 
+        }
+        case id_advanced_magic_mk_max_speed: {
+            MAGIC_SETTINGS_SET(mk_max_speed, value_data[0]);
+            mk_max_speed = MAGIC_SETTINGS_GET(mk_max_speed);
+            break; 
+        }
+        case id_advanced_magic_mk_time_to_max: {
+            MAGIC_SETTINGS_SET(mk_time_to_max, value_data[0]);
+            mk_time_to_max = MAGIC_SETTINGS_GET(mk_time_to_max);
+            break; 
+        }
+        case id_advanced_magic_mk_wheel_delay: {
+            MAGIC_SETTINGS_SET(mk_wheel_delay, value_data[0]);
+            mk_wheel_delay = MAGIC_SETTINGS_GET(mk_wheel_delay);
+            break; 
+        }
+        case id_advanced_magic_mk_wheel_interval: {
+            MAGIC_SETTINGS_SET(mk_wheel_interval, value_data[0]);
+            mk_wheel_interval = MAGIC_SETTINGS_GET(mk_wheel_interval);
+            break; 
+        }
+        case id_advanced_magic_mk_wheel_max_speed: {
+            MAGIC_SETTINGS_SET(mk_wheel_max_speed, value_data[0]);
+            mk_wheel_max_speed = MAGIC_SETTINGS_GET(mk_wheel_max_speed);
+            break; 
+        }
+        case id_advanced_magic_mk_wheel_time_to_max: {
+            MAGIC_SETTINGS_SET(mk_wheel_time_to_max, value_data[0]);
+            mk_wheel_time_to_max = MAGIC_SETTINGS_GET(mk_wheel_time_to_max);
+            break; 
+        }
+#endif
+        case id_advanced_magic_grave_esc_override: {
+            uint8_t tmp = MAGIC_SETTINGS_GET(grave_esc_override) & (~(0x1 << value_data[0]));
+            tmp |= value_data[1] << value_data[0];
+            MAGIC_SETTINGS_SET(grave_esc_override, tmp);
+            break;
+        }
+#ifndef NO_ACTION_TAPPING
+        case id_advanced_magic_tap_hold_config: {
+            uint8_t tmp = MAGIC_SETTINGS_GET(tap_hold_config) & (~(0x1 << value_data[0]));
+            tmp |= value_data[1] << value_data[0];
+            MAGIC_SETTINGS_SET(tap_hold_config, tmp);
+            break;
+        }
+        case id_advanced_magic_tapping_toggle_times: {
+            MAGIC_SETTINGS_SET(tapping_toggle_times, value_data[0]);
+            break;
+        }
+        case id_advanced_magic_tapping_term: {
+            MAGIC_SETTINGS_SET(tapping_term, (value_data[0] << 8 | value_data[1]));
+            break;
+        }
+        case id_advanced_magic_quick_tap_term: {
+            MAGIC_SETTINGS_SET(quick_tap_term, (value_data[0] << 8 | value_data[1]));
+            break;
+        }
+        case id_advanced_magic_tap_code_delay: {
+            MAGIC_SETTINGS_SET(tap_code_delay, (value_data[0] << 8 | value_data[1]));
+            break;
+        }
+        case id_advanced_magic_tap_hold_caps_delay: {
+            MAGIC_SETTINGS_SET(tap_hold_caps_delay, (value_data[0] << 8 | value_data[1]));
+            break;
+        }
+#endif
+#ifdef AUTO_SHIFT_ENABLE
+        case id_advanced_magic_auto_shift_config: {
+            uint8_t tmp = MAGIC_SETTINGS_GET(auto_shift_config) & (~(0x1 << value_data[0]));
+            tmp |= value_data[1] << value_data[0];
+            MAGIC_SETTINGS_SET(auto_shift_config, tmp);
+            break;
+        }
+        case id_advanced_magic_auto_shift_timeout: {
+            MAGIC_SETTINGS_SET(auto_shift_timeout, (value_data[0] << 8 | value_data[1]));
+            break;
+        }
+#endif
+#ifndef NO_ACTION_ONESHOT
+        case id_advanced_magic_oneshot_tap_toggle: {
+            MAGIC_SETTINGS_SET(oneshot_tap_toggle, value_data[0]);
+            break;
+        }
+        case id_advanced_magic_oneshot_timeout: {
+            MAGIC_SETTINGS_SET(oneshot_timeout, (value_data[0] << 8 | value_data[1]));
+            break;
+        }
+#endif
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_advanced_magic_setting_get_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_advanced_magic_settings_reset: {
+            value_data[0] = 0;
+            break;
+        }
+        case id_advanced_magic_debounce: {
+            value_data[0] = MAGIC_SETTINGS_GET(debounce);
+            break;
+        }
+#ifdef MOUSEKEY_ENABLE
+        case id_advanced_magic_mk_delay: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_delay);
+            break; 
+        }
+        case id_advanced_magic_mk_interval: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_interval);
+            break; 
+        }
+        case id_advanced_magic_mk_move_delta: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_move_delta);
+            break; 
+        }
+        case id_advanced_magic_mk_max_speed: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_max_speed);
+            break; 
+        }
+        case id_advanced_magic_mk_time_to_max: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_time_to_max);
+            break; 
+        }
+        case id_advanced_magic_mk_wheel_delay: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_wheel_delay);
+            break; 
+        }
+        case id_advanced_magic_mk_wheel_interval: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_wheel_interval);
+            break; 
+        }
+        case id_advanced_magic_mk_wheel_max_speed: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_wheel_max_speed);
+            break; 
+        }
+        case id_advanced_magic_mk_wheel_time_to_max: {
+            value_data[0] = MAGIC_SETTINGS_GET(mk_wheel_time_to_max);
+            break; 
+        }
+#endif
+        case id_advanced_magic_grave_esc_override: {
+            value_data[1] = MAGIC_SETTINGS_GET(grave_esc_override) & (0x1 << value_data[0]) ? 1 : 0;
+            break;
+        }
+#ifndef NO_ACTION_TAPPING
+        case id_advanced_magic_tap_hold_config: {
+            value_data[1] = MAGIC_SETTINGS_GET(tap_hold_config) & (0x1 << value_data[0]) ? 1 : 0;
+            break;
+        }
+        case id_advanced_magic_tapping_toggle_times: {
+            value_data[0] = MAGIC_SETTINGS_GET(tapping_toggle_times);
+            break;
+        }
+        case id_advanced_magic_tapping_term: {
+            value_data[0] = MAGIC_SETTINGS_GET(tapping_term) >> 8;
+            value_data[1] = MAGIC_SETTINGS_GET(tapping_term) & 0xFF;
+            break;
+        }
+        case id_advanced_magic_quick_tap_term: {
+            value_data[0] = MAGIC_SETTINGS_GET(quick_tap_term) >> 8;
+            value_data[1] = MAGIC_SETTINGS_GET(quick_tap_term) & 0xFF;
+            break;
+        }
+        case id_advanced_magic_tap_code_delay: {
+            value_data[0] = MAGIC_SETTINGS_GET(tap_code_delay) >> 8;
+            value_data[1] = MAGIC_SETTINGS_GET(tap_code_delay) & 0xFF;
+            break;
+        }
+        case id_advanced_magic_tap_hold_caps_delay: {
+            value_data[0] = MAGIC_SETTINGS_GET(tap_hold_caps_delay) >> 8;
+            value_data[1] = MAGIC_SETTINGS_GET(tap_hold_caps_delay) & 0xFF;
+            break;
+        }
+#endif
+#ifdef AUTO_SHIFT_ENABLE
+        case id_advanced_magic_auto_shift_config: {
+            value_data[1] = MAGIC_SETTINGS_GET(auto_shift_config) & (0x1 << value_data[0]) ? 1 : 0;
+            break;
+        }
+        case id_advanced_magic_auto_shift_timeout: {
+            value_data[0] = MAGIC_SETTINGS_GET(auto_shift_timeout) >> 8;
+            value_data[1] = MAGIC_SETTINGS_GET(auto_shift_timeout) & 0xFF;
+            break;
+        }
+#endif
+#ifndef NO_ACTION_ONESHOT
+        case id_advanced_magic_oneshot_tap_toggle: {
+            value_data[0] = MAGIC_SETTINGS_GET(oneshot_tap_toggle);
+            break;
+        }
+        case id_advanced_magic_oneshot_timeout: {
+            value_data[0] = MAGIC_SETTINGS_GET(oneshot_timeout) >> 8;
+            value_data[1] = MAGIC_SETTINGS_GET(oneshot_timeout) & 0xFF;
+            break;
+        }
+#endif
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_advanced_magic_setting_save(void) {
+    eeconfig_update_magic_settings();
 }
 
 #endif

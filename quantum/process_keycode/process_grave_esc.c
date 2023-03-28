@@ -25,35 +25,35 @@ bool process_grave_esc(uint16_t keycode, keyrecord_t *record) {
         const uint8_t mods    = get_mods();
         uint8_t       shifted = mods & MOD_MASK_SG;
 
-#ifdef GRAVE_ESC_ALT_OVERRIDE
+    if (CUSTOM_GRAVE_ESC_ALT_OVERRIDE) {
         // if ALT is pressed, ESC is always sent
         // this is handy for the cmd+opt+esc shortcut on macOS, among other things.
         if (mods & MOD_MASK_ALT) {
             shifted = 0;
         }
-#endif
+    }
 
-#ifdef GRAVE_ESC_CTRL_OVERRIDE
+    if (CUSTOM_GRAVE_ESC_CTRL_OVERRIDE) {
         // if CTRL is pressed, ESC is always sent
         // this is handy for the ctrl+shift+esc shortcut on windows, among other things.
         if (mods & MOD_MASK_CTRL) {
             shifted = 0;
         }
-#endif
+    }
 
-#ifdef GRAVE_ESC_GUI_OVERRIDE
+    if (CUSTOM_GRAVE_ESC_GUI_OVERRIDE) {
         // if GUI is pressed, ESC is always sent
         if (mods & MOD_MASK_GUI) {
             shifted = 0;
         }
-#endif
+    }
 
-#ifdef GRAVE_ESC_SHIFT_OVERRIDE
+    if (CUSTOM_GRAVE_ESC_SHIFT_OVERRIDE) {
         // if SHIFT is pressed, ESC is always sent
         if (mods & MOD_MASK_SHIFT) {
             shifted = 0;
         }
-#endif
+    }
 
         if (record->event.pressed) {
             grave_esc_was_shifted = shifted;

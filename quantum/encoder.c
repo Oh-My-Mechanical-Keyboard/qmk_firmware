@@ -25,7 +25,7 @@
 
 #ifndef ENCODER_MAP_KEY_DELAY
 #    include "action.h"
-#    define ENCODER_MAP_KEY_DELAY TAP_CODE_DELAY
+#    define ENCODER_MAP_KEY_DELAY CUSTOM_TAP_CODE_DELAY
 #endif
 
 #if !defined(ENCODER_RESOLUTIONS) && !defined(ENCODER_RESOLUTION)

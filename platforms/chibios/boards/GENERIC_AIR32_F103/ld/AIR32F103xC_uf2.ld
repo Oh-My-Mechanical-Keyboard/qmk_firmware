@@ -167,3 +167,6 @@ REGION_ALIAS("HEAP_RAM", ram0);
 
 /* Generic rules inclusion.*/
 INCLUDE rules.ld
+
+/* Bootloader reset support */
+_board_magic_reg = ORIGIN(ram0) + 16k; /* this is based off the code within backup.c */

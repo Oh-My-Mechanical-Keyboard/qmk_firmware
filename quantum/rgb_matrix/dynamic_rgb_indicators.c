@@ -183,11 +183,11 @@ static uint8_t changed[3] = {0};
 #endif
 
 void read_dynamic_rgb_indicators(void) {
-    eeprom_read_block(&rgb_indicators_config, (void*)RGB_INDICATORS_EEPROM_ADDR, sizeof(rgb_indicators_config));
+    eeprom_read_block(&rgb_indicators_config, EECONFIG_RGB_INDICATORS, sizeof(rgb_indicators_config));
 }
 
 void update_dynamic_rgb_indicators(void) {
-    eeprom_update_block(&rgb_indicators_config, (void*)RGB_INDICATORS_EEPROM_ADDR, sizeof(rgb_indicators_config));
+    eeprom_update_block(&rgb_indicators_config, EECONFIG_RGB_INDICATORS, sizeof(rgb_indicators_config));
 }
 
 static void update_dynamic_rgb_indicators_default(void) {
@@ -220,10 +220,6 @@ static void update_dynamic_rgb_indicators_default(void) {
     rgb_indicators_config.scroll_lock_config.hsv = tmp_hsv[2];
 
     update_dynamic_rgb_indicators();
-}
-
-void via_init_kb(void) {
-    rgb_indicators_init();
 }
 
 void rgb_indicators_init(void) {
@@ -760,7 +756,7 @@ void rgb_indicators_random_once(uint8_t indicator) {
 }
 #endif
 
-bool process_rgb_indicators(const uint16_t keycode, const keyrecord_t *record) {
+bool process_rgb_indicators(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RGB_IND_NUM_LOCK_TOG:
             if (record->event.pressed) {

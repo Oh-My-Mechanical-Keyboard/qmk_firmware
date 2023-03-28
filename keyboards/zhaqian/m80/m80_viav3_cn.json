@@ -1,0 +1,1586 @@
+{
+  "name": "M80",
+  "vendorId": "0x00AA",
+  "productId": "0xAA14",
+  "matrix": {
+    "rows": 6,
+    "cols": 17
+  },
+  "firmwareVersion": 0,
+  "keycodes": [
+    "qmk_lighting"
+  ],
+  "menus": [
+    {
+      "label": "Lighting\u706f\u5149",
+      "content": [
+        {
+          "label": "\u706f\u5149\u8bbe\u7f6e",
+          "content": [
+            {
+              "label": "\u5168\u5c40\u706f\u5149\u5f00\u5173",
+              "type": "toggle",
+              "content": [
+                "id_rgb_matrix_toggle[0]",
+                5,
+                1,
+                0
+              ]
+            },
+            {
+              "label": "Logo\u706f\u5f00\u5173",
+              "type": "toggle",
+              "content": [
+                "id_rgb_matrix_toggle[1]",
+                5,
+                1,
+                1
+              ]
+            },
+            {
+              "label": "\u5e95\u706f\u5f00\u5173",
+              "type": "toggle",
+              "content": [
+                "id_rgb_matrix_toggle[2]",
+                5,
+                1,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "label": "\u5168\u5c40\u706f\u5149",
+          "content": [
+            {
+              "label": "\u4eae\u5ea6",
+              "type": "range",
+              "options": [
+                0,
+                200
+              ],
+              "content": [
+                "id_qmk_rgb_matrix_brightness",
+                3,
+                1
+              ]
+            },
+            {
+              "label": "\u706f\u6548",
+              "type": "dropdown",
+              "content": [
+                "id_qmk_rgb_matrix_effect",
+                3,
+                2
+              ],
+              "options": [
+                ["\u9759\u6001\u5355\u8272", 1],
+                ["\u9759\u6001\u7eb5\u5411\u6e10\u53d8", 2],
+                ["\u9759\u6001\u6a2a\u5411\u6e10\u53d8", 3],
+                ["\u5355\u8272\u547c\u5438", 4],
+                ["\u80cc\u5149\u6a2a\u5411\u6eda\u52a8", 5],
+                ["\u5355\u8272\u6a2a\u5411\u6eda\u52a8", 6],
+                ["\u5f69\u8679\u5faa\u73af", 7],
+                ["\u6a2a\u5411\u5f69\u8679", 8],
+                ["\u7eb5\u5411\u5f69\u8679", 9],
+                ["V\u578b\u5f69\u8679", 10],
+                ["\u5f69\u8679\u6f29\u6da1", 11],
+                ["\u5f69\u8679\u98ce\u8f66", 12],
+                ["\u5f69\u8679\u87ba\u65cb", 13],
+                ["\u5faa\u73af\u547c\u5438", 14],
+                ["\u5faa\u73af\u6a2a\u5411\u6eda\u52a8", 15],
+                ["\u53cd\u5411\u6a2a\u5411\u5f69\u8679", 16],
+                ["\u53cd\u5411\u7eb5\u5411\u5f69\u8679", 17],
+                ["\u5f69\u8679\u6d9f\u6f2a", 18],
+                ["\u5faa\u73af\u86c7\u5f62\u706f\u6548", 19]
+              ]
+            },
+            {
+              "showIf": "{id_qmk_rgb_matrix_effect} != 0",
+              "label": "\u901f\u5ea6",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_qmk_rgb_matrix_effect_speed",
+                3,
+                3
+              ]
+            },
+            {
+              "showIf": "{id_qmk_rgb_matrix_effect} != 0",
+              "label": "\u989c\u8272",
+              "type": "color",
+              "content": [
+                "id_qmk_rgb_matrix_color",
+                3,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "label": "\u5e95\u706f",
+          "content": [
+            {
+              "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+              "label": "\u4eae\u5ea6",
+              "type": "range",
+              "options": [
+                0,
+                200
+              ],
+              "content": [
+                "id_underglow_rgb_matrix_brightness",
+                5,
+                2
+              ]
+            },
+            {
+              "label": "\u706f\u6548",
+              "type": "dropdown",
+              "content": [
+                "id_underglow_rgb_matrix_effect",
+                5,
+                3
+              ],
+              "options": [
+                ["\u540c\u6b65\u5168\u5c40", 1],
+                ["\u5355\u8272\u547c\u5438", 2],
+                ["\u5faa\u73af\u547c\u5438", 3],
+                ["\u5faa\u73af\u6a2a\u5411\u6eda\u52a8", 4], 
+                ["\u5faa\u73af\u98ce\u8f66", 5],
+                ["\u5f69\u8679\u5faa\u73af", 6],
+                ["\u6a2a\u5411\u5f69\u8679", 7],
+                ["\u7eb5\u5411\u5f69\u8679", 8],
+                ["\u5f69\u8679\u6f29\u6da1", 9],
+                ["\u5f69\u8679\u6d9f\u6f2a", 10],
+                ["\u5f69\u8679\u98ce\u8f66", 11],
+                ["\u5f69\u8679\u87ba\u65cb", 12]
+              ]
+            },
+            {
+              "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+              "label": "\u901f\u5ea6",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_underglow_rgb_matrix_effect_speed",
+                5,
+                4
+              ]
+            },
+            {
+              "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+              "label": "\u989c\u8272",
+              "type": "color",
+              "content": [
+                "id_underglow_rgb_matrix_color",
+                5,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "label": "\u6307\u793a\u706f",
+          "content": [
+            {
+              "label": "\u6307\u793a\u706f\u5e38\u4eae",
+              "type": "toggle",
+              "content": [
+                "id_rgb_indicators_override",
+                6,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect1} != 0",
+              "label": "Caps Lock \u4eae\u5ea6",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_rgb_indicators_brightness[1]",
+                6,
+                2,
+                1
+              ]
+            },
+            {
+              "label": "Caps Lock \u706f\u6548",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_effect1",
+                6,
+                3,
+                1
+              ],
+              "options": [
+                ["\u5173\u95ed", 0],
+                ["\u9759\u6001\u5355\u8272", 1],
+                ["\u5355\u8272\u547c\u5438", 2],
+                ["\u5faa\u73af\u547c\u5438", 3],
+                ["\u5f69\u8679\u5faa\u73af", 4],
+                ["\u968f\u673a\u53d8\u6362", 5],
+                ["\u968f\u673a\u8272\u5f69", 6]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect1} != 0",
+              "label": "Caps Lock\u706f\u73e0",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_led[1]",
+                6,
+                5,
+                1
+              ],
+              "options": [
+                [
+                  "\u5168\u90e8\u706f",
+                  0
+                ],
+                [
+                  "Logo\u706f",
+                  1
+                ],
+                [
+                  "\u5e95\u706f",
+                  2
+                ],
+                [
+                  "\u706f\u73e00",
+                  4
+                ],
+                [
+                  "\u706f\u73e01",
+                  5
+                ],
+                [
+                  "\u706f\u73e02",
+                  6
+                ],
+                [
+                  "\u706f\u73e03",
+                  7
+                ],
+                [
+                  "\u706f\u73e04",
+                  8
+                ],
+                [
+                  "\u706f\u73e05",
+                  9
+                ],
+                [
+                  "\u706f\u73e06",
+                  10
+                ],
+                [
+                  "\u706f\u73e07",
+                  11
+                ],
+                [
+                  "\u706f\u73e08",
+                  12
+                ],
+                [
+                  "\u706f\u73e09",
+                  13
+                ],
+                [
+                  "\u706f\u73e010",
+                  14
+                ],
+                [
+                  "\u706f\u73e011",
+                  15
+                ],
+                [
+                  "\u706f\u73e012",
+                  16
+                ],
+                [
+                  "\u706f\u73e013",
+                  17
+                ],
+                [
+                  "\u706f\u73e014",
+                  18
+                ],
+                [
+                  "\u706f\u73e015",
+                  19
+                ],
+                [
+                  "\u706f\u73e016",
+                  20
+                ],
+                [
+                  "\u706f\u73e017",
+                  21
+                ],
+                [
+                  "\u706f\u73e018",
+                  22
+                ],
+                [
+                  "\u706f\u73e019",
+                  23
+                ],
+                [
+                  "\u706f\u73e020",
+                  24
+                ],
+                [
+                  "\u706f\u73e021",
+                  25
+                ],
+                [
+                  "\u706f\u73e022",
+                  26
+                ],
+                [
+                  "\u706f\u73e023",
+                  27
+                ],
+                [
+                  "\u706f\u73e024",
+                  28
+                ],
+                [
+                  "\u706f\u73e025",
+                  29
+                ],
+                [
+                  "\u706f\u73e026",
+                  30
+                ],
+                [
+                  "\u706f\u73e027",
+                  31
+                ],
+                [
+                  "\u706f\u73e028",
+                  32
+                ],
+                [
+                  "\u706f\u73e029",
+                  33
+                ],
+                [
+                  "\u706f\u73e030",
+                  34
+                ],
+                [
+                  "\u706f\u73e031",
+                  35
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect1} != 0",
+              "label": "Caps Lock \u989c\u8272",
+              "type": "color",
+              "content": [
+                "id_rgb_indicators_color[1]",
+                6,
+                4,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect0} != 0",
+              "label": "Num Lock \u4eae\u5ea6",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_rgb_indicators_brightness[0]",
+                6,
+                2,
+                0
+              ]
+            },
+            {
+              "label": "Num Lock \u706f\u6548",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_effect0",
+                6,
+                3,
+                0
+              ],
+              "options": [
+                ["\u5173\u95ed", 0],
+                ["\u9759\u6001\u5355\u8272", 1],
+                ["\u5355\u8272\u547c\u5438", 2],
+                ["\u5faa\u73af\u547c\u5438", 3],
+                ["\u5f69\u8679\u5faa\u73af", 4],
+                ["\u968f\u673a\u53d8\u6362", 5],
+                ["\u968f\u673a\u8272\u5f69", 6]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect0} != 0",
+              "label": "Num Lock\u706f\u73e0",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_led[0]",
+                6,
+                5,
+                0
+              ],
+              "options": [
+                [
+                  "\u5168\u90e8\u706f",
+                  0
+                ],
+                [
+                  "Logo\u706f",
+                  1
+                ],
+                [
+                  "\u5e95\u706f",
+                  2
+                ],
+                [
+                  "\u706f\u73e00",
+                  4
+                ],
+                [
+                  "\u706f\u73e01",
+                  5
+                ],
+                [
+                  "\u706f\u73e02",
+                  6
+                ],
+                [
+                  "\u706f\u73e03",
+                  7
+                ],
+                [
+                  "\u706f\u73e04",
+                  8
+                ],
+                [
+                  "\u706f\u73e05",
+                  9
+                ],
+                [
+                  "\u706f\u73e06",
+                  10
+                ],
+                [
+                  "\u706f\u73e07",
+                  11
+                ],
+                [
+                  "\u706f\u73e08",
+                  12
+                ],
+                [
+                  "\u706f\u73e09",
+                  13
+                ],
+                [
+                  "\u706f\u73e010",
+                  14
+                ],
+                [
+                  "\u706f\u73e011",
+                  15
+                ],
+                [
+                  "\u706f\u73e012",
+                  16
+                ],
+                [
+                  "\u706f\u73e013",
+                  17
+                ],
+                [
+                  "\u706f\u73e014",
+                  18
+                ],
+                [
+                  "\u706f\u73e015",
+                  19
+                ],
+                [
+                  "\u706f\u73e016",
+                  20
+                ],
+                [
+                  "\u706f\u73e017",
+                  21
+                ],
+                [
+                  "\u706f\u73e018",
+                  22
+                ],
+                [
+                  "\u706f\u73e019",
+                  23
+                ],
+                [
+                  "\u706f\u73e020",
+                  24
+                ],
+                [
+                  "\u706f\u73e021",
+                  25
+                ],
+                [
+                  "\u706f\u73e022",
+                  26
+                ],
+                [
+                  "\u706f\u73e023",
+                  27
+                ],
+                [
+                  "\u706f\u73e024",
+                  28
+                ],
+                [
+                  "\u706f\u73e025",
+                  29
+                ],
+                [
+                  "\u706f\u73e026",
+                  30
+                ],
+                [
+                  "\u706f\u73e027",
+                  31
+                ],
+                [
+                  "\u706f\u73e028",
+                  32
+                ],
+                [
+                  "\u706f\u73e029",
+                  33
+                ],
+                [
+                  "\u706f\u73e030",
+                  34
+                ],
+                [
+                  "\u706f\u73e031",
+                  35
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect0} != 0",
+              "label": "Num Lock \u989c\u8272",
+              "type": "color",
+              "content": [
+                "id_rgb_indicators_color[0]",
+                6,
+                4,
+                0
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect2} != 0",
+              "label": "Scroll Lock \u4eae\u5ea6",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_rgb_indicators_brightness[2]",
+                6,
+                2,
+                2
+              ]
+            },
+            {
+              "label": "Scroll Lock \u706f\u6548",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_effect2",
+                6,
+                3,
+                2
+              ],
+              "options": [
+                ["\u5173\u95ed", 0],
+                ["\u9759\u6001\u5355\u8272", 1],
+                ["\u5355\u8272\u547c\u5438", 2],
+                ["\u5faa\u73af\u547c\u5438", 3],
+                ["\u5f69\u8679\u5faa\u73af", 4],
+                ["\u968f\u673a\u53d8\u6362", 5],
+                ["\u968f\u673a\u8272\u5f69", 6]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect2} != 0",
+              "label": "Scroll Lock\u706f\u73e0",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_led[2]",
+                6,
+                5,
+                2
+              ],
+              "options": [
+                [
+                  "\u5168\u90e8\u706f",
+                  0
+                ],
+                [
+                  "Logo\u706f",
+                  1
+                ],
+                [
+                  "\u5e95\u706f",
+                  2
+                ],
+                [
+                  "\u706f\u73e00",
+                  4
+                ],
+                [
+                  "\u706f\u73e01",
+                  5
+                ],
+                [
+                  "\u706f\u73e02",
+                  6
+                ],
+                [
+                  "\u706f\u73e03",
+                  7
+                ],
+                [
+                  "\u706f\u73e04",
+                  8
+                ],
+                [
+                  "\u706f\u73e05",
+                  9
+                ],
+                [
+                  "\u706f\u73e06",
+                  10
+                ],
+                [
+                  "\u706f\u73e07",
+                  11
+                ],
+                [
+                  "\u706f\u73e08",
+                  12
+                ],
+                [
+                  "\u706f\u73e09",
+                  13
+                ],
+                [
+                  "\u706f\u73e010",
+                  14
+                ],
+                [
+                  "\u706f\u73e011",
+                  15
+                ],
+                [
+                  "\u706f\u73e012",
+                  16
+                ],
+                [
+                  "\u706f\u73e013",
+                  17
+                ],
+                [
+                  "\u706f\u73e014",
+                  18
+                ],
+                [
+                  "\u706f\u73e015",
+                  19
+                ],
+                [
+                  "\u706f\u73e016",
+                  20
+                ],
+                [
+                  "\u706f\u73e017",
+                  21
+                ],
+                [
+                  "\u706f\u73e018",
+                  22
+                ],
+                [
+                  "\u706f\u73e019",
+                  23
+                ],
+                [
+                  "\u706f\u73e020",
+                  24
+                ],
+                [
+                  "\u706f\u73e021",
+                  25
+                ],
+                [
+                  "\u706f\u73e022",
+                  26
+                ],
+                [
+                  "\u706f\u73e023",
+                  27
+                ],
+                [
+                  "\u706f\u73e024",
+                  28
+                ],
+                [
+                  "\u706f\u73e025",
+                  29
+                ],
+                [
+                  "\u706f\u73e026",
+                  30
+                ],
+                [
+                  "\u706f\u73e027",
+                  31
+                ],
+                [
+                  "\u706f\u73e028",
+                  32
+                ],
+                [
+                  "\u706f\u73e029",
+                  33
+                ],
+                [
+                  "\u706f\u73e030",
+                  34
+                ],
+                [
+                  "\u706f\u73e031",
+                  35
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect2} != 0",
+              "label": "Scroll Lock \u989c\u8272",
+              "type": "color",
+              "content": [
+                "id_rgb_indicators_color[2]",
+                6,
+                4,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "QMK\u529f\u80fd\u8bbe\u7f6e",
+      "content": [
+        {
+          "label": "\u952e\u76d8\u8bbe\u7f6e",
+          "content": [
+            {
+              "label": "\u91cd\u7f6e\u5168\u90e8\u8bbe\u7f6e",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_settings_reset",
+                8,
+                0
+              ]
+            },
+            {
+              "label": "\u6d88\u6296\u65f6\u95f4",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_debounce",
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Magic\u8bbe\u7f6e",
+          "content": [
+            {
+              "label": "\u5f00\u542f\u5168\u952e\u65e0\u51b2",
+              "type": "toggle",
+              "content": [
+                "id_magic_nkro",
+                7,
+                1
+              ]
+            },
+            {
+              "label": "\u9501\u5b9aGui\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_no_gui",
+                7,
+                2
+              ]
+            },
+            {
+              "label": "Caps\u952e\u89c6\u4e3aCtrl\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_capslock_to_control",
+                7,
+                3
+              ]
+            },
+            {
+              "label": "\u4ea4\u6362Ctrl\u548cCaps\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_control_capslock",
+                7,
+                4
+              ]
+            },
+            {
+              "label": "\u4ea4\u6362ESC\u548cCaps\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_escape_capslock",
+                7,
+                5
+              ]
+            },
+            {
+              "label": "\u4ea4\u6362LAlt\u548cLGui\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_lalt_lgui",
+                7,
+                6
+              ]
+            },
+            {
+              "label": "\u4ea4\u6362RAlt\u548cRGui\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_ralt_rgui",
+                7,
+                7
+              ]
+            },
+            {
+              "label": "\u4ea4\u6362LCtrl\u548cLGui\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_lctl_lgui",
+                7,
+                8
+              ]
+            },
+            {
+              "label": "\u4ea4\u6362RCtrl\u548cRGui\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_rctl_rgui",
+                7,
+                9
+              ]
+            },
+            {
+              "label": "\u4ea4\u6362 ` \u548c Esc\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_grave_esc",
+                7,
+                10
+              ]
+            },
+            {
+              "label": "\u4ea4\u6362 \\ \u548c Backspace\u952e",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_backslash_backspace",
+                7,
+                11
+              ]
+            },
+            {
+              "label": "\u542f\u7528Autocorrect",
+              "type": "toggle",
+              "content": [
+                "id_magic_autocorrect_enable",
+                7,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Grave Esc\u8bbe\u7f6e",
+          "content": [
+            {
+              "label": "Alt\u952e\u6309\u4e0b\u65f6\u53d1\u9001Esc\u6309\u952e",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_grave_esc_override[0]",
+                8,
+                11,
+                0
+              ]
+            },
+            {
+              "label": "Ctrl\u952e\u6309\u4e0b\u65f6\u53d1\u9001Esc\u6309\u952e",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_grave_esc_override[1]",
+                8,
+                11,
+                1
+              ]
+            },
+            {
+              "label": "Gui\u952e\u6309\u4e0b\u65f6\u53d1\u9001Esc\u6309\u952e",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_grave_esc_override[2]",
+                8,
+                11,
+                2
+              ]
+            },
+            {
+              "label": "Shift\u952e\u6309\u4e0b\u65f6\u53d1\u9001Esc\u6309\u952e",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_grave_esc_override[3]",
+                8,
+                11,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "label": "\u5355\u51fb\u957f\u6309\u8bbe\u7f6e",
+          "content": [
+            {
+              "label": "\u5141\u8bb8\u5355\u51fb\u89e6\u53d1\u957f\u6309\u5207\u5c42\u952e",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_tap_hold_config[0]",
+                8,
+                12,
+                0
+              ]
+            },
+            {
+              "label": "\u957f\u6309\u5207\u5c42\u540e\u65e0\u52a8\u4f5c\u5219\u53d1\u9001\u70b9\u51fb\u952e\u503c",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_tap_hold_config[1]",
+                8,
+                12,
+                1
+              ]
+            },
+            {
+              "label": "\u5176\u4ed6\u952e\u6309\u4e0b\u540e\u4fdd\u6301\u5207\u5c42",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_tap_hold_config[2]",
+                8,
+                12,
+                2
+              ]
+            },
+            {
+              "label": "\u7b2cN\u6b21\u70b9\u51fb\u89e6\u53d1\u957f\u6309\u529f\u80fd",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_tapping_toggle_times",
+                8,
+                13
+              ]
+            },
+            {
+              "label": "\u5355\u51fb\u5224\u5b9a\u65f6\u95f4(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_tapping_term",
+                8,
+                14
+              ]
+            },
+            {
+              "label": "\u5feb\u901f\u5355\u51fb\u5224\u5b9a\u65f6\u95f4(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_quick_tap_term",
+                8,
+                15
+              ]
+            },
+            {
+              "label": "\u6309\u4e0b\u4e0e\u91ca\u653e\u952e\u95f4\u5ef6\u8fdf\u65f6\u95f4(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_tap_code_delay",
+                8,
+                16
+              ]
+            },
+            {
+              "label": "Caps\u952e\u6fc0\u6d3b\u5ef6\u8fdf\u65f6\u95f4(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_tap_hold_caps_delay",
+                8,
+                17
+              ]
+            }
+          ]
+        },
+        {
+          "label": "\u81ea\u52a8Shift\u8bbe\u7f6e",
+          "content": [
+            {
+              "label": "\u542f\u7528\u81ea\u52a8Shift",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config0",
+                8,
+                18,
+                0
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "\u4fee\u9970\u952e\u542f\u7528",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[1]",
+                8,
+                18,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "\u5b57\u6bcd\u952e\u4e0d\u542f\u7528",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[2]",
+                8,
+                18,
+                2
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "\u6570\u5b57\u952e\u4e0d\u542f\u7528",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[3]",
+                8,
+                18,
+                3
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "\u7b26\u53f7\u952e\u4e0d\u542f\u7528",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[4]",
+                8,
+                18,
+                4
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "\u542f\u7528\u957f\u6309\u529f\u80fd",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[5]",
+                8,
+                18,
+                5
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "\u89e6\u53d1\u540e\u5173\u95ed\u957f\u6309\u529f\u80fd",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[6]",
+                8,
+                18,
+                6
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "\u81ea\u52a8Shift\u89e6\u53d1\u65f6\u95f4(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_auto_shift_timeout",
+                8,
+                17
+              ]
+            }
+          ]
+        },
+        {
+          "label": "OneShot\u8bbe\u7f6e",
+          "content": [
+            {
+              "label": "\u542f\u7528Oneshot",
+              "type": "toggle",
+              "content": [
+                "id_magic_oneshot_enable",
+                7,
+                12
+              ]
+            },
+            {
+              "showIf": "{id_magic_oneshot_enable} != 0",
+              "label": "Oneshot\u7684\u6709\u6548\u6309\u952e\u6b21\u6570",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_oneshot_tap_toggle",
+                8,
+                20
+              ]
+            },
+            {
+              "showIf": "{id_magic_oneshot_enable} != 0",
+              "label": "Oneshot\u91ca\u653e\u65f6\u95f4",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_oneshot_timeout",
+                8,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "label": "\u9f20\u6807\u952e\u8bbe\u7f6e",
+          "content": [
+            {
+              "label": "\u6309\u4e0b\u79fb\u52a8\u952e\u548c\u5149\u6807\u79fb\u52a8\u4e4b\u95f4\u7684\u5ef6\u8fdf",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_delay",
+                8,
+                2
+              ]
+            },
+            {
+              "label": "\u5149\u6807\u79fb\u52a8\u4e4b\u95f4\u7684\u95f4\u9694\u65f6\u95f4(ms)",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_interval",
+                8,
+                3
+              ]
+            },
+            {
+              "label": "\u79fb\u52a8\u6b65\u957f",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_move_delta",
+                8,
+                4
+              ]
+            },
+            {
+              "label": "\u5149\u6807\u505c\u6b62\u52a0\u901f\u65f6\u7684\u6700\u5927\u901f\u5ea6",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_max_speed",
+                8,
+                5
+              ]
+            },
+            {
+              "label": "\u5149\u6807\u8fbe\u5230\u6700\u5927\u901f\u5ea6\u7684\u65f6\u95f4",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_time_to_max",
+                8,
+                6
+              ]
+            },
+            {
+              "label": "\u6309\u4e0b\u6eda\u8f6e\u952e\u548c\u6eda\u8f6e\u79fb\u52a8\u4e4b\u95f4\u7684\u5ef6\u8fdf",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_wheel_delay",
+                8,
+                7
+              ]
+            },
+            {
+              "label": "\u6eda\u8f6e\u79fb\u52a8\u4e4b\u95f4\u7684\u95f4\u9694\u65f6\u95f4(\u6beb\u79d2)",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_wheel_interval",
+                8,
+                8
+              ]
+            },
+            {
+              "label": "\u6bcf\u6b21\u6eda\u8f6e\u52a8\u4f5c\u7684\u6700\u5927\u6eda\u8f6e\u6b65\u6570",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_wheel_max_speed",
+                8,
+                9
+              ]
+            },
+            {
+              "label": "\u6eda\u8f6e\u8fbe\u5230\u6700\u5927\u6eda\u8f6e\u901f\u5ea6\u7684\u65f6\u95f4",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_wheel_time_to_max",
+                8,
+                10
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "customKeycodes": [
+    {
+      "name": "\u5e95\u706f\n\u5f00\u5173",
+      "title": "\u5e95\u706f\u5f00\u5173",
+      "shortName": "UGRGB\nTOG"
+    },
+    {
+      "name": "Logo\u706f\n\u5f00\u5173",
+      "title": "Logo\u706f\u5f00\u5173",
+      "shortName": "Logo\nRGB\nTOG"
+    },
+    {
+      "name": "\u5e95\u706f\n\u540c\u6b65",
+      "title": "\u5e95\u706f\u548c\u5168\u5c40\u706f\u6548\u540c\u6b65",
+      "shortName": "UGRGB\nMODS"
+    },
+    {
+      "name": "\u5e95\u706f\n\u706f\u6548+",
+      "title": "\u4e0b\u4e00\u4e2a\u5e95\u706f\u706f\u6548",
+      "shortName": "UGRGB\nMOD+"
+    },
+    {
+      "name": "\u5e95\u706f\n\u706f\u6548-",
+      "title": "\u4e0a\u4e00\u4e2a\u5e95\u706f\u706f\u6548",
+      "shortName": "UGRGB\nMOD-"
+    },
+    {
+      "name": "\u5e95\u706f\n\u8272\u76f8+",
+      "title": "\u589e\u52a0\u5e95\u706f\u8272\u76f8",
+      "shortName": "UGRGB\nHue+"
+    },
+    {
+      "name": "\u5e95\u706f\n\u8272\u76f8-",
+      "title": "\u964d\u4f4e\u5e95\u706f\u8272\u76f8",
+      "shortName": "UGRGB\nHue-"
+    },
+    {
+      "name": "\u5e95\u706f\n\u9971\u548c+",
+      "title": "\u589e\u52a0\u5e95\u706f\u9971\u548c\u5ea6",
+      "shortName": "UGRGB\nSat+"
+    },
+    {
+      "name": "\u5e95\u706f\n\u9971\u548c-",
+      "title": "\u964d\u4f4e\u5e95\u706f\u9971\u548c\u5ea6",
+      "shortName": "UGRGB\nSat-"
+    },
+    {
+      "name": "\u5e95\u706f\n\u4eae\u5ea6+",
+      "title": "\u589e\u52a0\u5e95\u706f\u4eae\u5ea6",
+      "shortName": "UGRGB\nVal+"
+    },
+    {
+      "name": "\u5e95\u706f\n\u4eae\u5ea6-",
+      "title": "\u964d\u4f4e\u5e95\u706f\u4eae\u5ea6",
+      "shortName": "UGRGB\nVal-"
+    },
+    {
+      "name": "\u5e95\u706f\n\u901f\u5ea6+",
+      "title": "\u589e\u52a0\u5e95\u706f\u706f\u6548\u901f\u5ea6",
+      "shortName": "UGRGB\nSPD+"
+    },
+    {
+      "name": "\u5e95\u706f\n\u901f\u5ea6-",
+      "title": "\u964d\u4f4e\u5e95\u706f\u706f\u6548\u901f\u5ea6",
+      "shortName": "UGRGB\nSPD-"
+    }
+  ],
+  "layouts": {
+    "keymap": [
+      [
+        "0,0",
+        {
+          "x": 0.25
+        },
+        "0,1",
+        "0,2",
+        "0,3",
+        "0,4",
+        {
+          "x": 0.25
+        },
+        "0,5",
+        "0,6",
+        "0,7",
+        "0,8",
+        {
+          "x": 0.25
+        },
+        "0,9",
+        "0,10",
+        "0,11",
+        "0,12",
+        {
+          "x": 0.25
+        },
+        "0,13",
+        {
+          "x": 0.25
+        },
+        "0,14",
+        "0,15",
+        "0,16"
+      ],
+      [
+        {
+          "y": 0.25
+        },
+        "1,0",
+        "1,1",
+        "1,2",
+        "1,3",
+        "1,4",
+        "1,5",
+        "1,6",
+        "1,7",
+        "1,8",
+        "1,9",
+        "1,10",
+        "1,11",
+        "1,12",
+        {
+          "w": 2
+        },
+        "1,13",
+        {
+          "x": 0.25
+        },
+        "1,14",
+        "1,15",
+        "1,16"
+      ],
+      [
+        {
+          "w": 1.5
+        },
+        "2,0",
+        "2,1",
+        "2,2",
+        "2,3",
+        "2,4",
+        "2,5",
+        "2,6",
+        "2,7",
+        "2,8",
+        "2,9",
+        "2,10",
+        "2,11",
+        "2,12",
+        {
+          "w": 1.5
+        },
+        "2,13",
+        {
+          "x": 0.25
+        },
+        "2,14",
+        "2,15",
+        "2,16"
+      ],
+      [
+        {
+          "w": 1.75
+        },
+        "3,0",
+        "3,1",
+        "3,2",
+        "3,3",
+        "3,4",
+        "3,5",
+        "3,6",
+        "3,7",
+        "3,8",
+        "3,9",
+        "3,10",
+        "3,11",
+        {
+          "w": 2.25
+        },
+        "3,13"
+      ],
+      [
+        {
+          "w": 2.25
+        },
+        "4,0",
+        "4,1",
+        "4,2",
+        "4,3",
+        "4,4",
+        "4,5",
+        "4,6",
+        "4,7",
+        "4,8",
+        "4,9",
+        "4,10",
+        {
+          "w": 2.75
+        },
+        "4,12",
+        {
+          "x": 1.25
+        },
+        "4,15"
+      ],
+      [
+        {
+          "w": 1.5
+        },
+        "5,0",
+        "5,1",
+        {
+          "w": 1.5
+        },
+        "5,2",
+        {
+          "w": 7
+        },
+        "5,6",
+        {
+          "w": 1.5
+        },
+        "5,10",
+        "5,11",
+        {
+          "w": 1.5
+        },
+        "5,12",
+        {
+          "x": 0.25
+        },
+        "5,14",
+        "5,15",
+        "5,16"
+      ]
+    ]
+  }
+}

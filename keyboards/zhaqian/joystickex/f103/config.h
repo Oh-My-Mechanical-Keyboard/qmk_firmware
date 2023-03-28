@@ -16,11 +16,6 @@
 
 #pragma once
 
-#include "config_common.h"
-
-#define MATRIX_COL_PINS { A9, A0, B15, B14}
-#define MATRIX_ROW_PINS { A10, B6, C14 }
-
 #ifdef JOYSTICK_TRIGGER_ENABLE
 #define ADC_RESOLUTION ADC_CFGR1_RES_10BIT
 #define JOYSTICK_ADC_RESOLUTION 10

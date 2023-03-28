@@ -1,0 +1,121 @@
+// EN Template
+{
+    "label": "Mouse Key",
+    "content": [
+        {
+            "label": "Delay between pressing a movement key and cursor movement",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_delay", 8, 2]
+        },
+        {
+            "label": "Time between cursor movements in milliseconds",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_interval", 8, 3]
+        },
+        {
+            "label": "Step size",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_move_delta", 8, 4]
+        },
+        {
+            "label": "Maximum cursor speed at which acceleration stops",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_max_speed", 8, 5]
+        },
+        {
+            "label": "Time until maximum cursor speed is reached",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_time_to_max", 8, 6]
+        },
+        {
+            "label": "Delay between pressing a wheel key and wheel movement",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_wheel_delay", 8, 7]
+        },
+        {
+            "label": "Time between wheel movements",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_wheel_interval", 8, 8]
+        },
+        {
+            "label": "Maximum number of scroll steps per scroll action",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_wheel_max_speed", 8, 9]
+        },
+        {
+            "label": "Time until maximum scroll speed is reached",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_wheel_time_to_max", 8, 10]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "\u9f20\u6807\u952e\u8bbe\u7f6e",
+    "content": [
+        {
+            "label": "\u6309\u4e0b\u79fb\u52a8\u952e\u548c\u5149\u6807\u79fb\u52a8\u4e4b\u95f4\u7684\u5ef6\u8fdf",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_delay", 8, 2]
+        },
+        {
+            "label": "\u5149\u6807\u79fb\u52a8\u4e4b\u95f4\u7684\u95f4\u9694\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_interval", 8, 3]
+        },
+        {
+            "label": "\u79fb\u52a8\u6b65\u957f",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_move_delta", 8, 4]
+        },
+        {
+            "label": "\u5149\u6807\u505c\u6b62\u52a0\u901f\u65f6\u7684\u6700\u5927\u901f\u5ea6",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_max_speed", 8, 5]
+        },
+        {
+            "label": "\u5149\u6807\u8fbe\u5230\u6700\u5927\u901f\u5ea6\u7684\u65f6\u95f4",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_time_to_max", 8, 6]
+        },
+        {
+            "label": "\u6309\u4e0b\u6eda\u8f6e\u952e\u548c\u6eda\u8f6e\u79fb\u52a8\u4e4b\u95f4\u7684\u5ef6\u8fdf",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_wheel_delay", 8, 7]
+        },
+        {
+            "label": "\u6eda\u8f6e\u79fb\u52a8\u4e4b\u95f4\u7684\u95f4\u9694\u65f6\u95f4(\u6beb\u79d2)",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_wheel_interval", 8, 8]
+        },
+        {
+            "label": "\u6bcf\u6b21\u6eda\u8f6e\u52a8\u4f5c\u7684\u6700\u5927\u6eda\u8f6e\u6b65\u6570",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_wheel_max_speed", 8, 9]
+        },
+        {
+            "label": "\u6eda\u8f6e\u8fbe\u5230\u6700\u5927\u6eda\u8f6e\u901f\u5ea6\u7684\u65f6\u95f4",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_mk_wheel_time_to_max", 8, 10]
+        }
+    ]
+}

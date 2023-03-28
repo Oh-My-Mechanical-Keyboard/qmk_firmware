@@ -70,6 +70,11 @@ void eeconfig_init_quantum(void) {
     eeprom_update_dword(EECONFIG_HAPTIC, 0);
 #endif
 
+#if defined(EECONFIG_EXTENDED_FOR_ZHAQIAN)
+    uint8_t buf[52] = {0};
+    eeprom_update_block(buf, EECONFIG_RGB_MATRIX_CONTROL, sizeof(buf));
+#endif
+
 #if (EECONFIG_KB_DATA_SIZE) > 0
     eeconfig_init_kb_datablock();
 #endif

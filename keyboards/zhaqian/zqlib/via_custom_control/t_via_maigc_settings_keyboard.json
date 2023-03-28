@@ -1,0 +1,35 @@
+// EN Template
+{
+    "label": "Keyboard",
+    "content": [
+        {
+            "label": "Reset All Settings",
+            "type": "toggle",
+            "content": ["id_advanced_magic_settings_reset", 8, 0]
+        },
+        {
+            "label": "Debounce Time",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_debounce", 8, 1]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "\u952e\u76d8\u8bbe\u7f6e",
+    "content": [
+        {
+            "label": "\u91cd\u7f6e\u5168\u90e8\u8bbe\u7f6e",
+            "type": "toggle",
+            "content": ["id_advanced_magic_settings_reset", 8, 0]
+        },
+        {
+            "label": "\u6d88\u6296\u65f6\u95f4",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_debounce", 8, 1]
+        }
+    ]
+}

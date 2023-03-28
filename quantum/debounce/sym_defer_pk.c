@@ -129,7 +129,7 @@ static void start_debounce_counters(matrix_row_t raw[], matrix_row_t cooked[], u
         for (uint8_t col = 0; col < MATRIX_COLS; col++) {
             if (delta & (ROW_SHIFTER << col)) {
                 if (*debounce_pointer == DEBOUNCE_ELAPSED) {
-                    *debounce_pointer    = DEBOUNCE;
+                    *debounce_pointer    = CUSTOM_DEBOUNCE;
                     counters_need_update = true;
                 }
             } else {

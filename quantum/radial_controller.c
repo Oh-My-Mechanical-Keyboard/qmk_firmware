@@ -103,7 +103,7 @@ void radial_controller_dial_finished(void) {
     radial_controller_timer = 0;
 }
 
-bool process_radial_controller(const uint16_t keycode, const keyrecord_t *record) {
+bool process_radial_controller(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case DIAL_BUT:
             if (record->event.pressed) {

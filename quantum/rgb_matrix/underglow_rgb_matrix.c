@@ -349,7 +349,7 @@ void underglow_rgb_matrix_decrease_speed(void) {
 
 #endif
 
-bool process_underglow_rgb_matrix(const uint16_t keycode, const keyrecord_t *record) {
+bool process_underglow_rgb_matrix(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case UG_RGB_MS:
             if (record->event.pressed) {

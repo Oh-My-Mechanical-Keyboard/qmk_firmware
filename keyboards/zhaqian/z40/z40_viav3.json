@@ -1,0 +1,489 @@
+{
+  "name": "Z40",
+  "vendorId": "0x00AA",
+  "productId": "0xAA1A",
+  "keycodes": [
+    "qmk_lighting"
+  ],
+  "menus": [
+    {
+      "label": "Lighting",
+      "content": [
+        {
+          "label": "RGB Matrix",
+          "content": [
+            {
+              "label": "Brightness",
+              "type": "range",
+              "options": [
+                0,
+                200
+              ],
+              "content": [
+                "id_qmk_rgb_matrix_brightness",
+                3,
+                1
+              ]
+            },
+            {
+              "label": "Effect",
+              "type": "dropdown",
+              "content": [
+                "id_qmk_rgb_matrix_effect",
+                3,
+                2
+              ],
+              "options": [
+                [
+                  "All Off",
+                  0
+                ],
+                [
+                  "Solid Color",
+                  1
+                ],
+                [
+                  "Alphas Mods",
+                  2
+                ],
+                [
+                  "Gradient Up/Down",
+                  3
+                ],
+                [
+                  "Gradient Left/Right",
+                  4
+                ],
+                [
+                  "Breathing",
+                  5
+                ],
+                [
+                  "Band Sat.",
+                  6
+                ],
+                [
+                  "Band Val.",
+                  7
+                ],
+                [
+                  "Pinwheel Sat.",
+                  8
+                ],
+                [
+                  "Pinwheel Val.",
+                  9
+                ],
+                [
+                  "Spiral Sat.",
+                  10
+                ],
+                [
+                  "Spiral Val.",
+                  11
+                ],
+                [
+                  "Cycle All",
+                  12
+                ],
+                [
+                  "Cycle Left/Right",
+                  13
+                ],
+                [
+                  "Cycle Up/Down",
+                  14
+                ],
+                [
+                  "Rainbow Moving Chevron",
+                  15
+                ],
+                [
+                  "Cycle Out/In",
+                  16
+                ],
+                [
+                  "Cycle Out/In Dual",
+                  17
+                ],
+                [
+                  "Cycle Pinwheel",
+                  18
+                ],
+                [
+                  "Cycle Spiral",
+                  19
+                ],
+                [
+                  "Dual Beacon",
+                  20
+                ],
+                [
+                  "Rainbow Beacon",
+                  21
+                ],
+                [
+                  "Rainbow Pinwheels",
+                  22
+                ],
+                [
+                  "Raindrops",
+                  23
+                ],
+                [
+                  "Jellybean Raindrops",
+                  24
+                ],
+                [
+                  "Hue Breathing",
+                  25
+                ],
+                [
+                  "Hue Pendulum",
+                  26
+                ],
+                [
+                  "Hue Wave",
+                  27
+                ],
+                [
+                  "Pixel Rain",
+                  28
+                ],
+                [
+                  "Pixel Flow",
+                  29
+                ],
+                [
+                  "Pixel Fractal",
+                  30
+                ],
+                [
+                  "Typing Heatmap",
+                  31
+                ],
+                [
+                  "Digital Rain",
+                  32
+                ],
+                [
+                  "Solid Reactive Simple",
+                  33
+                ],
+                [
+                  "Solid Reactive",
+                  34
+                ],
+                [
+                  "Solid Reactive Wide",
+                  35
+                ],
+                [
+                  "Solid Reactive Multi Wide",
+                  36
+                ],
+                [
+                  "Solid Reactive Cross",
+                  37
+                ],
+                [
+                  "Solid Reactive Multi Cross",
+                  38
+                ],
+                [
+                  "Solid Reactive Nexus",
+                  39
+                ],
+                [
+                  "Solid Reactive Multi Nexus",
+                  40
+                ],
+                [
+                  "Spash",
+                  41
+                ],
+                [
+                  "Multi Splash",
+                  42
+                ],
+                [
+                  "Solid Splash",
+                  43
+                ],
+                [
+                  "Solid Multi Splash",
+                  44
+                ],
+                [
+                  "Cycle Breathing",
+                  45
+                ],
+                [
+                  "Cycle Band Val.",
+                  46
+                ],
+                [
+                  "Cycle Pinwheel Sat.",
+                  47
+                ],
+                [
+                  "Cycle Pinwheel Val.",
+                  48
+                ],
+                [
+                  "Cycle Spiral Sat.",
+                  49
+                ],
+                [
+                  "Cycle Spiral Val.",
+                  50
+                ],
+                [
+                  "Cycle Right/Left",
+                  51
+                ],
+                [
+                  "Cycle Down/Up",
+                  52
+                ],
+                [
+                  "Cycle In/Out",
+                  53
+                ],
+                [
+                  "Cycle In/Out Dual",
+                  54
+                ],
+                [
+                  "Rainbow Fractal",
+                  55
+                ],
+                [
+                  "Snake",
+                  56
+                ],
+                [
+                  "Cycle Wave",
+                  57
+                ],
+                [
+                  "Rainbow Wave",
+                  58
+                ],
+                [
+                  "Rainbow Wave 2",
+                  59
+                ],
+                [
+                  "Cycle Alter",
+                  60
+                ],
+                [
+                  "Rainbow Alter",
+                  61
+                ],
+                [
+                  "Breathing Circle",
+                  62
+                ],
+                [
+                  "Cycle Breathing Circle",
+                  63
+                ],
+                [
+                  "Bloom",
+                  64
+                ],
+                [
+                  "Commet",
+                  65
+                ],
+                [
+                  "Rotate Rainbow",
+                  66
+                ],
+                [
+                  "Motion Points",
+                  67
+                ],
+                [
+                  "Rotate Pendulum",
+                  68
+                ],
+                [
+                  "Rotate Wipers",
+                  69
+                ],
+                [
+                  "Horizontal Stack",
+                  70
+                ],
+                [
+                  "Vertical Stack",
+                  71
+                ],
+                [
+                  "Swap",
+                  72
+                ],
+                [
+                  "Static zigzag",
+                  73
+                ],
+                [
+                  "Rainbow zigzag",
+                  74
+                ],
+                [
+                  "Candy Tap",
+                  75
+                ],
+                [
+                  "Cycle Reactive Multi Wide",
+                  76
+                ],
+                [
+                  "Cycle Reactive Multi Cross",
+                  77
+                ],
+                [
+                  "Cycle Reactive Multi Nexus",
+                  78
+                ],
+                [
+                  "Cycle Multi Splash",
+                  79
+                ],
+                [
+                  "Rainbow Reactive Multi Wide",
+                  80
+                ],
+                [
+                  "Rainbow Reactive Multi Cross",
+                  81
+                ],
+                [
+                  "Rainbow Reactive Multi Nexus",
+                  82
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_qmk_rgb_matrix_effect} != 0",
+              "label": "Effect Speed",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_qmk_rgb_matrix_effect_speed",
+                3,
+                3
+              ]
+            },
+            {
+              "showIf": "{id_qmk_rgb_matrix_effect} != 0 && {id_qmk_rgb_matrix_effect} != 24 && {id_qmk_rgb_matrix_effect} != 28",
+              "label": "Color",
+              "type": "color",
+              "content": [
+                "id_qmk_rgb_matrix_color",
+                3,
+                4
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "matrix": {
+    "rows": 4,
+    "cols": 12
+  },
+  "layouts": {
+    "keymap": [
+      [
+        "0,0",
+        "0,1",
+        "0,2",
+        "0,3",
+        "0,4",
+        "0,5",
+        "0,6",
+        "0,7",
+        "0,8",
+        "0,9",
+        "0,10",
+        "0,11"
+      ],
+      [
+        {
+          "w": 1.25
+        },
+        "1,0",
+        "1,1",
+        "1,2",
+        "1,3",
+        "1,4",
+        "1,5",
+        "1,6",
+        "1,7",
+        "1,8",
+        "1,9",
+        {
+          "w": 1.75
+        },
+        "1,10"
+      ],
+      [
+        {
+          "w": 1.75
+        },
+        "2,0",
+        "2,1",
+        "2,2",
+        "2,3",
+        "2,4",
+        "2,5",
+        "2,6",
+        "2,7",
+        "2,8",
+        "2,9",
+        {
+          "w": 1.25
+        },
+        "2,10"
+      ],
+      [
+        {
+          "w": 1.25
+        },
+        "3,0",
+        "3,1",
+        {
+          "w": 1.25
+        },
+        "3,2",
+        {
+          "w": 2
+        },
+        "3,3",
+        {
+          "w": 2
+        },
+        "3,5",
+        "3,7",
+        {
+          "w": 1.25
+        },
+        "3,8",
+        "3,9",
+        {
+          "w": 1.25
+        },
+        "3,10"
+      ]
+    ]
+  }
+}

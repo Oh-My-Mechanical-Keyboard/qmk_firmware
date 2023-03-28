@@ -1,0 +1,53 @@
+// EN Template
+{
+  "label": "Settings",
+  "content": [
+    {
+      "label": "Global",
+      "type": "toggle",
+      "content": ["id_rgb_matrix_toggle[0]", 5, 1, 0]
+    },
+    {
+      "label": "Backlight",
+      "type": "toggle",
+      "content": ["id_rgb_matrix_toggle[1]", 5, 1, 1]
+    },
+    {
+      "label": "Underglow",
+      "type": "toggle",
+      "content": ["id_rgb_matrix_toggle[2]", 5, 1, 2]
+    },
+    {
+      "label": "Logo",
+      "type": "toggle",
+      "content": ["id_rgb_matrix_toggle[3]", 5, 1, 3]
+    }
+  ]
+}
+
+// CN Template
+{
+  "label": "\u706f\u5149\u8bbe\u7f6e",
+  "content": [
+    {
+      "label": "\u5168\u5c40\u706f\u5149\u5f00\u5173",
+      "type": "toggle",
+      "content": ["id_rgb_matrix_toggle[0]", 5, 1, 0]
+    },
+    {
+      "label": "\u8f74\u706f\u5f00\u5173",
+      "type": "toggle",
+      "content": ["id_rgb_matrix_toggle[1]", 5, 1, 1]
+    },
+    {
+      "label": "\u5e95\u706f\u5f00\u5173",
+      "type": "toggle",
+      "content": ["id_rgb_matrix_toggle[2]", 5, 1, 2]
+    },
+    {
+      "label": "Logo\u706f\u5f00\u5173",
+      "type": "toggle",
+      "content": ["id_rgb_matrix_toggle[3]", 5, 1, 3]
+    }
+  ]
+}

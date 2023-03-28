@@ -29,6 +29,12 @@ extern uint16_t COMBO_LEN;
 
 __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed) {}
 
+#ifndef COMBO_ONLY_FROM_LAYER
+__attribute__((weak)) uint8_t combo_ref_from_layer(uint8_t layer) {
+    return layer;
+}
+#endif
+
 #ifdef COMBO_MUST_HOLD_PER_COMBO
 __attribute__((weak)) bool get_combo_must_hold(uint16_t index, combo_t *combo) {
     return false;
@@ -199,9 +205,7 @@ void clear_combos(void) {
 static inline void dump_key_buffer(void) {
     /* First call start from 0 index; recursive calls need to start from i+1 index */
     static uint8_t key_buffer_next = 0;
-#if TAP_CODE_DELAY > 0
     bool delay_done = false;
-#endif
 
     if (key_buffer_size == 0) {
         return;
@@ -238,13 +242,13 @@ static inline void dump_key_buffer(void) {
         clear_weak_mods();
 #endif // defined(CAPS_WORD_ENABLE) && defined(AUTO_SHIFT_ENABLE)
 
-#if TAP_CODE_DELAY > 0
-        // only delay once and for a non-tapping key
-        if (!delay_done && !is_tap_record(record)) {
-            delay_done = true;
-            wait_ms(TAP_CODE_DELAY);
+        if (CUSTOM_TAP_CODE_DELAY > 0) {
+            // only delay once and for a non-tapping key
+            if (!delay_done && !is_tap_record(record)) {
+                delay_done = true;
+                wait_ms(CUSTOM_TAP_CODE_DELAY);
+            }
         }
-#endif
     }
 
     key_buffer_next = key_buffer_size = 0;
@@ -304,7 +308,7 @@ void apply_combo(uint16_t combo_index, combo_t *combo) {
 #if defined(EXTRA_EXTRA_LONG_COMBOS)
     uint32_t state = 0;
 #elif defined(EXTRA_LONG_COMBOS)
-    uint16_t state = 0;
+    uint16_t state         = 0;
 #else
     uint8_t state = 0;
 #endif
@@ -549,6 +553,12 @@ bool process_combo(uint16_t keycode, keyrecord_t *record) {
 #ifdef COMBO_ONLY_FROM_LAYER
     /* Only check keycodes from one layer. */
     keycode = keymap_key_to_keycode(COMBO_ONLY_FROM_LAYER, record->event.key);
+#else
+    uint8_t  highest_layer = get_highest_layer(layer_state);
+    uint8_t  ref_layer     = combo_ref_from_layer(highest_layer);
+    if (ref_layer != highest_layer) {
+        keycode = keymap_key_to_keycode(ref_layer, record->event.key);
+    }
 #endif
 
     for (uint16_t idx = 0; idx < COMBO_LEN; ++idx) {

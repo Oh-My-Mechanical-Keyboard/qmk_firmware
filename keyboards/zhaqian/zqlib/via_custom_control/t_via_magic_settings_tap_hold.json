@@ -1,0 +1,103 @@
+// EN Template
+{
+    "label": "Tap-Hold",
+    "content": [
+        {
+            "label": "Permissive Hold",
+            "type": "toggle",
+            "content": ["id_advanced_magic_tap_hold_config[0]", 8, 12, 0]
+        },
+        {
+            "label": "Retro Tapping",
+            "type": "toggle",
+            "content": ["id_advanced_magic_tap_hold_config[1]", 8, 12, 1]
+        },
+        {
+            "label": "Hold On Other Key Press",
+            "type": "toggle",
+            "content": ["id_advanced_magic_tap_hold_config[2]", 8, 12, 2]
+        },
+        {
+            "label": "Tapping Toggle Times",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_tapping_toggle_times", 8, 13]
+        },
+        {
+            "label": "Tapping Term(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_tapping_term", 8, 14]
+        },
+        {
+            "label": "Quick Tap Term(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_quick_tap_term", 8, 15]
+        },
+        {
+            "label": "Tap Code Delay(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_tap_code_delay", 8, 16]
+        },
+        {
+            "label": "Tap Hold Caps Delay(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_tap_hold_caps_delay", 8, 17]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "\u5355\u51fb\u957f\u6309\u8bbe\u7f6e",
+    "content": [
+        {
+            "label": "\u5141\u8bb8\u5355\u51fb\u89e6\u53d1\u957f\u6309\u5207\u5c42\u952e",
+            "type": "toggle",
+            "content": ["id_advanced_magic_tap_hold_config[0]", 8, 12, 0]
+        },
+        {
+            "label": "\u957f\u6309\u5207\u5c42\u540e\u65e0\u52a8\u4f5c\u5219\u53d1\u9001\u70b9\u51fb\u952e\u503c",
+            "type": "toggle",
+            "content": ["id_advanced_magic_tap_hold_config[1]", 8, 12, 1]
+        },
+        {
+            "label": "\u5176\u4ed6\u952e\u6309\u4e0b\u540e\u4fdd\u6301\u5207\u5c42",
+            "type": "toggle",
+            "content": ["id_advanced_magic_tap_hold_config[2]", 8, 12, 2]
+        },
+        {
+            "label": "\u7b2cN\u6b21\u70b9\u51fb\u89e6\u53d1\u957f\u6309\u529f\u80fd",
+            "type": "range",
+            "options": [0, 255],
+            "content": ["id_advanced_magic_tapping_toggle_times", 8, 13]
+        },
+        {
+            "label": "\u5355\u51fb\u5224\u5b9a\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_tapping_term", 8, 14]
+        },
+        {
+            "label": "\u5feb\u901f\u5355\u51fb\u5224\u5b9a\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_quick_tap_term", 8, 15]
+        },
+        {
+            "label": "\u6309\u4e0b\u4e0e\u91ca\u653e\u952e\u95f4\u5ef6\u8fdf\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_tap_code_delay", 8, 16]
+        },
+        {
+            "label": "Caps\u952e\u6fc0\u6d3b\u5ef6\u8fdf\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_tap_hold_caps_delay", 8, 17]
+        }
+    ]
+}

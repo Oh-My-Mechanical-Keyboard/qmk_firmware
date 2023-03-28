@@ -1,0 +1,111 @@
+// EN Template
+{
+    "label": "Auto Shift",
+    "content": [
+        {
+            "label": "Enable Auto Shift",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config0", 8, 18, 0]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "Enable Auto Shift for Modifiers",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[1]", 8, 18, 1]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "Disable Auto Shift for Alpha Keys",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[2]", 8, 18, 2]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "Disable Auto Shift for Numeric Keys",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[3]", 8, 18, 3]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "Disable Auto Shift for Special Keys",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[4]", 8, 18, 4]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "Enable Keyrepeat",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[5]", 8, 18, 5]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "Disable Automatically Keyrepeating when is exceeded.",
+            "type": "toggle",
+            "content": [
+                "id_advanced_magic_auto_shift_config[6]", 8, 18, 6]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "Auto Shift Timeout(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_auto_shift_timeout", 8, 17]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "\u81ea\u52a8Shift\u8bbe\u7f6e",
+    "content": [
+        {
+            "label": "\u542f\u7528\u81ea\u52a8Shift",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config0", 8, 18, 0]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "\u4fee\u9970\u952e\u542f\u7528",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[1]", 8, 18, 1]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "\u5b57\u6bcd\u952e\u4e0d\u542f\u7528",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[2]", 8, 18, 2]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "\u6570\u5b57\u952e\u4e0d\u542f\u7528",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[3]", 8, 18, 3]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "\u7b26\u53f7\u952e\u4e0d\u542f\u7528",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[4]", 8, 18, 4]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "\u542f\u7528\u957f\u6309\u529f\u80fd",
+            "type": "toggle",
+            "content": ["id_advanced_magic_auto_shift_config[5]", 8, 18, 5]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "\u89e6\u53d1\u540e\u5173\u95ed\u957f\u6309\u529f\u80fd",
+            "type": "toggle",
+            "content": [
+                "id_advanced_magic_auto_shift_config[6]", 8, 18, 6]
+        },
+        {
+            "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+            "label": "\u81ea\u52a8Shift\u89e6\u53d1\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_auto_shift_timeout", 8, 17]
+        }
+    ]
+}

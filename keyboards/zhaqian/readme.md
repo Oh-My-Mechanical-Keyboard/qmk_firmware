@@ -41,6 +41,8 @@
 | Jane_v2_ce_slot	| 0x00AA    | 0xAA17     | Hotswap  | Atmel atmega32u4 |                          |
 | m80_solder	        | 0x00AA    | 0xAA18     | Solder  | ST stm32f103/f103 | RGB                                          |
 | s75	        | 0x00AA    | 0xAA19     | Hotswap  | ST stm32f103/f103 | RGB                                          |
+| z40	        | 0x00AA    | 0xAA1A     | Hotswap  | ST stm32f103/f103 | RGB                                          |
+| c28        | 0x00AA    | 0xAA1B     | Hotswap  | ST stm32f103/f103 | RGB                                          |
 | Mpad12        | 0x00AA    | 0xAAAA     | Hotswap  | Atmel atmega32u4  | RGB, UGRGB, JOYSTICK, ENCODER, OLED          |
 | split69       | 0x00AA    | 0xAAAB     | Solder   | Atmel atmega32u4  | SPLIT, UGRGB, OLED, ENCODER                  |
 | joystickex    | 0x00AA    | 0xAAAC     | Hotswap  | f103/401/411/vf103/l433/air32 | JOYSTICK |
@@ -57,6 +59,8 @@
  - Via Custom Control
  - UF2 Bootloader
  - Signalrgb Protocol
+ - Magic Setting
+ - Auto Switch Layers
 
 ## Joystick Trigger
 This feature integrates the trigger of joystick which has two axes,it maps the joystick to four buttons in the keyboard matrix.It is supported by adding this to your `rules.mk`:

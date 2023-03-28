@@ -426,10 +426,20 @@ void openrgb_get_led_info(uint8_t *data) {
             raw_hid_buffer[data_idx + 7] = KC_NO;
         }
         else {
-            raw_hid_buffer[data_idx + 7] = keycode_at_keymap_location(0, row, col);
+            uint16_t kc = keycode_at_keymap_location(0, row, col);
+            if (kc >= QK_TO && kc <= QK_LAYER_TAP_TOGGLE_MAX) {
+                raw_hid_buffer[data_idx + 7] = 0xFE;
+            }
+            else if (kc >= QK_BASIC && kc <= QK_BASIC_MAX) {
+                raw_hid_buffer[data_idx + 7] = (kc & 0xFF);
+            }
+            else {
+                raw_hid_buffer[data_idx + 7] = KC_NO;
+            }
         }
     }
 }
+
 void openrgb_get_enabled_modes(void) {
     raw_hid_buffer[0] = OPENRGB_GET_ENABLED_MODES;
     raw_hid_buffer[1] = size;

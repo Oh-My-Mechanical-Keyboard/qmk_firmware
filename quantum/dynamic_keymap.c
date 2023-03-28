@@ -95,7 +95,7 @@ _Static_assert((DYNAMIC_KEYMAP_EEPROM_MAX_ADDR) - (DYNAMIC_KEYMAP_MACRO_EEPROM_A
 #endif
 
 #ifndef DYNAMIC_KEYMAP_MACRO_DELAY
-#    define DYNAMIC_KEYMAP_MACRO_DELAY TAP_CODE_DELAY
+#    define DYNAMIC_KEYMAP_MACRO_DELAY CUSTOM_TAP_CODE_DELAY
 #endif
 
 uint8_t dynamic_keymap_get_layer_count(void) {
