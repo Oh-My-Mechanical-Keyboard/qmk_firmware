@@ -17,145 +17,167 @@
 #include "quantum.h"
 #include "via_custom_keycode.h"
 
-bool process_via_custom_keycode(const uint16_t keycode, const keyrecord_t *record) {
+bool process_via_custom_keycode(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-#ifdef ALT_TAB_MARCO_ENABLE
-        case ATF:
-            if (record->event.pressed) {
-                alt_tab_forward();
-            }
+#ifdef AUTO_SWITCH_LAYERS_ENABLE
+        case WINDOWS_FN_VKEY: {
+            action_t action;
+            action.code = ACTION_LAYER_MOMENTARY(system_layers.windows_fn_layer);
+            process_action(record, action);
             return false;
-        case ATR:
-            if (record->event.pressed) {
-                alt_tab_reverse();
-            }
+        }
+        case MACOS_FN_VKEY: {
+            action_t action;
+            action.code = ACTION_LAYER_MOMENTARY(system_layers.macos_fn_layer);
+            process_action(record, action);
             return false;
+        }
 #endif
-
 #ifdef RADIAL_CONTROLLER_ENABLE
-        case RD_BUT:
+        case RD_BUT: {
             if (record->event.pressed) {
                 radial_controller_button_update(true);
             } else {
                 radial_controller_button_update(false);
             }
             return false;
-        case RD_L:
+        }
+        case RD_L: {
             if (record->event.pressed) {
                 radial_controller_dial_update(false, false);
             }
             return false;
-        case RD_R:
+        }
+        case RD_R: {
             if (record->event.pressed) {
                 radial_controller_dial_update(true, false);
             }
             return false;
-        case RD_LC:
+        }
+        case RD_LC: {
             if (record->event.pressed) {
                 radial_controller_dial_update(false, true);
             } else {
                 radial_controller_dial_finished();
             }
             return false;
-        case RD_RC:
+        }
+        case RD_RC: {
             if (record->event.pressed) {
                 radial_controller_dial_update(true, true);
             } else {
                 radial_controller_dial_finished();
             }
             return false;
+        }
 #endif
 
 #ifdef RGB_MATRIX_CONTROL_ENABLE
 #ifndef RGB_MATRIX_CONTROL_SWITCH_ENABLE
-        case UG_R_T:
+        case UG_R_T: {
             if (record->event.pressed) {
                 underglow_rgb_toggle();
             }
             return false;
-        case K_R_T:
+        }
+        case K_R_T: {
             if (record->event.pressed) {
                 key_rgb_toggle();
             }
             return false;
+        }
 #ifdef LOGO_RGB_CONTROL_ENABLE
-        case L_R_T:
+        case L_R_T: {
             if (record->event.pressed) {
                 logo_rgb_toggle();
             }
             return false;
+        }
 #endif
 #else
-        case R_C_SW:
+        case R_C_SW: {
             if (record->event.pressed) {
                 rgb_matrix_control_switch();
             }
             return false;
+        }
 #endif
-        case IND_ON_TOG:
+        case IND_ON_TOG: {
             if (record->event.pressed) {
                 indicator_rgb_override_toggle();
             }
             return false;     
+        }
 #endif
 
 #ifdef UNDERGLOW_RGB_MATRIX_ENABLE
-        case UG_R_MS:
+        case UG_R_MS: {
             if (record->event.pressed) {
                 underglow_rgb_mode_sync();
             }
             return false;
-        case UG_R_MF:
+        }
+        case UG_R_MF: {
             if (record->event.pressed) {
                 underglow_rgb_mode_step();
             }
             return false;
-        case UG_R_MR:
+        }
+        case UG_R_MR: {
             if (record->event.pressed) {
                 underglow_rgb_mode_step_reverse();
             }
             return false;
+        }
 #ifndef UNDERGLOW_RGB_MATRIX_API_DISABLE
-        case UG_R_HI:
+        case UG_R_HI: {
             if (record->event.pressed) {
                 underglow_rgb_matrix_increase_hue();
             }
             return false;
-        case UG_R_HD:
+        }
+        case UG_R_HD: {
             if (record->event.pressed) {
                 underglow_rgb_matrix_decrease_hue();
             }
             return false;
-        case UG_R_SI:
+        }
+        case UG_R_SI: {
             if (record->event.pressed) {
                 underglow_rgb_matrix_increase_sat();
             }
             return false;
-        case UG_R_SD:
+        }
+        case UG_R_SD: {
             if (record->event.pressed) {
                 underglow_rgb_matrix_decrease_sat();
             }
             return false;
-        case UG_R_VI:
+        }
+        case UG_R_VI: {
             if (record->event.pressed) {
                 underglow_rgb_matrix_increase_val();
             }
             return false;
-        case UG_R_VD:
+        }
+        case UG_R_VD: {
             if (record->event.pressed) {
                 underglow_rgb_matrix_decrease_val();
             }
             return false;
-        case UG_R_SPI:
+        }
+        case UG_R_SPI: {
             if (record->event.pressed) {
                 underglow_rgb_matrix_increase_speed();
             }
             return false;
-        case UG_R_SPD:
+        }
+        case UG_R_SPD: {
             if (record->event.pressed) {
                 underglow_rgb_matrix_decrease_speed();
             }
             return false;
+        }
 #endif
 #endif
 

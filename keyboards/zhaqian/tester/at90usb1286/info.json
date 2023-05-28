@@ -1,0 +1,15 @@
+{
+    "processor": "at90usb1286",
+    "bootloader": "atmel-dfu",
+    "matrix_pins": {
+        "cols": ["F2", "F3", "F4", "F5", "F6"],
+        "rows": ["B4", "B3", "B2"]
+    },
+    "encoder": {
+        "rotary": [
+            {"pin_a": "B1", "pin_b": "B5"}
+        ],
+        "resolution": 4
+    }
+}
+

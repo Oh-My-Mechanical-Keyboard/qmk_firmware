@@ -213,10 +213,10 @@ else
     SRC += eeprom_driver.c eeprom_spi.c
   else ifeq ($(strip $(EEPROM_DRIVER)), legacy_stm32_flash)
     # STM32 Emulated EEPROM, backed by MCU flash (soon to be deprecated)
-    OPT_DEFS += -DEEPROM_DRIVER -DEEPROM_STM32_FLASH_EMULATED
+    OPT_DEFS += -DEEPROM_DRIVER -DEEPROM_LEGACY_EMULATED_FLASH
     COMMON_VPATH += $(PLATFORM_PATH)/$(PLATFORM_KEY)/$(DRIVER_DIR)/flash
     COMMON_VPATH += $(DRIVER_PATH)/flash
-    SRC += eeprom_driver.c eeprom_stm32.c flash_stm32.c
+    SRC += eeprom_driver.c eeprom_legacy_emulated_flash.c legacy_flash_ops.c
   else ifeq ($(strip $(EEPROM_DRIVER)), transient)
     # Transient EEPROM implementation -- no data storage but provides runtime area for it
     OPT_DEFS += -DEEPROM_DRIVER -DEEPROM_TRANSIENT
@@ -227,13 +227,13 @@ else
     ifeq ($(PLATFORM),AVR)
       # Automatically provided by avr-libc, nothing required
     else ifeq ($(PLATFORM),CHIBIOS)
-      ifneq ($(filter %_STM32F072xB %_STM32F042x6 AIR32F10x_%, $(MCU_SERIES)_$(MCU_LDSCRIPT)),)
+      ifneq ($(filter %_STM32F072xB %_STM32F042x6, $(MCU_SERIES)_$(MCU_LDSCRIPT)),)
         # STM32 Emulated EEPROM, backed by MCU flash (soon to be deprecated)
         OPT_DEFS += -DEEPROM_DRIVER -DEEPROM_LEGACY_EMULATED_FLASH
         COMMON_VPATH += $(PLATFORM_PATH)/$(PLATFORM_KEY)/$(DRIVER_DIR)/flash
         COMMON_VPATH += $(DRIVER_PATH)/flash
         SRC += eeprom_driver.c eeprom_legacy_emulated_flash.c legacy_flash_ops.c
-      else ifneq ($(filter $(MCU_SERIES),STM32F1xx STM32F3xx STM32F4xx STM32L4xx STM32G4xx WB32F3G71xx WB32FQ95xx GD32VF103 AIR32F10x),)
+      else ifneq ($(filter $(MCU_SERIES),STM32F1xx STM32F3xx STM32F4xx STM32L4xx STM32G4xx WB32F3G71xx WB32FQ95xx GD32VF103 AIR32F10x AT32F415xx AT32F413xx AT32F40x),)
         # Wear-leveling EEPROM implementation, backed by MCU flash
         OPT_DEFS += -DEEPROM_DRIVER -DEEPROM_WEAR_LEVELING
         SRC += eeprom_driver.c eeprom_wear_leveling.c
@@ -594,6 +594,7 @@ ifeq ($(strip $(WS2812_DRIVER_REQUIRED)), yes)
                 OPT_DEFS += -DSTM32_DMA_REQUIRED=TRUE
                 OPT_DEFS += -DGD32_DMA_REQUIRED=TRUE
                 OPT_DEFS += -DAIR32_DMA_REQUIRED=TRUE
+                OPT_DEFS += -DAT32_DMA_REQUIRED=TRUE
             endif
         endif
     endif
@@ -1030,4 +1031,18 @@ ifeq ($(strip $(MAGIC_SETTINGS_ENABLE)), yes)
 	OPT_DEFS += -DMAGIC_SETTINGS_ENABLE
 endif
 
+ifeq ($(strip $(DYNAMIC_TAP_DANCE_ENABLE)), yes)
+	ifeq ($(strip $(TAP_DANCE_ENABLE)), no)
+        $(error DYNAMIC_TAP_DANCE_ENABLE requires TAP_DANCE_ENABLE, either disable DYNAMIC_TAP_DANCE explicitly or enable TAP_DANCE)
+    endif
+    SRC += $(QUANTUM_DIR)/dynamic_tap_dance.c
+	OPT_DEFS += -DDYNAMIC_TAP_DANCE_ENABLE
+endif
 
+ifeq ($(strip $(DYNAMIC_COMBOS_ENABLE)), yes)
+	ifeq ($(strip $(COMBO_ENABLE)), no)
+        $(error DYNAMIC_COMBOS_ENABLE requires COMBO_ENABLE, either disable DYNAMIC_COMBOS explicitly or enable COMBO)
+    endif
+    SRC += $(QUANTUM_DIR)/dynamic_combos.c
+	OPT_DEFS += -DDYNAMIC_COMBOS_ENABLE
+endif

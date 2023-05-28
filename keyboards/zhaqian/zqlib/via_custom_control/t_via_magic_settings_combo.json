@@ -1,0 +1,87 @@
+// EN Template
+{
+    "label": "Combo",
+    "content": [
+        {
+            "label": "Enable Combo",
+            "type": "toggle",
+            "content": ["id_advanced_magic_combo_config0", 8, 22, 0]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "Combo should fire immediately on tap or if it needs to be held",
+            "type": "toggle",
+            "content": ["id_advanced_magic_combo_config[1]", 8, 22, 1]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "Combo should fire only if tapped within combo hold term",
+            "type": "toggle",
+            "content": ["id_advanced_magic_combo_config[2]", 8, 22, 2]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "Combo should fire only if its keys are pressed in order",
+            "type": "toggle",
+            "content": ["id_advanced_magic_combo_config[3]", 8, 22, 3]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "Combo Term(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_combo_term", 8, 23]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "Combo Hold Term(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_combo_hold_term", 8, 24]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "\u7ec4\u5408\u952e\u8bbe\u7f6e",
+    "content": [
+        {
+            "label": "\u542f\u7528\u7ec4\u5408\u952e",
+            "type": "toggle",
+            "content": ["id_advanced_magic_combo_config0", 8, 22, 0]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "\u7ec4\u5408\u952e\u5728\u70b9\u51fb\u6216\u957f\u6309\u65f6\u89e6\u53d1",
+            "type": "toggle",
+            "content": ["id_advanced_magic_combo_config[1]", 8, 22, 1]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "\u7ec4\u5408\u952e\u4ec5\u5728\u70b9\u51fb\u65f6\u89e6\u53d1",
+            "type": "toggle",
+            "content": ["id_advanced_magic_combo_config[2]", 8, 22, 2]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "\u7ec4\u5408\u952e\u4ec5\u6309\u987a\u5e8f\u6309\u4e0b\u6309\u952e\u65f6\u89e6\u53d1",
+            "type": "toggle",
+            "content": ["id_advanced_magic_combo_config[3]", 8, 22, 3]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "\u7ec4\u5408\u952e\u5224\u5b9a\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_combo_term", 8, 23]
+        },
+        {
+            "showIf": "{id_advanced_magic_combo_config0} != 0",
+            "label": "\u7ec4\u5408\u952e\u957f\u6309\u5224\u5b9a\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_advanced_magic_combo_hold_term", 8, 24]
+        }
+    ]
+}

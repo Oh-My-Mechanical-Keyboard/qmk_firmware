@@ -1,0 +1,15 @@
+{
+    "processor": "STM32F407",
+    "bootloader": "stm32-dfu",
+    "matrix_pins": {
+        "cols": ["C7", "A15", "B15", "B14", "B13"],
+        "rows": ["C9", "B6", "C14" ]
+    },
+    "encoder": {
+        "rotary": [
+            {"pin_a": "B1", "pin_b": "B3"}
+        ],
+        "resolution": 4
+    }
+}
+

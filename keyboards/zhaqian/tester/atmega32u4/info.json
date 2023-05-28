@@ -1,0 +1,15 @@
+{
+    "processor": "atmega32u4",
+    "bootloader": "atmel-dfu",
+    "matrix_pins": {
+        "cols": ["B4", "B5", "B6", "C6", "C7"],
+        "rows": ["B7", "D2", "D3"]
+    },
+    "encoder": {
+        "rotary": [
+            {"pin_a": "B1", "pin_b": "B3"}
+        ],
+        "resolution": 4
+    }
+}
+

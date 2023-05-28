@@ -137,12 +137,10 @@ static const uint8_t ug_rgb_matrix_effect_num = sizeof(ug_rgb_matrix_effect_inde
 
 static underglow_rgb_matrix_config_t underglow_rgb_matrix_config;
 
-void eeconfig_read_underglow_rgb_matrix(void) {
-    eeprom_read_block(&underglow_rgb_matrix_config, EECONFIG_UNDERGLOW_RGB_MATRIX, sizeof(underglow_rgb_matrix_config));
-}
+EECONFIG_DEBOUNCE_HELPER(underglow_rgb_matrix, EECONFIG_UNDERGLOW_RGB_MATRIX, underglow_rgb_matrix_config);
 
 void eeconfig_update_underglow_rgb_matrix(void) {
-    eeprom_update_block(&underglow_rgb_matrix_config, EECONFIG_UNDERGLOW_RGB_MATRIX, sizeof(underglow_rgb_matrix_config));
+    eeconfig_flush_underglow_rgb_matrix(true);
 }
 
 void eeconfig_update_underglow_rgb_matrix_default(void) {
@@ -157,7 +155,7 @@ void underglow_rgb_matrix_init(void) {
         eeconfig_init();
         eeconfig_update_underglow_rgb_matrix_default();
     }
-    eeconfig_read_underglow_rgb_matrix();
+    eeconfig_init_underglow_rgb_matrix();
     if (underglow_rgb_matrix_config.mode == 0) {
         eeconfig_update_underglow_rgb_matrix_default();
     }
@@ -349,7 +347,7 @@ void underglow_rgb_matrix_decrease_speed(void) {
 
 #endif
 
-bool process_underglow_rgb_matrix(const uint16_t keycode, const keyrecord_t *record) {
+bool process_underglow_rgb_matrix(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case UG_RGB_MS:
             if (record->event.pressed) {

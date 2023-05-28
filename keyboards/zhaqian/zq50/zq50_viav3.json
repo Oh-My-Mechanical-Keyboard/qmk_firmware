@@ -1,700 +1,3905 @@
 {
-    "name": "zq50",
-    "vendorId": "0x00AA",
-    "productId": "0xAA16",
-    "matrix": {
-      "rows": 4,
-      "cols": 14
+  "name": "zq50",
+  "vendorId": "0x00AA",
+  "productId": "0xAA16",
+  "matrix": {
+    "rows": 4,
+    "cols": 14
+  },
+  "customKeycodes": [
+    {
+      "name": "Windows\nFN",
+      "title": "FN key of Windows System",
+      "shortName": "Windows\nFN"
     },
-    "customKeycodes": [
+    {
+      "name": "MACOS\nFN",
+      "title": "FN key of Macos System",
+      "shortName": "MACOS\nFN"
+    },
+    {
+      "name": "Radial\nButton",
+      "title": "Radial Controller Button in Windows 10",
+      "shortName": "Radial\nButton"
+    },
+    {
+      "name": "Radial\nLeft",
+      "title": "Radial Controller Counter Clockwise in Windows 10",
+      "shortName": "Radial\nLeft"
+    },
+    {
+      "name": "Radial\nRight",
+      "title": "Radial Controller Clockwise in Windows 10",
+      "shortName": "Radial\nRight"
+    },
+    {
+      "name": "Radial\nLeft\nHold",
+      "title": "Radial Controller Continue Counter Clockwise in Windows 10",
+      "shortName": "Radial\nLeftC"
+    },
+    {
+      "name": "Radial\nRight\nHold",
+      "title": "Radial Controller Continue Clockwise in Windows 10",
+      "shortName": "Radial\nRightC"
+    },
+    {
+      "name": "Underglow\nRGB\nToggle",
+      "title": "Underglow RGB Toggle",
+      "shortName": "UGRGB Tog"
+    },
+    {
+      "name": "Key\nRGB\nToggle",
+      "title": "Key RGB Toggle",
+      "shortName": "KeyRGB\nTog"
+    },
+    {
+      "name": "Underglow\nRGB\nMode\nSync",
+      "title": "Underglow RGB Mode Sync With Key RGB Mode",
+      "shortName": "UGRGB\nMODS"
+    },
+    {
+      "name": "Underglow\nRGB\nMode+",
+      "title": "Underglow RGB Mode Step",
+      "shortName": "UGRGB\nMOD+"
+    },
+    {
+      "name": "Underglow\nRGB\nMode-",
+      "title": "Underglow RGB Mode Step Reverse",
+      "shortName": "UGRGB\nMOD-"
+    }
+  ],
+  "firmwareVersion": 0,
+  "keycodes": [
+    "qmk_lighting"
+  ],
+  "menus": [
+    {
+      "label": "Lighting",
+      "content": [
         {
-          "name": "Radial\nButton",
-          "title": "Radial Controller Button in Windows 10",
-          "shortName": "Radial\nButton"
-        },
-        {
-          "name": "Radial\nLeft",
-          "title": "Radial Controller Counter Clockwise in Windows 10",
-          "shortName": "Radial\nLeft"
-        },
-        {
-          "name": "Radial\nRight",
-          "title": "Radial Controller Clockwise in Windows 10",
-          "shortName": "Radial\nRight"
-        },
-        {
-          "name": "Radial\nLeft\nHold",
-          "title": "Radial Controller Continue Counter Clockwise in Windows 10",
-          "shortName": "Radial\nLeftC"
-        },
-        {
-          "name": "Radial\nRight\nHold",
-          "title": "Radial Controller Continue Clockwise in Windows 10",
-          "shortName": "Radial\nRightC"
-        },
-        {
-          "name": "Underglow\nRGB\nToggle",
-          "title": "Underglow RGB Toggle",
-          "shortName": "UGRGB Tog"
-        },
-        {
-          "name": "Key\nRGB\nToggle",
-          "title": "Key RGB Toggle",
-          "shortName": "KeyRGB\nTog"
-        },
-        {
-          "name": "Underglow\nRGB\nMode\nSync",
-          "title": "Underglow RGB Mode Sync With Key RGB Mode",
-          "shortName": "UGRGB\nMODS"
-        },
-        {
-          "name": "Underglow\nRGB\nMode+",
-          "title": "Underglow RGB Mode Step",
-          "shortName": "UGRGB\nMOD+"
-        },
-        {
-          "name": "Underglow\nRGB\nMode-",
-          "title": "Underglow RGB Mode Step Reverse",
-          "shortName": "UGRGB\nMOD-"
-        }
-      ],
-      "firmwareVersion": 0,
-      "keycodes": ["qmk_lighting"],
-      "menus": [
-        {
-          "label": "Lighting",
+          "label": "Settings",
           "content": [
             {
-              "label": "Settings",
+              "label": "Global",
+              "type": "toggle",
               "content": [
-                {
-                  "label": "Global",
-                  "type": "toggle",
-                  "content": ["id_rgb_matrix_toggle[0]", 5, 1, 0]
-                },
-                {
-                  "label": "Backlight",
-                  "type": "toggle",
-                  "content": ["id_rgb_matrix_toggle[1]", 5, 1, 1]
-                },
-                {
-                  "label": "Underglow",
-                  "type": "toggle",
-                  "content": ["id_rgb_matrix_toggle[2]", 5, 1, 2]
-                }
+                "id_rgb_matrix_toggle[0]",
+                5,
+                1,
+                0
               ]
             },
             {
-              "label": "Global",
+              "label": "Backlight",
+              "type": "toggle",
               "content": [
-                {
-                  "label": "Brightness",
-                  "type": "range",
-                  "options": [0, 200],
-                  "content": ["id_qmk_rgb_matrix_brightness", 3, 1]
-                },
-                {
-                  "label": "Effect",
-                  "type": "dropdown",
-                  "content": ["id_qmk_rgb_matrix_effect", 3, 2],
-                  "options": [
-                    ["Solid Color", 1],
-                    ["Alphas Mods", 2],
-                    ["Gradient Up/Down", 3],
-                    ["Gradient Left/Right", 4],
-                    ["Breathing", 5],
-                    ["Band Sat.", 6],
-                    ["Band Val.", 7],
-                    ["Pinwheel Sat.", 8],
-                    ["Pinwheel Val.", 9],
-                    ["Spiral Sat.", 10],
-                    ["Spiral Val.", 11],
-                    ["Cycle All", 12],
-                    ["Cycle Left/Right", 13],
-                    ["Cycle Up/Down", 14],
-                    ["Rainbow Moving Chevron", 15],
-                    ["Cycle Out/In", 16],
-                    ["Cycle Out/In Dual", 17],
-                    ["Cycle Pinwheel", 18],
-                    ["Cycle Spiral", 19],
-                    ["Dual Beacon", 20],
-                    ["Rainbow Beacon", 21],
-                    ["Rainbow Pinwheels", 22],
-                    ["Raindrops", 23],
-                    ["Jellybean Raindrops", 24],
-                    ["Hue Breathing", 25],
-                    ["Hue Pendulum", 26],
-                    ["Hue Wave", 27],
-                    ["Pixel Rain", 28],
-                    ["Pixel Flow", 29],
-                    ["Pixel Fractal", 30],
-                    ["Typing Heatmap", 31],
-                    ["Digital Rain", 32],
-                    ["Solid Reactive Simple", 33],
-                    ["Solid Reactive", 34],
-                    ["Solid Reactive Wide", 35],
-                    ["Solid Reactive Multi Wide", 36],
-                    ["Solid Reactive Cross", 37],
-                    ["Solid Reactive Multi Cross", 38],
-                    ["Solid Reactive Nexus", 39],
-                    ["Solid Reactive Multi Nexus", 40],
-                    ["Spash", 41],
-                    ["Multi Splash", 42],
-                    ["Solid Splash", 43],
-                    ["Solid Multi Splash", 44],
-                    ["Cycle Breathing", 46],
-                    ["Cycle Band Val.", 47],
-                    ["Cycle Pinwheel Sat.", 48],
-                    ["Cycle Pinwheel Val.", 49],
-                    ["Cycle Spiral Sat.", 50],
-                    ["Cycle Spiral Val.", 51],
-                    ["Cycle Right/Left", 52],
-                    ["Cycle Down/Up", 53],
-                    ["Cycle In/Out", 54],
-                    ["Cycle In/Out Dual", 55],
-                    ["Rainbow Fractal", 56],
-                    ["Snake", 57],
-                    ["Cycle Wave", 58],
-                    ["Rainbow Wave", 59],
-                    ["Rainbow Wave 2", 60],
-                    ["Cycle Alter", 61],
-                    ["Rainbow Alter", 62],
-                    ["Breathing Circle", 63],
-                    ["Cycle Breathing Circle", 64],
-                    ["Bloom", 65],
-                    ["Commet", 66],
-                    ["Rotate Rainbow", 67],
-                    ["Motion Points", 68],
-                    ["Rotate Pendulum", 69],
-                    ["Rotate Wipers", 70],
-                    ["Horizontal Stack", 71],
-                    ["Vertical Stack", 72],
-                    ["Swap", 73],
-                    ["Static zigzag", 74],
-                    ["Rainbow zigzag", 75],
-                    ["Candy Tap", 76],
-                    ["Cycle Reactive Multi Wide", 77],
-                    ["Cycle Reactive Multi Cross", 78],
-                    ["Cycle Reactive Multi Nexus", 79],
-                    ["Cycle Multi Splash", 80],
-                    ["Rainbow Reactive Multi Wide", 81],
-                    ["Rainbow Reactive Multi Cross", 82],
-                    ["Rainbow Reactive Multi Nexus", 83]
-                  ]
-                },
-                {
-                  "showIf": "{id_qmk_rgb_matrix_effect} != 0",
-                  "label": "Effect Speed",
-                  "type": "range",
-                  "options": [0, 255],
-                  "content": ["id_qmk_rgb_matrix_effect_speed", 3, 3]
-                },
-                {
-                  "showIf": "{id_qmk_rgb_matrix_effect} != 0 && {id_qmk_rgb_matrix_effect} != 24 && {id_qmk_rgb_matrix_effect} != 28 && {id_qmk_rgb_matrix_effect} != 29 && {id_qmk_rgb_matrix_effect} != 32",
-                  "label": "Color",
-                  "type": "color",
-                  "content": ["id_qmk_rgb_matrix_color", 3, 4]
-                }
+                "id_rgb_matrix_toggle[1]",
+                5,
+                1,
+                1
               ]
             },
             {
               "label": "Underglow",
+              "type": "toggle",
               "content": [
-                {
-                  "showIf": "{id_underglow_rgb_matrix_effect} != 1",
-                  "label": "Brightness",
-                  "type": "range",
-                  "options": [0, 200],
-                  "content": ["id_underglow_rgb_matrix_brightness", 5, 2]
-                },
-                {
-                  "label": "Effect",
-                  "type": "dropdown",
-                  "content": ["id_underglow_rgb_matrix_effect", 5, 3],
-                  "options": [
-                    ["Sync", 1],
-                    ["Breathing", 2],
-                    ["Cycle Breathing", 3],
-                    ["Cycle Band Val.", 4], 
-                    ["Cycle Pinwheel Val.", 5],
-                    ["Cycle All", 6],
-                    ["Cycle Left/Right", 7],
-                    ["Cycle Up/Down", 8],
-                    ["Cycle Out/In", 9],
-                    ["Cycle In/Out", 10],
-                    ["Rainbow Pinwheel", 11],
-                    ["Cycle Spiral", 12]
-                  ]
-                },
-                {
-                  "showIf": "{id_underglow_rgb_matrix_effect} != 1",
-                  "label": "Effect Speed",
-                  "type": "range",
-                  "options": [0, 255],
-                  "content": ["id_underglow_rgb_matrix_effect_speed", 5, 4]
-                },
-                {
-                  "showIf": "{id_underglow_rgb_matrix_effect} != 1",
-                  "label": "Color",
-                  "type": "color",
-                  "content": ["id_underglow_rgb_matrix_color", 5, 5]
-                }
+                "id_rgb_matrix_toggle[2]",
+                5,
+                1,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Global",
+          "content": [
+            {
+              "label": "Brightness",
+              "type": "range",
+              "options": [
+                0,
+                200
+              ],
+              "content": [
+                "id_qmk_rgb_matrix_brightness",
+                3,
+                1
               ]
             },
             {
-              "label": "Indicators",
+              "label": "Effect",
+              "type": "dropdown",
               "content": [
-                {
-                  "label": "Normally On",
-                  "type": "toggle",
-                  "content": ["id_rgb_indicators_override", 6, 1]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect1} != 0",
-                  "label": "Caps Lock Brightness",
-                  "type": "range",
-                  "options": [0, 255],
-                  "content": ["id_rgb_indicators_brightness[1]", 6, 2, 1]
-                },
-                {
-                  "label": "Caps Lock Effect",
-                  "type": "dropdown",
-                  "content": ["id_rgb_indicators_effect1", 6, 3, 1],
-                  "options": [
-                    ["All Off", 0],
-                    ["Solid Color", 1],
-                    ["Breathing", 2],
-                    ["Cycle Breathing", 3],
-                    ["Cycle All", 4],
-                    ["Twinkle", 5],
-                    ["Random Color", 6]
-                  ]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect1} != 0",
-                  "label": "Caps Lock Led",
-                  "type": "dropdown",
-                  "content": ["id_rgb_indicators_led[1]", 6, 5, 1],
-                  "options": [
-                    ["All Led", 0],
-                    ["Backlight", 1],
-                    ["Underglow", 2],
-                    ["Led 0", 4],
-                    ["Led 1", 5],
-                    ["Led 2", 6],
-                    ["Led 3", 7],
-                    ["Led 4", 8],
-                    ["Led 5", 9],
-                    ["Led 6", 10],
-                    ["Led 7", 11],
-                    ["Led 8", 12],
-                    ["Led 9", 13],
-                    ["Led 10", 14],
-                    ["Led 11", 15],
-                    ["Led 12", 16],
-                    ["Led 13", 17],
-                    ["Led 14", 18],
-                    ["Led 15", 19],
-                    ["Led 16", 20],
-                    ["Led 17", 21],
-                    ["Led 18", 22],
-                    ["Led 19", 23],
-                    ["Led 20", 24],
-                    ["Led 21", 25],
-                    ["Led 22", 26],
-                    ["Led 23", 27],
-                    ["Led 24", 28],
-                    ["Led 25", 29],
-                    ["Led 26", 30],
-                    ["Led 27", 31],
-                    ["Led 28", 32],
-                    ["Led 29", 33],
-                    ["Led 30", 34],
-                    ["Led 31", 35],
-                    ["Led 32", 36],
-                    ["Led 33", 37],
-                    ["Led 34", 38],
-                    ["Led 35", 39],
-                    ["Led 36", 40],
-                    ["Led 37", 41],
-                    ["Led 38", 42],
-                    ["Led 39", 43],
-                    ["Led 40", 44],
-                    ["Led 41", 45],
-                    ["Led 42", 46],
-                    ["Led 43", 47],
-                    ["Led 44", 48],
-                    ["Led 45", 49],
-                    ["Led 46", 50],
-                    ["Led 47", 51],
-                    ["Led 48", 52],
-                    ["Led 49", 53],
-                    ["Led 50", 54],
-                    ["Led 51", 55],
-                    ["Led 52", 56],
-                    ["Led 53", 57],
-                    ["Led 54", 58],
-                    ["Led 55", 59],
-                    ["Led 56", 60],
-                    ["Led 57", 61],
-                    ["Led 58", 62],
-                    ["Led 59", 63],
-                    ["Led 60", 64],
-                    ["Led 61", 65],
-                    ["Led 62", 66],
-                    ["Led 63", 67],
-                    ["Led 64", 68],
-                    ["Led 65", 69]
-                  ]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect1} != 0",
-                  "label": "Caps Lock Color",
-                  "type": "color",
-                  "content": ["id_rgb_indicators_color[1]", 6, 4, 1]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect0} != 0",
-                  "label": "Num Lock Brightness",
-                  "type": "range",
-                  "options": [0, 255],
-                  "content": ["id_rgb_indicators_brightness[0]", 6, 2, 0]
-                },
-                {
-                  "label": "Num Lock Effect",
-                  "type": "dropdown",
-                  "content": ["id_rgb_indicators_effect0", 6, 3, 0],
-                  "options": [
-                    ["All Off", 0],
-                    ["Solid Color", 1],
-                    ["Breathing", 2],
-                    ["Cycle Breathing", 3],
-                    ["Cycle All", 4],
-                    ["Twinkle", 5],
-                    ["Random Color", 6]
-                  ]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect0} != 0",
-                  "label": "Num Lock Led",
-                  "type": "dropdown",
-                  "content": ["id_rgb_indicators_led[0]", 6, 5, 0],
-                  "options": [
-                    ["All Led", 0],
-                    ["Backlight", 1],
-                    ["Underglow", 2],
-                    ["Led 0", 4],
-                    ["Led 1", 5],
-                    ["Led 2", 6],
-                    ["Led 3", 7],
-                    ["Led 4", 8],
-                    ["Led 5", 9],
-                    ["Led 6", 10],
-                    ["Led 7", 11],
-                    ["Led 8", 12],
-                    ["Led 9", 13],
-                    ["Led 10", 14],
-                    ["Led 11", 15],
-                    ["Led 12", 16],
-                    ["Led 13", 17],
-                    ["Led 14", 18],
-                    ["Led 15", 19],
-                    ["Led 16", 20],
-                    ["Led 17", 21],
-                    ["Led 18", 22],
-                    ["Led 19", 23],
-                    ["Led 20", 24],
-                    ["Led 21", 25],
-                    ["Led 22", 26],
-                    ["Led 23", 27],
-                    ["Led 24", 28],
-                    ["Led 25", 29],
-                    ["Led 26", 30],
-                    ["Led 27", 31],
-                    ["Led 28", 32],
-                    ["Led 29", 33],
-                    ["Led 30", 34],
-                    ["Led 31", 35],
-                    ["Led 32", 36],
-                    ["Led 33", 37],
-                    ["Led 34", 38],
-                    ["Led 35", 39],
-                    ["Led 36", 40],
-                    ["Led 37", 41],
-                    ["Led 38", 42],
-                    ["Led 39", 43],
-                    ["Led 40", 44],
-                    ["Led 41", 45],
-                    ["Led 42", 46],
-                    ["Led 43", 47],
-                    ["Led 44", 48],
-                    ["Led 45", 49],
-                    ["Led 46", 50],
-                    ["Led 47", 51],
-                    ["Led 48", 52],
-                    ["Led 49", 53],
-                    ["Led 50", 54],
-                    ["Led 51", 55],
-                    ["Led 52", 56],
-                    ["Led 53", 57],
-                    ["Led 54", 58],
-                    ["Led 55", 59],
-                    ["Led 56", 60],
-                    ["Led 57", 61],
-                    ["Led 58", 62],
-                    ["Led 59", 63],
-                    ["Led 60", 64],
-                    ["Led 61", 65],
-                    ["Led 62", 66],
-                    ["Led 63", 67],
-                    ["Led 64", 68],
-                    ["Led 65", 69]
-                  ]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect0} != 0",
-                  "label": "Num Lock Color",
-                  "type": "color",
-                  "content": ["id_rgb_indicators_color[0]", 6, 4, 0]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect2} != 0",
-                  "label": "Scroll Lock Brightness",
-                  "type": "range",
-                  "options": [0, 255],
-                  "content": ["id_rgb_indicators_brightness[2]", 6, 2, 2]
-                },
-                {
-                  "label": "Scroll Lock Effect",
-                  "type": "dropdown",
-                  "content": ["id_rgb_indicators_effect2", 6, 3, 2],
-                  "options": [
-                    ["All Off", 0],
-                    ["Solid Color", 1],
-                    ["Breathing", 2],
-                    ["Cycle Breathing", 3],
-                    ["Cycle All", 4],
-                    ["Twinkle", 5],
-                    ["Random Color", 6]
-                  ]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect2} != 0",
-                  "label": "Scroll Lock Led",
-                  "type": "dropdown",
-                  "content": ["id_rgb_indicators_led[2]", 6, 5, 2],
-                  "options": [
-                    ["All Led", 0],
-                    ["Backlight", 1],
-                    ["Underglow", 2],
-                    ["Led 0", 4],
-                    ["Led 1", 5],
-                    ["Led 2", 6],
-                    ["Led 3", 7],
-                    ["Led 4", 8],
-                    ["Led 5", 9],
-                    ["Led 6", 10],
-                    ["Led 7", 11],
-                    ["Led 8", 12],
-                    ["Led 9", 13],
-                    ["Led 10", 14],
-                    ["Led 11", 15],
-                    ["Led 12", 16],
-                    ["Led 13", 17],
-                    ["Led 14", 18],
-                    ["Led 15", 19],
-                    ["Led 16", 20],
-                    ["Led 17", 21],
-                    ["Led 18", 22],
-                    ["Led 19", 23],
-                    ["Led 20", 24],
-                    ["Led 21", 25],
-                    ["Led 22", 26],
-                    ["Led 23", 27],
-                    ["Led 24", 28],
-                    ["Led 25", 29],
-                    ["Led 26", 30],
-                    ["Led 27", 31],
-                    ["Led 28", 32],
-                    ["Led 29", 33],
-                    ["Led 30", 34],
-                    ["Led 31", 35],
-                    ["Led 32", 36],
-                    ["Led 33", 37],
-                    ["Led 34", 38],
-                    ["Led 35", 39],
-                    ["Led 36", 40],
-                    ["Led 37", 41],
-                    ["Led 38", 42],
-                    ["Led 39", 43],
-                    ["Led 40", 44],
-                    ["Led 41", 45],
-                    ["Led 42", 46],
-                    ["Led 43", 47],
-                    ["Led 44", 48],
-                    ["Led 45", 49],
-                    ["Led 46", 50],
-                    ["Led 47", 51],
-                    ["Led 48", 52],
-                    ["Led 49", 53],
-                    ["Led 50", 54],
-                    ["Led 51", 55],
-                    ["Led 52", 56],
-                    ["Led 53", 57],
-                    ["Led 54", 58],
-                    ["Led 55", 59],
-                    ["Led 56", 60],
-                    ["Led 57", 61],
-                    ["Led 58", 62],
-                    ["Led 59", 63],
-                    ["Led 60", 64],
-                    ["Led 61", 65],
-                    ["Led 62", 66],
-                    ["Led 63", 67],
-                    ["Led 64", 68],
-                    ["Led 65", 69]
-                  ]
-                },
-                {
-                  "showIf": "{id_rgb_indicators_effect2} != 0",
-                  "label": "Scroll Lock Color",
-                  "type": "color",
-                  "content": ["id_rgb_indicators_color[2]", 6, 4, 2]
-                }
+                "id_qmk_rgb_matrix_effect",
+                3,
+                2
+              ],
+              "options": [
+                [
+                  "Solid Color",
+                  1
+                ],
+                [
+                  "Alphas Mods",
+                  2
+                ],
+                [
+                  "Gradient Up/Down",
+                  3
+                ],
+                [
+                  "Gradient Left/Right",
+                  4
+                ],
+                [
+                  "Breathing",
+                  5
+                ],
+                [
+                  "Band Sat.",
+                  6
+                ],
+                [
+                  "Band Val.",
+                  7
+                ],
+                [
+                  "Pinwheel Sat.",
+                  8
+                ],
+                [
+                  "Pinwheel Val.",
+                  9
+                ],
+                [
+                  "Spiral Sat.",
+                  10
+                ],
+                [
+                  "Spiral Val.",
+                  11
+                ],
+                [
+                  "Cycle All",
+                  12
+                ],
+                [
+                  "Cycle Left/Right",
+                  13
+                ],
+                [
+                  "Cycle Up/Down",
+                  14
+                ],
+                [
+                  "Rainbow Moving Chevron",
+                  15
+                ],
+                [
+                  "Cycle Out/In",
+                  16
+                ],
+                [
+                  "Cycle Out/In Dual",
+                  17
+                ],
+                [
+                  "Cycle Pinwheel",
+                  18
+                ],
+                [
+                  "Cycle Spiral",
+                  19
+                ],
+                [
+                  "Dual Beacon",
+                  20
+                ],
+                [
+                  "Rainbow Beacon",
+                  21
+                ],
+                [
+                  "Rainbow Pinwheels",
+                  22
+                ],
+                [
+                  "Raindrops",
+                  23
+                ],
+                [
+                  "Jellybean Raindrops",
+                  24
+                ],
+                [
+                  "Hue Breathing",
+                  25
+                ],
+                [
+                  "Hue Pendulum",
+                  26
+                ],
+                [
+                  "Hue Wave",
+                  27
+                ],
+                [
+                  "Pixel Rain",
+                  28
+                ],
+                [
+                  "Pixel Flow",
+                  29
+                ],
+                [
+                  "Pixel Fractal",
+                  30
+                ],
+                [
+                  "Typing Heatmap",
+                  31
+                ],
+                [
+                  "Digital Rain",
+                  32
+                ],
+                [
+                  "Solid Reactive Simple",
+                  33
+                ],
+                [
+                  "Solid Reactive",
+                  34
+                ],
+                [
+                  "Solid Reactive Wide",
+                  35
+                ],
+                [
+                  "Solid Reactive Multi Wide",
+                  36
+                ],
+                [
+                  "Solid Reactive Cross",
+                  37
+                ],
+                [
+                  "Solid Reactive Multi Cross",
+                  38
+                ],
+                [
+                  "Solid Reactive Nexus",
+                  39
+                ],
+                [
+                  "Solid Reactive Multi Nexus",
+                  40
+                ],
+                [
+                  "Spash",
+                  41
+                ],
+                [
+                  "Multi Splash",
+                  42
+                ],
+                [
+                  "Solid Splash",
+                  43
+                ],
+                [
+                  "Solid Multi Splash",
+                  44
+                ],
+                [
+                  "Cycle Breathing",
+                  46
+                ],
+                [
+                  "Cycle Band Val.",
+                  47
+                ],
+                [
+                  "Cycle Pinwheel Sat.",
+                  48
+                ],
+                [
+                  "Cycle Pinwheel Val.",
+                  49
+                ],
+                [
+                  "Cycle Spiral Sat.",
+                  50
+                ],
+                [
+                  "Cycle Spiral Val.",
+                  51
+                ],
+                [
+                  "Cycle Right/Left",
+                  52
+                ],
+                [
+                  "Cycle Down/Up",
+                  53
+                ],
+                [
+                  "Cycle In/Out",
+                  54
+                ],
+                [
+                  "Cycle In/Out Dual",
+                  55
+                ],
+                [
+                  "Rainbow Fractal",
+                  56
+                ],
+                [
+                  "Snake",
+                  57
+                ],
+                [
+                  "Cycle Wave",
+                  58
+                ],
+                [
+                  "Rainbow Wave",
+                  59
+                ],
+                [
+                  "Rainbow Wave 2",
+                  60
+                ],
+                [
+                  "Cycle Alter",
+                  61
+                ],
+                [
+                  "Rainbow Alter",
+                  62
+                ],
+                [
+                  "Breathing Circle",
+                  63
+                ],
+                [
+                  "Cycle Breathing Circle",
+                  64
+                ],
+                [
+                  "Bloom",
+                  65
+                ],
+                [
+                  "Commet",
+                  66
+                ],
+                [
+                  "Rotate Rainbow",
+                  67
+                ],
+                [
+                  "Motion Points",
+                  68
+                ],
+                [
+                  "Rotate Pendulum",
+                  69
+                ],
+                [
+                  "Rotate Wipers",
+                  70
+                ],
+                [
+                  "Horizontal Stack",
+                  71
+                ],
+                [
+                  "Vertical Stack",
+                  72
+                ],
+                [
+                  "Swap",
+                  73
+                ],
+                [
+                  "Static zigzag",
+                  74
+                ],
+                [
+                  "Rainbow zigzag",
+                  75
+                ],
+                [
+                  "Candy Tap",
+                  76
+                ],
+                [
+                  "Cycle Reactive Multi Wide",
+                  77
+                ],
+                [
+                  "Cycle Reactive Multi Cross",
+                  78
+                ],
+                [
+                  "Cycle Reactive Multi Nexus",
+                  79
+                ],
+                [
+                  "Cycle Multi Splash",
+                  80
+                ],
+                [
+                  "Rainbow Reactive Multi Wide",
+                  81
+                ],
+                [
+                  "Rainbow Reactive Multi Cross",
+                  82
+                ],
+                [
+                  "Rainbow Reactive Multi Nexus",
+                  83
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_qmk_rgb_matrix_effect} != 0",
+              "label": "Effect Speed",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_qmk_rgb_matrix_effect_speed",
+                3,
+                3
+              ]
+            },
+            {
+              "showIf": "{id_qmk_rgb_matrix_effect} != 0 && {id_qmk_rgb_matrix_effect} != 24 && {id_qmk_rgb_matrix_effect} != 28 && {id_qmk_rgb_matrix_effect} != 29 && {id_qmk_rgb_matrix_effect} != 32",
+              "label": "Color",
+              "type": "color",
+              "content": [
+                "id_qmk_rgb_matrix_color",
+                3,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Underglow",
+          "content": [
+            {
+              "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+              "label": "Brightness",
+              "type": "range",
+              "options": [
+                0,
+                200
+              ],
+              "content": [
+                "id_underglow_rgb_matrix_brightness",
+                5,
+                2
+              ]
+            },
+            {
+              "label": "Effect",
+              "type": "dropdown",
+              "content": [
+                "id_underglow_rgb_matrix_effect",
+                5,
+                3
+              ],
+              "options": [
+                [
+                  "Sync",
+                  1
+                ],
+                [
+                  "Breathing",
+                  2
+                ],
+                [
+                  "Cycle Breathing",
+                  3
+                ],
+                [
+                  "Cycle Band Val.",
+                  4
+                ],
+                [
+                  "Cycle Pinwheel Val.",
+                  5
+                ],
+                [
+                  "Cycle All",
+                  6
+                ],
+                [
+                  "Cycle Left/Right",
+                  7
+                ],
+                [
+                  "Cycle Up/Down",
+                  8
+                ],
+                [
+                  "Cycle Out/In",
+                  9
+                ],
+                [
+                  "Cycle In/Out",
+                  10
+                ],
+                [
+                  "Rainbow Pinwheel",
+                  11
+                ],
+                [
+                  "Cycle Spiral",
+                  12
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+              "label": "Effect Speed",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_underglow_rgb_matrix_effect_speed",
+                5,
+                4
+              ]
+            },
+            {
+              "showIf": "{id_underglow_rgb_matrix_effect} != 1",
+              "label": "Color",
+              "type": "color",
+              "content": [
+                "id_underglow_rgb_matrix_color",
+                5,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Indicators",
+          "content": [
+            {
+              "label": "Normally On",
+              "type": "toggle",
+              "content": [
+                "id_rgb_indicators_override",
+                6,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect1} != 0",
+              "label": "Caps Lock Brightness",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_rgb_indicators_brightness[1]",
+                6,
+                2,
+                1
+              ]
+            },
+            {
+              "label": "Caps Lock Effect",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_effect1",
+                6,
+                3,
+                1
+              ],
+              "options": [
+                [
+                  "All Off",
+                  0
+                ],
+                [
+                  "Solid Color",
+                  1
+                ],
+                [
+                  "Breathing",
+                  2
+                ],
+                [
+                  "Cycle Breathing",
+                  3
+                ],
+                [
+                  "Cycle All",
+                  4
+                ],
+                [
+                  "Twinkle",
+                  5
+                ],
+                [
+                  "Random Color",
+                  6
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect1} != 0",
+              "label": "Caps Lock Led",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_led[1]",
+                6,
+                5,
+                1
+              ],
+              "options": [
+                [
+                  "All Led",
+                  0
+                ],
+                [
+                  "Backlight",
+                  1
+                ],
+                [
+                  "Underglow",
+                  2
+                ],
+                [
+                  "Led 0",
+                  4
+                ],
+                [
+                  "Led 1",
+                  5
+                ],
+                [
+                  "Led 2",
+                  6
+                ],
+                [
+                  "Led 3",
+                  7
+                ],
+                [
+                  "Led 4",
+                  8
+                ],
+                [
+                  "Led 5",
+                  9
+                ],
+                [
+                  "Led 6",
+                  10
+                ],
+                [
+                  "Led 7",
+                  11
+                ],
+                [
+                  "Led 8",
+                  12
+                ],
+                [
+                  "Led 9",
+                  13
+                ],
+                [
+                  "Led 10",
+                  14
+                ],
+                [
+                  "Led 11",
+                  15
+                ],
+                [
+                  "Led 12",
+                  16
+                ],
+                [
+                  "Led 13",
+                  17
+                ],
+                [
+                  "Led 14",
+                  18
+                ],
+                [
+                  "Led 15",
+                  19
+                ],
+                [
+                  "Led 16",
+                  20
+                ],
+                [
+                  "Led 17",
+                  21
+                ],
+                [
+                  "Led 18",
+                  22
+                ],
+                [
+                  "Led 19",
+                  23
+                ],
+                [
+                  "Led 20",
+                  24
+                ],
+                [
+                  "Led 21",
+                  25
+                ],
+                [
+                  "Led 22",
+                  26
+                ],
+                [
+                  "Led 23",
+                  27
+                ],
+                [
+                  "Led 24",
+                  28
+                ],
+                [
+                  "Led 25",
+                  29
+                ],
+                [
+                  "Led 26",
+                  30
+                ],
+                [
+                  "Led 27",
+                  31
+                ],
+                [
+                  "Led 28",
+                  32
+                ],
+                [
+                  "Led 29",
+                  33
+                ],
+                [
+                  "Led 30",
+                  34
+                ],
+                [
+                  "Led 31",
+                  35
+                ],
+                [
+                  "Led 32",
+                  36
+                ],
+                [
+                  "Led 33",
+                  37
+                ],
+                [
+                  "Led 34",
+                  38
+                ],
+                [
+                  "Led 35",
+                  39
+                ],
+                [
+                  "Led 36",
+                  40
+                ],
+                [
+                  "Led 37",
+                  41
+                ],
+                [
+                  "Led 38",
+                  42
+                ],
+                [
+                  "Led 39",
+                  43
+                ],
+                [
+                  "Led 40",
+                  44
+                ],
+                [
+                  "Led 41",
+                  45
+                ],
+                [
+                  "Led 42",
+                  46
+                ],
+                [
+                  "Led 43",
+                  47
+                ],
+                [
+                  "Led 44",
+                  48
+                ],
+                [
+                  "Led 45",
+                  49
+                ],
+                [
+                  "Led 46",
+                  50
+                ],
+                [
+                  "Led 47",
+                  51
+                ],
+                [
+                  "Led 48",
+                  52
+                ],
+                [
+                  "Led 49",
+                  53
+                ],
+                [
+                  "Led 50",
+                  54
+                ],
+                [
+                  "Led 51",
+                  55
+                ],
+                [
+                  "Led 52",
+                  56
+                ],
+                [
+                  "Led 53",
+                  57
+                ],
+                [
+                  "Led 54",
+                  58
+                ],
+                [
+                  "Led 55",
+                  59
+                ],
+                [
+                  "Led 56",
+                  60
+                ],
+                [
+                  "Led 57",
+                  61
+                ],
+                [
+                  "Led 58",
+                  62
+                ],
+                [
+                  "Led 59",
+                  63
+                ],
+                [
+                  "Led 60",
+                  64
+                ],
+                [
+                  "Led 61",
+                  65
+                ],
+                [
+                  "Led 62",
+                  66
+                ],
+                [
+                  "Led 63",
+                  67
+                ],
+                [
+                  "Led 64",
+                  68
+                ],
+                [
+                  "Led 65",
+                  69
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect1} != 0",
+              "label": "Caps Lock Color",
+              "type": "color",
+              "content": [
+                "id_rgb_indicators_color[1]",
+                6,
+                4,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect0} != 0",
+              "label": "Num Lock Brightness",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_rgb_indicators_brightness[0]",
+                6,
+                2,
+                0
+              ]
+            },
+            {
+              "label": "Num Lock Effect",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_effect0",
+                6,
+                3,
+                0
+              ],
+              "options": [
+                [
+                  "All Off",
+                  0
+                ],
+                [
+                  "Solid Color",
+                  1
+                ],
+                [
+                  "Breathing",
+                  2
+                ],
+                [
+                  "Cycle Breathing",
+                  3
+                ],
+                [
+                  "Cycle All",
+                  4
+                ],
+                [
+                  "Twinkle",
+                  5
+                ],
+                [
+                  "Random Color",
+                  6
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect0} != 0",
+              "label": "Num Lock Led",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_led[0]",
+                6,
+                5,
+                0
+              ],
+              "options": [
+                [
+                  "All Led",
+                  0
+                ],
+                [
+                  "Backlight",
+                  1
+                ],
+                [
+                  "Underglow",
+                  2
+                ],
+                [
+                  "Led 0",
+                  4
+                ],
+                [
+                  "Led 1",
+                  5
+                ],
+                [
+                  "Led 2",
+                  6
+                ],
+                [
+                  "Led 3",
+                  7
+                ],
+                [
+                  "Led 4",
+                  8
+                ],
+                [
+                  "Led 5",
+                  9
+                ],
+                [
+                  "Led 6",
+                  10
+                ],
+                [
+                  "Led 7",
+                  11
+                ],
+                [
+                  "Led 8",
+                  12
+                ],
+                [
+                  "Led 9",
+                  13
+                ],
+                [
+                  "Led 10",
+                  14
+                ],
+                [
+                  "Led 11",
+                  15
+                ],
+                [
+                  "Led 12",
+                  16
+                ],
+                [
+                  "Led 13",
+                  17
+                ],
+                [
+                  "Led 14",
+                  18
+                ],
+                [
+                  "Led 15",
+                  19
+                ],
+                [
+                  "Led 16",
+                  20
+                ],
+                [
+                  "Led 17",
+                  21
+                ],
+                [
+                  "Led 18",
+                  22
+                ],
+                [
+                  "Led 19",
+                  23
+                ],
+                [
+                  "Led 20",
+                  24
+                ],
+                [
+                  "Led 21",
+                  25
+                ],
+                [
+                  "Led 22",
+                  26
+                ],
+                [
+                  "Led 23",
+                  27
+                ],
+                [
+                  "Led 24",
+                  28
+                ],
+                [
+                  "Led 25",
+                  29
+                ],
+                [
+                  "Led 26",
+                  30
+                ],
+                [
+                  "Led 27",
+                  31
+                ],
+                [
+                  "Led 28",
+                  32
+                ],
+                [
+                  "Led 29",
+                  33
+                ],
+                [
+                  "Led 30",
+                  34
+                ],
+                [
+                  "Led 31",
+                  35
+                ],
+                [
+                  "Led 32",
+                  36
+                ],
+                [
+                  "Led 33",
+                  37
+                ],
+                [
+                  "Led 34",
+                  38
+                ],
+                [
+                  "Led 35",
+                  39
+                ],
+                [
+                  "Led 36",
+                  40
+                ],
+                [
+                  "Led 37",
+                  41
+                ],
+                [
+                  "Led 38",
+                  42
+                ],
+                [
+                  "Led 39",
+                  43
+                ],
+                [
+                  "Led 40",
+                  44
+                ],
+                [
+                  "Led 41",
+                  45
+                ],
+                [
+                  "Led 42",
+                  46
+                ],
+                [
+                  "Led 43",
+                  47
+                ],
+                [
+                  "Led 44",
+                  48
+                ],
+                [
+                  "Led 45",
+                  49
+                ],
+                [
+                  "Led 46",
+                  50
+                ],
+                [
+                  "Led 47",
+                  51
+                ],
+                [
+                  "Led 48",
+                  52
+                ],
+                [
+                  "Led 49",
+                  53
+                ],
+                [
+                  "Led 50",
+                  54
+                ],
+                [
+                  "Led 51",
+                  55
+                ],
+                [
+                  "Led 52",
+                  56
+                ],
+                [
+                  "Led 53",
+                  57
+                ],
+                [
+                  "Led 54",
+                  58
+                ],
+                [
+                  "Led 55",
+                  59
+                ],
+                [
+                  "Led 56",
+                  60
+                ],
+                [
+                  "Led 57",
+                  61
+                ],
+                [
+                  "Led 58",
+                  62
+                ],
+                [
+                  "Led 59",
+                  63
+                ],
+                [
+                  "Led 60",
+                  64
+                ],
+                [
+                  "Led 61",
+                  65
+                ],
+                [
+                  "Led 62",
+                  66
+                ],
+                [
+                  "Led 63",
+                  67
+                ],
+                [
+                  "Led 64",
+                  68
+                ],
+                [
+                  "Led 65",
+                  69
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect0} != 0",
+              "label": "Num Lock Color",
+              "type": "color",
+              "content": [
+                "id_rgb_indicators_color[0]",
+                6,
+                4,
+                0
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect2} != 0",
+              "label": "Scroll Lock Brightness",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_rgb_indicators_brightness[2]",
+                6,
+                2,
+                2
+              ]
+            },
+            {
+              "label": "Scroll Lock Effect",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_effect2",
+                6,
+                3,
+                2
+              ],
+              "options": [
+                [
+                  "All Off",
+                  0
+                ],
+                [
+                  "Solid Color",
+                  1
+                ],
+                [
+                  "Breathing",
+                  2
+                ],
+                [
+                  "Cycle Breathing",
+                  3
+                ],
+                [
+                  "Cycle All",
+                  4
+                ],
+                [
+                  "Twinkle",
+                  5
+                ],
+                [
+                  "Random Color",
+                  6
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect2} != 0",
+              "label": "Scroll Lock Led",
+              "type": "dropdown",
+              "content": [
+                "id_rgb_indicators_led[2]",
+                6,
+                5,
+                2
+              ],
+              "options": [
+                [
+                  "All Led",
+                  0
+                ],
+                [
+                  "Backlight",
+                  1
+                ],
+                [
+                  "Underglow",
+                  2
+                ],
+                [
+                  "Led 0",
+                  4
+                ],
+                [
+                  "Led 1",
+                  5
+                ],
+                [
+                  "Led 2",
+                  6
+                ],
+                [
+                  "Led 3",
+                  7
+                ],
+                [
+                  "Led 4",
+                  8
+                ],
+                [
+                  "Led 5",
+                  9
+                ],
+                [
+                  "Led 6",
+                  10
+                ],
+                [
+                  "Led 7",
+                  11
+                ],
+                [
+                  "Led 8",
+                  12
+                ],
+                [
+                  "Led 9",
+                  13
+                ],
+                [
+                  "Led 10",
+                  14
+                ],
+                [
+                  "Led 11",
+                  15
+                ],
+                [
+                  "Led 12",
+                  16
+                ],
+                [
+                  "Led 13",
+                  17
+                ],
+                [
+                  "Led 14",
+                  18
+                ],
+                [
+                  "Led 15",
+                  19
+                ],
+                [
+                  "Led 16",
+                  20
+                ],
+                [
+                  "Led 17",
+                  21
+                ],
+                [
+                  "Led 18",
+                  22
+                ],
+                [
+                  "Led 19",
+                  23
+                ],
+                [
+                  "Led 20",
+                  24
+                ],
+                [
+                  "Led 21",
+                  25
+                ],
+                [
+                  "Led 22",
+                  26
+                ],
+                [
+                  "Led 23",
+                  27
+                ],
+                [
+                  "Led 24",
+                  28
+                ],
+                [
+                  "Led 25",
+                  29
+                ],
+                [
+                  "Led 26",
+                  30
+                ],
+                [
+                  "Led 27",
+                  31
+                ],
+                [
+                  "Led 28",
+                  32
+                ],
+                [
+                  "Led 29",
+                  33
+                ],
+                [
+                  "Led 30",
+                  34
+                ],
+                [
+                  "Led 31",
+                  35
+                ],
+                [
+                  "Led 32",
+                  36
+                ],
+                [
+                  "Led 33",
+                  37
+                ],
+                [
+                  "Led 34",
+                  38
+                ],
+                [
+                  "Led 35",
+                  39
+                ],
+                [
+                  "Led 36",
+                  40
+                ],
+                [
+                  "Led 37",
+                  41
+                ],
+                [
+                  "Led 38",
+                  42
+                ],
+                [
+                  "Led 39",
+                  43
+                ],
+                [
+                  "Led 40",
+                  44
+                ],
+                [
+                  "Led 41",
+                  45
+                ],
+                [
+                  "Led 42",
+                  46
+                ],
+                [
+                  "Led 43",
+                  47
+                ],
+                [
+                  "Led 44",
+                  48
+                ],
+                [
+                  "Led 45",
+                  49
+                ],
+                [
+                  "Led 46",
+                  50
+                ],
+                [
+                  "Led 47",
+                  51
+                ],
+                [
+                  "Led 48",
+                  52
+                ],
+                [
+                  "Led 49",
+                  53
+                ],
+                [
+                  "Led 50",
+                  54
+                ],
+                [
+                  "Led 51",
+                  55
+                ],
+                [
+                  "Led 52",
+                  56
+                ],
+                [
+                  "Led 53",
+                  57
+                ],
+                [
+                  "Led 54",
+                  58
+                ],
+                [
+                  "Led 55",
+                  59
+                ],
+                [
+                  "Led 56",
+                  60
+                ],
+                [
+                  "Led 57",
+                  61
+                ],
+                [
+                  "Led 58",
+                  62
+                ],
+                [
+                  "Led 59",
+                  63
+                ],
+                [
+                  "Led 60",
+                  64
+                ],
+                [
+                  "Led 61",
+                  65
+                ],
+                [
+                  "Led 62",
+                  66
+                ],
+                [
+                  "Led 63",
+                  67
+                ],
+                [
+                  "Led 64",
+                  68
+                ],
+                [
+                  "Led 65",
+                  69
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_rgb_indicators_effect2} != 0",
+              "label": "Scroll Lock Color",
+              "type": "color",
+              "content": [
+                "id_rgb_indicators_color[2]",
+                6,
+                4,
+                2
               ]
             }
           ]
         }
-      ],
-    "layouts": {
-      "labels": [
-        "Encoder"
-      ],
-      "keymap": [
-        [
-          "0,0",
-          "0,1",
-          "0,2",
-          "0,3",
-          "0,4",
-          "0,5",
-          "0,6",
-          "0,7",
-          "0,8",
-          "0,9",
-          "0,10",
-          "0,11",
-          "0,12",
-          {
-            "x": 0.5,
-            "d": true
-          },
-          "\n\n\n0,0",
-          {
-            "x": -1
-          },
-          "0,13\n\n\n0,0",
-          {
-            "x": 0.25,
-            "d": true
-          },
-          "\n\n\n0,1",
-          {
-            "x": -1
-          },
-          "0,13\n\n\n0,1\n\n\n\n\n\ne0"
-        ],
-        [
-          {
-            "w": 1.25
-          },
-          "1,0",
-          "1,1",
-          "1,2",
-          "1,3",
-          "1,4",
-          "1,5",
-          "1,6",
-          "1,7",
-          "1,8",
-          "1,9",
-          "1,10",
-          {
-            "w": 1.75
-          },
-          "1,11",
-          {
-            "x": 0.5
-          },
-          "1,13"
-        ],
-        [
-          {
-            "w": 1.75
-          },
-          "2,0",
-          "2,1",
-          "2,2",
-          "2,3",
-          "2,4",
-          "2,5",
-          "2,6",
-          "2,7",
-          "2,8",
-          "2,9",
-          {
-            "w": 1.25
-          },
-          "2,10",
-          {
-            "x": 1.5
-          },
-          "2,13"
-        ],
-        [
-          {
-            "y": -0.75,
-            "x": 12.25
-          },
-          "2,11"
-        ],
-        [
-          {
-            "y": -0.25,
-            "w": 1.25
-          },
-          "3,0",
-          "3,1",
-          {
-            "w": 1.25
-          },
-          "3,2",
-          {
-            "w": 2.75
-          },
-          "3,4",
-          {
-            "w": 2.25
-          },
-          "3,6",
-          {
-            "w": 1.25
-          },
-          "3,8",
-          {
-            "w": 1.25
-          },
-          "3,9"
-        ],
-        [
-          {
-            "y": -0.75,
-            "x": 11.25
-          },
-          "3,10",
-          "3,11",
-          "3,13"
-        ]
+      ]
+    },
+    {
+      "label": "Magic Settings",
+      "content": [
+        {
+          "label": "Keyboard",
+          "content": [
+            {
+              "label": "Debounce Time",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_debounce",
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Magic",
+          "content": [
+            {
+              "label": "Enable N-Key Rollover",
+              "type": "toggle",
+              "content": [
+                "id_magic_nkro",
+                7,
+                1
+              ]
+            },
+            {
+              "label": "Disabled Gui",
+              "type": "toggle",
+              "content": [
+                "id_magic_no_gui",
+                7,
+                2
+              ]
+            },
+            {
+              "label": "Treat Capslock as Ctrl",
+              "type": "toggle",
+              "content": [
+                "id_magic_capslock_to_control",
+                7,
+                3
+              ]
+            },
+            {
+              "label": "Swap Ctrl and Capslock",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_control_capslock",
+                7,
+                4
+              ]
+            },
+            {
+              "label": "Swap Esc and Capslock",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_escape_capslock",
+                7,
+                5
+              ]
+            },
+            {
+              "label": "Swap Left Alt and Gui",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_lalt_lgui",
+                7,
+                6
+              ]
+            },
+            {
+              "label": "Swap Right Alt and Gui",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_ralt_rgui",
+                7,
+                7
+              ]
+            },
+            {
+              "label": "Swap Left Ctrl and Gui",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_lctl_lgui",
+                7,
+                8
+              ]
+            },
+            {
+              "label": "Swap Right Ctrl and Gui",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_rctl_rgui",
+                7,
+                9
+              ]
+            },
+            {
+              "label": "Swap ` and Esc",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_grave_esc",
+                7,
+                10
+              ]
+            },
+            {
+              "label": "Swap \\ and Backspace",
+              "type": "toggle",
+              "content": [
+                "id_magic_swap_backslash_backspace",
+                7,
+                11
+              ]
+            },
+            {
+              "label": "Enable Autocorrect",
+              "type": "toggle",
+              "content": [
+                "id_magic_autocorrect_enable",
+                7,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Grave Esc",
+          "content": [
+            {
+              "label": "Always send Escape if Alt is pressed",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_grave_esc_override[0]",
+                8,
+                11,
+                0
+              ]
+            },
+            {
+              "label": "Always send Escape if Ctrl is pressed",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_grave_esc_override[1]",
+                8,
+                11,
+                1
+              ]
+            },
+            {
+              "label": "Always send Escape if Gui is pressed",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_grave_esc_override[2]",
+                8,
+                11,
+                2
+              ]
+            },
+            {
+              "label": "Always send Escape if Shift is pressed",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_grave_esc_override[3]",
+                8,
+                11,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap-Hold",
+          "content": [
+            {
+              "label": "Permissive Hold",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_tap_hold_config[0]",
+                8,
+                12,
+                0
+              ]
+            },
+            {
+              "label": "Retro Tapping",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_tap_hold_config[1]",
+                8,
+                12,
+                1
+              ]
+            },
+            {
+              "label": "Hold On Other Key Press",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_tap_hold_config[2]",
+                8,
+                12,
+                2
+              ]
+            },
+            {
+              "label": "Tapping Toggle Times",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_tapping_toggle_times",
+                8,
+                13
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_tapping_term",
+                8,
+                14
+              ]
+            },
+            {
+              "label": "Quick Tap Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_quick_tap_term",
+                8,
+                15
+              ]
+            },
+            {
+              "label": "Tap Code Delay(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_tap_code_delay",
+                8,
+                16
+              ]
+            },
+            {
+              "label": "Tap Hold Caps Delay(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_tap_hold_caps_delay",
+                8,
+                17
+              ]
+            }
+          ]
+        },
+        {
+          "label": "One Shot",
+          "content": [
+            {
+              "label": "Enable Oneshot",
+              "type": "toggle",
+              "content": [
+                "id_magic_oneshot_enable",
+                7,
+                12
+              ]
+            },
+            {
+              "showIf": "{id_magic_oneshot_enable} != 0",
+              "label": "Oneshot Tap Toggle",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_oneshot_tap_toggle",
+                8,
+                20
+              ]
+            },
+            {
+              "showIf": "{id_magic_oneshot_enable} != 0",
+              "label": "Oneshot Timeout",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_oneshot_timeout",
+                8,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Auto Shift",
+          "content": [
+            {
+              "label": "Enable Auto Shift",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config0",
+                8,
+                18,
+                0
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "Enable Auto Shift for Modifiers",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[1]",
+                8,
+                18,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "Disable Auto Shift for Alpha Keys",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[2]",
+                8,
+                18,
+                2
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "Disable Auto Shift for Numeric Keys",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[3]",
+                8,
+                18,
+                3
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "Disable Auto Shift for Special Keys",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[4]",
+                8,
+                18,
+                4
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "Enable Keyrepeat",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[5]",
+                8,
+                18,
+                5
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "Disable Automatically Keyrepeating when is exceeded.",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_auto_shift_config[6]",
+                8,
+                18,
+                6
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_auto_shift_config0} != 0",
+              "label": "Auto Shift Timeout(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_auto_shift_timeout",
+                8,
+                17
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo",
+          "content": [
+            {
+              "label": "Enable Combo",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_combo_config0",
+                8,
+                22,
+                0
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_combo_config0} != 0",
+              "label": "Combo should fire immediately on tap or if it needs to be held",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_combo_config[1]",
+                8,
+                22,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_combo_config0} != 0",
+              "label": "Combo should fire only if tapped within combo hold term",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_combo_config[2]",
+                8,
+                22,
+                2
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_combo_config0} != 0",
+              "label": "Combo should fire only if its keys are pressed in order",
+              "type": "toggle",
+              "content": [
+                "id_advanced_magic_combo_config[3]",
+                8,
+                22,
+                3
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_combo_config0} != 0",
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_combo_term",
+                8,
+                23
+              ]
+            },
+            {
+              "showIf": "{id_advanced_magic_combo_config0} != 0",
+              "label": "Combo Hold Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_advanced_magic_combo_hold_term",
+                8,
+                24
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Mouse Key",
+          "content": [
+            {
+              "label": "Delay between pressing a movement key and cursor movement",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_delay",
+                8,
+                2
+              ]
+            },
+            {
+              "label": "Time between cursor movements in milliseconds",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_interval",
+                8,
+                3
+              ]
+            },
+            {
+              "label": "Step size",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_move_delta",
+                8,
+                4
+              ]
+            },
+            {
+              "label": "Maximum cursor speed at which acceleration stops",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_max_speed",
+                8,
+                5
+              ]
+            },
+            {
+              "label": "Time until maximum cursor speed is reached",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_time_to_max",
+                8,
+                6
+              ]
+            },
+            {
+              "label": "Delay between pressing a wheel key and wheel movement",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_wheel_delay",
+                8,
+                7
+              ]
+            },
+            {
+              "label": "Time between wheel movements",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_wheel_interval",
+                8,
+                8
+              ]
+            },
+            {
+              "label": "Maximum number of scroll steps per scroll action",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_wheel_max_speed",
+                8,
+                9
+              ]
+            },
+            {
+              "label": "Time until maximum scroll speed is reached",
+              "type": "range",
+              "options": [
+                0,
+                255
+              ],
+              "content": [
+                "id_advanced_magic_mk_wheel_time_to_max",
+                8,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "label": "System Layer",
+          "content": [
+            {
+              "label": "Windows Layer",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[0]",
+                11,
+                1,
+                0
+              ],
+              "options": [
+                [
+                  "Layer 0",
+                  0
+                ],
+                [
+                  "Layer 1",
+                  1
+                ],
+                [
+                  "Layer 2",
+                  2
+                ],
+                [
+                  "Layer 3",
+                  3
+                ],
+                [
+                  "Layer 4",
+                  4
+                ],
+                [
+                  "Layer 5",
+                  5
+                ]
+              ]
+            },
+            {
+              "label": "Windows Fn Layer",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[1]",
+                11,
+                1,
+                1
+              ],
+              "options": [
+                [
+                  "Layer 0",
+                  0
+                ],
+                [
+                  "Layer 1",
+                  1
+                ],
+                [
+                  "Layer 2",
+                  2
+                ],
+                [
+                  "Layer 3",
+                  3
+                ],
+                [
+                  "Layer 4",
+                  4
+                ],
+                [
+                  "Layer 5",
+                  5
+                ]
+              ]
+            },
+            {
+              "label": "Macos Layer",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[2]",
+                11,
+                1,
+                2
+              ],
+              "options": [
+                [
+                  "Layer 0",
+                  0
+                ],
+                [
+                  "Layer 1",
+                  1
+                ],
+                [
+                  "Layer 2",
+                  2
+                ],
+                [
+                  "Layer 3",
+                  3
+                ],
+                [
+                  "Layer 4",
+                  4
+                ],
+                [
+                  "Layer 5",
+                  5
+                ]
+              ]
+            },
+            {
+              "label": "Macos Fn Layer",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[3]",
+                11,
+                1,
+                3
+              ],
+              "options": [
+                [
+                  "Layer 0",
+                  0
+                ],
+                [
+                  "Layer 1",
+                  1
+                ],
+                [
+                  "Layer 2",
+                  2
+                ],
+                [
+                  "Layer 3",
+                  3
+                ],
+                [
+                  "Layer 4",
+                  4
+                ],
+                [
+                  "Layer 5",
+                  5
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Dynamic Tap Dance",
+      "content": [
+        {
+          "label": "Tap Dance(0)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[0]",
+                9,
+                1,
+                0
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[0]",
+                9,
+                2,
+                0
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[0]",
+                9,
+                3,
+                0
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[0]",
+                9,
+                4,
+                0
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[0]",
+                9,
+                5,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(1)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[1]",
+                9,
+                1,
+                1
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[1]",
+                9,
+                2,
+                1
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[1]",
+                9,
+                3,
+                1
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[1]",
+                9,
+                4,
+                1
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[1]",
+                9,
+                5,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(2)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[2]",
+                9,
+                1,
+                2
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[2]",
+                9,
+                2,
+                2
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[2]",
+                9,
+                3,
+                2
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[2]",
+                9,
+                4,
+                2
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[2]",
+                9,
+                5,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(3)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[3]",
+                9,
+                1,
+                3
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[3]",
+                9,
+                2,
+                3
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[3]",
+                9,
+                3,
+                3
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[3]",
+                9,
+                4,
+                3
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[3]",
+                9,
+                5,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(4)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[4]",
+                9,
+                1,
+                4
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[4]",
+                9,
+                2,
+                4
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[4]",
+                9,
+                3,
+                4
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[4]",
+                9,
+                4,
+                4
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[4]",
+                9,
+                5,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(5)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[5]",
+                9,
+                1,
+                5
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[5]",
+                9,
+                2,
+                5
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[5]",
+                9,
+                3,
+                5
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[5]",
+                9,
+                4,
+                5
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[5]",
+                9,
+                5,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(6)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[6]",
+                9,
+                1,
+                6
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[6]",
+                9,
+                2,
+                6
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[6]",
+                9,
+                3,
+                6
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[6]",
+                9,
+                4,
+                6
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[6]",
+                9,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(7)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[7]",
+                9,
+                1,
+                7
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[7]",
+                9,
+                2,
+                7
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[7]",
+                9,
+                3,
+                7
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[7]",
+                9,
+                4,
+                7
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[7]",
+                9,
+                5,
+                7
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(8)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[8]",
+                9,
+                1,
+                8
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[8]",
+                9,
+                2,
+                8
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[8]",
+                9,
+                3,
+                8
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[8]",
+                9,
+                4,
+                8
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[8]",
+                9,
+                5,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tap Dance(9)",
+          "content": [
+            {
+              "label": "Single Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_keycode[9]",
+                9,
+                1,
+                9
+              ]
+            },
+            {
+              "label": "Single Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_hold_keycode[9]",
+                9,
+                2,
+                9
+              ]
+            },
+            {
+              "label": "Double Tap",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_double_tap_keycode[9]",
+                9,
+                3,
+                9
+              ]
+            },
+            {
+              "label": "Double Hold",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_tap_dance_on_tap_hold_keycode[9]",
+                9,
+                4,
+                9
+              ]
+            },
+            {
+              "label": "Tapping Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_tap_dance_tapping_term[9]",
+                9,
+                5,
+                9
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Dynamic Combo",
+      "content": [
+        {
+          "label": "Combo(0)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[0][0]",
+                10,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[0][1]",
+                10,
+                1,
+                0,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[0][2]",
+                10,
+                1,
+                0,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[0][3]",
+                10,
+                1,
+                0,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[0]",
+                10,
+                2,
+                0
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                0,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[0]",
+                10,
+                3,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(1)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[1][0]",
+                10,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[1][1]",
+                10,
+                1,
+                1,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[1][2]",
+                10,
+                1,
+                1,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[1][3]",
+                10,
+                1,
+                1,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[1]",
+                10,
+                2,
+                1
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[1]",
+                10,
+                3,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(2)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[2][0]",
+                10,
+                1,
+                2,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[2][1]",
+                10,
+                1,
+                2,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[2][2]",
+                10,
+                1,
+                2,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[2][3]",
+                10,
+                1,
+                2,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[2]",
+                10,
+                2,
+                2
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[2]",
+                10,
+                3,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(3)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[3][0]",
+                10,
+                1,
+                3,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[3][1]",
+                10,
+                1,
+                3,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[3][2]",
+                10,
+                1,
+                3,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[3][3]",
+                10,
+                1,
+                3,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[3]",
+                10,
+                2,
+                3
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[3]",
+                10,
+                3,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(4)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[4][0]",
+                10,
+                1,
+                4,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[4][1]",
+                10,
+                1,
+                4,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[4][2]",
+                10,
+                1,
+                4,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[4][3]",
+                10,
+                1,
+                4,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[4]",
+                10,
+                2,
+                4
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[4]",
+                10,
+                3,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(5)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[5][0]",
+                10,
+                1,
+                5,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[5][1]",
+                10,
+                1,
+                5,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[5][2]",
+                10,
+                1,
+                5,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[5][3]",
+                10,
+                1,
+                5,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[5]",
+                10,
+                2,
+                5
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[5]",
+                10,
+                3,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(6)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[6][0]",
+                10,
+                1,
+                6,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[6][1]",
+                10,
+                1,
+                6,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[6][2]",
+                10,
+                1,
+                6,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[6][3]",
+                10,
+                1,
+                6,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[6]",
+                10,
+                2,
+                6
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[6]",
+                10,
+                3,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(7)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[7][0]",
+                10,
+                1,
+                7,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[7][1]",
+                10,
+                1,
+                7,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[7][2]",
+                10,
+                1,
+                7,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[7][3]",
+                10,
+                1,
+                7,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[7]",
+                10,
+                2,
+                7
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[7]",
+                10,
+                3,
+                7
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(8)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[8][0]",
+                10,
+                1,
+                8,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[8][1]",
+                10,
+                1,
+                8,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[8][2]",
+                10,
+                1,
+                8,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[8][3]",
+                10,
+                1,
+                8,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[8]",
+                10,
+                2,
+                8
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[8]",
+                10,
+                3,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Combo(9)",
+          "content": [
+            {
+              "label": "Combo Keycode 1",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[9][0]",
+                10,
+                1,
+                9,
+                0
+              ]
+            },
+            {
+              "label": "Combo Keycode 2",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[9][1]",
+                10,
+                1,
+                9,
+                1
+              ]
+            },
+            {
+              "label": "Combo Keycode 3",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[9][2]",
+                10,
+                1,
+                9,
+                2
+              ]
+            },
+            {
+              "label": "Combo Keycode 4",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keys[9][3]",
+                10,
+                1,
+                9,
+                3
+              ]
+            },
+            {
+              "label": "Combo Output Keycode",
+              "type": "keycode",
+              "content": [
+                "id_dynamic_combos_keycode[9]",
+                10,
+                2,
+                9
+              ]
+            },
+            {
+              "label": "Combo Term(ms)",
+              "type": "range",
+              "options": [
+                1,
+                9999
+              ],
+              "content": [
+                "id_dynamic_combos_combo_term[9]",
+                10,
+                3,
+                9
+              ]
+            }
+          ]
+        }
       ]
     }
+  ],
+  "layouts": {
+    "labels": [
+      "Encoder"
+    ],
+    "keymap": [
+      [
+        "0,0",
+        "0,1",
+        "0,2",
+        "0,3",
+        "0,4",
+        "0,5",
+        "0,6",
+        "0,7",
+        "0,8",
+        "0,9",
+        "0,10",
+        "0,11",
+        "0,12",
+        {
+          "x": 0.5,
+          "d": true
+        },
+        "\n\n\n0,0",
+        {
+          "x": -1
+        },
+        "0,13\n\n\n0,0",
+        {
+          "x": 0.25,
+          "d": true
+        },
+        "\n\n\n0,1",
+        {
+          "x": -1
+        },
+        "0,13\n\n\n0,1\n\n\n\n\n\ne0"
+      ],
+      [
+        {
+          "w": 1.25
+        },
+        "1,0",
+        "1,1",
+        "1,2",
+        "1,3",
+        "1,4",
+        "1,5",
+        "1,6",
+        "1,7",
+        "1,8",
+        "1,9",
+        "1,10",
+        {
+          "w": 1.75
+        },
+        "1,11",
+        {
+          "x": 0.5
+        },
+        "1,13"
+      ],
+      [
+        {
+          "w": 1.75
+        },
+        "2,0",
+        "2,1",
+        "2,2",
+        "2,3",
+        "2,4",
+        "2,5",
+        "2,6",
+        "2,7",
+        "2,8",
+        "2,9",
+        {
+          "w": 1.25
+        },
+        "2,10",
+        {
+          "x": 1.5
+        },
+        "2,13"
+      ],
+      [
+        {
+          "y": -0.75,
+          "x": 12.25
+        },
+        "2,11"
+      ],
+      [
+        {
+          "y": -0.25,
+          "w": 1.25
+        },
+        "3,0",
+        "3,1",
+        {
+          "w": 1.25
+        },
+        "3,2",
+        {
+          "w": 2.75
+        },
+        "3,4",
+        {
+          "w": 2.25
+        },
+        "3,6",
+        {
+          "w": 1.25
+        },
+        "3,8",
+        {
+          "w": 1.25
+        },
+        "3,9"
+      ],
+      [
+        {
+          "y": -0.75,
+          "x": 11.25
+        },
+        "3,10",
+        "3,11",
+        "3,13"
+      ]
+    ]
   }
+}

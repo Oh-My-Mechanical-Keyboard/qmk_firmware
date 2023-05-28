@@ -84,9 +84,7 @@ static const uint8_t rgb_indicators_effect_num = sizeof(rgb_indicators_effect_in
 static rgb_indicators_config_t rgb_indicators_config = {1};
 static rgb_indicator_t rgb_indicators_state;
 
-static void eeconfig_read_rgb_indicators(void) {
-    rgb_indicators_config.raw = eeprom_read_byte(EECONFIG_RGB_INDICATORS);
-}
+EECONFIG_DEBOUNCE_HELPER(rgb_indicators, EECONFIG_RGB_INDICATORS, rgb_indicators_config);
 
 static void eeconfig_update_rgb_indicators(void) {
     eeprom_update_byte(EECONFIG_RGB_INDICATORS, rgb_indicators_config.raw);
@@ -103,7 +101,10 @@ void rgb_indicators_init(void) {
         eeconfig_init();
         eeconfig_update_rgb_indicators_default();
     }
-    eeconfig_read_rgb_indicators();
+    eeconfig_init_rgb_indicators();
+    if (rgb_indicators_config.mode == 0) {
+        eeconfig_update_rgb_indicators_default();
+    }
     rgb_indicators_state.raw = 0;
 #ifdef  NUM_LOCK_STATIC_HSV
     HSV hsv_num = NUM_LOCK_STATIC_HSV;
@@ -160,6 +161,7 @@ void rgb_indicators_render(void) {
 #endif
         default: rgb_indicators_static(); break;
     }
+
 #endif
 }
 
@@ -318,7 +320,7 @@ void rgb_indicators_cycleall(void) {
 }
 #endif
 
-bool process_rgb_indicators(const uint16_t keycode, const keyrecord_t *record) {
+bool process_rgb_indicators(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case RGB_INDTOG:
             if (record->event.pressed) {

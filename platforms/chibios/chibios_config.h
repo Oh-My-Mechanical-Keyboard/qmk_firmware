@@ -108,10 +108,12 @@
 #    define CPU_CLOCK AIR32_SYSCLK
 
 #    if defined(AIR32F10x)
+#        define MCU_STM32   // the same registers as stm32
 #        define USE_GPIOV1
 #        define USE_I2CV1
 #        define PAL_MODE_ALTERNATE_OPENDRAIN PAL_MODE_AIR32_ALTERNATE_OPENDRAIN
 #        define PAL_MODE_ALTERNATE_PUSHPULL PAL_MODE_AIR32_ALTERNATE_PUSHPULL
+#        define AUDIO_PWM_PAL_MODE PAL_MODE_ALTERNATE_PUSHPULL
 #        define STM32_DMA_STREAM(stream) AIR32_DMA_STREAM(stream)
 #        define STM32_DMA_STREAM_ID(peripheral, channel) AIR32_DMA_STREAM_ID(peripheral, channel)
 #        define STM32_DMA_CR_DIR_M2P AIR32_DMA_CR_DIR_M2P
@@ -123,6 +125,74 @@
 #        define STM32_DMA_CR_PL AIR32_DMA_CR_PL
 #        define STM32_DMA_CR_CHSEL AIR32_DMA_CR_CHSEL
 #    endif
+#endif
+
+// AT32 compatibility
+#if defined(MCU_AT32)
+#    define CPU_CLOCK AT32_SYSCLK
+
+#    if defined(AT32F415xx) || defined(AT32F413xx) || defined(AT32F40x)
+#        define MCU_STM32   // the same registers as stm32
+#        define USE_GPIOV1
+#        define USE_I2CV1
+#        define PAL_MODE_ALTERNATE_OPENDRAIN PAL_MODE_AT32_ALTERNATE_OPENDRAIN
+#        define PAL_MODE_ALTERNATE_PUSHPULL PAL_MODE_AT32_ALTERNATE_PUSHPULL
+#        define AUDIO_PWM_PAL_MODE PAL_MODE_ALTERNATE_PUSHPULL
+#        define STM32_DMA_STREAM(stream) AT32_DMA_STREAM(stream)
+#        define STM32_DMA_STREAM_ID(peripheral, channel) AT32_DMA_STREAM_ID(peripheral, channel)
+#        define STM32_DMA_CR_DIR_M2P AT32_DMA_CR_DIR_M2P
+#        define STM32_DMA_CR_MSIZE_BYTE AT32_DMA_CR_MSIZE_BYTE
+#        define STM32_DMA_CR_PSIZE_WORD AT32_DMA_CR_PSIZE_WORD
+#        define STM32_DMA_CR_PSIZE_HWORD AT32_DMA_CR_PSIZE_HWORD
+#        define STM32_DMA_CR_MINC AT32_DMA_CR_MINC
+#        define STM32_DMA_CR_CIRC AT32_DMA_CR_CIRC
+#        define STM32_DMA_CR_PL AT32_DMA_CR_PL
+#        define STM32_DMA_CR_CHSEL AT32_DMA_CR_CHSEL
+
+#        define TIM_DIER_UDE TMR_IDEN_OVFDEN
+#        define TIM_DIER_TDE TMR_IDEN_TDEN
+#        define STM32_PWM_USE_ADVANCED AT32_PWM_USE_ADVANCED
+
+#    if HAL_USE_ADC
+#        define ADC_SMPR2_SMP_AN0 ADC_SPT2_SMP_AN0
+#        define ADC_SMPR2_SMP_AN1 ADC_SPT2_SMP_AN1
+#        define ADC_SMPR2_SMP_AN2 ADC_SPT2_SMP_AN2
+#        define ADC_SMPR2_SMP_AN3 ADC_SPT2_SMP_AN3
+#        define ADC_SMPR2_SMP_AN4 ADC_SPT2_SMP_AN4
+#        define ADC_SMPR2_SMP_AN5 ADC_SPT2_SMP_AN5
+#        define ADC_SMPR2_SMP_AN6 ADC_SPT2_SMP_AN6
+#        define ADC_SMPR2_SMP_AN7 ADC_SPT2_SMP_AN7
+#        define ADC_SMPR2_SMP_AN8 ADC_SPT2_SMP_AN8
+#        define ADC_SMPR2_SMP_AN9 ADC_SPT2_SMP_AN9
+#        define ADC_SMPR1_SMP_AN10 ADC_SPT1_SMP_AN10
+#        define ADC_SMPR1_SMP_AN11 ADC_SPT1_SMP_AN11
+#        define ADC_SMPR1_SMP_AN12 ADC_SPT1_SMP_AN12
+#        define ADC_SMPR1_SMP_AN13 ADC_SPT1_SMP_AN13
+#        define ADC_SMPR1_SMP_AN14 ADC_SPT1_SMP_AN14
+#        define ADC_SMPR1_SMP_AN15 ADC_SPT1_SMP_AN15
+#        define ADC_SQR3_SQ1_N ADC_OSQ3_SQ1_N
+#    endif
+
+#    if HAL_USE_SERIAL
+#    if !defined(SERIAL_USART_CR1)
+#        define SERIAL_USART_CR1 (USART_CTRL1_PEN | USART_CTRL1_PSEL | USART_CTRL1_DBN)
+#    endif
+#    if !defined(SERIAL_USART_CR2)
+#        define SERIAL_USART_CR2 USART_CTRL2_STOPBN_2_BITS
+#    endif
+#    if !defined(SERIAL_USART_CR3)
+#        define SERIAL_USART_CR3 0x0
+#    endif
+#        define USART_CR3_HDSEL USART_CTRL3_SLBEN
+#        define AFIO IOMUX
+#        define MAPR REMAP
+#        define AFIO_MAPR_USART1_REMAP IOMUX_REMAP_USART1_MUX
+#        define AFIO_MAPR_USART3_REMAP_PARTIALREMAP IOMUX_REMAP_USART3_MUX_PARTIALREMAP
+#        define AFIO_MAPR_USART3_REMAP_FULLREMAP IOMUX_REMAP_USART3_MUX_FULLREMAP
+#    endif 
+
+#    endif 
+
 #endif
 
 #if defined(GD32VF103)

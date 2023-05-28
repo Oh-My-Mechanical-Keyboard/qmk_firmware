@@ -803,11 +803,13 @@ ifneq ($(findstring AIR32F103, $(MCU)),)
   MCU_FAMILY = AIR32
   MCU_SERIES = AIR32F10x
 
+  USE_CHIBIOS_CONTRIB = yes
+  
   # Linker script to use
   # - it should exist either in <chibios>/os/common/ports/ARMCMx/compilers/GCC/ld/
   #   or <keyboard_dir>/ld/
   MCU_LDSCRIPT ?= AIR32F103xB
-
+  
   # Startup code to use
   #  - it should exist in <chibios>/os/common/startup/ARMCMx/compilers/GCC/mk/
   MCU_STARTUP ?= air32f10x
@@ -820,6 +822,150 @@ ifneq ($(findstring AIR32F103, $(MCU)),)
 
   # UF2 settings
   UF2_FAMILY ?= STM32F1
+endif
+
+ifneq ($(findstring AT32F415, $(MCU)),)
+  # Cortex version
+  MCU = cortex-m4
+
+  # ARM version, CORTEX-M0/M1 are 6, CORTEX-M3/M4/M7 are 7
+  ARMV = 7
+
+  ## chip/board settings
+  # - the next two should match the directories in
+  #   <chibios>/os/hal/ports/$(MCU_FAMILY)/$(MCU_SERIES)
+  MCU_FAMILY = AT32
+  MCU_SERIES = AT32F415xx
+
+  USE_CHIBIOS_CONTRIB = yes
+  
+  # Linker script to use
+  # - it should exist either in <chibios>/os/common/ports/ARMCMx/compilers/GCC/ld/
+  #   or <keyboard_dir>/ld/
+  MCU_LDSCRIPT ?= AT32F415xB
+  
+  # Startup code to use
+  #  - it should exist in <chibios>/os/common/startup/ARMCMx/compilers/GCC/mk/
+  MCU_STARTUP ?= at32f415xx
+
+  # Board: it should exist either in <chibios>/os/hal/boards/,
+  # <keyboard_dir>/boards/, or drivers/boards/
+  BOARD ?= GENERIC_AT32_F415
+
+  USE_FPU ?= no
+
+  UF2_FAMILY ?= AT32F415
+  
+  # Bootloader address for AT32 DFU
+  AT32_BOOTLOADER_ADDRESS ?= 0x1FFFAC00
+endif
+
+ifneq ($(findstring AT32F413, $(MCU)),)
+  # Cortex version
+  MCU = cortex-m4
+
+  # ARM version, CORTEX-M0/M1 are 6, CORTEX-M3/M4/M7 are 7
+  ARMV = 7
+
+  ## chip/board settings
+  # - the next two should match the directories in
+  #   <chibios>/os/hal/ports/$(MCU_FAMILY)/$(MCU_SERIES)
+  MCU_FAMILY = AT32
+  MCU_SERIES = AT32F413xx
+
+  USE_CHIBIOS_CONTRIB = yes
+  
+  # Linker script to use
+  # - it should exist either in <chibios>/os/common/ports/ARMCMx/compilers/GCC/ld/
+  #   or <keyboard_dir>/ld/
+  MCU_LDSCRIPT ?= AT32F413xB
+  
+  # Startup code to use
+  #  - it should exist in <chibios>/os/common/startup/ARMCMx/compilers/GCC/mk/
+  MCU_STARTUP ?= at32f413xx
+
+  # Board: it should exist either in <chibios>/os/hal/boards/,
+  # <keyboard_dir>/boards/, or drivers/boards/
+  BOARD ?= GENERIC_AT32_F413
+
+  USE_FPU ?= yes
+
+  UF2_FAMILY ?= AT32F413
+
+  # Bootloader address for AT32 DFU
+  AT32_BOOTLOADER_ADDRESS ?= 0x1FFFB000
+endif
+
+ifneq ($(findstring AT32F403A, $(MCU)),)
+  # Cortex version
+  MCU = cortex-m4
+
+  # ARM version, CORTEX-M0/M1 are 6, CORTEX-M3/M4/M7 are 7
+  ARMV = 7
+
+  ## chip/board settings
+  # - the next two should match the directories in
+  #   <chibios>/os/hal/ports/$(MCU_FAMILY)/$(MCU_SERIES)
+  MCU_FAMILY = AT32
+  MCU_SERIES = AT32F40x
+
+  USE_CHIBIOS_CONTRIB = yes
+  
+  # Linker script to use
+  # - it should exist either in <chibios>/os/common/ports/ARMCMx/compilers/GCC/ld/
+  #   or <keyboard_dir>/ld/
+  MCU_LDSCRIPT ?= AT32F403AxG
+  
+  # Startup code to use
+  #  - it should exist in <chibios>/os/common/startup/ARMCMx/compilers/GCC/mk/
+  MCU_STARTUP ?= at32f40x
+
+  # Board: it should exist either in <chibios>/os/hal/boards/,
+  # <keyboard_dir>/boards/, or drivers/boards/
+  BOARD ?= GENERIC_AT32_F403A
+
+  USE_FPU ?= yes
+
+  UF2_FAMILY ?= AT32F40
+
+  # Bootloader address for AT32 DFU
+  AT32_BOOTLOADER_ADDRESS ?= 0x1FFFB000
+endif
+
+ifneq ($(findstring AT32F407, $(MCU)),)
+  # Cortex version
+  MCU = cortex-m4
+
+  # ARM version, CORTEX-M0/M1 are 6, CORTEX-M3/M4/M7 are 7
+  ARMV = 7
+
+  ## chip/board settings
+  # - the next two should match the directories in
+  #   <chibios>/os/hal/ports/$(MCU_FAMILY)/$(MCU_SERIES)
+  MCU_FAMILY = AT32
+  MCU_SERIES = AT32F40x
+
+  USE_CHIBIOS_CONTRIB = yes
+  
+  # Linker script to use
+  # - it should exist either in <chibios>/os/common/ports/ARMCMx/compilers/GCC/ld/
+  #   or <keyboard_dir>/ld/
+  MCU_LDSCRIPT ?= AT32F407xG
+  
+  # Startup code to use
+  #  - it should exist in <chibios>/os/common/startup/ARMCMx/compilers/GCC/mk/
+  MCU_STARTUP ?= at32f40x
+
+  # Board: it should exist either in <chibios>/os/hal/boards/,
+  # <keyboard_dir>/boards/, or drivers/boards/
+  BOARD ?= GENERIC_AT32_F407
+
+  USE_FPU ?= yes
+
+  UF2_FAMILY ?= AT32F40
+
+  # Bootloader address for AT32 DFU
+  AT32_BOOTLOADER_ADDRESS ?= 0x1FFFB000
 endif
 
 ifneq ($(findstring GD32VF103, $(MCU)),)

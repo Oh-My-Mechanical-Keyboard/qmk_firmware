@@ -21,4 +21,3 @@
 // If Use AIR32f103CCT6
 // #undef AIR32F103xB
 // #define AIR32F103xC
-

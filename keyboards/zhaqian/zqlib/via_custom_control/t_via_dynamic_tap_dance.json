@@ -1,0 +1,75 @@
+// EN Template
+{
+    "label": "Tap Dance(x)",
+    "content": [
+        {
+            "label": "Reset Dynamic Tap Dance",
+            "type": "toggle",
+            "content": ["id_dynamic_tap_dance_reset", 9, 0]
+        },
+        {
+            "label": "Single Tap",
+            "type": "keycode",
+            "content": ["id_dynamic_tap_dance_on_tap_keycode[0]", 9, 1, 0]
+        },
+        {
+            "label": "Single Hold",
+            "type": "keycode",
+            "content": ["id_dynamic_tap_dance_on_hold_keycode[0]", 9, 2, 0]
+        },
+        {
+            "label": "Double Tap",
+            "type": "keycode",
+            "content": ["id_dynamic_tap_dance_on_double_tap_keycode[0]", 9, 3, 0]
+        },
+        {
+            "label": "Double Hold",
+            "type": "keycode",
+            "content": ["id_dynamic_tap_dance_on_tap_hold_keycode[0]", 9, 4, 0]
+        },
+        {
+            "label": "Tapping Term(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_dynamic_tap_dance_tapping_term[0]", 9, 5, 0]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "\u6309\u952e\u590d\u7528(x)",
+    "content": [
+        {
+            "label": "\u91cd\u7f6e\u6309\u952e\u590d\u7528",
+            "type": "toggle",
+            "content": ["id_dynamic_tap_dance_reset", 9, 0]
+        },
+        {
+            "label": "\u5355\u51fb",
+            "type": "keycode",
+            "content": ["id_dynamic_tap_dance_on_tap_keycode[0]", 9, 1, 0]
+        },
+        {
+            "label": "\u957f\u6309",
+            "type": "keycode",
+            "content": ["id_dynamic_tap_dance_on_hold_keycode[0]", 9, 2, 0]
+        },
+        {
+            "label": "\u53cc\u51fb",
+            "type": "keycode",
+            "content": ["id_dynamic_tap_dance_on_double_tap_keycode[0]", 9, 3, 0]
+        },
+        {
+            "label": "\u53cc\u51fb\u5e76\u957f\u6309",
+            "type": "keycode",
+            "content": ["id_dynamic_tap_dance_on_tap_hold_keycode[0]", 9, 4, 0]
+        },
+        {
+            "label": "\u5355\u51fb\u5224\u5b9a\u65f6\u95f4(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_dynamic_tap_dance_tapping_term[0]", 9, 5, 0]
+        }
+    ]
+}

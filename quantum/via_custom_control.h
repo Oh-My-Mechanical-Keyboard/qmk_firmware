@@ -30,13 +30,26 @@
 #    define VIA_CUSTOM_MAGIC_SETTINGS_ENABLE
 #endif
 
+#if defined(DYNAMIC_TAP_DANCE_ENABLE)
+#    define VIA_CUSTOM_DYNAMIC_TAP_DANCE_ENABLE
+#endif
+
+#if defined(DYNAMIC_COMBOS_ENABLE)
+#    define VIA_CUSTOM_DYNAMIC_COMBOS_ENABLE
+#endif
+
+#if defined(AUTO_SWITCH_LAYERS_ENABLE)
+#    define VIA_CUSTOM_AUTO_SWITCH_LAYERS_ENABLE
+#endif
+
 enum via_custom_channel_id {
     id_custom_rgb_matrix_channel             = 5,
     id_custom_rgb_indicators_channel         = 6,
     id_custom_magic_setting_channel          = 7,
     id_custom_advanced_magic_setting_channel = 8,
-    id_custom_tap_dance_channel              = 9,
-    id_custom_combo_channel                  = 10,
+    id_custom_dynamic_tap_dance_channel      = 9,
+    id_custom_dynamic_combos_channel         = 10,
+    id_custom_auto_switch_layers_channel     = 11,
 };
 
 enum via_custom_rgb_matrix_value {
@@ -95,6 +108,29 @@ enum via_custom_advanced_magic_setting_value {
     id_advanced_magic_auto_shift_timeout        = 19,
     id_advanced_magic_oneshot_tap_toggle        = 20,
     id_advanced_magic_oneshot_timeout           = 21,
+    id_advanced_magic_combo_config              = 22,
+    id_advanced_magic_combo_term                = 23,
+    id_advanced_magic_combo_hold_term           = 24,
+};
+
+enum via_custom_dynamic_tap_dance_value {
+    id_dynamic_tap_dance_reset                   = 0,
+    id_dynamic_tap_dance_on_tap_keycode          = 1,
+    id_dynamic_tap_dance_on_hold_keycode         = 2,
+    id_dynamic_tap_dance_on_double_tap_keycode   = 3,
+    id_dynamic_tap_dance_on_tap_hold_keycode     = 4,
+    id_dynamic_tap_dance_tapping_term            = 5,
+};
+
+enum via_custom_dynamic_combos_value {
+    id_dynamic_combos_reset                      = 0,
+    id_dynamic_combos_keys                       = 1,
+    id_dynamic_combos_keycode                    = 2,
+    id_dynamic_combos_combo_term                 = 3,
+};
+
+enum via_custom_auto_switch_layers {
+    id_auto_switch_layers_layer                  = 1,
 };
 
 #if defined(VIA_CUSTOM_RGB_MATRIX_ENABLE)
@@ -121,4 +157,25 @@ void via_custom_advanced_magic_setting_command(uint8_t *data, uint8_t length);
 void via_custom_advanced_magic_setting_set_value(uint8_t *data);
 void via_custom_advanced_magic_setting_get_value(uint8_t *data);
 void via_custom_advanced_magic_setting_save(void);
+#endif
+
+#if defined(VIA_CUSTOM_DYNAMIC_TAP_DANCE_ENABLE)
+void via_custom_dynamic_tap_dance_command(uint8_t *data, uint8_t length);
+void via_custom_dynamic_tap_dance_set_value(uint8_t *data);
+void via_custom_dynamic_tap_dance_get_value(uint8_t *data);
+void via_custom_dynamic_tap_dance_save(void);
+#endif
+
+#if defined(VIA_CUSTOM_DYNAMIC_COMBOS_ENABLE)
+void via_custom_dynamic_combos_command(uint8_t *data, uint8_t length);
+void via_custom_dynamic_combos_set_value(uint8_t *data);
+void via_custom_dynamic_combos_get_value(uint8_t *data);
+void via_custom_dynamic_combos_save(void);
+#endif
+
+#if defined(VIA_CUSTOM_AUTO_SWITCH_LAYERS_ENABLE)
+void via_custom_auto_switch_layers_command(uint8_t *data, uint8_t length);
+void via_custom_auto_switch_layers_set_value(uint8_t *data);
+void via_custom_auto_switch_layers_get_value(uint8_t *data);
+void via_custom_auto_switch_layers_save(void);
 #endif

@@ -1,0 +1,85 @@
+// EN Template
+{
+    "label": "Combo(x)",
+    "content": [
+        {
+            "label": "Reset Dynamic Combos",
+            "type": "toggle",
+            "content": ["id_dynamic_combos_reset", 10, 0]
+        },
+        {
+            "label": "Combo Keycode 1",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keys[0][0]", 10, 1, 0, 0]
+        },
+        {
+            "label": "Combo Keycode 2",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keys[0][1]", 10, 1, 0, 1]
+        },
+        {
+            "label": "Combo Keycode 3",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keys[0][2]", 10, 1, 0, 2]
+        },
+        {
+            "label": "Combo Keycode 4",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keys[0][3]", 10, 1, 0, 3]
+        },
+        {
+            "label": "Combo Output Keycode",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keycode[0]", 10, 2, 0]
+        },
+        {
+            "label": "Combo Term(ms)",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_dynamic_combos_combo_term[0]", 10, 3, 0]
+        }
+    ]
+}
+
+// CN Template
+{
+    "label": "\u7ec4\u5408\u952e(x)",
+    "content": [
+        {
+            "label": "\u91cd\u7f6e\u7ec4\u5408\u952e\u8bbe\u7f6e",
+            "type": "toggle",
+            "content": ["id_dynamic_combos_reset", 10, 0]
+        },
+        {
+            "label": "\u7ec4\u5408\u952e\u952e\u503c1",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keys[0][0]", 10, 1, 0, 0]
+        },
+        {
+            "label": "\u7ec4\u5408\u952e\u952e\u503c2",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keys[0][1]", 10, 1, 0, 1]
+        },
+        {
+            "label": "\u7ec4\u5408\u952e\u952e\u503c3",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keys[0][2]", 10, 1, 0, 2]
+        },
+        {
+            "label": "\u7ec4\u5408\u952e\u952e\u503c4",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keys[0][3]", 10, 1, 0, 3]
+        },
+        {
+            "label": "\u7ec4\u5408\u952e\u8f93\u51fa\u952e\u503c",
+            "type": "keycode",
+            "content": ["id_dynamic_combos_keycode[0]", 10, 2, 0]
+        },
+        {
+            "label": "\u7ec4\u5408\u952e\u5224\u5b9a\u65f6\u95f4",
+            "type": "range",
+            "options": [0, 9999],
+            "content": ["id_dynamic_combos_combo_term[0]", 10, 3, 0]
+        }
+    ]
+}

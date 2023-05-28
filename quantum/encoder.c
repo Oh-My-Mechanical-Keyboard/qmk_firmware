@@ -148,14 +148,14 @@ void encoder_init(void) {
 static void encoder_exec_mapping(uint8_t index, bool clockwise) {
     // The delays below cater for Windows and its wonderful requirements.
     action_exec(clockwise ? ENCODER_CW_EVENT(index, true) : ENCODER_CCW_EVENT(index, true));
-#    if ENCODER_MAP_KEY_DELAY > 0
-    wait_ms(ENCODER_MAP_KEY_DELAY);
-#    endif // ENCODER_MAP_KEY_DELAY > 0
+    if (ENCODER_MAP_KEY_DELAY > 0) {
+        wait_ms(ENCODER_MAP_KEY_DELAY);
+    }
 
     action_exec(clockwise ? ENCODER_CW_EVENT(index, false) : ENCODER_CCW_EVENT(index, false));
-#    if ENCODER_MAP_KEY_DELAY > 0
-    wait_ms(ENCODER_MAP_KEY_DELAY);
-#    endif // ENCODER_MAP_KEY_DELAY > 0
+    if (ENCODER_MAP_KEY_DELAY > 0) {
+        wait_ms(ENCODER_MAP_KEY_DELAY);
+    }
 }
 #endif // ENCODER_MAP_ENABLE
 

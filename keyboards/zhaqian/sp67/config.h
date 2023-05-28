@@ -21,6 +21,3 @@
 
 // #define FORCE_NKRO
 
-#ifdef ENCODER_ENABLE
-#define ENCODER_RESOLUTION 4
-#endif

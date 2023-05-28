@@ -23,25 +23,29 @@
 
 magic_settings_t magic_settings_config;
 
-void eeconfig_read_magic_settings(void) {
-    eeprom_read_block(&magic_settings_config, EECONFIG_MAGIC_SETTINGS, sizeof(magic_settings_config));
-}
+EECONFIG_DEBOUNCE_HELPER(magic_settings, EECONFIG_MAGIC_SETTINGS, magic_settings_config);
 
 void eeconfig_update_magic_settings(void) {
-    eeprom_update_block(&magic_settings_config, EECONFIG_MAGIC_SETTINGS, sizeof(magic_settings_config));
+    eeconfig_flush_magic_settings(true);
 }
 
-void eeconfig_update_magic_settings_default(void) {
+static void eeconfig_update_magic_settings_default(void) {
     magic_settings_config.debounce = DEBOUNCE;
 #ifdef MOUSEKEY_ENABLE
     mousekey_maigc_settings_reset();
 #endif
-    magic_settings_config.grave_esc_override = 0;
+    magic_settings_config.grave_esc_override = 0x10;    // bit for eeconfig init check
 #ifndef NO_ACTION_TAPPING
     tap_hold_maigc_settings_reset();
 #endif
 #ifdef AUTO_SHIFT_ENABLE
     auto_shift_maigc_settings_reset();
+#endif
+#ifndef NO_ACTION_ONESHOT
+    oneshot_maigc_settings_reset();
+#endif
+#ifdef COMBO_ENABLE
+    combo_maigc_settings_reset();
 #endif
     eeconfig_update_magic_settings();
     clear_keyboard();
@@ -52,29 +56,23 @@ void magic_settings_init(void) {
         eeconfig_init();
         eeconfig_update_magic_settings_default();
     }
-    eeconfig_read_magic_settings();
+    eeconfig_init_magic_settings();
+    if (!(magic_settings_config.grave_esc_override & 0x10)) {
+        eeconfig_update_magic_settings_default();
+    }
 #ifdef MOUSEKEY_ENABLE
     mousekey_maigc_settings_update();
 #endif
 #ifdef AUTO_SHIFT_ENABLE
     auto_shift_maigc_settings_update();
 #endif
+#ifdef COMBO_ENABLE
+    combo_maigc_settings_update();
+#endif
 }
 
 void magic_settings_reset(void) {
-    magic_settings_config.debounce = DEBOUNCE;
-#ifdef MOUSEKEY_ENABLE
-    mousekey_maigc_settings_reset();
-#endif
-    // magic_settings_config.grave_esc_override = 0;
-#ifndef NO_ACTION_TAPPING
-    tap_hold_maigc_settings_reset();
-#endif
-#ifdef AUTO_SHIFT_ENABLE
-    auto_shift_maigc_settings_reset();
-#endif
-    eeconfig_update_magic_settings();
-    clear_keyboard();
+    eeconfig_update_magic_settings_default();
 }
 
 #ifdef MOUSEKEY_ENABLE
@@ -105,6 +103,14 @@ void mousekey_maigc_settings_reset(void) {
 
 #ifndef NO_ACTION_TAPPING
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+#ifdef DYNAMIC_TAP_DANCE_ENABLE
+    if (keycode >= QK_TAP_DANCE && keycode <= QK_TAP_DANCE_MAX) {
+        uint8_t index = keycode - QK_TAP_DANCE;
+        if (index < DYNAMIC_TAP_DANCE_ENTRIES) {
+            return dynamic_get_tap_dance_term(index);
+        }
+    }
+#endif
     return magic_settings_config.tapping_term;
 }
 
@@ -135,7 +141,6 @@ void tap_hold_maigc_settings_reset(void) {
 #endif
 
 #ifdef AUTO_SHIFT_ENABLE
-
 bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case AUTO_SHIFT_ALPHA: {
@@ -176,5 +181,51 @@ void auto_shift_maigc_settings_reset(void) {
     magic_settings_config.auto_shift_config = 0;
     magic_settings_config.auto_shift_timeout = AUTO_SHIFT_TIMEOUT;
     auto_shift_maigc_settings_update();
+}
+#endif
+
+#ifndef NO_ACTION_ONESHOT
+void oneshot_maigc_settings_reset(void) {
+    magic_settings_config.oneshot_tap_toggle = ONESHOT_TAP_TOGGLE;
+    magic_settings_config.oneshot_timeout = ONESHOT_TIMEOUT;
+}
+#endif
+
+#ifdef COMBO_ENABLE
+
+bool get_combo_must_hold(uint16_t index, combo_t *combo) {
+    return (magic_settings_config.combo_config & 0x02);
+}
+
+bool get_combo_must_tap(uint16_t index, combo_t *combo) {
+    return (magic_settings_config.combo_config & 0x04);
+}
+
+bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo) {
+    return (magic_settings_config.combo_config & 0x08);
+}
+
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+#ifdef DYNAMIC_COMBOS_ENABLE
+    if (index < DYNAMIC_COMBOS_ENTRIES) {
+        return dynamic_get_combos_term(index);
+    }
+#endif
+    return magic_settings_config.combo_term;
+}
+
+void combo_maigc_settings_update(void) {
+    if (magic_settings_config.combo_config & 0x01) {
+        combo_enable();
+    } else {
+        combo_disable();
+    }
+}
+
+void combo_maigc_settings_reset(void) {
+    magic_settings_config.combo_config = 0x09;
+    magic_settings_config.combo_term = COMBO_TERM;
+    magic_settings_config.combo_hold_term = COMBO_HOLD_TERM;
+    combo_maigc_settings_update();
 }
 #endif

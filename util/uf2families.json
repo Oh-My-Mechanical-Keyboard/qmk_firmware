@@ -188,5 +188,20 @@
         "id": "0x9af03e33",
         "short_name": "GD32VF103",
         "description": "GigaDevice GD32VF103"
+    },
+    {
+        "id": "0x98a285b9",
+        "short_name": "AT32F40",
+        "description": "ArteryTek AT32F40x"
+    },
+    {
+        "id": "0xe9f35d3b",
+        "short_name": "AT32F413",
+        "description": "ArteryTek AT32F413"
+    },
+    {
+        "id": "0x6a1b09b4",
+        "short_name": "AT32F415",
+        "description": "ArteryTek AT32F415"
     }
 ]

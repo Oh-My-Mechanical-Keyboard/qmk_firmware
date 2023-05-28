@@ -83,6 +83,11 @@ void logo_rgb_toggle(void) {
     }
 }
 
+void indicator_rgb_override_toggle(void) {
+    rgb_matrix_control_config.is_indicator_override ^= 1;
+    eeconfig_update_rgb_matrix_control();
+}
+
 void key_rgb_enable(bool update) {
     if (rgb_matrix_is_enabled()) {
         rgb_matrix_control_config.is_key_rgb_enable = 0;
@@ -163,7 +168,7 @@ uint8_t indicator_rgb_is_override(void) {
     return rgb_matrix_control_config.is_indicator_override;
 }
 
-bool process_rgb_matrix_control(const uint16_t keycode, const keyrecord_t *record) {
+bool process_rgb_matrix_control(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case UG_RGB_TOG:
             if (record->event.pressed) {

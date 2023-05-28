@@ -21,6 +21,14 @@
 #include "mousekey.h"
 #endif
 
+__attribute__((weak)) bool via_custom_value_command_user(uint8_t *data, uint8_t length) {
+    // data = [ command_id, channel_id, value_id, value_data ]
+    uint8_t *command_id = &(data[0]);
+    // Return the unhandled state
+    *command_id = id_unhandled;
+    return false;
+}
+
 void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
     // data = [ command_id, channel_id, value_id, value_data ]
     uint8_t *command_id = &(data[0]);
@@ -51,6 +59,30 @@ void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
     }
 #endif
 
+#if defined(VIA_CUSTOM_DYNAMIC_TAP_DANCE_ENABLE)
+    if (*channel_id == id_custom_dynamic_tap_dance_channel) {
+        via_custom_dynamic_tap_dance_command(data, length);
+        return;
+    }
+#endif
+
+#if defined(VIA_CUSTOM_DYNAMIC_COMBOS_ENABLE)
+    if (*channel_id == id_custom_dynamic_combos_channel) {
+        via_custom_dynamic_combos_command(data, length);
+        return;
+    }
+#endif
+
+#if defined(VIA_CUSTOM_AUTO_SWITCH_LAYERS_ENABLE)
+    if (*channel_id == id_custom_auto_switch_layers_channel) {
+        via_custom_auto_switch_layers_command(data, length);
+        return;
+    }
+#endif
+
+    if (via_custom_value_command_user(data, length)) {
+        return;
+    }   
     *command_id = id_unhandled;
     *channel_id = *channel_id;  // force use of variable
 }
@@ -202,7 +234,6 @@ void via_custom_rgb_matrix_save(void) {
     eeconfig_update_underglow_rgb_matrix();
 #endif
 }
-
 #endif
 
 #if defined(VIA_CUSTOM_RGB_INDICATORS_ENABLE)
@@ -242,6 +273,7 @@ void via_custom_rgb_indicators_set_value(uint8_t *data) {
             break;
         }
 #endif
+#if defined(DYNAMIC_RGB_INDICATORS_ENABLE)
         case id_rgb_indicators_brightness: {
             rgb_indicators_set_val(value_data[0], value_data[1], false);
             break;
@@ -288,6 +320,7 @@ void via_custom_rgb_indicators_set_value(uint8_t *data) {
             }
             break;
         }
+#endif
     }
 }
 
@@ -302,6 +335,7 @@ void via_custom_rgb_indicators_get_value(uint8_t *data) {
             break;
         }
 #endif
+#if defined(DYNAMIC_RGB_INDICATORS_ENABLE)
         case id_rgb_indicators_brightness: {
             value_data[1] = rgb_indicators_get_val(value_data[0]);
             break;
@@ -333,13 +367,15 @@ void via_custom_rgb_indicators_get_value(uint8_t *data) {
             }
             break;
         }
+#endif
     }
 }
 
 void via_custom_rgb_indicators_save(void) {
+#if defined(DYNAMIC_RGB_INDICATORS_ENABLE)
     update_dynamic_rgb_indicators();
+#endif
 }
-
 #endif
 
 #if defined(VIA_CUSTOM_MAGIC_SETTINGS_ENABLE)
@@ -539,7 +575,7 @@ void via_custom_advanced_magic_setting_set_value(uint8_t *data) {
             MAGIC_SETTINGS_SET(debounce, value_data[0]);
             break;
         }
-#ifdef MOUSEKEY_ENABLE
+#if defined(MOUSEKEY_ENABLE)
         case id_advanced_magic_mk_delay: {
             MAGIC_SETTINGS_SET(mk_delay, value_data[0]);
             mk_delay = MAGIC_SETTINGS_GET(mk_delay);
@@ -591,7 +627,7 @@ void via_custom_advanced_magic_setting_set_value(uint8_t *data) {
             MAGIC_SETTINGS_SET(grave_esc_override, tmp);
             break;
         }
-#ifndef NO_ACTION_TAPPING
+#if !defined(NO_ACTION_TAPPING)
         case id_advanced_magic_tap_hold_config: {
             uint8_t tmp = MAGIC_SETTINGS_GET(tap_hold_config) & (~(0x1 << value_data[0]));
             tmp |= value_data[1] << value_data[0];
@@ -619,7 +655,7 @@ void via_custom_advanced_magic_setting_set_value(uint8_t *data) {
             break;
         }
 #endif
-#ifdef AUTO_SHIFT_ENABLE
+#if defined(AUTO_SHIFT_ENABLE)
         case id_advanced_magic_auto_shift_config: {
             uint8_t tmp = MAGIC_SETTINGS_GET(auto_shift_config) & (~(0x1 << value_data[0]));
             tmp |= value_data[1] << value_data[0];
@@ -631,13 +667,32 @@ void via_custom_advanced_magic_setting_set_value(uint8_t *data) {
             break;
         }
 #endif
-#ifndef NO_ACTION_ONESHOT
+#if !defined(NO_ACTION_ONESHOT)
         case id_advanced_magic_oneshot_tap_toggle: {
             MAGIC_SETTINGS_SET(oneshot_tap_toggle, value_data[0]);
             break;
         }
         case id_advanced_magic_oneshot_timeout: {
             MAGIC_SETTINGS_SET(oneshot_timeout, (value_data[0] << 8 | value_data[1]));
+            break;
+        }
+#endif
+#if defined(COMBO_ENABLE)
+        case id_advanced_magic_combo_config: {
+            uint8_t tmp = MAGIC_SETTINGS_GET(combo_config) & (~(0x1 << value_data[0]));
+            tmp |= value_data[1] << value_data[0];
+            MAGIC_SETTINGS_SET(combo_config, tmp);
+            if (value_data[0] == 0) {
+                combo_maigc_settings_update();
+            }
+            break;
+        }
+        case id_advanced_magic_combo_term: {
+            MAGIC_SETTINGS_SET(combo_term, (value_data[0] << 8 | value_data[1]));
+            break;
+        }
+        case id_advanced_magic_combo_hold_term: {
+            MAGIC_SETTINGS_SET(combo_hold_term, (value_data[0] << 8 | value_data[1]));
             break;
         }
 #endif
@@ -660,7 +715,7 @@ void via_custom_advanced_magic_setting_get_value(uint8_t *data) {
             value_data[0] = MAGIC_SETTINGS_GET(debounce);
             break;
         }
-#ifdef MOUSEKEY_ENABLE
+#if defined(MOUSEKEY_ENABLE)
         case id_advanced_magic_mk_delay: {
             value_data[0] = MAGIC_SETTINGS_GET(mk_delay);
             break; 
@@ -702,7 +757,7 @@ void via_custom_advanced_magic_setting_get_value(uint8_t *data) {
             value_data[1] = MAGIC_SETTINGS_GET(grave_esc_override) & (0x1 << value_data[0]) ? 1 : 0;
             break;
         }
-#ifndef NO_ACTION_TAPPING
+#if !defined(NO_ACTION_TAPPING)
         case id_advanced_magic_tap_hold_config: {
             value_data[1] = MAGIC_SETTINGS_GET(tap_hold_config) & (0x1 << value_data[0]) ? 1 : 0;
             break;
@@ -732,7 +787,7 @@ void via_custom_advanced_magic_setting_get_value(uint8_t *data) {
             break;
         }
 #endif
-#ifdef AUTO_SHIFT_ENABLE
+#if defined(AUTO_SHIFT_ENABLE)
         case id_advanced_magic_auto_shift_config: {
             value_data[1] = MAGIC_SETTINGS_GET(auto_shift_config) & (0x1 << value_data[0]) ? 1 : 0;
             break;
@@ -743,7 +798,7 @@ void via_custom_advanced_magic_setting_get_value(uint8_t *data) {
             break;
         }
 #endif
-#ifndef NO_ACTION_ONESHOT
+#if !defined(NO_ACTION_ONESHOT)
         case id_advanced_magic_oneshot_tap_toggle: {
             value_data[0] = MAGIC_SETTINGS_GET(oneshot_tap_toggle);
             break;
@@ -751,6 +806,22 @@ void via_custom_advanced_magic_setting_get_value(uint8_t *data) {
         case id_advanced_magic_oneshot_timeout: {
             value_data[0] = MAGIC_SETTINGS_GET(oneshot_timeout) >> 8;
             value_data[1] = MAGIC_SETTINGS_GET(oneshot_timeout) & 0xFF;
+            break;
+        }
+#endif
+#if defined(COMBO_ENABLE)
+        case id_advanced_magic_combo_config: {
+            value_data[1] = MAGIC_SETTINGS_GET(combo_config) & (0x1 << value_data[0]) ? 1 : 0;
+            break;
+        }
+        case id_advanced_magic_combo_term: {
+            value_data[0] = MAGIC_SETTINGS_GET(combo_term) >> 8;
+            value_data[1] = MAGIC_SETTINGS_GET(combo_term) & 0xFF;
+            break;
+        }
+        case id_advanced_magic_combo_hold_term: {
+            value_data[0] = MAGIC_SETTINGS_GET(combo_hold_term) >> 8;
+            value_data[1] = MAGIC_SETTINGS_GET(combo_hold_term) & 0xFF;
             break;
         }
 #endif
@@ -763,5 +834,285 @@ void via_custom_advanced_magic_setting_get_value(uint8_t *data) {
 void via_custom_advanced_magic_setting_save(void) {
     eeconfig_update_magic_settings();
 }
+#endif
 
+#if defined(VIA_CUSTOM_DYNAMIC_TAP_DANCE_ENABLE)
+void via_custom_dynamic_tap_dance_command(uint8_t *data, uint8_t length) {
+    // data = [ command_id, channel_id, value_id, value_data ]
+    uint8_t *command_id        = &(data[0]);
+    uint8_t *value_id_and_data = &(data[2]);
+
+    switch (*command_id) {
+        case id_custom_set_value: {
+            via_custom_dynamic_tap_dance_set_value(value_id_and_data);
+            break;
+        }
+        case id_custom_get_value: {
+            via_custom_dynamic_tap_dance_get_value(value_id_and_data);
+            break;
+        }
+        case id_custom_save: {
+            via_custom_dynamic_tap_dance_save();
+            break;
+        }
+        default: {
+            *command_id = id_unhandled;
+            break;
+        }
+    }
+}
+
+void via_custom_dynamic_tap_dance_set_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_dynamic_tap_dance_reset: {
+            dynamic_tap_dance_reset();
+            break;
+        }
+        case id_dynamic_tap_dance_on_tap_keycode: {
+            uint16_t keycode = KC_NO;
+            keycode = ((value_data[1] << 8) | value_data[2]);
+            dynamic_set_tap_dance_keycode(value_data[0], 0, keycode);
+            break;
+        }
+        case id_dynamic_tap_dance_on_hold_keycode: {
+            uint16_t keycode = KC_NO;
+            keycode = ((value_data[1] << 8) | value_data[2]);
+            dynamic_set_tap_dance_keycode(value_data[0], 1, keycode);
+            break;
+        }
+        case id_dynamic_tap_dance_on_double_tap_keycode: {
+            uint16_t keycode = KC_NO;
+            keycode = ((value_data[1] << 8) | value_data[2]);
+            dynamic_set_tap_dance_keycode(value_data[0], 2, keycode);
+            break;
+        }
+        case id_dynamic_tap_dance_on_tap_hold_keycode: {
+            uint16_t keycode = KC_NO;
+            keycode = ((value_data[1] << 8) | value_data[2]);
+            dynamic_set_tap_dance_keycode(value_data[0], 3, keycode);
+            break;
+        }
+        case id_dynamic_tap_dance_tapping_term: {
+            uint16_t term = 0;
+            term = ((value_data[1] << 8) | value_data[2]);
+            dynamic_set_tap_dance_term(value_data[0], term);
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_dynamic_tap_dance_get_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_dynamic_tap_dance_reset: {
+            value_data[0] = 0;
+            break;
+        }
+        case id_dynamic_tap_dance_on_tap_keycode: {
+            uint16_t keycode = dynamic_get_tap_dance_keycode(value_data[0], 0);
+            value_data[1] = keycode >> 8;
+            value_data[2] = keycode & 0xFF;
+            break;
+        }
+        case id_dynamic_tap_dance_on_hold_keycode: {
+            uint16_t keycode = dynamic_get_tap_dance_keycode(value_data[0], 1);
+            value_data[1] = keycode >> 8;
+            value_data[2] = keycode & 0xFF;
+            break;
+        }
+        case id_dynamic_tap_dance_on_double_tap_keycode: {
+            uint16_t keycode = dynamic_get_tap_dance_keycode(value_data[0], 2);
+            value_data[1] = keycode >> 8;
+            value_data[2] = keycode & 0xFF;
+            break;
+        }
+        case id_dynamic_tap_dance_on_tap_hold_keycode: {
+            uint16_t keycode = dynamic_get_tap_dance_keycode(value_data[0], 3);
+            value_data[1] = keycode >> 8;
+            value_data[2] = keycode & 0xFF;
+            break;
+        }
+        case id_dynamic_tap_dance_tapping_term: {
+            uint16_t term = dynamic_get_tap_dance_term(value_data[0]);
+            value_data[1] = term >> 8;
+            value_data[2] = term & 0xFF;
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_dynamic_tap_dance_save(void) {
+    // No action is required
+}
+#endif
+
+#if defined(VIA_CUSTOM_DYNAMIC_COMBOS_ENABLE)
+void via_custom_dynamic_combos_command(uint8_t *data, uint8_t length) {
+    // data = [ command_id, channel_id, value_id, value_data ]
+    uint8_t *command_id        = &(data[0]);
+    uint8_t *value_id_and_data = &(data[2]);
+
+    switch (*command_id) {
+        case id_custom_set_value: {
+            via_custom_dynamic_combos_set_value(value_id_and_data);
+            break;
+        }
+        case id_custom_get_value: {
+            via_custom_dynamic_combos_get_value(value_id_and_data);
+            break;
+        }
+        case id_custom_save: {
+            via_custom_dynamic_combos_save();
+            break;
+        }
+        default: {
+            *command_id = id_unhandled;
+            break;
+        }
+    }
+}
+
+void via_custom_dynamic_combos_set_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_dynamic_combos_reset: {
+            dynamic_combos_reset();
+            break;
+        }
+        case id_dynamic_combos_keys: {
+            uint16_t keycode = KC_NO;
+            keycode = ((value_data[2] << 8) | value_data[3]);
+            dynamic_set_combos_keycode(value_data[0], value_data[1], keycode);
+            dynamic_combos_update(value_data[0]);
+            break;
+        }
+        case id_dynamic_combos_keycode: {
+            uint16_t keycode = KC_NO;
+            keycode = ((value_data[1] << 8) | value_data[2]);
+            dynamic_set_combos_keycode(value_data[0], 4, keycode);
+            dynamic_combos_update(value_data[0]);
+            break;
+        }
+        case id_dynamic_combos_combo_term: {
+            uint16_t term = 0;
+            term = ((value_data[1] << 8) | value_data[2]);
+            dynamic_set_combos_term(value_data[0], term);
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_dynamic_combos_get_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_dynamic_combos_reset: {
+            value_data[0] = 0;
+            break;
+        }
+        case id_dynamic_combos_keys: {
+            uint16_t keycode = dynamic_get_combos_keycode(value_data[0], value_data[1]);
+            value_data[2] = keycode >> 8;
+            value_data[3] = keycode & 0xFF;
+            break;
+        }
+        case id_dynamic_combos_keycode: {
+            uint16_t keycode = dynamic_get_combos_keycode(value_data[0], 4);
+            value_data[1] = keycode >> 8;
+            value_data[2] = keycode & 0xFF;
+            break;
+        }
+        case id_dynamic_combos_combo_term: {
+            uint16_t term = dynamic_get_combos_term(value_data[0]);
+            value_data[1] = term >> 8;
+            value_data[2] = term & 0xFF;
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_dynamic_combos_save(void) {
+    // No action is required
+}
+#endif
+
+#if defined(VIA_CUSTOM_AUTO_SWITCH_LAYERS_ENABLE)
+void via_custom_auto_switch_layers_command(uint8_t *data, uint8_t length) {
+    // data = [ command_id, channel_id, value_id, value_data ]
+    uint8_t *command_id        = &(data[0]);
+    uint8_t *value_id_and_data = &(data[2]);
+
+    switch (*command_id) {
+        case id_custom_set_value: {
+            via_custom_auto_switch_layers_set_value(value_id_and_data);
+            break;
+        }
+        case id_custom_get_value: {
+            via_custom_auto_switch_layers_get_value(value_id_and_data);
+            break;
+        }
+        case id_custom_save: {
+            via_custom_auto_switch_layers_save();
+            break;
+        }
+        default: {
+            *command_id = id_unhandled;
+            break;
+        }
+    }
+}
+
+void via_custom_auto_switch_layers_set_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_auto_switch_layers_layer: {
+            auto_switch_layers_set_layer(value_data[0], value_data[1], false);
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_auto_switch_layers_get_value(uint8_t *data) {
+    // data = [ value_id, value_data ]
+    uint8_t *value_id   = &(data[0]);
+    uint8_t *value_data = &(data[1]);
+    switch (*value_id) {
+        case id_auto_switch_layers_layer: {
+            value_data[1] = auto_switch_layers_get_layer(value_data[0]);
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+void via_custom_auto_switch_layers_save(void) {
+    eeconfig_update_auto_switch_layers();
+}
 #endif

@@ -175,8 +175,8 @@ static inline uint16_t _get_wait_time(uint16_t combo_index, combo_t *combo) {
         || get_combo_must_tap(combo_index, combo)
 #endif
     ) {
-        if (longest_term < COMBO_HOLD_TERM) {
-            return COMBO_HOLD_TERM;
+        if (longest_term < CUSTOM_COMBO_HOLD_TERM) {
+            return CUSTOM_COMBO_HOLD_TERM;
         }
     }
 

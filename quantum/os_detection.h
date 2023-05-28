@@ -17,6 +17,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifdef OS_DETECTION_ENABLE
 typedef enum {

@@ -25,8 +25,6 @@ typedef struct __attribute__((__packed__)) {
     uint8_t speed;
 } underglow_rgb_matrix_config_t;
 
-#define EECONFIG_UNDERGLOW_RGB_MATRIX (uint8_t *)16
-
 #if !defined(UNDERGLOW_RGB_MATRIX_MAXIMUM_BRIGHTNESS) || UNDERGLOW_RGB_MATRIX_MAXIMUM_BRIGHTNESS > UINT8_MAX
 #undef UNDERGLOW_RGB_MATRIX_MAXIMUM_BRIGHTNESS
 #define UNDERGLOW_RGB_MATRIX_MAXIMUM_BRIGHTNESS RGB_MATRIX_MAXIMUM_BRIGHTNESS
@@ -37,7 +35,6 @@ void underglow_rgb_matrix_task(void);
 void underglow_rgb_mode_sync(void);
 void underglow_rgb_mode_step(void);
 void underglow_rgb_mode_step_reverse(void);
-void eeconfig_read_underglow_rgb_matrix(void);
 void eeconfig_update_underglow_rgb_matrix(void);
 
 #ifndef UNDERGLOW_RGB_MATRIX_API_DISABLE
@@ -64,7 +61,7 @@ void underglow_rgb_matrix_increase_speed(void);
 void underglow_rgb_matrix_decrease_speed(void);
 #endif
 
-bool process_underglow_rgb_matrix(const uint16_t keycode, const keyrecord_t *record);
+bool process_underglow_rgb_matrix(uint16_t keycode, keyrecord_t *record);
 
 #define UG_RGB_MATRIX_SYNC 1
 

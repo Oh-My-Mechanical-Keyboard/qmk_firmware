@@ -20,7 +20,7 @@
 | zq75          | 0x00AA    | 0xAA03     | Hotswap  | Atmel atmega32u4  | RGB, SPLIT SPACE                             |
 | zq60          | 0x00AA    | 0xAA04     | Hotswap  | Atmel atmega32u4  | ESCRGB, COMPATIBILITY LAYOUT                 |
 | zq80          | 0x00AA    | 0xAA05     | Hotswap  | Atmel atmega32u4  | RGB, UGRGB, LOGORGB                          |
-| tester        | 0x00AA    | 0xAA06     | Hotswap  | f103/401/411/vf103/l433/air32/f407 | RGB, UGRGB, ENCODER                          |
+| tester        | 0x00AA    | 0xAA06     | Hotswap  | stm32f103/stm32f401/stm32f411/  gd32vf103/stm32l433/air32f103/  stm32f407/stm32g431/at32f415/  at32f413/at32f403a/at32f407 | RGB, UGRGB, ENCODER                          |
 | zq48          | 0x00AA    | 0xAA07     | Hotswap  | Atmel atmega32u4  | RGB, UGRGB                                   |
 | zq61          | 0x00AA    | 0xAA08     | Hotswap  | ST stm32f401      | RGB, UGRGB                                   |
 | zq67          | 0x00AA    | 0xAA09     | Hotswap  | Atmel atmega32u4  | RGB, UGRGB                                   |
@@ -36,15 +36,19 @@
 | zq89	        | 0x00AA    | 0xAA13     | Hotswap  | ST stm32f411      | RGB, ENCODERS                                |
 | m80	        | 0x00AA    | 0xAA14     | Hotswap  | ST stm32f103/f103 | RGB                                          |
 | sp67	        | 0x00AA    | 0xAA15     | Hotswap  | ST stm32f103/f103 | ENCODER                                      |
-| zq50	        | 0x00AA    | 0xAA16     | Hotswap  | ST stm32f103/f103 | RGB, UGRGB, ENCODER                          |
+| zq50	        | 0x00AA    | 0xAA16     | Hotswap  | ST stm32f103/f103/g431/air32f103/at32f415/at32f413/at32f403a | RGB, UGRGB, ENCODER                          |
 | Jane_v2_ce_slot	| 0x00AA  | 0xAA17     | Hotswap  | Atmel atmega32u4  |                          |
 | m80_solder	        | 0x00AA    | 0xAA18     | Solder  | ST stm32f103/f103 | RGB                                          |
 | s75	        | 0x00AA    | 0xAA19     | Hotswap  | ST stm32f103/f103 | RGB                                          |
 | z40	        | 0x00AA    | 0xAA1A     | Hotswap  | ST stm32f103/f103 | RGB                                          |
 | c28        | 0x00AA    | 0xAA1B     | Hotswap  | ST stm32f103/f103 | RGB                                          |
+| sisyphus65        | 0x00AA    | 0xAA1C     | Hotswap  | ST stm32f103/f103 | RGB                                          |
+| louise        | 0x00AA    | 0xAA1D     | Hotswap  | ST stm32f103/f103 | RGB                                          |
+| axis        | 0x00AA    | 0xAA1E     | Hotswap  | ST stm32f103/f103 | RGB                                          |
+| mmm65        | 0x00AA    | 0xAA1F     | Hotswap  | ST stm32f103/f103 | RGB                                          |
 | Mpad12        | 0x00AA    | 0xAAAA     | Hotswap  | Atmel atmega32u4  | RGB, UGRGB, JOYSTICK, ENCODER, OLED          |
 | split69       | 0x00AA    | 0xAAAB     | Solder   | Atmel atmega32u4  | SPLIT, UGRGB, OLED, ENCODER                  |
-| joystickex    | 0x00AA    | 0xAAAC     | Hotswap  | f103/401/411/vf103/l433/air32 | JOYSTICK |
+| joystickex    | 0x00AA    | 0xAAAC     | Hotswap  | f103/401/411/vf103/l433/air32/at32f415 | JOYSTICK |
 | GH60        | 0xFEED    | 0x6060    | Hotswap  | ST stm32f103/f103 | RGB          |
 # ZhaQian library
 这是一个集合了许多简单的但可能在不同键盘上重复用到功能的库.
@@ -60,6 +64,8 @@
  - Signalrgb Protocol
  - Magic Setting
  - Auto Switch Layers
+ - Dynamic Tap Dance
+ - Dynamic Combos
 
 ## Joystick Trigger
 Joystick Trigger功能实现了具有X,Y轴的摇杆电位器四个方向的按键的矩阵映射触发功能.如果需要使用该功能,请在 `rules.mk`中添加:
@@ -147,13 +153,20 @@ UNDERGLOW_RGB_MATRIX_ENABLE = yes
 
 ## UF2 Bootloader
 UF2 Bootloader储存了预编译好的MSC下载方式的引导程序,目前支持以下型号的主控.
-| 支持的MCU  |  描述 |
-|---------- | ---------- |
-|STM32F103x8||
-|STM32F103xB||
-|STM32F401xC||
-|STM32F411xE||
-|GD32VF103xB||
-|AIR32F103xB| 无需硬件DP上拉|
-|AIR32F103xC| 无需硬件DP上拉|
-
+| 支持的MCU  | 引导程序 |  描述  |
+|:--------: | :--------: | :--------: |
+|STM32F103x8|uf2boot||
+|STM32F103xB|uf2boot||
+|STM32F401xC|tinyuf2||
+|STM32F411xE|tinyuf2||
+|GD32VF103xB|tinyuf2||
+|AIR32F103xB|uf2boot| No hardware DP pull-up required|
+|AIR32F103xC|uf2boot| No hardware DP pull-up required|
+|STM32G431xB|tinyuf2||
+|AT32F403AxG|tinyuf2(cherryuf2)||
+|AT32F413xB|tinyuf2(cherryuf2)||
+|AT32F415xB|tinyuf2(cherryuf2)||
+|STM32F072xB|tinyuf2(cherryuf2)||
+|STM32F103xB|tinyuf2(cherryuf2)||
+|STM32G431xB|tinyuf2(cherryuf2)||
+|STM32L433xC|tinyuf2(cherryuf2)||

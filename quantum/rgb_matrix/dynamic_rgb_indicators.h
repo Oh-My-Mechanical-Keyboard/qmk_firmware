@@ -54,7 +54,6 @@ typedef union {
 #define ENABLE_RGB_INDICATORS_RANDOM_ONCE
 #endif
 
-void read_dynamic_rgb_indicators(void);
 void update_dynamic_rgb_indicators(void);
 void rgb_indicators_init(void);
 void rgb_indicators_task(void);

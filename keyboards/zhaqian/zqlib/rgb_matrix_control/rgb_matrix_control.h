@@ -18,8 +18,6 @@
 
 #include "quantum.h"
 
-#define EECONFIG_RGB_MATRIX_CONTROL (uint8_t *)15
-
 typedef union {
     uint8_t raw;
     struct __attribute__((packed)) {
@@ -40,6 +38,7 @@ void rgb_matrix_control_task(void);
 void key_rgb_toggle(void);
 void underglow_rgb_toggle(void);
 void logo_rgb_toggle(void);
+void indicator_rgb_override_toggle(void);
 void underglow_rgb_enable(bool update);
 void underglow_rgb_disable(bool update);
 void key_rgb_enable(bool update);
@@ -55,4 +54,4 @@ bool key_rgb_is_enabled(void);
 bool underglow_rgb_is_enabled(void);
 bool logo_rgb_is_enabled(void);
 uint8_t indicator_rgb_is_override(void);
-bool process_rgb_matrix_control(const uint16_t keycode, const keyrecord_t *record);
+bool process_rgb_matrix_control(uint16_t keycode, keyrecord_t *record);

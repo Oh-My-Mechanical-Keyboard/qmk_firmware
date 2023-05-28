@@ -17,10 +17,10 @@
 #pragma once
 
 enum via_custom_keycodes {
-    REV = 0x5F7F,
-#ifdef ALT_TAB_MARCO_ENABLE
-    ATF,
-    ATR,
+    REV = 0x7DFF,
+#ifdef AUTO_SWITCH_LAYERS_ENABLE
+    WINDOWS_FN_VKEY,
+    MACOS_FN_VKEY,
 #endif
 
 #ifdef RADIAL_CONTROLLER_ENABLE
@@ -67,4 +67,4 @@ enum via_custom_keycodes {
     NEW_USER,
 };
 
-bool process_via_custom_keycode(const uint16_t keycode, const keyrecord_t *record);
+bool process_via_custom_keycode(uint16_t keycode, keyrecord_t *record);

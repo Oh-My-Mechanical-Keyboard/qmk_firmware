@@ -6,7 +6,8 @@
     "usb": {
         "vid": "0x00AA",
         "pid": "0xAA15",
-        "device_version": "0.0.1"
+        "device_version": "0.0.1",
+        "force_nkro": true
     },    
     "processor": "STM32F103",
     "bootloader": "uf2boot",
@@ -17,9 +18,10 @@
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true,
-        "rgblight": false,
-        "audio": false
+        "nkro": true
+    },
+    "build": {
+        "lto": true
     },
     "matrix_pins": {
         "cols": ["A15", "B3", "B4", "B5", "B6", "B7", "B8", "A5", "A6", "A7", "B0", "B1", "B10", "B11", "A8"],
@@ -33,7 +35,8 @@
     "encoder": {
         "rotary": [
             {"pin_a": "B12", "pin_b": "B13"}
-        ]
+        ],
+        "resolution": 4
     },
     "layouts": {
         "LAYOUT": {

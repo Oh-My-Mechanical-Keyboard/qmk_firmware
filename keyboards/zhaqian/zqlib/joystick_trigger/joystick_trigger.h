@@ -32,6 +32,8 @@ typedef struct {
     joystick_axes_trigger_t joystick_axes_trigger_state;
     int16_t joystick_axes_x_value;
     int16_t joystick_axes_y_value;
+    int16_t joystick_axes_x_calbration;
+    int16_t joystick_axes_y_calbration;
 } joystick_axes_state_t;
 
 void joystick_trigger(uint8_t index, joystick_axes_trigger_t axes_state, uint8_t changed_axes);

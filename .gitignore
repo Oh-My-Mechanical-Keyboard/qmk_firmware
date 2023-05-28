@@ -30,6 +30,9 @@ quantum/version.h
 *.qmk
 *.uf2
 
+# DD config at wrong location
+/keyboards/**/keymaps/*/info.json
+
 # Old-style QMK Makefiles
 /keyboards/**/Makefile
 
@@ -107,3 +110,21 @@ compile_commands.json
 
 # VIA(L) json files that don't belong in QMK repo
 via*.json
+
+!uf2boot_stm32g431xB_HSI48.bin
+!uf2boot_gd32vf103_8MHz.bin
+!uf2boot_f411_25MHz.bin
+!uf2boot_f411_8MHz.bin
+!uf2boot_f401_25MHz.bin
+!uf2boot_f401_8MHz.bin
+!uf2boot_f103_8MHz.bin
+!uf2boot_air32f103xC_8MHz.bin
+!uf2boot_air32f103xB_8MHz.bin
+!cherryuf2_at32f403acgt7_hick.bin
+!cherryuf2_at32f413cbt7_8MHz.bin
+!cherryuf2_at32f413cbt7_hick.bin
+!cherryuf2_at32f415cbt7_8MHz.bin
+!cherryuf2_stm32f072xb_hsi.bin
+!cherryuf2_stm32f103xb_8MHz.bin
+!cherryuf2_stm32g431xb_hsi.bin
+!cherryuf2_stm32l433xc_hsi.bin

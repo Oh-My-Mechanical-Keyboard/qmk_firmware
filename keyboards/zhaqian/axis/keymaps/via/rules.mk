@@ -1,0 +1,3 @@
+VIA_ENABLE = yes
+DIP_SWITCH_ENABLE = yes
+WS2812_DRIVER = pwm

@@ -35,7 +35,6 @@ void underglow_rgb_matrix_task(void);
 void underglow_rgb_mode_sync(void);
 void underglow_rgb_mode_step(void);
 void underglow_rgb_mode_step_reverse(void);
-void eeconfig_read_underglow_rgb_matrix(void);
 void eeconfig_update_underglow_rgb_matrix(void);
 
 #ifndef UNDERGLOW_RGB_MATRIX_API_DISABLE

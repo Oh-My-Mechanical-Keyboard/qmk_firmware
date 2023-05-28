@@ -1,0 +1,8 @@
+{
+    "processor": "AT32F415",
+    "bootloader": "at32-dfu",
+    "matrix_pins": {
+        "cols": ["A2", "A0", "B15", "B14"],
+        "rows": ["A3", "B6", "A4"]
+    }
+}

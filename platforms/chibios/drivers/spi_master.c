@@ -62,6 +62,11 @@ bool spi_start(pin_t slavePin, bool lsbFirst, uint8_t mode, uint16_t divisor) {
         roundedDivisor <<= 1;
     }
 
+#if defined(AT32F415xx) || defined(AT32F413xx) || defined(AT32F40x)
+    if (roundedDivisor < 2 || roundedDivisor > 1024) {
+        return false;
+    }
+#else
     if (roundedDivisor < 2 || roundedDivisor > 256) {
         return false;
     }
@@ -197,6 +202,59 @@ bool spi_start(pin_t slavePin, bool lsbFirst, uint8_t mode, uint16_t divisor) {
         case 3:
             spiConfig.SSPCR0 |= SPI_SSPCR0_SPO; // Clock polarity: high
             spiConfig.SSPCR0 |= SPI_SSPCR0_SPH; // Clock phase: sample on second edge transition
+            break;
+    }
+#elif defined(AT32F415xx) || defined(AT32F413xx) || defined(AT32F40x)
+    spiConfig.cr1 = 0;
+
+    if (lsbFirst) {
+        spiConfig.cr1 |= SPI_CTRL1_LTF;
+    }
+
+    switch (mode) {
+        case 0:
+            break;
+        case 1:
+            spiConfig.cr1 |= SPI_CTRL1_CLKPHA;
+            break;
+        case 2:
+            spiConfig.cr1 |= SPI_CTRL1_CLKPOL;
+            break;
+        case 3:
+            spiConfig.cr1 |= SPI_CTRL1_CLKPHA | SPI_CTRL1_CLKPOL;
+            break;
+    }
+
+    switch (roundedDivisor) {
+        case 2:
+            break;
+        case 4:
+            spiConfig.cr1 |= SPI_CTRL1_MDIV_4;
+            break;
+        case 8:
+            spiConfig.cr1 |= SPI_CTRL1_MDIV_8;
+            break;
+        case 16:
+            spiConfig.cr1 |= SPI_CTRL1_MDIV_16;
+            break;
+        case 32:
+            spiConfig.cr1 |= SPI_CTRL1_MDIV_32;
+            break;
+        case 64:
+            spiConfig.cr1 |= SPI_CTRL1_MDIV_64;
+            break;
+        case 128:
+            spiConfig.cr1 |= SPI_CTRL1_MDIV_128;
+            break;
+        case 256:
+            spiConfig.cr1 |= SPI_CTRL1_MDIV_256;
+            break;
+        case 512:
+            spiConfig.cr2 |= SPI_CTRL2_MDIV_512_1024;
+            break;
+        case 1024:
+            spiConfig.cr1 |= SPI_CTRL1_MDIV_1024;
+            spiConfig.cr2 |= SPI_CTRL2_MDIV_512_1024;
             break;
     }
 #else

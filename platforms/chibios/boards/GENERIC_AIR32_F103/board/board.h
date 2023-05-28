@@ -71,9 +71,16 @@
 #define AIR32F103xB
 
 #if !defined(AIR32F10x)
-  #define AIR32F10x
+#define AIR32F10x
 #endif
 
+#if !defined(FLASH_SIZE)
+#if defined(AIR32F103xB)
+#define FLASH_SIZE 0x20000
+#elif defined(AIR32F103xC)
+#define FLASH_SIZE 0x40000
+#endif
+#endif
 /*
  * Board oscillators-related settings.
  * NOTE: LSE not fitted.

@@ -17,6 +17,23 @@
 #include "joystick_trigger.h"
 #include "analog.h"
 
+#ifndef JOYSTICK_LPF_PROPORTION 
+#define JOYSTICK_LPF_PROPORTION (0.2)
+#endif
+
+// Low Pass Filter Calculate
+#ifdef JOYSTICK_USE_LPF
+#define JOYSTICK_LPF_CAL(in, out)                    \
+do {                                                 \
+    out += (in - out) * JOYSTICK_LPF_PROPORTION;     \
+} while (0)
+#else
+#define JOYSTICK_LPF_CAL(in, out)                    \
+do {                                                 \
+    out = in;                                        \
+} while (0)
+#endif
+
 #ifndef JOYSTICK_ADC_RESOLUTION
 #define JOYSTICK_ADC_RESOLUTION 10
 #elif JOYSTICK_ADC_RESOLUTION < 8 || JOYSTICK_ADC_RESOLUTION > 16
@@ -56,7 +73,6 @@ static keypos_t joystick_axes_key_pos[] = {JOYSTICK_AXES_PX_KEY_POS, JOYSTICK_AX
                                             JOYSTICK_AXES_PY_KEY_POS, JOYSTICK_AXES_NY_KEY_POS};
 
 #define NUMBER_OF_JOYSTICKS (sizeof(joystick_axes_x_pin) / sizeof(pin_t))
-
 static joystick_axes_state_t joystick_axes_state[NUMBER_OF_JOYSTICKS];
 
 void joystick_trigger(uint8_t index, joystick_axes_trigger_t axes_state, uint8_t changed_axes) {
@@ -82,20 +98,30 @@ __attribute__((weak)) bool joystick_update_kb(uint8_t index, joystick_axes_trigg
 }
 
 void joystick_trigger_init(void) {
-    joystick_axes_state_t init_state;
-    init_state.joystick_axes_trigger_state.raw = 0;
+    int16_t check_buffer = 0;
     for (uint8_t i = 0; i < NUMBER_OF_JOYSTICKS; i ++) {
-        init_state.joystick_axes_x_value = analogReadPin(joystick_axes_x_pin[i]);
-        init_state.joystick_axes_y_value = analogReadPin(joystick_axes_y_pin[i]);
-        joystick_axes_state[i] = init_state;
+        joystick_axes_state[i].joystick_axes_x_value = analogReadPin(joystick_axes_x_pin[i]);
+        joystick_axes_state[i].joystick_axes_y_value = analogReadPin(joystick_axes_y_pin[i]);
+        check_buffer = joystick_axes_state[i].joystick_axes_x_value - JOYSTICK_RESOLUTION;
+        if ((check_buffer > JOYSTICK_THRESHOLD) || (check_buffer < -JOYSTICK_THRESHOLD)) {
+            joystick_axes_state[i].joystick_axes_x_calbration = JOYSTICK_RESOLUTION;
+        } else {
+            joystick_axes_state[i].joystick_axes_x_calbration = joystick_axes_state[i].joystick_axes_x_value;
+        }
+        check_buffer = joystick_axes_state[i].joystick_axes_y_value - JOYSTICK_RESOLUTION;
+        if ((check_buffer > JOYSTICK_THRESHOLD) || (check_buffer < -JOYSTICK_THRESHOLD)) {
+            joystick_axes_state[i].joystick_axes_y_calbration = JOYSTICK_RESOLUTION;
+        } else {
+            joystick_axes_state[i].joystick_axes_y_calbration = joystick_axes_state[i].joystick_axes_y_value;
+        }
     }
 }
 
 static bool joystick_update(uint8_t index) {
     bool changed = false;
     joystick_axes_trigger_t current_state;
-    int16_t axes_x_buf = joystick_axes_state[index].joystick_axes_x_value - JOYSTICK_RESOLUTION;
-    int16_t axes_y_buf = joystick_axes_state[index].joystick_axes_y_value - JOYSTICK_RESOLUTION;
+    int16_t axes_x_buf = joystick_axes_state[index].joystick_axes_x_value - joystick_axes_state[index].joystick_axes_x_calbration;
+    int16_t axes_y_buf = joystick_axes_state[index].joystick_axes_y_value - joystick_axes_state[index].joystick_axes_y_calbration;
     current_state.positive_x = axes_x_buf > JOYSTICK_THRESHOLD ? 1 : 0;
     current_state.negative_x = axes_x_buf < -JOYSTICK_THRESHOLD ? 1 : 0;
     current_state.positive_y = axes_y_buf > JOYSTICK_THRESHOLD ? 1 : 0;
@@ -111,8 +137,8 @@ static bool joystick_update(uint8_t index) {
 bool joystick_trigger_task(void) {
     bool changed = false;
     for (uint8_t i = 0; i < NUMBER_OF_JOYSTICKS; i++) {
-        joystick_axes_state[i].joystick_axes_x_value = analogReadPin(joystick_axes_x_pin[i]);
-        joystick_axes_state[i].joystick_axes_y_value = analogReadPin(joystick_axes_y_pin[i]);
+        JOYSTICK_LPF_CAL(analogReadPin(joystick_axes_x_pin[i]), joystick_axes_state[i].joystick_axes_x_value);
+        JOYSTICK_LPF_CAL(analogReadPin(joystick_axes_y_pin[i]), joystick_axes_state[i].joystick_axes_y_value);
         changed |= joystick_update(i);
     }
     return changed;

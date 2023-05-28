@@ -119,6 +119,10 @@ ifeq ($(strip $(BOOTLOADER)), wb32-dfu)
     OPT_DEFS += -DBOOTLOADER_WB32_DFU
     BOOTLOADER_TYPE = wb32_dfu
 endif
+ifeq ($(strip $(BOOTLOADER)), at32-dfu)
+    OPT_DEFS += -DBOOTLOADER_AT32_DFU
+    BOOTLOADER_TYPE = at32_dfu
+endif
 
 ifeq ($(strip $(BOOTLOADER_TYPE)),)
     ifneq ($(strip $(BOOTLOADER)),)

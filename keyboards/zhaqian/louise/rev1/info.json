@@ -1,0 +1,15 @@
+{
+    "processor": "STM32F103",
+    "bootloader": "uf2boot",
+    "board": "GENERIC_STM32_F103XB",
+    "matrix_pins": {
+        "cols": ["B11", "B13", "B6", "B7", "B14", "B15", "A9", "A10", "B8", "A15", "B9", "A1", "A2"],
+        "rows": ["A3", "A4", "B12", "B10"]
+    },
+    "encoder": {
+        "rotary": [
+            {"pin_a": "B5", "pin_b": "B3"}
+        ],
+        "resolution": 4
+    }
+}
