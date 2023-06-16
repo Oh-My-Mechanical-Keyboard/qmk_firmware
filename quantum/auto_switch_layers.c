@@ -28,7 +28,6 @@ system_layers_t system_layers;
 #    define DEFAULT_MACOS_LAYER 2
 #endif
 
-#if !defined(ASL_NO_UPDATE_FN_KEYCODE)
 #ifndef DEFAULT_WINDOWS_FN_KEY_POS
 #    define DEFAULT_WINDOWS_FN_KEY_POS {0, 0}
 #endif
@@ -38,7 +37,6 @@ system_layers_t system_layers;
 #endif
 
 static keypos_t system_fn_key_pos[] = {DEFAULT_WINDOWS_FN_KEY_POS, DEFAULT_MACOS_FN_KEY_POS};
-#endif
 
 EECONFIG_DEBOUNCE_HELPER(auto_switch_layers, EECONFIG_AUTO_SWITCH_LAYERS, system_layers);
 
@@ -47,6 +45,7 @@ void eeconfig_update_auto_switch_layers(void) {
 }
 
 static void eeconfig_update_auto_switch_layers_default(void) {
+    system_layers.config = 0x80;
     system_layers.windows_layer = DEFAULT_WINDOWS_LAYER;
     system_layers.windows_fn_layer = DEFAULT_WINDOWS_FN_LAYER;
     system_layers.macos_layer = DEFAULT_MACOS_LAYER;
@@ -60,8 +59,8 @@ void auto_switch_layers_init(void) {
         eeconfig_update_auto_switch_layers_default();
     }
     eeconfig_init_auto_switch_layers();
-    // need to improve
-    if (system_layers.windows_fn_layer == system_layers.windows_layer) {
+
+    if (!CUSTOM_AUTO_SWITCH_LAYERS_EECONFIG_FLAG) {
         eeconfig_update_auto_switch_layers_default();
     }
     // need time to guess
@@ -73,38 +72,48 @@ void auto_switch_layers_update(void) {
     switch (os) {
         case OS_WINDOWS: {
             default_layer_set(0x01<<system_layers.windows_layer);
-#if !defined(ASL_NO_UPDATE_FN_KEYCODE)
-            dynamic_keymap_set_keycode(system_layers.windows_layer, system_fn_key_pos[0].row, system_fn_key_pos[0].col, ASL_WIN_FN_KEY);
-#endif
-#if defined(CONSOLE_ENABLE)
-            dprintf("win default layer set: %d\n", system_layers.windows_layer);
-#endif
+            if (CUSTOM_AUTO_SWITCH_LAYERS_UPDATE_FN_KEYCODE) {
+                dynamic_keymap_set_keycode(system_layers.windows_layer, system_fn_key_pos[0].row, system_fn_key_pos[0].col, ASL_WIN_FN_KEY);
+            }
             break;
         }
         case OS_MACOS: {
             default_layer_set(0x01<<system_layers.macos_layer);
-            // need interface to improve
-#if !defined(ASL_NO_UPDATE_FN_KEYCODE)
-            dynamic_keymap_set_keycode(system_layers.macos_layer, system_fn_key_pos[1].row, system_fn_key_pos[1].col, ASL_MAC_FN_KEY);
-#endif
-#if defined(CONSOLE_ENABLE)
-            dprintf("mac default layer set: %d\n", system_layers.macos_layer);
-#endif
+            if (CUSTOM_AUTO_SWITCH_LAYERS_UPDATE_FN_KEYCODE) {
+                dynamic_keymap_set_keycode(system_layers.macos_layer, system_fn_key_pos[1].row, system_fn_key_pos[1].col, ASL_MAC_FN_KEY);
+            }
             break;
         }
         default: {
             default_layer_set(0x01);
-#if defined(CONSOLE_ENABLE)
-            dprintf("oth default layer set: %d\n", 0);
-#endif
             break;
         }
     }
 }
 
 bool os_detection_update(os_variant_t os) {
-    auto_switch_layers_update();
+    if (CUSTOM_AUTO_SWITCH_LAYERS_ENABLE) {
+        auto_switch_layers_update();
+    }
     return os_detection_update_kb(os);
+}
+
+void auto_switch_layers_set_config(uint8_t index, uint8_t value, bool update) {
+    uint8_t tmp = (system_layers.config & (~(0x01 << index)));
+    tmp |= (value << index);
+    system_layers.config = tmp;
+    if (update) {
+        eeconfig_update_auto_switch_layers();
+    }
+    if (CUSTOM_AUTO_SWITCH_LAYERS_ENABLE || CUSTOM_AUTO_SWITCH_LAYERS_UPDATE_FN_KEYCODE) {
+        auto_switch_layers_update();
+    } else {
+        default_layer_set(0x01);
+    }
+}
+
+uint8_t auto_switch_layers_get_config(uint8_t index) {
+    return (system_layers.config & (0x01 << index));
 }
 
 void auto_switch_layers_set_layer(uint8_t sys, uint8_t layer, bool update) {
@@ -129,7 +138,9 @@ void auto_switch_layers_set_layer(uint8_t sys, uint8_t layer, bool update) {
     if (update) {
         eeconfig_update_auto_switch_layers();
     }
-    auto_switch_layers_update();
+    if (CUSTOM_AUTO_SWITCH_LAYERS_ENABLE) {
+        auto_switch_layers_update();
+    }
 }
 
 uint8_t auto_switch_layers_get_layer(uint8_t sys) {

@@ -71,6 +71,7 @@ bool spi_start(pin_t slavePin, bool lsbFirst, uint8_t mode, uint16_t divisor) {
         return false;
     }
 #endif
+#endif
 
 #if defined(K20x) || defined(KL2x)
     spiConfig.tar0 = SPIx_CTARn_FMSZ(7) | SPIx_CTARn_ASC(1);

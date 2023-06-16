@@ -23,6 +23,9 @@
         "audio": false,
         "rgb_matrix": true
     },
+    "build": {
+        "lto": true
+    },
     "matrix_pins": {
         "cols": ["B4", "B5", "B6", "B7", "B8", "B9", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "B10", "B0", "B1"],
         "rows": ["B12", "B13", "B14", "B15", "A8"]
@@ -35,8 +38,9 @@
     "rgb_matrix": {
         "driver": "WS2812"
     },
-    "build": {
-        "lto": true
+    "ws2812": {
+        "pin": "B3",
+        "driver": "pwm"
     },
     "layouts": {
         "LAYOUT": {

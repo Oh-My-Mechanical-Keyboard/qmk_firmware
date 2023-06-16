@@ -22,6 +22,7 @@
 #include "raw_hid.h"
 #include "string.h"
 #include <color.h>
+#include "keymap_introspection.h"
 
 #define OPENRGB_EPSIZE 64
 

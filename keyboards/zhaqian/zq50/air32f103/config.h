@@ -17,7 +17,6 @@
 #pragma once
 
 #ifdef RGB_MATRIX_ENABLE
-#define RGB_DI_PIN A10
 #define WS2812_PWM_DRIVER PWMD1
 #define WS2812_PWM_CHANNEL 3
 #ifdef WS2812_PWM_DRIVER_USE_DMA_CC
@@ -27,6 +26,5 @@
 #endif
 #endif
 
-// #define FEE_PAGE_COUNT 4
 #define WEAR_LEVELING_LOGICAL_SIZE 2048
 #define WEAR_LEVELING_BACKING_SIZE 4096

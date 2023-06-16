@@ -10,6 +10,9 @@
             {"pin_a": "B1", "pin_b": "B5"}
         ],
         "resolution": 4
+    },
+    "ws2812": {
+        "pin": "F7"
     }
 }
 

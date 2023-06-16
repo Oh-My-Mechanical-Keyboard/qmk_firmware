@@ -10,6 +10,10 @@
             {"pin_a": "B5", "pin_b": "B3"}
         ],
         "resolution": 4
+    },
+    "ws2812": {
+        "pin": "A10",
+        "driver": "pwm"
     }
 }
 

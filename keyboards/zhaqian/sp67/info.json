@@ -18,7 +18,8 @@
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true
+        "nkro": true,
+        "encoder": true
     },
     "build": {
         "lto": true

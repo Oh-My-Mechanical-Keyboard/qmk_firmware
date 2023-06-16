@@ -10,5 +10,9 @@
         "rotary": [
             {"pin_a": "B5", "pin_b": "B6"}
         ]
+    },
+    "ws2812": {
+        "pin": "A10",
+        "driver": "pwm"
     }
 }

@@ -17,7 +17,7 @@
 #include "dynamic_combos.h"
 #include "dynamic_keymap.h"
 
-combo_t key_combos[DYNAMIC_COMBOS_ENTRIES];
+static combo_t key_combos[DYNAMIC_COMBOS_ENTRIES];
 static uint16_t keys_buf[DYNAMIC_COMBOS_ENTRIES][4];
 
 void dynamic_combos_update(uint8_t entry) {
@@ -35,4 +35,12 @@ void dynamic_combos_init(void) {
     for (uint8_t i = 0; i < DYNAMIC_COMBOS_ENTRIES; i++) {
         dynamic_combos_update(i);
     }
+}
+
+uint16_t combo_count(void) {
+    return DYNAMIC_COMBOS_ENTRIES;
+}
+
+combo_t* combo_get(uint16_t combo_idx) {
+    return &key_combos[combo_idx];
 }

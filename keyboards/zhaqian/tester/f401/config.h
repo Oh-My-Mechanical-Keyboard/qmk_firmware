@@ -17,7 +17,6 @@
 #pragma once
 
 #ifdef RGB_MATRIX_ENABLE
-#define RGB_DI_PIN B5
 #define WS2812_PWM_DRIVER PWMD3
 #define WS2812_PWM_CHANNEL 2
 #define WS2812_PWM_PAL_MODE 2

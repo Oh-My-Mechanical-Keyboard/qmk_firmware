@@ -1575,6 +1575,148 @@
               ]
             }
           ]
+        },
+        {
+          "label": "\u5c42\u81ea\u9002\u5e94\u7cfb\u7edf\u5207\u6362",
+          "content": [
+            {
+              "label": "\u542f\u7528\u5c42\u81ea\u9002\u5e94\u7cfb\u7edf\u5207\u6362",
+              "type": "toggle",
+              "content": [
+                "id_auto_switch_layers_config0",
+                11,
+                1,
+                0
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "\u542f\u7528\u81ea\u52a8\u66f4\u65b0FN\u952e",
+              "type": "toggle",
+              "content": [
+                "id_auto_switch_layers_config1",
+                11,
+                1,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Windows\u5c42",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[0]",
+                11,
+                2,
+                0
+              ],
+              "options": [
+                [
+                  "\u5c420",
+                  0
+                ],
+                [
+                  "\u5c421",
+                  1
+                ],
+                [
+                  "\u5c422",
+                  2
+                ],
+                [
+                  "\u5c423",
+                  3
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Windows Fn\u5c42",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[1]",
+                11,
+                2,
+                1
+              ],
+              "options": [
+                [
+                  "\u5c420",
+                  0
+                ],
+                [
+                  "\u5c421",
+                  1
+                ],
+                [
+                  "\u5c422",
+                  2
+                ],
+                [
+                  "\u5c423",
+                  3
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Macos\u5c42",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[2]",
+                11,
+                2,
+                2
+              ],
+              "options": [
+                [
+                  "\u5c420",
+                  0
+                ],
+                [
+                  "\u5c421",
+                  1
+                ],
+                [
+                  "\u5c422",
+                  2
+                ],
+                [
+                  "\u5c423",
+                  3
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Macos Fn\u5c42",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[3]",
+                11,
+                2,
+                3
+              ],
+              "options": [
+                [
+                  "\u5c420",
+                  0
+                ],
+                [
+                  "\u5c421",
+                  1
+                ],
+                [
+                  "\u5c422",
+                  2
+                ],
+                [
+                  "\u5c423",
+                  3
+                ]
+              ]
+            }
+          ]
         }
       ]
     },

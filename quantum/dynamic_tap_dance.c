@@ -16,6 +16,8 @@
 
 #include "dynamic_tap_dance.h"
 #include "dynamic_keymap.h"
+#include "keymap_common.h"
+#include "keymap_introspection.h"
 
 #define KEYLOC_DYNAMIC_TAP_DANCE 251
 

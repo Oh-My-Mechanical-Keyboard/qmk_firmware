@@ -130,7 +130,9 @@ enum via_custom_dynamic_combos_value {
 };
 
 enum via_custom_auto_switch_layers {
-    id_auto_switch_layers_layer                  = 1,
+    id_auto_switch_layers_reset                  = 0,
+    id_auto_switch_layers_config                 = 1,
+    id_auto_switch_layers_layer                  = 2,
 };
 
 #if defined(VIA_CUSTOM_RGB_MATRIX_ENABLE)

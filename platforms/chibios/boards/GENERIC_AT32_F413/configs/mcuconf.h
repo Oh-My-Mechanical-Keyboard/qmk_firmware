@@ -154,7 +154,6 @@
 /*
  * PWM driver system settings.
  */
-#define AT32_PWM_USE_ADVANCED              FALSE
 #define AT32_PWM_USE_TIM1                  FALSE
 #define AT32_PWM_USE_TIM2                  FALSE
 #define AT32_PWM_USE_TIM3                  FALSE

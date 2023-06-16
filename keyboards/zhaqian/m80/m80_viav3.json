@@ -1490,6 +1490,148 @@
               ]
             }
           ]
+        },
+        {
+          "label": "Auto Switch Layers",
+          "content": [
+            {
+              "label": "Enable Auto Switch Layers",
+              "type": "toggle",
+              "content": [
+                "id_auto_switch_layers_config0",
+                11,
+                1,
+                0
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Enable Auto Update FN Key",
+              "type": "toggle",
+              "content": [
+                "id_auto_switch_layers_config1",
+                11,
+                1,
+                1
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Windows Layer",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[0]",
+                11,
+                2,
+                0
+              ],
+              "options": [
+                [
+                  "Layer 0",
+                  0
+                ],
+                [
+                  "Layer 1",
+                  1
+                ],
+                [
+                  "Layer 2",
+                  2
+                ],
+                [
+                  "Layer 3",
+                  3
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Windows Fn Layer",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[1]",
+                11,
+                2,
+                1
+              ],
+              "options": [
+                [
+                  "Layer 0",
+                  0
+                ],
+                [
+                  "Layer 1",
+                  1
+                ],
+                [
+                  "Layer 2",
+                  2
+                ],
+                [
+                  "Layer 3",
+                  3
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Macos Layer",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[2]",
+                11,
+                2,
+                2
+              ],
+              "options": [
+                [
+                  "Layer 0",
+                  0
+                ],
+                [
+                  "Layer 1",
+                  1
+                ],
+                [
+                  "Layer 2",
+                  2
+                ],
+                [
+                  "Layer 3",
+                  3
+                ]
+              ]
+            },
+            {
+              "showIf": "{id_auto_switch_layers_config0} != 0",
+              "label": "Macos Fn Layer",
+              "type": "dropdown",
+              "content": [
+                "id_auto_switch_layers_layer[3]",
+                11,
+                2,
+                3
+              ],
+              "options": [
+                [
+                  "Layer 0",
+                  0
+                ],
+                [
+                  "Layer 1",
+                  1
+                ],
+                [
+                  "Layer 2",
+                  2
+                ],
+                [
+                  "Layer 3",
+                  3
+                ]
+              ]
+            }
+          ]
         }
       ]
     }

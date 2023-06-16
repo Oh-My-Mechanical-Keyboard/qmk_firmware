@@ -6,7 +6,11 @@
     "usb": {
         "vid": "0x1027",
         "pid": "0x6060",
-        "device_version": "0.0.1"
+        "device_version": "0.0.1",
+        "force_nkro": true,
+        "shared_endpoint": {
+            "keyboard": true
+        }
     },
     "processor": "STM32F103",
     "bootloader": "uf2boot",
@@ -20,7 +24,11 @@
         "nkro": true,
         "rgblight": false,
         "audio": false,
-        "rgb_matrix": true
+        "rgb_matrix": true,
+        "encoder": true
+    },
+    "build": {
+        "lto": true
     },
     "matrix_pins": {
         "cols": ["A7", "B0", "B1", "B10", "B11", "B12", "B13", "B14", "B15", "A8", "A9", "A10", "A15", "B3", "B4", "B5"],
@@ -35,10 +43,15 @@
     "encoder": {
         "rotary": [
             {"pin_a": "B6", "pin_b": "B7"}
-        ]
+        ],
+        "resolution": 2
     },
     "rgb_matrix": {
         "driver": "WS2812"
+    },
+    "ws2812": {
+        "pin": "B8",
+        "driver": "pwm"
     },
     "layouts": {
         "LAYOUT": {

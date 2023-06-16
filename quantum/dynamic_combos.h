@@ -22,9 +22,6 @@
 #    define DYNAMIC_COMBOS_ENTRIES 4
 #endif
 
-#undef COMBO_COUNT
-#define COMBO_COUNT DYNAMIC_COMBOS_ENTRIES
-
 typedef struct __attribute__((packed)) {
     uint16_t keys[4];
     uint16_t keycode;

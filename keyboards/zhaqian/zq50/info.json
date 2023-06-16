@@ -6,7 +6,11 @@
     "usb": {
         "vid": "0x00AA",
         "pid": "0xAA16",
-        "device_version": "0.0.1"
+        "device_version": "0.0.1",
+        "force_nkro": true,
+        "shared_endpoint": {
+            "keyboard": true
+        }
     },
     "features": {
         "bootmagic": true,
@@ -17,7 +21,11 @@
         "nkro": true,
         "rgblight": false,
         "audio": false,
-        "rgb_matrix": true
+        "rgb_matrix": true,
+        "encoder": true
+    },    
+    "build": {
+        "lto": true
     },
     "diode_direction": "COL2ROW",
     "debounce": 5,

@@ -6,7 +6,8 @@
     "usb": {
         "vid": "0x00AA",
         "pid": "0xAAAC",
-        "device_version": "0.0.1"
+        "device_version": "0.0.1",
+        "force_nkro": true
     },
     "features": {
         "bootmagic": true,
@@ -17,6 +18,9 @@
         "nkro": true,
         "rgblight": false,
         "audio": false
+    },
+    "build": {
+        "lto": true
     },
     "diode_direction": "COL2ROW",
     "debounce": 5,

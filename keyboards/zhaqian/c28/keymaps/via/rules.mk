@@ -1,4 +1,4 @@
 VIA_ENABLE = yes
 # RGB_MATRIX_CUSTOM_KB = yes
-WS2812_DRIVER = pwm
+
 

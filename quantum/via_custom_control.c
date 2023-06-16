@@ -1087,6 +1087,14 @@ void via_custom_auto_switch_layers_set_value(uint8_t *data) {
     uint8_t *value_id   = &(data[0]);
     uint8_t *value_data = &(data[1]);
     switch (*value_id) {
+        case id_auto_switch_layers_reset: {
+            // todo
+            break;
+        }
+        case id_auto_switch_layers_config: {
+            auto_switch_layers_set_config(value_data[0], value_data[1], false);
+            break;
+        }
         case id_auto_switch_layers_layer: {
             auto_switch_layers_set_layer(value_data[0], value_data[1], false);
             break;
@@ -1102,6 +1110,14 @@ void via_custom_auto_switch_layers_get_value(uint8_t *data) {
     uint8_t *value_id   = &(data[0]);
     uint8_t *value_data = &(data[1]);
     switch (*value_id) {
+        case id_auto_switch_layers_reset: {
+            value_data[0] = 0;
+            break;
+        }
+        case id_auto_switch_layers_config: {
+            value_data[1] = auto_switch_layers_get_config(value_data[0]);
+            break;
+        }
         case id_auto_switch_layers_layer: {
             value_data[1] = auto_switch_layers_get_layer(value_data[0]);
             break;
