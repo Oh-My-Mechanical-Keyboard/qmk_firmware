@@ -945,6 +945,11 @@ void rgblight_set(void) {
         convert_rgb_to_rgbw(&start_led[i]);
     }
 #    endif
+#if (PRODUCT_ID == 0xAAB9)
+    if (rgblight_is_enabled() && !rgblight_get_layer_state(0)) {
+        start_led[2].r = start_led[2].g = start_led[2].b = 0;
+    }
+#endif
     rgblight_call_driver(start_led, num_leds);
 }
 #endif
