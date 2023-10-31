@@ -20,8 +20,7 @@
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 
 /* DIP switch for Mac/win OS switch */
-#define DIP_SWITCH_PINS \
-    { A8 }
+#define DIP_SWITCH_PINS { A8 }
 
 #ifdef KC_BLUETOOTH_ENABLE
 /* Hardware configuration */
@@ -67,6 +66,11 @@
 /* Emulated EEPROM configuration */
 #define FEE_DENSITY_BYTES FEE_PAGE_SIZE
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
+
+/* Encoder Configuration */
+#ifdef ENCODER_ENABLE
+#    define ENCODER_DEFAULT_POS 0x3
+#endif
 
 /* Factory test keys */
 #define FN_KEY1 MO(1)

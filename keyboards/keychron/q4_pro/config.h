@@ -20,8 +20,7 @@
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 
 /* DIP switch */
-#define DIP_SWITCH_PINS \
-    { A8 }
+#define DIP_SWITCH_PINS { A8 }
 
 /* Increase I2C speed to 1000 KHz */
 #define I2C1_TIMINGR_PRESC 0U
@@ -77,8 +76,8 @@
 #define FEE_DENSITY_BYTES FEE_PAGE_SIZE
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
 
-/* Old default behavior of mod-taps */
-#define HOLD_ON_OTHER_KEY_PRESS
+/* HC595 Driver configuration */
+#define HC595_END_INDEX 13
 
 /* Factory test keys */
 #define FN_KEY1 MO(4)

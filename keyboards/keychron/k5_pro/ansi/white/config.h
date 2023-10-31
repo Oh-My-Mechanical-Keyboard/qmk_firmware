@@ -20,8 +20,9 @@
 /* LED Matrix Driver Configuration */
 #    define DRIVER_COUNT 1
 #    define DRIVER_ADDR_1 0b1110100
-#    define DRIVER_1_LED_TOTAL 108
-#    define LED_MATRIX_LED_COUNT DRIVER_1_LED_TOTAL
+
+/* LED Matrix Configuration */
+#    define LED_MATRIX_LED_COUNT 108
 
 /* Set to infinit, which is use in USB mode by default */
 #    define LED_MATRIX_TIMEOUT LED_MATRIX_TIMEOUT_INFINITE
@@ -32,12 +33,14 @@
 /* Turn off backllit if brightness value is low */
 #    define LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
 
-#    define LOW_BAT_IND_INDEX 98
+/* Indication led */
+#    define NUM_LOCK_INDEX 37    // NumLock
+#    define LOW_BAT_IND_INDEX 98 // Space
 
 // LED Matrix Animation modes. Explicitly enabled
 // For full list of effects, see:
 // https://docs.qmk.fm/#/feature_led_matrix?id=led-matrix-effects
-
+// #if defined(LED_MATRIX_KEYPRESSES) || defined(LED_MATRIX_KEYRELEASES)
 #    define LED_MATRIX_KEYPRESSES
 
 /* Use first 9 channels of LED driver */

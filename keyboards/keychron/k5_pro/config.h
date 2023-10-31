@@ -23,7 +23,6 @@
 /* DIP switch */
 #define DIP_SWITCH_PINS \
     { A8 }
-#define INVERT_OS_SWITCH_STATTE
 
 /* Caps lock LED  */
 #define LED_CAPS_LOCK_PIN A0
@@ -89,6 +88,9 @@
 /* Emulated EEPROM configuration */
 #define FEE_DENSITY_BYTES FEE_PAGE_SIZE
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR 2047
+
+/* Old default behavior of mod-taps */
+#define HOLD_ON_OTHER_KEY_PRESS
 
 /* Factory test keys */
 #define FN_KEY1 MO(1)

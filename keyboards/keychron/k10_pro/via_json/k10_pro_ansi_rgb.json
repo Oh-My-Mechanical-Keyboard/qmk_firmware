@@ -1,5 +1,5 @@
 {
-  "name": "Keychron K10 Pro",
+  "name": "Keychron K10 Pro ANSI RGB",
   "vendorId": "0x3434",
   "productId": "0x02A0",
   "keycodes": ["qmk_lighting"],
@@ -65,6 +65,8 @@
     }
   ],
   "customKeycodes": [
+    {"name": "Misson Control", "title": "Misson Control, availabe in macOS", "shortName": "MCtrl"},
+    {"name": "Launch pad", "title": "Launch pad, availabe in macOS", "shortName": "LPad"},
     {"name": "Left Option", "title": "Left Option", "shortName": "LOpt"},
     {"name": "Right Option", "title": "Right Option", "shortName": "ROpt"},
     {"name": "Left Cmd", "title": "Left Command", "shortName": "LCmd"},

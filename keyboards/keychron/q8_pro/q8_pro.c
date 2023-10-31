@@ -134,9 +134,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-#if defined(KC_BLUETOOTH_ENABLE) && defined(ENCODER_ENABLE)
+#if defined(ENCODER_ENABLE)
 static void encoder_pad_cb(void *param) {
-    encoder_inerrupt_read((uint32_t)param & 0XFF);
+    encoder_inerrupt_read((uint32_t)param & 0xFF);
 }
 #endif
 
@@ -156,8 +156,9 @@ void keyboard_post_init_kb(void) {
 
     ckbt51_init(false);
     bluetooth_init();
+#endif
 
-#    ifdef ENCODER_ENABLE
+#ifdef ENCODER_ENABLE
     pin_t encoders_pad_a[NUM_ENCODERS] = ENCODERS_PAD_A;
     pin_t encoders_pad_b[NUM_ENCODERS] = ENCODERS_PAD_B;
     for (uint32_t i = 0; i < NUM_ENCODERS; i++) {
@@ -166,7 +167,6 @@ void keyboard_post_init_kb(void) {
         palSetLineCallback(encoders_pad_a[i], encoder_pad_cb, (void *)i);
         palSetLineCallback(encoders_pad_b[i], encoder_pad_cb, (void *)i);
     }
-#    endif
 #endif
 
     keyboard_post_init_user();
@@ -312,3 +312,9 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
     }
 }
 #endif
+
+void suspend_wakeup_init_kb(void) {
+    // code will run on keyboard wakeup
+    clear_keyboard();
+    send_keyboard_report();
+}

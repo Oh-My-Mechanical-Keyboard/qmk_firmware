@@ -1,12 +1,12 @@
 # Keychron Q8 Pro
 
-![Keychron Q8 Pro]
+![Keychron Q8 Pro](https://i.imgur.com/dZBGbrs.jpg)
 
 A customizable 65% Alice keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron Q8 Pro
-* Hardware Availability:
+* Hardware Availability:[Keychron Q8 Pro (Alice Layout) QMK/VIA Wireless Custom Mechanical Keyboard](https://www.keychron.com/products/keychron-q8-pro-alice-layout-qmk-via-wireless-custom-mechanical-keyboard)
 
 Make example for this keyboard (after setting up your build environment):
 

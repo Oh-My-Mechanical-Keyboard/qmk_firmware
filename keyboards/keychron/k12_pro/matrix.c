@@ -53,7 +53,7 @@ static void HC595_output(uint16_t data) {
     uint8_t n = 1;
     uint8_t i;
 
-    for (i = 1; i < (MATRIX_COLS - DIRECT_COL_NUM); i++) {
+    for (i = 0; i < (MATRIX_COLS - DIRECT_COL_NUM); i++) {
         writePinLow(HC595_SHCP);
         if (data & 0x1) {
             writePinHigh(HC595_DS);

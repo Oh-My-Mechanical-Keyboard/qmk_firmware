@@ -20,6 +20,8 @@
 /* LED matrix driver configuration */
 #    define DRIVER_COUNT 1
 #    define DRIVER_ADDR_1 0b1110100
+
+/* LED matrix configuration */
 #    define LED_MATRIX_LED_COUNT 108
 
 /* Set to infinit, which is use in USB mode by default */

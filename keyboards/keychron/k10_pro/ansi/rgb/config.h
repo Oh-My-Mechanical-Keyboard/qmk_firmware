@@ -19,9 +19,10 @@
 #ifdef RGB_MATRIX_ENABLE
 /* RGB Matrix driver configuration */
 #    define DRIVER_COUNT 2
-
 #    define DRIVER_ADDR_1 0b1110111
 #    define DRIVER_ADDR_2 0b1110100
+
+/* RGB Matrix configuration */
 #    define RGB_MATRIX_LED_COUNT 108
 
 /* Set to infinit, which is use in USB mode by default */

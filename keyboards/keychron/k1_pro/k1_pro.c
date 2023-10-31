@@ -317,3 +317,9 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
     }
 }
 #endif
+
+void suspend_wakeup_init_kb(void) {
+    // code will run on keyboard wakeup
+    clear_keyboard();
+    send_keyboard_report();
+}

@@ -394,6 +394,9 @@ void bluetooth_low_battery_shutdown(void) {
 #if defined(LOW_BAT_IND_INDEX)
     indicator_battery_low_backlit_enable(false);
 #endif
+    clear_keyboard();
+    send_keyboard_report();
+
     bluetooth_disconnect();
 }
 

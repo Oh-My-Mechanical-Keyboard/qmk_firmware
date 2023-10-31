@@ -10,11 +10,11 @@ A customizable 81 keys TKL keyboard.
 
 Make example for this keyboard (after setting up your build environment):
 
-    make keychron/q1_pro/ansi_konb:default
+    make keychron/q1_pro/ansi_knob:default
 
 Flashing example for this keyboard:
 
-    make keychron/q1_pro/ansi_konb:default:flash
+    make keychron/q1_pro/ansi_knob:default:flash
 
 **Reset Key**: Connect the USB cable, toggle mode switch to "Off", hold down the *Esc* key or reset button underneath space bar, then toggle then switch to "Cable".
 
