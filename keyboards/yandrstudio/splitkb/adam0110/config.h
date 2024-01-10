@@ -146,3 +146,6 @@
 #define WS2812_PWM_PAL_MODE 1
 #define WS2812_DMA_STREAM STM32_DMA2_STREAM5
 #define WS2812_DMA_CHANNEL 6
+
+#define WEAR_LEVELING_LOGICAL_SIZE 2048                              // Number of bytes "exposed" to the rest of QMK and denotes the size of the usable EEPROM.
+#define WEAR_LEVELING_BACKING_SIZE (WEAR_LEVELING_LOGICAL_SIZE * 2)  // Number of bytes used by the wear-leveling algorithm for its underlying storage, and needs to be a multiple of the logical size.

@@ -18,3 +18,7 @@ WS2812_DRIVER = pwm         # WS2812 RGB Driver
 
 SPLIT_KEYBOARD = yes
 SERIAL_DRIVER = usart
+
+# Revert to legacy wear-leveling driver until ChibiOS's EFL driver is fixed with 128kB and 384kB variants.
+EEPROM_DRIVER = wear_leveling
+WEAR_LEVELING_DRIVER = legacy
