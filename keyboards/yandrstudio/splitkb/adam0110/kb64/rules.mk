@@ -1,0 +1,1 @@
+OPT_DEFS += -DI_AM_LEFT
