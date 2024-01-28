@@ -5,10 +5,10 @@
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID 0x586A
-#define PRODUCT_ID 0xB002
+#define PRODUCT_ID 0xB004
 #define DEVICE_VER 0x0001
 #define MANUFACTURER "KBDCRAFT"
-#define PRODUCT "Adam0110"
+#define PRODUCT "Lilith81"
 
 #define MATRIX_ROWS 10
 #define MATRIX_COLS 14
@@ -24,37 +24,31 @@
 
 #ifdef SPLIT_KEYBOARD
 #   define SOFT_SERIAL_PIN A9
-// #   define SELECT_SOFT_SERIAL_SPEED 1
 #   define SERIAL_USART_DRIVER SD1
 #   define SERIAL_USART_TX_PAL_MODE 7
 
 #    define SPLIT_TRANSPORT_MIRROR
-
-#    define SPLIT_USB_DETECT
-
-#    define SPLIT_WATCHDOG_ENABLE
-
 #    define SPLIT_MODS_ENABLE
 #    define SPLIT_LAYER_STATE_ENABLE
 #    define SPLIT_LED_STATE_ENABLE
 
+#    define SPLIT_HAND_PIN C13
+#    define SPLIT_USB_DETECT
+#    define SPLIT_WATCHDOG_ENABLE
 #endif
 
-#ifdef I_AM_RIGHT
-#    define BOOTMAGIC_LITE_ROW 5
-#    define BOOTMAGIC_LITE_COLUMN 0
-#else
-#    define BOOTMAGIC_LITE_ROW 0
-#    define BOOTMAGIC_LITE_COLUMN 0
-#    define BOOTMAGIC_LITE_ROW_RIGHT 5
-#    define BOOTMAGIC_LITE_COLUMN_RIGHT 0
-#endif
+#define BOOTMAGIC_LITE_ROW 0
+#define BOOTMAGIC_LITE_COLUMN 0
+
+#define BOOTMAGIC_LITE_ROW_RIGHT 5
+#define BOOTMAGIC_LITE_COLUMN_RIGHT 0
 
 #ifdef RGBLIGHT_ENABLE
 
 #    define WS2812_DI_PIN B13
 #    define RGBLED_NUM 81
 #    define RGBLIGHT_SLEEP
+#    define RGBLED_SPLIT { 64, 17 }
 #    define RGBLIGHT_DEFAULT_MODE (RGBLIGHT_MODE_RAINBOW_SWIRL+5)
 #    define RGBLIGHT_DEFAULT_SPD 144
 #    define RGBLIGHT_DEFAULT_VAL 180
@@ -78,12 +72,12 @@
 
 #ifdef RGB_MATRIX_ENABLE
 
-#define RGB_DI_PIN B13
-#define WS2812_DI_PIN B13
-#define RGBLED_NUM 81
-#define DRIVER_LED_TOTAL 81
-#define RGB_MATRIX_LED_COUNT 81
-#define RGB_MATRIX_SPLIT { 64, 17 }
+#    define RGB_DI_PIN B13
+#    define WS2812_DI_PIN B13
+#    define RGBLED_NUM 81
+#    define DRIVER_LED_TOTAL 81
+#    define RGB_MATRIX_LED_COUNT 81
+#    define RGB_MATRIX_SPLIT { 64, 17 }
 
 #    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180
 #    define RGBLIGHT_VAL_STEP 5

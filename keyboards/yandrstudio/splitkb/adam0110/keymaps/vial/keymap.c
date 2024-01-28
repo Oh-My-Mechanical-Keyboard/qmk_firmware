@@ -13,10 +13,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [1] = LAYOUT_all(
         KC_GRAVE, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,   KC_F7,             KC_F8,   KC_F9,         KC_F10,     KC_F11,        KC_F12,  KC_DELETE,  KC_NO,     RGB_MOD,   RGB_RMOD, RGB_VAD,
-        KC_NO,    RGB_TOG, RGB_VAI, RGB_VAD, RGB_MOD, RGB_RMOD, RGB_HUI, RGB_HUD,           RGB_SAI, RGB_SAD,       KC_PSCR, KC_SCROLL_LOCK,KC_PAUSE,KC_NO,      KC_HOME,   KC_UP,     KC_PGUP,
+        KC_NO,    RGB_TOG, RGB_VAI, RGB_VAD, RGB_MOD, RGB_RMOD, RGB_HUI, RGB_HUD,           RGB_SAI, RGB_SAD,       KC_PSCR,    KC_SCRL,       KC_PAUSE,KC_NO,      KC_HOME,   KC_UP,     KC_PGUP,
         KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,   KC_NO,             RGB_SPI, RGB_SPD,       KC_HOME,    KC_PGUP,                KC_NO,      KC_LEFT,   KC_NO,     KC_RIGHT, RGB_VAI,
-        KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,   MAGIC_TOGGLE_NKRO, KC_NO,   KC_INSERT,     KC_END,     KC_PGDN,     KC_VOLU, KC_MUTE,    KC_END,    KC_DOWN,   KC_PGDN,
-        KC_NO,    KC_NO,   KC_NO,                     KC_NO,                                         KC_NO,         KC_NO,      RGB_MOD,       KC_VOLD, RGB_RMOD,   KC_INSERT, KC_DELETE, RGB_TOG
+        KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,   NK_TOGG,           KC_NO,   KC_INSERT,     KC_END,     KC_PGDN,       KC_VOLU, KC_MUTE,    KC_END,    KC_DOWN,   KC_PGDN,
+        KC_NO,    KC_NO,   KC_NO,                     KC_NO,                                         KC_NO,         KC_NO,      RGB_MOD,       KC_VOLD, RGB_RMOD,   KC_INS,    KC_DEL, RGB_TOG
     ),
     [2] = LAYOUT_all(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO,

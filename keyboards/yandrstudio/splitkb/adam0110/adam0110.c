@@ -3,16 +3,6 @@
 
 #include "adam0110.h"
 
-#if defined(I_AM_LEFT) || defined(I_AM_RIGHT)
-bool is_keyboard_left(void) {
-#ifdef I_AM_LEFT
-    return true;
-#else
-    return false;
-#endif
-}
-#endif
-
 #ifdef RGB_MATRIX_ENABLE
 
 #define xx NO_LED
