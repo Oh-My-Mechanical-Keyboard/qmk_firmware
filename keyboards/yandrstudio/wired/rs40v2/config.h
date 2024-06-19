@@ -7,8 +7,8 @@
 #define VENDOR_ID       0xAA96
 #define PRODUCT_ID      0xAA50
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    "Y&R"
-#define PRODUCT         "RS40V2"
+#define MANUFACTURER    " "
+#define PRODUCT         "RS40"
 
 /* key matrix size */
 #define MATRIX_ROWS 4
