@@ -36,5 +36,6 @@
     },
     "clangd.arguments": [
         "--header-insertion=never"
-    ]
+    ],
+    "cmake.sourceDirectory": "/home/rjx/PRJ/qmk_firmware/lib/pico-sdk"
 }
