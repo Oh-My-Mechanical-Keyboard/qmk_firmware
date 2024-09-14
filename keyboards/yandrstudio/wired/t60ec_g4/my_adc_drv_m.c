@@ -3,8 +3,10 @@
 
 #include "my_adc_drv.h"
 #include <hal.h>
+#include "debug.h"
 
 int16_t analogReadPin_my(pin_t pin) {
+    uint8_t i = 0;
     ADCConfig          adcCfg = {};
     adcsample_t        sampleBuffer[ADC_NUM_CHANNELS * ADC_BUFFER_DEPTH];
     ADCDriver         *targetDriver       = &ADCD2;
@@ -23,7 +25,9 @@ int16_t analogReadPin_my(pin_t pin) {
         case A6:
             targetDriver = &ADCD2;
             adcConversionGroup.sqr[0]  = ADC_SQR1_SQ1_N(ADC_CHANNEL_IN3);
-            sampleBuffer[0]            = 0;
+            for (i = 0; i < ADC_BUFFER_DEPTH; i++) {
+                sampleBuffer[i] = 0;
+            }
             break;
         default:
             return 0;
@@ -32,6 +36,11 @@ int16_t analogReadPin_my(pin_t pin) {
     if (adcConvert(targetDriver, &adcConversionGroup, &sampleBuffer[0], ADC_BUFFER_DEPTH) != MSG_OK) {
         return 0;
     }
-
-    return *sampleBuffer;
+    dprintf("sampleBuffer[0] %d sampleBuffer[1] %d\n", sampleBuffer[0], sampleBuffer[1]);
+    uint32_t sum = 0;
+    for (i = 0; i < ADC_BUFFER_DEPTH; i++) {
+        sum += sampleBuffer[i];
+    }
+    sum /= ADC_BUFFER_DEPTH;
+    return sum;
 }

@@ -1,14 +1,3 @@
-# MCU name
-MCU = STM32F103
-
-# Bootloader selection
-# BOOTLOADER = stm32duino
-
-MCU_LDSCRIPT = STM32F103xB_uf2boot
-BOARD = STM32_F103_STM32DUINO
-BOOTLOADER = uf2boot
-FIRMWARE_FORMAT = uf2
-
 # Build Options
 #   change yes to no to disable
 #
@@ -21,9 +10,10 @@ NKRO_ENABLE = yes           # USB Nkey Rollover
 
 CUSTOM_MATRIX = lite    # for using the A9 pin as matrix io
 QUANTUM_SRC += matrix_ec.c
+# QUANTUM_SRC += my_adc_drv_m.c
+QUANTUM_SRC += my_adc_drv.c
 
+KEYBOARD_SHARED_EP = yes
+CONSOLE_ENABLE = yes
 
-# KEYBOARD_SHARED_EP = yes
-# CONSOLE_ENABLE = yes
-
-SRC += analog.c
+ALLOW_WARNINGS = yes

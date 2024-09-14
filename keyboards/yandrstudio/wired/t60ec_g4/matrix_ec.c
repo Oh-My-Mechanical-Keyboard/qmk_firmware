@@ -22,6 +22,7 @@
 #include "analog.h"
 #include "atomic_util.h"
 #include "print.h"
+#include "my_adc_drv.h"
 
 #define WAIT_DISCHARGE()
 #define WAIT_CHARGE()
@@ -79,11 +80,11 @@ static uint16_t ecsm_readkey_raw(uint8_t row, uint8_t col) {
     discharge_capacitor();
     select_mux(col);
     clear_all_row_pins();
-    wait_us(20); // 5*1nf*1k = 5us
+    wait_us(30); // 5*1nf*1k = 5us
 
     charge_capacitor(row); // 5*100K*10pf = 5us
-    wait_us(5);
-    sw_value = analogReadPin(ADC_READ_PIN);
+    wait_us(10);
+    sw_value = analogReadPin_my(ADC_READ_PIN);
     return sw_value;
 }
 
@@ -93,14 +94,14 @@ static bool ecsm_update_key(matrix_row_t* current_row, uint8_t row, uint8_t col,
 
     // press to release
     // if (current_state && sw_value < config.low_threshold_matrix[row][col]) {
-    if (current_state && sw_value < ecsm_sw_top_value[row][col]+100) {
+    if (current_state && sw_value < ecsm_sw_top_value[row][col]+500) {
         *current_row &= ~(1 << col);
         return true;
     }
 
     // release to press
     // if ((!current_state) && sw_value > config.high_threshold_matrix[row][col]) {
-    if ((!current_state) && sw_value > ecsm_sw_top_value[row][col]+200) {
+    if ((!current_state) && sw_value > ecsm_sw_top_value[row][col]+650) {
         *current_row |= (1 << col);
         return true;
     }
@@ -113,6 +114,7 @@ bool ecsm_matrix_scan(matrix_row_t current_matrix[]) {
     bool updated = false;
 
     writePinHigh(APLEX_EN_PIN_1);
+    wait_us(10);
     for (int col = 0; col <= 6; col++) {
         for (int row = 0; row < MATRIX_ROWS; row++) {
             ecsm_sw_value[row][col] = ecsm_readkey_raw(row, col);
@@ -121,6 +123,7 @@ bool ecsm_matrix_scan(matrix_row_t current_matrix[]) {
     }
 
     writePinHigh(APLEX_EN_PIN_0);
+    wait_us(10);
     for (int col = 7; col < MATRIX_COLS; col++) {
         for (int row = 0; row < MATRIX_ROWS; row++) {
             ecsm_sw_value[row][col] = ecsm_readkey_raw(row, col);
@@ -135,8 +138,14 @@ void set_ec_top_init_val(void) {
     for (int col = 0; col <= 6; col++) {
         for (int row = 0; row < MATRIX_ROWS; row++) {
             ecsm_sw_top_value[row][col] = ecsm_readkey_raw(row, col);
-            if (ecsm_sw_top_value[row][col] <= 0 || ecsm_sw_top_value[row][col] >= 600) {
-                ecsm_sw_top_value[row][col] = 600;
+            uint8_t r_times = 0;
+            while ((ecsm_sw_top_value[row][col] < 0 || ecsm_sw_top_value[row][col] >= 1800) && (r_times <= 10)) {
+                ecsm_sw_top_value[row][col] = ecsm_readkey_raw(row, col);
+                // ecsm_sw_top_value[row][col] = 3000;
+                r_times++;
+            }
+            if (r_times>10) {
+                ecsm_sw_top_value[row][col] = 3000;
             }
         }
     }
@@ -145,8 +154,9 @@ void set_ec_top_init_val(void) {
     for (int col = 7; col < MATRIX_COLS; col++) {
         for (int row = 0; row < MATRIX_ROWS; row++) {
             ecsm_sw_top_value[row][col] = ecsm_readkey_raw(row, col);
-            if (ecsm_sw_top_value[row][col] <= 0 || ecsm_sw_top_value[row][col] >= 600) {
-                ecsm_sw_top_value[row][col] = 600;
+            while (ecsm_sw_top_value[row][col] <= 0 || ecsm_sw_top_value[row][col] >= 1500) {
+                ecsm_sw_top_value[row][col] = ecsm_readkey_raw(row, col);
+                // ecsm_sw_top_value[row][col] = 3000;
             }
         }
     }
@@ -164,9 +174,26 @@ void ecsm_print_matrix(void) {
         print("\n");
     }
     print("\n");
+    print("TOP\n");
+
+    for (int row = 0; row < MATRIX_ROWS; row++) {
+        for (int col = 0; col < MATRIX_COLS; col++) {
+            uprintf("%4d", ecsm_sw_top_value[row][col]);
+            if (col < MATRIX_COLS-1) {
+                print(",");
+            }
+        }
+        print("\n");
+    }
+    print("\n");
 }
 
+uint32_t scan_timer = 0;
+bool scan_enable = 0;
+
 void matrix_init_custom(void) {
+
+    set_ec_top_init_val();
 
     // initialize discharge pin as discharge mode
     setPinOutput(DISCHARGE_PIN);
@@ -193,14 +220,22 @@ void matrix_init_custom(void) {
             ecsm_sw_top_value[i][j] = 1024;
         }
     }
+    scan_timer = timer_read32();
+    scan_enable = false;
 }
 
 uint8_t matrix_scan_custom(matrix_row_t current_matrix[]) {
+    if (!scan_enable) {
+        if (timer_elapsed32(scan_timer) >= 500) {
+            set_ec_top_init_val();
+            scan_enable = true;
+        }
+    }
     bool updated = ecsm_matrix_scan(current_matrix);
     // RAW matrix values on console
 #ifdef CONSOLE_ENABLE
     static int cnt = 0;
-    if (cnt++ == 100) {
+    if (cnt++ == 500) {
         cnt = 0;
         ecsm_print_matrix();
     }
