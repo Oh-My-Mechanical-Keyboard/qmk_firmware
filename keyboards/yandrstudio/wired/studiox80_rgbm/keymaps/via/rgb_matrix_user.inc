@@ -12,7 +12,7 @@ static bool my_cool_effect(effect_params_t* params) {
     center %= 255;
     center_timer = timer_read32();
   }
-// dprintf("gtime: %ld, time %d\n", g_rgb_timer, time);
+  dprintf("gtime: %ld, time %d\n", g_rgb_timer, time);
   for (uint8_t i = 0; i < 4; i++) {
     if (center%4 == i) {
         hsv.v = rgb_matrix_config.hsv.v;

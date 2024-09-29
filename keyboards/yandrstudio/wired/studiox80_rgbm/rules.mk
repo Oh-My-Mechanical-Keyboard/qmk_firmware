@@ -10,8 +10,12 @@ COMMAND_ENABLE = no         # Commands for debug and configuration
 # if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 NKRO_ENABLE = yes           # USB Nkey Rollover
 
-RGBLIGHT_ENABLE = yes
-RGBLIGHT_DRIVER = ws2812
+RGB_MATRIX_ENABLE = yes
+RGB_MATRIX_DRIVER = ws2812
+WS2812_DRIVER = pwm
+QUANTUM_SRC += rgb_matrix_layer.c
 
-# CONSOLE_ENABLE = yes         # Console for debug
-# KEYBOARD_SHARED_EP = yes     # Free up some extra endpoints - needed if console+mouse+extra
+LTO_ENABLE = yes
+
+CONSOLE_ENABLE = yes         # Console for debug
+KEYBOARD_SHARED_EP = yes     # Free up some extra endpoints - needed if console+mouse+extra
