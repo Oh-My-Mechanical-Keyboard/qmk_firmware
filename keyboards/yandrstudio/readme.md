@@ -238,6 +238,7 @@ A creative coder.
 | PTG6095         | 0xAA96    | 0xAA3D(shadow of 0xAA0C) | WB-3M,60%                        | &quest;           |
 | RoseAlice       | 0xAA96    | 0xAA3E                   | WB-3M,Alcie                      | &quest;           |
 | NK785           | 0xAA96    | 0xAA3F                   | WB-3M,75%                        | &quest;           |
+| NOVA75          | 0xAA96    | 0xAA20                   | WB-3M,75%                        | &quest;           |
 
 
 ### Obsolete or Test keyboard for reference design only
