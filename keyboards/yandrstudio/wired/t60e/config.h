@@ -17,13 +17,13 @@
 #define MATRIX_ROWS 5
 #define MATRIX_COLS 14
 
-// 焊接
-// #define MATRIX_COL_PINS {  B2, B10, B11, A15, B3, B4, B5, B7, B8, B9, A3, A4, A5, A6}
-// #define MATRIX_ROW_PINS {  A2, A1,  A0,  B6,  A7 }
+// 焊接 V1.02热拔插
+#define MATRIX_COL_PINS {  B2, B10, B11, A15, B3, B4, B5, B7, B8, B9, A3, A4, A5, A6}
+#define MATRIX_ROW_PINS {  A2, A1,  A0,  B6,  A7 }
 
 // V1 热拔插
-#define MATRIX_COL_PINS {  B2, B10, B11, A15, B3, B4, B5, B6, B8, B9, A3, A4, A5, A6}
-#define MATRIX_ROW_PINS {  A2, A1,  A0,  B7,  B0 }
+// #define MATRIX_COL_PINS {  B2, B10, B11, A15, B3, B4, B5, B6, B8, B9, A3, A4, A5, A6}
+// #define MATRIX_ROW_PINS {  A2, A1,  A0,  B7,  B0 }
 
 #define LED_CAPS_LOCK_PIN B1
 #define LED_PIN_ON_STATE  1
