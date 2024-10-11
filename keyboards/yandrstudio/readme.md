@@ -239,6 +239,7 @@ A creative coder.
 | RoseAlice       | 0xAA96    | 0xAA3E                   | WB-3M,Alcie                      | &quest;           |
 | NK785           | 0xAA96    | 0xAA3F                   | WB-3M,75%                        | &quest;           |
 | NOVA75          | 0xAA96    | 0xAA20                   | WB-3M,75%                        | &quest;           |
+| Star75          | 0xAA96    | 0xAA21                   | WB-3M,75%                        | &quest;           |
 
 
 ### Obsolete or Test keyboard for reference design only
