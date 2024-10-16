@@ -240,6 +240,8 @@ A creative coder.
 | NK785           | 0xAA96    | 0xAA3F                   | WB-3M,75%                        | &quest;           |
 | NOVA75          | 0xAA96    | 0xAA20                   | WB-3M,75%                        | &quest;           |
 | Star75          | 0xAA96    | 0xAA21                   | WB-3M,75%                        | &quest;           |
+| LK60            | 0xAA96    | 0xAA22                   | WB-3M,60%                        | &quest;           |
+| ICE80           | 0xAA96    | 0xAA23                   | WB-3M,80%                        | &quest;           |
 
 
 ### Obsolete or Test keyboard for reference design only
