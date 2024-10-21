@@ -87,7 +87,7 @@ A creative coder.
 | whitemouse69pro | 0xAA96    | 0xAA80                   | F401, RGB, Encoder               | &check;           |
 | binary68        | 0xAA96    | 0xAA82                   | BLE, F401, RGB                   | &check;           |
 | nz67v2          | 0xAA96    | 0xAA83                   | F401, RGB, Encoder               | &check;           |
-| sam40v2         | 0xAA96    | 0xAA84                   | BLE, F401                        | &check;           |
+| sam40           | 0xAA96    | 0xAA84                   | BLE, F401                        | &check;           |
 | zhou75r2        | 0xAA96    | 0xAA85                   | F103, RGB                        | &check;           |
 | rita65r2        | 0xAA96    | 0xAA86                   | F103, RGB                        | &check;           |
 | nightstar75     | 0xAA96    | 0xAA87                   | F103, RGB                        | &check;           |
@@ -237,11 +237,12 @@ A creative coder.
 | LK75            | 0xAA96    | 0xAA3C                   | WB-3M,75%                        | &quest;           |
 | PTG6095         | 0xAA96    | 0xAA3D(shadow of 0xAA0C) | WB-3M,60%                        | &quest;           |
 | RoseAlice       | 0xAA96    | 0xAA3E                   | WB-3M,Alcie                      | &quest;           |
-| NK785           | 0xAA96    | 0xAA3F                   | WB-3M,75%                        | &quest;           |
+| NK785           | 0xAA96    | 0xAA3F                   | WB-3M,75%                        | &check;           |
 | NOVA75          | 0xAA96    | 0xAA20                   | WB-3M,75%                        | &quest;           |
 | Star75          | 0xAA96    | 0xAA21                   | WB-3M,75%                        | &quest;           |
 | LK60            | 0xAA96    | 0xAA22                   | WB-3M,60%                        | &quest;           |
 | ICE80           | 0xAA96    | 0xAA23                   | WB-3M,80%                        | &quest;           |
+| sam40v2         | 0xAA96    | 0xAA24                   | NRF-2M,40%                       | &quest;           |
 
 
 ### Obsolete or Test keyboard for reference design only
