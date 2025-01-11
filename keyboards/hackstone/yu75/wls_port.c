@@ -157,6 +157,17 @@ void lpwr_stop_hook_post(void) {
 }
 
 void lpwr_wakeup_hook(void) {
+#    ifdef LED_POWER_EN_PIN
+    gpio_write_pin_low(LED_POWER_EN_PIN);
+#    endif
+    wireless_devs_change(wireless_get_current_devs(), wireless_get_current_devs(), false);
+    if (wireless_get_current_devs() == DEVS_USB && USB_DRIVER.state != USB_ACTIVE) {
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
+}
+
+void lpwr_wakeup_hook(void) {
 #    ifdef LED_POWER_EN_PIN
     gpio_write_pin_low(LED_POWER_EN_PIN);
 #    endif
