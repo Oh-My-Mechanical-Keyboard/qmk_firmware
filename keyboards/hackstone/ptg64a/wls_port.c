@@ -5,7 +5,7 @@
 
 #include "wireless.h"
 #include "eeconfig.h"
-
+#include "usb_main.h"
 #include "wls_port.h"
 
 // 键盘回连超时时间
@@ -96,7 +96,7 @@ void wls_port_eeconfig_init(void) {
 }
 
 void wls_port_init_pre(void) {
-    confinfo.raw = eeprom_read_dword((uint32_t *)WIRELESS_EECONFIG_ADDR);
+    wls_port_eeconfig_init();
 
     gpio_set_pin_output(LED_POWER_EN_PIN);
     gpio_write_pin_high(LED_POWER_EN_PIN);
@@ -141,6 +141,10 @@ void lpwr_stop_hook_post(void) {
 void lpwr_wakeup_hook(void) {
     gpio_write_pin_high(LED_POWER_EN_PIN);
     wireless_devs_change(wireless_get_current_devs(), wireless_get_current_devs(), false);
+    if (wireless_get_current_devs() == DEVS_USB && USB_DRIVER.state != USB_ACTIVE) {
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
 }
 
 void suspend_power_down_kb(void) {
@@ -424,6 +428,9 @@ void wls_port_rgb_indicators_task(void) {
 
 
 void wireless_send_nkro(report_nkro_t *report) {
+    if (*md_getp_state() != MD_STATE_CONNECTED && (MD_STATE_PAIRING == *md_getp_state() || wls_mode_reset_f)) {
+        return;
+    }
     static report_keyboard_t temp_report_keyboard = {0};
     uint8_t wls_report_nkro[MD_SND_CMD_NKRO_LEN]  = {0};
 
