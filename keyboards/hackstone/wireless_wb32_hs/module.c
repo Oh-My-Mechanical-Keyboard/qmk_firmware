@@ -123,6 +123,10 @@ static void md_receive_msg_task(void) {
     static uint8_t data_remain = 0x00;
 
     while (uart_available()) {
+        #ifdef USE_WWDG
+            extern void wwdg_feed(void);
+            wwdg_feed();
+        #endif
         uint8_t data = uart_read();
 
         switch (data_count) {

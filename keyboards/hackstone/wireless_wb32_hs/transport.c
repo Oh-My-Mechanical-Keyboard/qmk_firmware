@@ -93,6 +93,9 @@ transport_t get_transport(void) {
 
     return transport;
 }
+#ifdef USE_WWDG
+extern void wwdg_feed(void);
+#endif
 
 void usb_remote_wakeup(void) {
 
@@ -100,6 +103,9 @@ void usb_remote_wakeup(void) {
     if (USB_DRIVER.state == USB_SUSPENDED) {
         dprintln("suspending keyboard");
         while (USB_DRIVER.state == USB_SUSPENDED) {
+            #ifdef USE_WWDG
+                wwdg_feed();
+            #endif
             /* Do this in the suspended state */
             suspend_power_down(); // on AVR this deep sleeps for 15ms
             /* Remote wakeup */
@@ -112,7 +118,15 @@ void usb_remote_wakeup(void) {
                 // conditions that can corrupt the keyboard state.
                 //
                 // Pause for a while to let things settle...
-                wait_ms(USB_SUSPEND_WAKEUP_DELAY);
+                #ifdef USE_WWDG
+                    uint16_t tenms_cnts = USB_SUSPEND_WAKEUP_DELAY / 10;
+                    for (uint16_t i = 0; i < tenms_cnts; ++i) {
+                        wwdg_feed();
+                        wait_ms(10);
+                    }
+                #else
+                    wait_ms(USB_SUSPEND_WAKEUP_DELAY);
+                #endif
 #    endif
             }
         }
@@ -146,7 +160,15 @@ void usb_remote_host(void) {
             // conditions that can corrupt the keyboard state.
             //
             // Pause for a while to let things settle...
-            wait_ms(USB_SUSPEND_WAKEUP_DELAY);
+            #ifdef USE_WWDG
+                uint16_t tenms_cnts = USB_SUSPEND_WAKEUP_DELAY / 10;
+                for (uint16_t i = 0; i < tenms_cnts; ++i) {
+                    wwdg_feed();
+                    wait_ms(10);
+                }
+            #else
+                wait_ms(USB_SUSPEND_WAKEUP_DELAY);
+            #endif
 #    endif
         }
 #    if !defined(USB_REMOTE_USE_QMK) && USB_POWER_DOWN_DELAY
