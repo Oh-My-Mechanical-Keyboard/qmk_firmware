@@ -46,9 +46,11 @@ uint8_t wireless_keyboard_leds(void) {
     return 0;
 }
 
+extern bool wls_can_send_key(void);
+
 void wireless_send_keyboard(report_keyboard_t *report) __attribute__((weak));
 void wireless_send_keyboard(report_keyboard_t *report) {
-    if (MD_STATE_PAIRING == *md_getp_state()) {
+    if (!wls_can_send_key()) {
         return;
     }
     uint8_t wls_report_kb[MD_SND_CMD_KB_LEN] = {0};
@@ -73,7 +75,7 @@ void wireless_send_nkro(report_nkro_t *report) {
     uint8_t wls_report_nkro[MD_SND_CMD_NKRO_LEN]  = {0};
 
 #ifdef NKRO_ENABLE
-    if (MD_STATE_PAIRING == *md_getp_state()) {
+    if (!wls_can_send_key()) {
         return;
     }
     if (*md_getp_state() != MD_STATE_CONNECTED) {
@@ -155,7 +157,7 @@ void wireless_send_nkro(report_nkro_t *report) {
 
 void wireless_send_mouse(report_mouse_t *report) __attribute__((weak));
 void wireless_send_mouse(report_mouse_t *report) {
-    if (MD_STATE_PAIRING == *md_getp_state()) {
+    if (!wls_can_send_key()) {
         return;
     }
 
@@ -187,7 +189,7 @@ void wireless_send_mouse(report_mouse_t *report) {
 
 void wireless_send_extra(report_extra_t *report) __attribute__((weak));
 void wireless_send_extra(report_extra_t *report) {
-    if (MD_STATE_PAIRING == *md_getp_state()) {
+    if (!wls_can_send_key()) {
         return;
     }
     uint16_t usage = 0;

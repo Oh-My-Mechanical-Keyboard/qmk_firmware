@@ -7,7 +7,7 @@
 #define MANUFACTURER "PTG"
 #define PRODUCT "PTG64A"
 #define VENDOR_ID 0xAA96
-#define PRODUCT_ID 0xAA25
+#define PRODUCT_ID 0xAA2E
 #define DEVICE_VER 0x0001
 
 #    define MD_BT1_NAME PRODUCT " BT1"
@@ -28,9 +28,8 @@
 
 #define LED_POWER_EN_PIN B9 // 灯光电源或者GND控制
 
-
-#define BOOTMAGIC_ROW_RIGHT 0
-#define BOOTMAGIC_COLUMN_RIGHT 0
+#define BOOTMAGIC_ROW 0
+#define BOOTMAGIC_COLUMN 0
 
 /* UART */
 #define UART_TX_PIN A9

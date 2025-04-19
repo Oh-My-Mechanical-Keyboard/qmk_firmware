@@ -427,8 +427,15 @@ void wls_port_rgb_indicators_task(void) {
 }
 
 
-void wireless_send_nkro(report_nkro_t *report) {
+bool wls_can_send_key(void) {
     if (*md_getp_state() != MD_STATE_CONNECTED && (MD_STATE_PAIRING == *md_getp_state() || wls_mode_reset_f)) {
+        return false;
+    }
+    return true;
+}
+
+void wireless_send_nkro(report_nkro_t *report) {
+    if (!wls_can_send_key()) {
         return;
     }
     static report_keyboard_t temp_report_keyboard = {0};

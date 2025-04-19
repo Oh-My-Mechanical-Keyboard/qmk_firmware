@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "quantum.h"
 #include "color.h"
 
 #define BOX_LED_FIRST 64

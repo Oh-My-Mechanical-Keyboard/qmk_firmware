@@ -1,13 +1,13 @@
 {
   "name": "PTG64A",
   "vendorId": "0xAA96",
-  "productId": "0xAA25",
+  "productId": "0xAA2E",
   "keycodes": [
     "qmk_lighting"
   ],
   "menus": [
     {
-      "label": "Lighting",
+      "label": "Key RGB",
       "content": [
         {
           "label": "Backlight",
@@ -108,7 +108,7 @@
           ]
         },
         {
-          "label": "Logo RGB",
+          "label": "Under RGB",
           "content": [
             {
               "label": "Brightness",
@@ -153,7 +153,6 @@
               ]
             },
             {
-              "showIf": "{id_qmk_cums_crgbcrgb_effect} == 1 || {id_qmk_cums_crgbcrgb_effect} == 4",
               "label": "Colour",
               "type": "toggle",
               "content": [
@@ -163,7 +162,6 @@
               ]
             },
             {
-              "showIf": "{id_qmk_cums_crgbcrgb_effect} == 3 || ({id_qmk_cums_crgbcrgb_colored} != 0 && {id_qmk_cums_crgbcrgb_effect} != 2)",
               "label": "Color",
               "type": "color",
               "content": [
