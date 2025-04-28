@@ -43,32 +43,20 @@
                   1
                 ],
                 [
-                  "Gradient Up Down",
+                  "Breathing",
                   2
                 ],
                 [
-                  "Gradient Left Right",
+                  "Hue Breathing",
                   3
                 ],
                 [
-                  "Breathing",
+                  "Cycle All",
                   4
                 ],
                 [
-                  "Cycle All",
-                  5
-                ],
-                [
                   "Cycle Left Right",
-                  6
-                ],
-                [
-                  "Jellybean Raindrops",
-                  7
-                ],
-                [
-                  "Hue Breathing",
-                  8
+                  5
                 ]
               ]
             },

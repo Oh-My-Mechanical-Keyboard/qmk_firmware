@@ -34,3 +34,7 @@ enum wl_port_keys {
     KC_BATQ
 };
 
+typedef struct {
+    uint8_t  flag : 1;
+    uint8_t  key_rgb_sw : 8;
+} kb_cstm_config_t;

@@ -5,17 +5,17 @@
 
 #include "wireless.h"
 #include "eeconfig.h"
-
+#include "usb_main.h"
 #include "wls_port.h"
 
 // 键盘回连超时时间
 #ifndef WLS_LBACK_TIMEOUT
-#   define WLS_LBACK_TIMEOUT (30*1000)
+#   define WLS_LBACK_TIMEOUT (120*1000)
 #endif
 
 // 键盘配对超时时间
 #ifndef WLS_PAIR_TIMEOUT
-#   define WLS_PAIR_TIMEOUT (30*1000)
+#   define WLS_PAIR_TIMEOUT (120*1000)
 #endif
 
 // 键盘回连或配对成功时，模式指示灯常亮时间
@@ -62,7 +62,6 @@ uint32_t wls_rgb_indicator_times         = 0;
 uint32_t wls_rgb_indicator_index         = 0;
 bool inqbat_flag  = false;
 RGB wls_rgb_indicator_rgb                = {0};
-uint8_t bat_rgb_map[] = RGB_MATRIX_BAT_INDEX_MAP;
 
 typedef union {
     uint32_t raw;
@@ -150,13 +149,17 @@ void lpwr_stop_hook_pre(void) {
 
 void lpwr_stop_hook_post(void) {
     matrix_scan();
+    #    ifdef LED_POWER_EN_PIN
+        gpio_write_pin_high(LED_POWER_EN_PIN);
+    #    endif
 }
 
 void lpwr_wakeup_hook(void) {
-#    ifdef LED_POWER_EN_PIN
-    gpio_write_pin_high(LED_POWER_EN_PIN);
-#    endif
     wireless_devs_change(wireless_get_current_devs(), wireless_get_current_devs(), false);
+    if (wireless_get_current_devs() == DEVS_USB && USB_DRIVER.state != USB_ACTIVE) {
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
 }
 
 
@@ -418,7 +421,7 @@ void wls_rgb_blink(void) {
 void wls_port_rgb_indicators_task(void) {
     // 电池灯光
     if (inqbat_flag) {
-        uint8_t i = (*md_getp_bat() / 10);
+        uint8_t i = (*md_getp_bat());
         if (i < 10) {
             rgb_matrix_set_color_all(RGB_RED);
         } else if (i < 40) {
@@ -435,7 +438,18 @@ void wls_port_rgb_indicators_task(void) {
 }
 
 
+
+bool wls_can_send_key(void) {
+    if (*md_getp_state() != MD_STATE_CONNECTED && (MD_STATE_PAIRING == *md_getp_state() || wls_mode_reset_f)) {
+        return false;
+    }
+    return true;
+}
+
 void wireless_send_nkro(report_nkro_t *report) {
+    if (!wls_can_send_key()) {
+        return;
+    }
     static report_keyboard_t temp_report_keyboard = {0};
     uint8_t wls_report_nkro[MD_SND_CMD_NKRO_LEN]  = {0};
 
