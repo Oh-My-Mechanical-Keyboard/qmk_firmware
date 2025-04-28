@@ -214,7 +214,7 @@ void wls_process_long_press_task(void) {
 }
 
 bool rgb_power_is_allow_off(void) {
-    if (rgb_matrix_is_enabled()) return false;
+    if (kb_cstm_config.key_rgb_sw != 0) return false;
     if (host_keyboard_led_state().caps_lock) return false;
     if (keymap_config.no_gui) return false;
     if (inqbat_flag) return false;
