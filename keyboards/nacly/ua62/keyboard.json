@@ -1,6 +1,7 @@
 {
     "keyboard_name": "UA62",
     "manufacturer": "NaCly",
+    "url": "",
     "maintainer": "qmk",
     "usb": {
       "vid": "0xBEEF",
@@ -26,7 +27,8 @@
         "rows": ["D3", "D2", "D1", "D0", "D4"]
     },
     "diode_direction": "ROW2COL",
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layouts": {
       "LAYOUT": {
         "layout": [

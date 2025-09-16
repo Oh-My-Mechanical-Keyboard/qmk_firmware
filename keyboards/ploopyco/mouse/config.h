@@ -18,6 +18,11 @@
 
 #pragma once
 
+// These pins are not broken out, and cannot be used normally.
+// They are set as output and pulled high, by default
+#define UNUSABLE_PINS \
+    { B4, D6, F1, F5, F6, F7 }
+
 /* disable action features */
 //#define NO_ACTION_LAYER
 //#define NO_ACTION_TAPPING
@@ -25,7 +30,13 @@
 
 // #define DEBUG_LED_PIN F7
 
+/* PMW33XX Settings */
+#define PMW33XX_CS_PIN B0
+
 #define ENCODER_BUTTON_COL 1
 #define ENCODER_BUTTON_ROW 0
 /* Custom encoder needs to specify just how many encoders we have */
 #define NUM_ENCODERS 1
+
+#define ENCODER_A_PINS { F0 }
+#define ENCODER_B_PINS { F4 }

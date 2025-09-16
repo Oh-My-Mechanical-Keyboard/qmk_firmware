@@ -139,7 +139,7 @@ void matrix_scan_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t * record) {
   switch (keycode) {
-  case QK_UNDERGLOW_MODE_NEXT:
+  case RGB_MOD:
     RGB_LAYER0_mode = rgblight_config.mode;
     break;
   default:

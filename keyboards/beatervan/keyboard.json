@@ -1,6 +1,7 @@
 {
   "keyboard_name": "beatervan",
   "manufacturer": "OJ",
+  "url": "",
   "maintainer": "OJ",
   "usb": {
     "vid": "0x6F7A",
@@ -10,6 +11,7 @@
   "features": {
     "bootmagic": true,
     "command": true,
+    "console": false,
     "extrakey": true,
     "mousekey": true,
     "nkro": true,
@@ -26,7 +28,8 @@
     "rows": ["D1", "D0", "D4", "C6"]
   },
   "diode_direction": "COL2ROW",
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
     "layouts": {
         "LAYOUT": {
             "layout": [

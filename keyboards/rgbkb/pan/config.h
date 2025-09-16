@@ -17,4 +17,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #define RGB_MATRIX_LED_COUNT 64
-#define WS2812_LED_COUNT 64

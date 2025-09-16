@@ -5,6 +5,8 @@
     "maintainer": "kaylynb",
     "features": {
         "bootmagic": false,
+        "command": false,
+        "console": false,
         "extrakey": false,
         "mousekey": false,
         "nkro": true,
@@ -13,12 +15,8 @@
     },
     "usb": {
         "vid": "0xCEEB",
-        "pid": "0x0035"
-    },
-    "host": {
-        "default": {
-            "nkro": true
-        }
+        "pid": "0x0035",
+        "force_nkro": true
     },
     "ws2812": {
         "pin": "F7"

@@ -1,6 +1,7 @@
 {
     "keyboard_name": "wings42 rev2",
     "manufacturer": "yfuku",
+    "url": "",
     "maintainer": "yfuku",
     "usb": {
         "vid": "0x5946",
@@ -24,7 +25,8 @@
             { "pin_a": "B6", "pin_b": "B2" }
         ]
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "features": {
         "bootmagic": true,
         "encoder": true,

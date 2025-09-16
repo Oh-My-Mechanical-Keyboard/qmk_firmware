@@ -1,0 +1,20 @@
+{
+    "name": "TEC_Y&R",
+    "vendorId": "0xAA96",
+    "productId": "0xFFFF",
+    "lighting": {
+        "extends": "none",
+        "keycodes": "qmk"
+    },
+    "matrix": {
+        "rows": 1,
+        "cols": 1
+    },
+    "layouts": {
+        "keymap": [
+            [
+                "0,0"
+            ]
+        ]
+    }
+}

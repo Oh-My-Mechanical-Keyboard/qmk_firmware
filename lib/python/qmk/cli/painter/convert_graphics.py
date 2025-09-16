@@ -60,7 +60,9 @@ def painter_convert_graphics(cli):
         return
 
     # Work out the text substitutions for rendering the output data
-    subs = generate_subs(cli, out_bytes, image_metadata=metadata, command_name="painter_convert_graphics")
+    args_str = " ".join((f"--{arg} {getattr(cli.args, arg.replace('-', '_'))}" for arg in ["input", "output", "format", "no-rle", "no-deltas"]))
+    command = f"qmk painter-convert-graphics {args_str}"
+    subs = generate_subs(cli, out_bytes, image_metadata=metadata, command=command)
 
     # Render and write the header file
     header_text = render_header(subs)

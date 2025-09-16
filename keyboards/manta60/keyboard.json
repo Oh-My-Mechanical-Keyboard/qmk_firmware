@@ -11,6 +11,7 @@
     "features": {
         "bootmagic": true,
         "command": true,
+        "console": false,
         "extrakey": false,
         "mousekey": true,
         "nkro": false,
@@ -53,7 +54,8 @@
     "ws2812": {
         "pin": "D3"
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layouts": {
         "LAYOUT": {
             "layout": [

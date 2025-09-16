@@ -10,6 +10,7 @@
     },
     "features": {
         "bootmagic": false,
+        "command": false,
         "console": true,
         "encoder": true,
         "extrakey": true,
@@ -40,7 +41,8 @@
     "bootmagic": {
         "matrix": [0, 1]
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layouts": {
         "LAYOUT": {
             "layout": [

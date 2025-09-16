@@ -10,6 +10,8 @@
   },
   "features": {
     "bootmagic": true,
+    "command": false,
+    "console": false,
     "encoder": true,
     "extrakey": true,
     "mousekey": true,
@@ -31,7 +33,8 @@
       {"pin_a": "F5", "pin_b": "F4", "resolution": 2}
     ]
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "community_layouts": ["ortho_4x12", "planck_mit"],
   "layout_aliases": {
     "LAYOUT_crbn_1x2u": "LAYOUT_planck_mit",

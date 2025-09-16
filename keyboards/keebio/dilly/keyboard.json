@@ -1,6 +1,7 @@
 {
   "keyboard_name": "Dilly",
   "manufacturer": "Keebio",
+  "url": "",
   "maintainer": "qmk",
   "usb": {
     "vid": "0xCB10",
@@ -10,6 +11,8 @@
   "features": {
     "backlight": true,
     "bootmagic": true,
+    "command": false,
+    "console": false,
     "extrakey": true,
     "mousekey": true,
     "nkro": true,
@@ -49,7 +52,8 @@
   "ws2812": {
     "pin": "D3"
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "community_layouts": ["ortho_3x10"],
   "layouts": {
     "LAYOUT_ortho_3x10": {

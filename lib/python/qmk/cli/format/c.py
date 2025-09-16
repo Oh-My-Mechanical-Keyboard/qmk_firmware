@@ -10,7 +10,7 @@ from qmk.path import normpath
 from qmk.c_parse import c_source_files
 
 c_file_suffixes = ('c', 'h', 'cpp', 'hpp')
-core_dirs = ('drivers', 'quantum', 'tests', 'tmk_core', 'platforms', 'modules')
+core_dirs = ('drivers', 'quantum', 'tests', 'tmk_core', 'platforms')
 ignored = ('tmk_core/protocol/usb_hid', 'platforms/chibios/boards')
 
 

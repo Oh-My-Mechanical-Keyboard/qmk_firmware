@@ -1,0 +1,12 @@
+{
+    "keyboard_name": "id3key",
+    "url": "https://github.com/Oh-My-Mechanical-Keyboard",
+    "maintainer": "idabao",
+    "width": 3,
+    "height": 1,
+    "layouts": {
+        "LAYOUT": {
+            "layout": [{"label":"C", "x":0, "y":0}, {"label":"V", "x":1, "y":0}, {"label":"CTRL", "x":2, "y":0}]
+        }
+    }
+}

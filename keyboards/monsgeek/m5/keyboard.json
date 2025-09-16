@@ -6,12 +6,8 @@
         "vid": "0xFFFE",
         "pid": "0x000A",
         "device_version": "1.0.4",
-        "suspend_wakeup_delay": 400
-    },
-    "host": {
-        "default": {
-            "nkro": true
-        }
+        "suspend_wakeup_delay": 400,
+        "force_nkro": true
     },
     "processor": "WB32FQ95",
     "bootloader": "wb32-dfu",
@@ -19,6 +15,8 @@
         "bootmagic": true,
         "mousekey": true,
         "extrakey": true,
+        "console": false,
+        "command": false,
         "nkro": true,
         "rgb_matrix": true
     },
@@ -51,16 +49,7 @@
         "driver": "snled27351",
         "max_brightness": 180,
         "animations": {
-            "alphas_mods": true,
-            "gradient_up_down": true,
-            "gradient_left_right": true,
             "breathing": true,
-            "band_sat": true,
-            "band_val": true,
-            "band_pinwheel_sat": true,
-            "band_pinwheel_val": true,
-            "band_spiral_sat": true,
-            "band_spiral_val": true,
             "cycle_all": true,
             "cycle_left_right": true,
             "cycle_up_down": true,
@@ -71,29 +60,12 @@
             "cycle_spiral": true,
             "dual_beacon": true,
             "rainbow_beacon": true,
-            "rainbow_pinwheels": true,
             "raindrops": true,
-            "jellybean_raindrops": true,
-            "hue_breathing": true,
-            "hue_pendulum": true,
-            "hue_wave": true,
-            "pixel_rain": true,
-            "pixel_flow": true,
-            "pixel_fractal": true,
             "typing_heatmap": true,
-            "digital_rain": true,
             "solid_reactive_simple": true,
             "solid_reactive": true,
-            "solid_reactive_wide": true,
-            "solid_reactive_multiwide": true,
             "solid_reactive_cross": true,
-            "solid_reactive_multicross": true,
-            "solid_reactive_nexus": true,
-            "solid_reactive_multinexus": true,
-            "splash": true,
-            "multisplash": true,
-            "solid_splash": true,
-            "solid_multisplash": true
+            "multisplash": true
         },
         "layout":[
             { "flags": 4, "matrix": [0, 0], "x": 0, "y": 0 },

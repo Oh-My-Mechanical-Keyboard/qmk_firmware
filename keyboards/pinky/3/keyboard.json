@@ -1,6 +1,7 @@
 {
     "keyboard_name": "Pinky3",
     "manufacturer": "tamanishi",
+    "url": "",
     "maintainer": "tamanishi",
     "usb": {
         "vid": "0x544E",
@@ -17,7 +18,8 @@
             "pin": "D2"
         }
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layout_aliases": {
         "LAYOUT": "LAYOUT_split_3x7_4"
     },

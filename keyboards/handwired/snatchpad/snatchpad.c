@@ -29,9 +29,9 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 break;
             default:
                 if (clockwise) {
-                    tap_code(MS_LEFT);
+                    tap_code(KC_MS_L);
                 } else {
-                    tap_code(MS_RGHT);
+                    tap_code(KC_MS_R);
                 }
                 break;
         }
@@ -54,9 +54,9 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 break;
             default:
                 if (clockwise) {
-                    tap_code(MS_DOWN);
+                    tap_code(KC_MS_D);
                 } else {
-                    tap_code(MS_UP);
+                    tap_code(KC_MS_U);
                 }
                 break;
         }

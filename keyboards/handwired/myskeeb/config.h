@@ -2,6 +2,7 @@
 
 // Comunication and Split Detection
 
+#define SELECT_SOFT_SERIAL_SPEED 1
 #define SPLIT_USB_DETECT
 #define EE_HANDS
 #define SPLIT_USB_TIMEOUT 1000

@@ -9,6 +9,7 @@
   "split": {
     "enabled": true
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "community_layouts": ["ortho_4x12"]
 }

@@ -1,0 +1,18 @@
+# MCU name
+MCU = STM32F103
+
+# Bootloader selection
+
+MCU_LDSCRIPT = AT32F403A_uf2
+BOARD = STM32_F103_STM32DUINO
+BOOTLOADER = uf2boot
+FIRMWARE_FORMAT = uf2
+MCU_STARTUP ?= stm32f1xx
+
+# Wildcard to allow APM32 MCU
+DFU_SUFFIX_ARGS = -p FFFF -v FFFF
+
+WS2812_DRIVER = pwm
+
+# Wildcard to allow APM32 MCU
+DFU_SUFFIX_ARGS = -p FFFF -v FFFF

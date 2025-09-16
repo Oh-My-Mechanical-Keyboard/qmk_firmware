@@ -9,6 +9,8 @@
     "diode_direction": "COL2ROW",
     "features": {
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
@@ -28,6 +30,7 @@
             "knight": true,
             "rainbow_mood": true,
             "rainbow_swirl": true,
+            "rgb_test": true,
             "snake": true,
             "static_gradient": true,
             "twinkle": true
@@ -48,6 +51,7 @@
             "pin": "D2"
         }
     },
+    "url": "",
     "usb": {
         "device_version": "0.0.1",
         "pid": "0x0037",

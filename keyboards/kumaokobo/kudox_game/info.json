@@ -1,10 +1,12 @@
 {
     "keyboard_name": "The Kudox Game Keyboard",
     "manufacturer": "Kumao Kobo",
+    "url": "",
     "maintainer": "Kumao Kobo",
     "usb": {
         "vid": "0xABBA",
         "pid": "0x9696"
     },
-    "development_board": "promicro"
+    "processor": "atmega32u4",
+    "bootloader": "caterina"
 }

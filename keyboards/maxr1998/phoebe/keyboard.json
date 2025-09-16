@@ -9,10 +9,10 @@
     "diode_direction": "COL2ROW",
     "features": {
         "bootmagic": true,
-        "key_lock": true,
-        "mousekey": true,
         "nkro": true,
-        "rgblight": true
+        "rgblight": true,
+        "key_lock": true,
+        "leader": true
     },
     "qmk": {
         "locking": {

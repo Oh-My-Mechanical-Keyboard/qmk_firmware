@@ -52,6 +52,10 @@
 #    error invalid SELECT_SOFT_SERIAL_SPEED value
 #endif
 
+#ifndef SERIAL_DELAY_BLIP_TIME
+#    define SERIAL_DELAY_BLIP_TIME 1
+#endif
+
 inline static void serial_delay(void) {
     wait_us(SERIAL_DELAY);
 }
@@ -59,7 +63,7 @@ inline static void serial_delay_half(void) {
     wait_us(SERIAL_DELAY / 2);
 }
 inline static void serial_delay_blip(void) {
-    wait_us(1);
+    wait_us(SERIAL_DELAY_BLIP_TIME);
 }
 inline static void serial_output(void) {
     gpio_set_pin_output(SOFT_SERIAL_PIN);

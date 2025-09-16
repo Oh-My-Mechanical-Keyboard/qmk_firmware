@@ -10,13 +10,6 @@
         "**/*.uf2": true
     },
     "files.associations": {
-        // QMK Filetypes
-        "keyboard.json": "jsonc",
-        "info.json": "jsonc",
-        "keymap.json": "jsonc",
-        "qmk.json": "jsonc",
-        "qmk_module.json": "jsonc",
-        // Standard filetypes
         "*.h": "c",
         "*.c": "c",
         "*.inc": "c",
@@ -25,7 +18,13 @@
         "xstddef": "c",
         "type_traits": "c",
         "utility": "c",
-        "ranges": "c"
+        "ranges": "c",
+        "*.def": "c",
+        "chrono": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "random": "c"
     },
     "[markdown]": {
         "editor.trimAutoWhitespace": false,
@@ -35,23 +34,8 @@
     "[json]": {
         "editor.formatOnSave": false
     },
-    "clangd.arguments": ["--header-insertion=never"],
-    "json.schemas": [
-        {
-            "fileMatch": ["qmk.json"],
-            "url": "./data/schemas/user_repo_v1_1.jsonschema"
-        },
-        {
-            "fileMatch": ["qmk_module.json"],
-            "url": "./data/schemas/community_module.jsonschema"
-        },
-        {
-            "fileMatch": ["keyboard.json", "info.json"],
-            "url": "./data/schemas/keyboard.jsonschema"
-        },
-        {
-            "fileMatch": ["keymap.json"],
-            "url": "./data/schemas/keymap.jsonschema"
-        }
-    ]
+    "clangd.arguments": [
+        "--header-insertion=never"
+    ],
+    "cmake.sourceDirectory": "/home/rjx/PRJ/qmk_firmware/lib/pico-sdk"
 }

@@ -99,6 +99,8 @@ def find_keyboard_from_dir():
             keymap_index = len(current_path.parts) - current_path.parts.index('keymaps') - 1
             current_path = current_path.parents[keymap_index]
 
+        current_path = resolve_keyboard(current_path)
+
         if qmk.path.is_keyboard(current_path):
             return str(current_path)
 
@@ -119,7 +121,7 @@ def find_readme(keyboard):
 def keyboard_folder(keyboard):
     """Returns the actual keyboard folder.
 
-    This checks aliases to resolve the actual path for a keyboard.
+    This checks aliases and DEFAULT_FOLDER to resolve the actual path for a keyboard.
     """
     aliases = keyboard_alias_definitions()
 
@@ -128,6 +130,8 @@ def keyboard_folder(keyboard):
         keyboard = aliases[keyboard].get('target', keyboard)
         if keyboard == last_keyboard:
             break
+
+    keyboard = resolve_keyboard(keyboard)
 
     if not qmk.path.is_keyboard(keyboard):
         raise ValueError(f'Invalid keyboard: {keyboard}')
@@ -154,7 +158,7 @@ def keyboard_aliases(keyboard):
 def keyboard_folder_or_all(keyboard):
     """Returns the actual keyboard folder.
 
-    This checks aliases to resolve the actual path for a keyboard.
+    This checks aliases and DEFAULT_FOLDER to resolve the actual path for a keyboard.
     If the supplied argument is "all", it returns an AllKeyboards object.
     """
     if keyboard == 'all':
@@ -175,16 +179,30 @@ def keyboard_completer(prefix, action, parser, parsed_args):
     return list_keyboards()
 
 
-def list_keyboards():
-    """Returns a list of all keyboards
+def list_keyboards(resolve_defaults=True):
+    """Returns a list of all keyboards - optionally processing any DEFAULT_FOLDER.
     """
     # We avoid pathlib here because this is performance critical code.
-    kb_wildcard = os.path.join(base_path, "**", 'keyboard.json')
-    paths = [path for path in glob(kb_wildcard, recursive=True) if os.path.sep + 'keymaps' + os.path.sep not in path]
+    paths = []
+    for marker in ['rules.mk', 'keyboard.json']:
+        kb_wildcard = os.path.join(base_path, "**", marker)
+        paths += [path for path in glob(kb_wildcard, recursive=True) if os.path.sep + 'keymaps' + os.path.sep not in path]
 
     found = map(_find_name, paths)
+    if resolve_defaults:
+        found = map(resolve_keyboard, found)
 
     return sorted(set(found))
+
+
+@lru_cache(maxsize=None)
+def resolve_keyboard(keyboard):
+    cur_dir = Path('keyboards')
+    rules = parse_rules_mk_file(cur_dir / keyboard / 'rules.mk')
+    while 'DEFAULT_FOLDER' in rules and keyboard != rules['DEFAULT_FOLDER']:
+        keyboard = rules['DEFAULT_FOLDER']
+        rules = parse_rules_mk_file(cur_dir / keyboard / 'rules.mk')
+    return keyboard
 
 
 def config_h(keyboard):
@@ -198,7 +216,7 @@ def config_h(keyboard):
     """
     config = {}
     cur_dir = Path('keyboards')
-    keyboard = Path(keyboard)
+    keyboard = Path(resolve_keyboard(keyboard))
 
     for dir in keyboard.parts:
         cur_dir = cur_dir / dir
@@ -217,7 +235,7 @@ def rules_mk(keyboard):
         a dictionary representing the content of the entire rules.mk tree for a keyboard
     """
     cur_dir = Path('keyboards')
-    keyboard = Path(keyboard)
+    keyboard = Path(resolve_keyboard(keyboard))
     rules = parse_rules_mk_file(cur_dir / keyboard / 'rules.mk')
 
     for i, dir in enumerate(keyboard.parts):

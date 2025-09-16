@@ -1,0 +1,259 @@
+{
+    "name": "NZ67BLE_Y&R",
+    "vendorId": "0xAA96",
+    "productId": "0xAA8B",
+    "keycodes": ["qmk_lighting"],
+    "menus": ["qmk_rgb_matrix"],
+    "customKeycodes": [
+        {
+            "name": "Toggle WinKey Lock",
+            "title": "Toggle WinKey Lock",
+            "shortName": "WinLock"
+        },
+        {
+            "name": "Toggle Key/Under RGB",
+            "title": "Toggle Key/Under RGB",
+            "shortName": "RGB_K_U"
+        },
+        {
+            "name": "Battery Level",
+            "title": "Show battery level light",
+            "shortName": "BAT_SHOW"
+        },
+        {
+            "name": "Toggle macOS Keymap",
+            "title": "Toggle macOS Keymap",
+            "shortName": "TogMacOS"
+        },
+        {
+            "name": "Mission Control",
+            "title": "Mission Control in macOS",
+            "shortName": "Mission Control"
+        },
+        {
+            "name": "Launch Pad",
+            "title": "Launch Pad in macOS",
+            "shortName": "Launch Pad"
+        },
+        {
+            "name": "BLE_TOG",
+            "title": "Toggle Ble Output",
+            "shortName": "BLE_TOG"
+        },
+        {
+            "name": "USB_TOG",
+            "title": "Toggle USB Output",
+            "shortName": "USB_TOG"
+        },
+        {
+            "name": "Toggle BLE/USB",
+            "title": "Toggle between USB and BLE",
+            "shortName": "BAU_TOG"
+        },
+        {
+            "name": "BLE_1",
+            "title": "Switch to BLE 1",
+            "shortName": "BLE_1"
+        },
+        {
+            "name": "BLE_2",
+            "title": "Switch to BLE 2",
+            "shortName": "BLE_2"
+        },
+        {
+            "name": "BLE_3",
+            "title": "Switch to BLE 3",
+            "shortName": "BLE_3"
+        },
+        {
+            "name": "BLE_4",
+            "title": "Switch to BLE 4",
+            "shortName": "BLE_4"
+        },
+        {
+            "name": "Del Current BLE",
+            "title": "DEL Current BLE Channle",
+            "shortName": "BLE_DEL"
+        },
+        {
+            "name": "Del ALl BLE",
+            "title": "DEL All BLE Channle",
+            "shortName": "BLE_CLR"
+        },
+        {
+            "name": "Disconnect BLE",
+            "title": "Disconnect BLE Channle",
+            "shortName": "BLE_OFF"
+        }
+    ],
+    "matrix": {
+        "rows": 5,
+        "cols": 15
+    },
+    "layouts": {
+        "presets": {
+            "default": [
+                0
+            ]
+        },
+        "labels": [
+            "Encoder"
+        ],
+        "keymap": [
+            [
+                {
+                    "y": 0.25,
+                    "c": "#777777"
+                },
+                "0,0",
+                {
+                    "c": "#cccccc"
+                },
+                "0,1",
+                "0,2",
+                "0,3",
+                "0,4",
+                "0,5",
+                "0,6",
+                "0,7",
+                "0,8",
+                "0,9",
+                "0,10",
+                "0,11",
+                "0,12",
+                {
+                    "c": "#aaaaaa",
+                    "w": 2
+                },
+                "0,13",
+                "0,14\n\n\n0,0",
+                "0,14\n\n\n0,1\n\n\n\n\n\ne0"
+            ],
+            [
+                {
+                    "w": 1.5
+                },
+                "1,0",
+                {
+                    "c": "#cccccc"
+                },
+                "1,1",
+                "1,2",
+                "1,3",
+                "1,4",
+                "1,5",
+                "1,6",
+                "1,7",
+                "1,8",
+                "1,9",
+                "1,10",
+                "1,11",
+                "1,12",
+                {
+                    "c": "#aaaaaa",
+                    "w": 1.5
+                },
+                "1,13",
+                "1,14"
+            ],
+            [
+                {
+                    "w": 1.75
+                },
+                "2,0",
+                {
+                    "c": "#cccccc"
+                },
+                "2,1",
+                "2,2",
+                "2,3",
+                "2,4",
+                "2,5",
+                "2,6",
+                "2,7",
+                "2,8",
+                "2,9",
+                "2,10",
+                "2,11",
+                {
+                    "c": "#777777",
+                    "w": 2.25
+                },
+                "2,13",
+                {
+                    "c": "#aaaaaa"
+                },
+                "2,14"
+            ],
+            [
+                {
+                    "w": 2.25
+                },
+                "3,0",
+                {
+                    "c": "#cccccc"
+                },
+                "3,1",
+                "3,2",
+                "3,3",
+                "3,4",
+                "3,5",
+                "3,6",
+                "3,7",
+                "3,8",
+                "3,9",
+                "3,10",
+                {
+                    "c": "#aaaaaa",
+                    "f": 1,
+                    "w": 1.75
+                },
+                "3,12",
+                {
+                    "c": "#777777",
+                    "f": 3
+                },
+                "3,13",
+                {
+                    "c": "#aaaaaa"
+                },
+                "3,14"
+            ],
+            [
+                {
+                    "w": 1.25
+                },
+                "4,0",
+                {
+                    "w": 1.25
+                },
+                "4,1",
+                {
+                    "w": 1.25
+                },
+                "4,2",
+                {
+                    "c": "#cccccc",
+                    "w": 6.25
+                },
+                "4,5",
+                {
+                    "c": "#aaaaaa",
+                    "w": 1.25
+                },
+                "4,9",
+                {
+                    "w": 1.25
+                },
+                "4,10",
+                {
+                    "x": 0.5,
+                    "c": "#777777"
+                },
+                "4,12",
+                "4,13",
+                "4,14"
+            ]
+        ]
+    }
+}

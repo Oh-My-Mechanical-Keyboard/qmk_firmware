@@ -3,6 +3,7 @@
 
 #pragma once
 
+//#define SELECT_SOFT_SERIAL_SPEED 0
 #define SERIAL_USART_SPEED 921600
 
 #define WS2812_PWM_DRIVER PWMD3

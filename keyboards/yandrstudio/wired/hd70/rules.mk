@@ -1,0 +1,2 @@
+SPI_ENABLE = yes
+I2C_ENABLE = yes

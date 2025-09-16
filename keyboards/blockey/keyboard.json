@@ -1,6 +1,7 @@
 {
   "keyboard_name": "BlocKey",
   "manufacturer": "Eucalyn",
+  "url": "",
   "maintainer": "qmk",
   "usb": {
     "vid": "0xFEED",
@@ -46,7 +47,8 @@
     "rows": ["D3", "D1", "D4", "E6", "B5", "D2", "F6", "B3", "B2", "B6"]
   },
   "diode_direction": "COL2ROW",
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "layouts": {
     "LAYOUT": {
       "layout": [

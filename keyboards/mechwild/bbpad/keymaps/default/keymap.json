@@ -12,9 +12,9 @@
         ],
         [
         "KC_TRNS",   "KC_TRNS",  "KC_TRNS",  "KC_TRNS",  "KC_TRNS",
-        "RM_PREV",   "KC_TRNS",  "RM_NEXT",  "KC_TRNS",  "KC_TRNS",
+        "RGB_RMOD",  "KC_TRNS",  "RGB_MOD",  "KC_TRNS",  "KC_TRNS",
         "KC_TRNS",   "KC_TRNS",  "KC_TRNS",  "KC_TRNS",  "KC_TRNS",
-        "KC_TRNS",   "KC_TRNS",  "KC_TRNS",  "KC_TRNS",  "KC_NUM",  "RM_TOGG"
+        "KC_TRNS",   "KC_TRNS",  "KC_TRNS",  "KC_TRNS",  "KC_NUM",  "RGB_TOG"
         ]
     ],
     "config": {
@@ -24,6 +24,6 @@
     },
     "encoders": [
         [{"ccw": "KC_VOLD", "cw": "KC_VOLU"}],
-        [{"ccw": "RM_VALD", "cw": "RM_VALU"}]
+        [{"ccw": "RGB_VAD", "cw": "RGB_VAI"}]
     ]
 }

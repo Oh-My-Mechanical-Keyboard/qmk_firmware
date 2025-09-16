@@ -22,9 +22,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
   switch(get_highest_layer(layer_state)){
     case 1: //Layer 1
       if (!clockwise) { // Remove ! to reverse direction
-        tap_code(MS_WHLU);
+        tap_code(KC_WH_U);
       } else {
-        tap_code(MS_WHLD);
+        tap_code(KC_WH_D);
       }
       break;
     default: //Layer 0

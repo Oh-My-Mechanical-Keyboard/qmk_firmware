@@ -1,6 +1,7 @@
 {
   "keyboard_name": "Mint60",
   "manufacturer": "Eucalyn",
+  "url": "",
   "maintainer": "eucalyn",
   "usb": {
     "vid": "0xFEED",
@@ -9,6 +10,8 @@
   },
   "features": {
     "bootmagic": false,
+    "command": false,
+    "console": false,
     "extrakey": false,
     "mousekey": false,
     "nkro": false,
@@ -51,7 +54,8 @@
   "ws2812": {
     "pin": "D3"
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "layouts": {
     "LAYOUT": {
       "layout": [

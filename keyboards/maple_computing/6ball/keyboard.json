@@ -1,6 +1,7 @@
 {
     "keyboard_name": "6-Ball",
     "manufacturer": "That-Canadian",
+    "url": "",
     "maintainer": "qmk",
     "usb": {
         "vid": "0xCEEB",
@@ -27,6 +28,8 @@
     },
     "features": {
         "bootmagic": false,
+        "command": false,
+        "console": false,
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
@@ -38,7 +41,8 @@
         "rows": ["F5"]
     },
     "diode_direction": "COL2ROW",
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layouts": {
         "LAYOUT": {
             "layout": [

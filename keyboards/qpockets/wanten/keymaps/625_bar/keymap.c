@@ -78,9 +78,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) { /* center encoder */
         if (clockwise) {
-            tap_code(MS_WHLD);
+            tap_code(KC_WH_D);
         } else {
-            tap_code(MS_WHLU);
+            tap_code(KC_WH_U);
         }
     }
 	return true;

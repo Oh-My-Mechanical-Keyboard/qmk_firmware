@@ -1,6 +1,7 @@
 {
     "keyboard_name": "Sol 3",
     "manufacturer": "RGBKB",
+    "url": "",
     "maintainer": "XScorpion2, rgbkb",
     "usb": {
         "vid": "0x3535",
@@ -152,8 +153,6 @@
             "pin": "A9"
         },
         "transport": {
-            "watchdog": true,
-            "watchdog_timeout": 20000,
             "sync": {
                 "indicators": true,
                 "layer_state": true,

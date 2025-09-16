@@ -15,4 +15,5 @@
 /* RGB Driver */
 #define AW20216S_CS_PIN_1 D2
 #define AW20216S_CS_PIN_2 B8
-#define AW20216S_EN_PIN B9
+#define AW20216S_EN_PIN_1 B9
+#define AW20216S_EN_PIN_2 B9

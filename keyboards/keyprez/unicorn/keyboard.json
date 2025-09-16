@@ -1,6 +1,7 @@
 {
     "keyboard_name": "Unicorn",
     "manufacturer": "Keyprez",
+    "url": "",
     "maintainer": "Keyprez",
     "usb": {
         "vid": "0x6B7A",
@@ -9,6 +10,8 @@
     },
     "features": {
         "bootmagic": false,
+        "command": false,
+        "console": false,
         "encoder": true,
         "extrakey": true,
         "mousekey": true,
@@ -42,7 +45,8 @@
             "pin": "D0"
         }
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layouts": {
         "LAYOUT": {
             "layout": [

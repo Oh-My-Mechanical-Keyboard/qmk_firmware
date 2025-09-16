@@ -9,11 +9,13 @@
         "device_version": "0.0.1"
     },
     "features": {
-        "backlight": true,
-        "bootmagic": true,
-        "extrakey": true,
+        "bootmagic": false,
         "mousekey": true,
-        "nkro": true
+        "extrakey": true,
+        "console": true,
+        "command": true,
+        "nkro": true,
+        "backlight": true
     },
     "qmk": {
         "locking": {

@@ -150,63 +150,46 @@ void send_string(const char *string) {
     send_string_with_delay(string, TAP_CODE_DELAY);
 }
 
-void send_string_with_delay_impl(char (*getter)(void *), void *arg, uint8_t interval) {
+void send_string_with_delay(const char *string, uint8_t interval) {
     while (1) {
-        char ascii_code = getter(arg);
+        char ascii_code = *string;
         if (!ascii_code) break;
         if (ascii_code == SS_QMK_PREFIX) {
-            ascii_code = getter(arg);
+            ascii_code = *(++string);
 
             if (ascii_code == SS_TAP_CODE) {
                 // tap
-                uint8_t keycode = getter(arg);
+                uint8_t keycode = *(++string);
                 tap_code(keycode);
             } else if (ascii_code == SS_DOWN_CODE) {
                 // down
-                uint8_t keycode = getter(arg);
+                uint8_t keycode = *(++string);
                 register_code(keycode);
             } else if (ascii_code == SS_UP_CODE) {
                 // up
-                uint8_t keycode = getter(arg);
+                uint8_t keycode = *(++string);
                 unregister_code(keycode);
             } else if (ascii_code == SS_DELAY_CODE) {
                 // delay
-                int ms     = 0;
-                ascii_code = getter(arg);
+                int     ms      = 0;
+                uint8_t keycode = *(++string);
 
-                while (isdigit(ascii_code)) {
+                while (isdigit(keycode)) {
                     ms *= 10;
-                    ms += ascii_code - '0';
-                    ascii_code = getter(arg);
+                    ms += keycode - '0';
+                    keycode = *(++string);
                 }
 
                 wait_ms(ms);
             }
 
             wait_ms(interval);
-
-            // if we had a delay that terminated with a null, we're done
-            if (ascii_code == 0) break;
         } else {
             send_char_with_delay(ascii_code, interval);
         }
+
+        ++string;
     }
-}
-
-typedef struct send_string_memory_state_t {
-    const char *string;
-} send_string_memory_state_t;
-
-char send_string_get_next_ram(void *arg) {
-    send_string_memory_state_t *state = (send_string_memory_state_t *)arg;
-    char                        ret   = *state->string;
-    state->string++;
-    return ret;
-}
-
-void send_string_with_delay(const char *string, uint8_t interval) {
-    send_string_memory_state_t state = {string};
-    send_string_with_delay_impl(send_string_get_next_ram, &state, interval);
 }
 
 void send_char(char ascii_code) {
@@ -314,15 +297,42 @@ void send_string_P(const char *string) {
     send_string_with_delay_P(string, TAP_CODE_DELAY);
 }
 
-char send_string_get_next_progmem(void *arg) {
-    send_string_memory_state_t *state = (send_string_memory_state_t *)arg;
-    char                        ret   = pgm_read_byte(state->string);
-    state->string++;
-    return ret;
-}
-
 void send_string_with_delay_P(const char *string, uint8_t interval) {
-    send_string_memory_state_t state = {string};
-    send_string_with_delay_impl(send_string_get_next_progmem, &state, interval);
+    while (1) {
+        char ascii_code = pgm_read_byte(string);
+        if (!ascii_code) break;
+        if (ascii_code == SS_QMK_PREFIX) {
+            ascii_code = pgm_read_byte(++string);
+
+            if (ascii_code == SS_TAP_CODE) {
+                // tap
+                uint8_t keycode = pgm_read_byte(++string);
+                tap_code(keycode);
+            } else if (ascii_code == SS_DOWN_CODE) {
+                // down
+                uint8_t keycode = pgm_read_byte(++string);
+                register_code(keycode);
+            } else if (ascii_code == SS_UP_CODE) {
+                // up
+                uint8_t keycode = pgm_read_byte(++string);
+                unregister_code(keycode);
+            } else if (ascii_code == SS_DELAY_CODE) {
+                // delay
+                int     ms      = 0;
+                uint8_t keycode = pgm_read_byte(++string);
+
+                while (isdigit(keycode)) {
+                    ms *= 10;
+                    ms += keycode - '0';
+                    keycode = pgm_read_byte(++string);
+                }
+                wait_ms(ms);
+            }
+        } else {
+            send_char_with_delay(ascii_code, interval);
+        }
+
+        ++string;
+    }
 }
 #endif

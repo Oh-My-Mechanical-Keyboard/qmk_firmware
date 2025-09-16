@@ -16,7 +16,6 @@
  */
 
 #include "quantum.h"
-#include "eeprom.h"
 
 #include "usb_mux.h"
 
@@ -74,7 +73,7 @@ led_config_t g_led_config = { {
 } };
 #endif // RGB_MATRIX_ENABLE
 
-bool eeprom_is_valid(void) {
+bool eeprom_is_valid(void) { 
     return (
         eeprom_read_word(((void *)EEPROM_MAGIC_ADDR)) == EEPROM_MAGIC &&
         eeprom_read_byte(((void *)EEPROM_VERSION_ADDR)) == EEPROM_VERSION
@@ -124,7 +123,7 @@ void system76_ec_rgb_layer(layer_state_t layer_state);
 void system76_ec_unlock(void);
 bool system76_ec_is_unlocked(void);
 
-extern rgb_config_t layer_rgb[DYNAMIC_KEYMAP_LAYER_COUNT];
+rgb_config_t layer_rgb[DYNAMIC_KEYMAP_LAYER_COUNT];
 
 void matrix_init_kb(void) {
     usb_mux_init();
@@ -192,7 +191,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #else
             return true;
 #endif
-        case QK_RGB_MATRIX_VALUE_DOWN:
+        case RGB_VAD:
             if (record->event.pressed) {
                 uint8_t level = rgb_matrix_config.hsv.v;
                 for (int i = sizeof(levels) - 1; i >= 0; i--) {
@@ -204,7 +203,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 set_value_all_layers(level);
             }
             return false;
-        case QK_RGB_MATRIX_VALUE_UP:
+        case RGB_VAI:
             if (record->event.pressed) {
                 uint8_t level = rgb_matrix_config.hsv.v;
                 for (int i = 0; i < sizeof(levels); i++) {
@@ -216,7 +215,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
                 set_value_all_layers(level);
             }
             return false;
-        case QK_RGB_MATRIX_TOGGLE:
+        case RGB_TOG:
             if (record->event.pressed) {
                 uint8_t level = 0;
                 if (rgb_matrix_config.hsv.v == 0) {

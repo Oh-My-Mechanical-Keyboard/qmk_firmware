@@ -84,11 +84,6 @@
             "board": "STEMCELL",
             "bootloader": "tinyuf2",
             "processor": "STM32F411"
-        },
-        "svlinky": {
-            "board": "QMK_PM2040",
-            "bootloader": "rp2040",
-            "processor": "RP2040"
         }
     }
 }

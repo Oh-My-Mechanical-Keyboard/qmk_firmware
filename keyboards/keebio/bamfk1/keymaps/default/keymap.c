@@ -13,7 +13,7 @@ enum layer_names {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MAIN] = LAYOUT(
-        RM_NEXT,            // Big Switch
+        RGB_MOD,            // Big Switch
         TL_LOWR, KC_MUTE    // Encoder presses
     ),
     [_FN1] = LAYOUT(

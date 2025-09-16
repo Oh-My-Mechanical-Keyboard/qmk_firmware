@@ -8,10 +8,12 @@
         "pid": "0x3070",
         "device_version": "20.1.7"
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "features": {
         "backlight": true,
         "bootmagic": false,
+        "command": false,
         "console": true,
         "extrakey": true,
         "mousekey": false,

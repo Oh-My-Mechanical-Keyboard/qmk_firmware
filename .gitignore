@@ -64,7 +64,6 @@ build/
 cmake-build-debug
 CMakeLists.txt
 *.pdf
-*.zip
 
 # Let these ones be user specific, since we have so many different configurations
 *.code-workspace
@@ -112,6 +111,8 @@ __pycache__
 # Allow to exist but don't include it in the repo
 user_song_list.h
 
+#some prebuild hex bin files
+!/keyboards/yandrstudio/utils/prebuildfile/uf2/*
 # clangd
 compile_commands.json
 .clangd/

@@ -1,6 +1,6 @@
 {
-    "keyboard_name": "Classic Trackball",
-    "manufacturer": "Ploopy",
+    "keyboard_name": "Trackball",
+    "manufacturer": "PloopyCo",
     "url": "www.ploopy.co",
     "maintainer": "drashna",
     "usb": {
@@ -12,6 +12,7 @@
     "bootmagic": {
         "matrix": [0, 3]
     },
+
     "features": {
         "bootmagic": true,
         "extrakey": true,

@@ -110,12 +110,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
     /*  Row:    0        1        2        3        4        5        6        7        8        9        10       11       12       13                14              */
     [_FN]   = LAYOUT(
-                QK_BOOT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_TOGG,
-                _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RM_HUEU,
-                _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RM_HUED,
+                QK_BOOT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_TOG,
+                _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RGB_HUI,
+                _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          RGB_HUD,
                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,
-                _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RM_VALU,
-                _______, _______, _______,                            _______,                            _______, _______, RM_SPDD, RM_VALD,          RM_SPDU
+                _______,          _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_VAI,
+                _______, _______, _______,                            _______,                            _______, _______, RGB_SPD, RGB_VAD,          RGB_SPI
             ),
 };
 
@@ -135,7 +135,7 @@ void keyboard_post_init_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case QK_RGB_MATRIX_TOGGLE:
+        case RGB_TOG:
             if (record->event.pressed) {
                 switch (rgb_matrix_get_flags()) {
                     case LED_FLAG_ALL: {
@@ -161,17 +161,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-    [1] = { ENCODER_CCW_CW(RM_PREV, RM_NEXT) },
+    [1] = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD) },
 };
 #endif
 
 bool rgb_matrix_indicators_user(void) {
     rgb_matrix_set_color(2, 0, 0, 0);
 
-    hsv_t    hsv = rgb_matrix_config.hsv;
+    HSV      hsv = rgb_matrix_config.hsv;
     uint8_t time = scale16by8(g_rgb_timer, qadd8(32, 1));
     hsv.h        = time;
-    rgb_t    rgb = hsv_to_rgb(hsv);
+    RGB      rgb = hsv_to_rgb(hsv);
 
     if ((rgb_matrix_get_flags() & LED_FLAG_KEYLIGHT)) {
         if (host_keyboard_led_state().caps_lock) {

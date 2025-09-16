@@ -1,0 +1,7 @@
+# MCU name
+MCU = STM32G431
+BOARD = GENERIC_STM32_G431XB
+BOOTLOADER = stm32-dfu
+
+EEPROM_DRIVER = wear_leveling
+WEAR_LEVELING_DRIVER = embedded_flash

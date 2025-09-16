@@ -1,0 +1,240 @@
+{
+    "name": "RSAlice_BLE",
+    "vendorId": "0xAA96",
+    "productId": "0xAAB6",
+    "matrix": {
+        "rows": 8,
+        "cols": 13
+    },
+    "keycodes": ["qmk_lighting"],
+    "menus": ["qmk_rgb_matrix"],
+    "customKeycodes": [
+        {
+            "name": "Toggle WinKey Lock",
+            "title": "Toggle WinKey Lock",
+            "shortName": "WinLock"
+        },
+        {
+            "name": "Swap Ctrl and Gui",
+            "title": "Swap Ctrl and Gui",
+            "shortName": "CG_TOG"
+        },
+        {
+            "name": "Mission Control",
+            "title": "Mission Control in macOS",
+            "shortName": "Mission Control"
+        },
+        {
+            "name": "Launch Pad",
+            "title": "Launch Pad in macOS",
+            "shortName": "Launch Pad"
+        },
+        {
+            "name": "Battery Level",
+            "title": "Show battery level light",
+            "shortName": "BAT_SHOW"
+        },
+        {
+            "name": "USB_TOG",
+            "title": "Toggle USB Output",
+            "shortName": "USB_TOG"
+        },
+        {
+            "name": "BLE_1",
+            "title": "Switch to BLE 1",
+            "shortName": "BLE_1"
+        },
+        {
+            "name": "BLE_2",
+            "title": "Switch to BLE 2",
+            "shortName": "BLE_2"
+        },
+        {
+            "name": "BLE_3",
+            "title": "Switch to BLE 3",
+            "shortName": "BLE_3"
+        },
+        {
+            "name": "Disconnect BLE",
+            "title": "Disconnect BLE Channle",
+            "shortName": "BLE_OFF"
+        }
+    ],
+    "layouts": {
+        "keymap": [
+            [
+                {
+                    "x": 0.5,
+                    "c": "#777777"
+                },
+                "0,0",
+                {
+                    "c": "#cccccc"
+                },
+                "0,1",
+                {
+                    "x": 8.75
+                },
+                "1,10",
+                {
+                    "c": "#aaaaaa"
+                },
+                "1,11",
+                "1,12"
+            ],
+            [
+                {
+                    "x": 0.25,
+                    "w": 1.25
+                },
+                "2,0",
+                {
+                    "c": "#cccccc"
+                },
+                "2,1",
+                {
+                    "x": 10.25,
+                    "c": "#777777",
+                    "w": 1.75
+                },
+                "3,12"
+            ],
+            [
+                {
+                    "c": "#aaaaaa",
+                    "w": 1.75
+                },
+                "4,0",
+                {
+                    "c": "#cccccc"
+                },
+                "4,1",
+                {
+                    "x": 10.75,
+                    "c": "#aaaaaa",
+                    "w": 1.25
+                },
+                "5,12"
+            ],
+            [
+                {
+                    "x": 0.25,
+                    "w": 1.25
+                },
+                "6,0",
+                {
+                    "w": 1.25
+                },
+                "6,1",
+                {
+                    "x": 10.75,
+                    "c": "#777777"
+                },
+                "7,12"
+            ],
+            [
+                {
+                    "rx": 11.25,
+                    "y": 1,
+                    "x": 0.5,
+                    "c": "#cccccc"
+                },
+                "3,10"
+            ],
+            [
+                {
+                    "x": 0.25
+                },
+                "5,10",
+                {
+                    "c": "#777777"
+                },
+                "5,11"
+            ],
+            [
+                {
+                    "x": 0.25
+                },
+                "7,10",
+                "7,11"
+            ],
+            [
+                {
+                    "r": 15,
+                    "rx": 3,
+                    "x": -0.25,
+                    "c": "#cccccc"
+                },
+                "0,2",
+                "0,3",
+                "0,4",
+                "0,5"
+            ],
+            [
+                "2,2",
+                "2,3",
+                "2,4",
+                "2,5"
+            ],
+            [
+                {
+                    "x": 0.5
+                },
+                "4,2",
+                "4,3",
+                "4,4",
+                "4,5"
+            ],
+            [
+                {
+                    "x": 1.25,
+                    "c": "#aaaaaa"
+                },
+                "6,3",
+                {
+                    "w": 2.25
+                },
+                "6,4"
+            ],
+            [
+                {
+                    "r": -15,
+                    "rx": 11.25,
+                    "x": -4.25,
+                    "c": "#cccccc"
+                },
+                "1,6",
+                "1,7",
+                "1,8",
+                "1,9"
+            ],
+            [
+                {
+                    "x": -4
+                },
+                "3,6",
+                "3,7",
+                "3,8",
+                "3,9"
+            ],
+            [
+                {
+                    "x": -4.5
+                },
+                "5,6",
+                "5,7",
+                "5,8",
+                "5,9"
+            ],
+            [
+                {
+                    "x": -4.5,
+                    "c": "#aaaaaa",
+                    "w": 2.25
+                },
+                "7,7",
+                "7,8"
+            ]
+        ]
+    }
+}

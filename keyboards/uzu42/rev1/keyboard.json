@@ -4,7 +4,7 @@
   "url": "https://github.com/nrtkbb/Keyboards/tree/master/uzu42",
   "maintainer": "nrtkbb",
   "usb": {
-    "vid": "0x6E74",
+    "vid": "0xFEED",
     "pid": "0x3060",
     "device_version": "0.0.1"
   },
@@ -45,7 +45,8 @@
       "twinkle": true
     }
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "layouts": {
     "LAYOUT": {
       "layout": [

@@ -4,12 +4,8 @@
     "maintainer": "HorrorTroll",
     "usb": {
         "vid": "0xD010",
-        "pid": "0x1601"
-    },
-    "host": {
-        "default": {
-            "nkro": true
-        }
+        "pid": "0x1601",
+        "force_nkro": true
     },
     "diode_direction": "COL2ROW",
     "build": {

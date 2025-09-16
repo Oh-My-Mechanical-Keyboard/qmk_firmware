@@ -23,9 +23,9 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     }
     if (index == 0) { // Left roller
         if (clockwise) {
-            tap_code(MS_WHLD);
+            tap_code(KC_MS_WH_DOWN);
         } else {
-            tap_code(MS_WHLU);
+            tap_code(KC_MS_WH_UP);
         }
     } else if (index == 1) { // Left encoder
         if (clockwise) {
@@ -35,9 +35,9 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
         }
     } else if (index == 2) { // Right roller
         if (clockwise) {
-            tap_code16(S(MS_WHLD));
+            tap_code16(S(KC_MS_WH_DOWN));
         } else {
-            tap_code16(S(MS_WHLU));
+            tap_code16(S(KC_MS_WH_UP));
         }
     } else if (index == 3) { // Right encoder
         if (clockwise) {

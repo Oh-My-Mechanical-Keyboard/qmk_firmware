@@ -1,6 +1,7 @@
 {
     "keyboard_name": "sandbox rev1",
     "manufacturer": "yfuku",
+    "url": "",
     "maintainer": "yfuku",
     "usb": {
         "vid": "0x5946",
@@ -12,7 +13,8 @@
         "rows": ["B5", "B4"]
     },
     "diode_direction": "COL2ROW",
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "features": {
         "bootmagic": true,
         "mousekey": true,

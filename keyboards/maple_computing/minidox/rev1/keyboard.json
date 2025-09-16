@@ -1,6 +1,7 @@
 {
   "keyboard_name": "MiniDox",
   "manufacturer": "That-Canadian",
+  "url": "",
   "maintainer": "qmk",
   "usb": {
     "vid": "0xFEED",
@@ -18,7 +19,8 @@
       "pin": "D0"
     }
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "features": {
     "bootmagic": false,
     "mousekey": true,

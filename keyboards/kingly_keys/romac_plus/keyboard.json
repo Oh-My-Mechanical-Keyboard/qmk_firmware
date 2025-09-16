@@ -1,6 +1,7 @@
 {
   "keyboard_name": "RoMac+",
   "manufacturer": "TheRoyalSweatshirt",
+  "url": "",
   "maintainer": "TheRoyalSweatshirt",
   "usb": {
     "vid": "0x4B4B",
@@ -9,6 +10,8 @@
   },
   "features": {
     "bootmagic": true,
+    "command": false,
+    "console": false,
     "encoder": true,
     "extrakey": true,
     "mousekey": true,
@@ -53,7 +56,8 @@
   "ws2812": {
     "pin": "F7"
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "layouts": {
     "LAYOUT": {
     "layout": [

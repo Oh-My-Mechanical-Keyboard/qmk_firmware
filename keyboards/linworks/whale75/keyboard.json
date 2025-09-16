@@ -5,12 +5,8 @@
     "usb": {
         "vid": "0x4C58",
         "pid": "0x0001",
-        "device_version": "0.0.1"
-    },
-    "host": {
-        "default": {
-            "nkro": true
-        }
+        "device_version": "0.0.1",
+        "force_nkro": true
     },
     "rgblight": {
         "led_count": 18,
@@ -28,6 +24,8 @@
     "features": {
         "backlight": true,
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "encoder": true,
         "extrakey": true,
         "mousekey": false,

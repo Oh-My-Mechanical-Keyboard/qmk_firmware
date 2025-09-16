@@ -25,7 +25,8 @@
   "ws2812": {
     "pin": "D3"
   },
-  "development_board": "promicro",
+  "bootloader": "caterina",
+  "processor": "atmega32u4",
   "features": {
     "bootmagic": false,
     "mousekey": true,

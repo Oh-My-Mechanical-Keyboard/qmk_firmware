@@ -16,7 +16,6 @@
 DEBOUNCE_COMMON_DEFS := -DMATRIX_ROWS=4 -DMATRIX_COLS=10 -DDEBOUNCE=5
 
 DEBOUNCE_COMMON_SRC := $(QUANTUM_PATH)/debounce/tests/debounce_test_common.cpp \
-	$(PLATFORM_PATH)/timer.c \
 	$(PLATFORM_PATH)/$(PLATFORM_KEY)/timer.c
 
 debounce_none_DEFS := $(DEBOUNCE_COMMON_DEFS)

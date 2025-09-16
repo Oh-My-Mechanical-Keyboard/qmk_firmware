@@ -4,7 +4,9 @@
 
 A 32-key Symmetric staggered keyboard.  
 
-* Keyboard Maintainer: [marksard](https://github.com/marksard)
+Keyboard Maintainer: [marksard](https://github.com/marksard)  
+Hardware Supported: The PCBs, controllers supported  
+Hardware Availability: links to where you can find this hardware
 
 Make example for this keyboard (after setting up your build environment):
 

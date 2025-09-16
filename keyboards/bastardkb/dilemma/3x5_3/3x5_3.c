@@ -27,7 +27,7 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     }
     switch (index) {
         case 0: // Left-half encoder, mouse scroll.
-            tap_code(clockwise ? MS_WHLU : MS_WHLD);
+            tap_code(clockwise ? KC_MS_WH_UP : KC_MS_WH_DOWN);
             break;
         case 1: // Right-half encoder, volume control.
             tap_code(clockwise ? KC_AUDIO_VOL_UP : KC_AUDIO_VOL_DOWN);
@@ -51,36 +51,36 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
 
     uint8_t layer = get_highest_layer(layer_state);
     if (layer > 0) {
-        hsv_t hsv = rgb_matrix_get_hsv();
+        HSV hsv = rgb_matrix_get_hsv();
         switch (get_highest_layer(layer_state)) {
             case 1:
-                hsv = (hsv_t){HSV_BLUE};
+                hsv = (HSV){HSV_BLUE};
                 break;
             case 2:
-                hsv = (hsv_t){HSV_AZURE};
+                hsv = (HSV){HSV_AZURE};
                 break;
             case 3:
-                hsv = (hsv_t){HSV_ORANGE};
+                hsv = (HSV){HSV_ORANGE};
                 break;
             case 4:
-                hsv = (hsv_t){HSV_GREEN};
+                hsv = (HSV){HSV_GREEN};
                 break;
             case 5:
-                hsv = (hsv_t){HSV_TEAL};
+                hsv = (HSV){HSV_TEAL};
                 break;
             case 6:
-                hsv = (hsv_t){HSV_PURPLE};
+                hsv = (HSV){HSV_PURPLE};
                 break;
             case 7:
             default:
-                hsv = (hsv_t){HSV_RED};
+                hsv = (HSV){HSV_RED};
                 break;
         };
 
         if (hsv.v > rgb_matrix_get_val()) {
             hsv.v = MIN(rgb_matrix_get_val() + 22, 255);
         }
-        rgb_t rgb = hsv_to_rgb(hsv);
+        RGB rgb = hsv_to_rgb(hsv);
 
         for (uint8_t i = led_min; i < led_max; i++) {
             if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_UNDERGLOW)) {

@@ -9,6 +9,8 @@
     },
     "features": {
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
@@ -23,12 +25,8 @@
     "usb": {
         "device_version": "1.1.0",
         "pid": "0x3488",
-        "vid": "0xFEFE"
-    },
-    "host": {
-        "default": {
-            "nkro": true
-        }
+        "vid": "0xFEFE",
+        "force_nkro": true
     },
     "layouts": {
         "LAYOUT_default": {

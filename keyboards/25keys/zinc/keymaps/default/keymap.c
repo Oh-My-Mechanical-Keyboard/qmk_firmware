@@ -23,7 +23,10 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  LOWER = SAFE_RANGE,
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
+  DVORAK,
+  LOWER,
   RAISE,
   ADJUST,
   BACKLIT,
@@ -32,9 +35,12 @@ enum custom_keycodes {
   RGBRST
 };
 
-#define QWERTY PDF(_QWERTY)
-#define COLEMAK PDF(_COLEMAK)
-#define DVORAK PDF(_DVORAK)
+enum macro_keycodes {
+  KC_SAMPLEMACRO,
+};
+
+//Macros
+#define M_SAMPLE M(KC_SAMPLEMACRO)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Qwerty
@@ -140,8 +146,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
     [_ADJUST] =  LAYOUT_ortho_4x12(
       _______, QK_BOOT, RGBRST,  _______, _______, _______,                   _______, QWERTY,  COLEMAK, DVORAK,  _______, KC_INS,
-      _______, UG_TOGG, UG_HUEU, UG_SATU, UG_VALU, AG_NORM,                   AG_SWAP, KC_MINS, KC_EQL,  KC_PSCR, KC_SCRL, KC_PAUS,
-      UG_PREV, UG_NEXT, UG_HUED, UG_SATD, UG_VALD, _______,                   _______, _______, _______, _______, KC_PGUP, _______,
+      _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, AG_NORM,                   AG_SWAP, KC_MINS, KC_EQL,  KC_PSCR, KC_SCRL, KC_PAUS,
+      RGB_RMOD,RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, _______,                   _______, _______, _______, _______, KC_PGUP, _______,
       _______, _______, _______, EISU,    EISU,    EISU,                      KANA,    KANA,    KANA,    KC_HOME, KC_PGDN, KC_END
       )
 };
@@ -163,6 +169,25 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case COLEMAK:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_COLEMAK);
+      }
+      return false;
+      break;
+    case DVORAK:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_DVORAK);
+      }
+      return false;
+      break;
+
     case LOWER:
       if (record->event.pressed) {
           //not sure how to have keyboard check mode and set it to a variable, so my work around
@@ -221,7 +246,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
 
       //led operations - RGB mode change now updates the RGB_current_mode to allow the right RGB mode to be set after reactive keys are released
-    case QK_UNDERGLOW_MODE_PREVIOUS:
+    case RGB_RMOD:
       #if defined(RGBLIGHT_ENABLE)
         if (record->event.pressed) {
           rgblight_mode_noeeprom(RGB_current_config.mode);
@@ -232,7 +257,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       #endif
       break;
 
-    case QK_UNDERGLOW_MODE_NEXT:
+    case RGB_MOD:
       #if defined(RGBLIGHT_ENABLE)
         if (record->event.pressed) {
           rgblight_mode_noeeprom(RGB_current_config.mode);

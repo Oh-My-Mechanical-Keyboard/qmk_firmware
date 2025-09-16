@@ -8,6 +8,8 @@
         "bootmagic": true,
         "mousekey": true,
         "extrakey": true,
+        "console": false,
+        "command": false,
         "nkro": true,
         "rgb_matrix": true
     },
@@ -69,13 +71,9 @@
         "vid": "0x6964",
         "pid": "0x0042",
         "device_version": "1.0.0",
+        "force_nkro": true,
         "polling_interval": 2
-    },
-    "host": {
-        "default": {
-            "nkro": true
-        }
-    },
+      },
     "layouts": {
         "LAYOUT": {
             "layout": [

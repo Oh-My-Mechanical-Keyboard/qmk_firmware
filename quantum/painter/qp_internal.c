@@ -3,8 +3,6 @@
 
 #include "qp_internal.h"
 
-#include "compiler_support.h"
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Quantum Painter Core API: device registration
 
@@ -21,8 +19,6 @@ enum {
                      + (GC9107_NUM_DEVICES)  // GC9107
                      + (SSD1351_NUM_DEVICES) // SSD1351
                      + (SH1106_NUM_DEVICES)  // SH1106
-                     + (SH1107_NUM_DEVICES)  // SH1107
-                     + (LD7032_NUM_DEVICES)  // LD7032
 };
 
 static painter_device_t qp_devices[QP_NUM_DEVICES] = {NULL};
@@ -69,7 +65,7 @@ static void qp_internal_display_timeout_task(void) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Quantum Painter Core API: qp_internal_task
 
-STATIC_ASSERT((QUANTUM_PAINTER_TASK_THROTTLE) > 0 && (QUANTUM_PAINTER_TASK_THROTTLE) < 1000, "QUANTUM_PAINTER_TASK_THROTTLE must be between 1 and 999");
+_Static_assert((QUANTUM_PAINTER_TASK_THROTTLE) > 0 && (QUANTUM_PAINTER_TASK_THROTTLE) < 1000, "QUANTUM_PAINTER_TASK_THROTTLE must be between 1 and 999");
 
 void qp_internal_task(void) {
     // Perform throttling of the internal processing of Quantum Painter

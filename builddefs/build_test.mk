@@ -7,7 +7,6 @@ endif
 OPT = g
 
 include paths.mk
-include $(BUILDDEFS_PATH)/support.mk
 include $(BUILDDEFS_PATH)/message.mk
 
 TARGET=test/$(TEST_OUTPUT)
@@ -62,7 +61,6 @@ include $(BUILDDEFS_PATH)/common_features.mk
 include $(BUILDDEFS_PATH)/generic_features.mk
 include $(PLATFORM_PATH)/common.mk
 include $(TMK_PATH)/protocol.mk
-include $(QUANTUM_PATH)/battery/tests/rules.mk
 include $(QUANTUM_PATH)/debounce/tests/rules.mk
 include $(QUANTUM_PATH)/encoder/tests/rules.mk
 include $(QUANTUM_PATH)/os_detection/tests/rules.mk

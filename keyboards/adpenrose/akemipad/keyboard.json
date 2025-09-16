@@ -23,6 +23,8 @@
     "features": {
         "audio": true,
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "encoder": true,
         "extrakey": true,
         "mousekey": false,
@@ -42,7 +44,8 @@
     "qmk": {
         "tap_keycode_delay": 10
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layouts": {
         "LAYOUT_all": {
             "layout": [

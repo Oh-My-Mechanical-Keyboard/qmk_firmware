@@ -1,6 +1,7 @@
 {
     "keyboard_name": "RART67M",
     "manufacturer": "Alabahuy",
+    "url": "",
     "maintainer": "Alabahuy",
     "usb": {
         "vid": "0x414C",
@@ -9,6 +10,8 @@
     },
     "features": {
         "bootmagic": false,
+        "command": false,
+        "console": false,
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
@@ -26,7 +29,8 @@
         "rows": ["D3", "D2", "D4", "F6", "B3", "B4", "B2", "B5"]
     },
     "diode_direction": "COL2ROW",
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layout_aliases": {
         "LAYOUT_all": "LAYOUT"
     },

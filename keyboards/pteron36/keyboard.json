@@ -1,6 +1,7 @@
 {
     "keyboard_name": "Pteron36",
     "manufacturer": "Harshit Goel",
+    "url": "",
     "maintainer": "harshitgoel96",
     "usb": {
         "vid": "0x4847",
@@ -9,6 +10,8 @@
     },
     "features": {
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "encoder": true,
         "extrakey": true,
         "mousekey": true,
@@ -54,7 +57,8 @@
     "ws2812": {
         "pin": "B6"
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "community_layouts": ["split_3x5_3"],
     "layouts": {
         "LAYOUT_split_3x5_3": {

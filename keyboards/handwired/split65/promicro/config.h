@@ -15,6 +15,8 @@
  */
 #pragma once
 
+#define SELECT_SOFT_SERIAL_SPEED 1
+
 // Feature diable options
 //#define NO_DEBUG
 //#define NO_PRINT

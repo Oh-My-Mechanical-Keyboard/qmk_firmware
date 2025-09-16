@@ -41,19 +41,18 @@ static float channel_1_frequency = 0.0f;
 
 void channel_1_set_frequency(float freq) {
     channel_1_frequency = freq;
-    pwmcnt_t period;
-    pwmcnt_t width;
 
     if (freq <= 0.0) {
-        period = 2;
-        width  = 0;
-    } else {
-        period = (pwmCFG.frequency / freq);
-        width  = (pwmcnt_t)(((period) * (pwmcnt_t)((100 - note_timbre) * 100)) / (pwmcnt_t)(10000));
+        // a pause/rest has freq=0
+        return;
     }
+
+    pwmcnt_t period = (pwmCFG.frequency / freq);
     chSysLockFromISR();
     pwmChangePeriodI(&AUDIO_PWM_DRIVER, period);
-    pwmEnableChannelI(&AUDIO_PWM_DRIVER, AUDIO_PWM_CHANNEL - 1, width);
+    pwmEnableChannelI(&AUDIO_PWM_DRIVER, AUDIO_PWM_CHANNEL - 1,
+                      // adjust the duty-cycle so that the output is for 'note_timbre' duration HIGH
+                      PWM_PERCENTAGE_TO_WIDTH(&AUDIO_PWM_DRIVER, (100 - note_timbre) * 100));
     chSysUnlockFromISR();
 }
 
@@ -67,9 +66,6 @@ void channel_1_start(void) {
 }
 
 void channel_1_stop(void) {
-    pwmStop(&AUDIO_PWM_DRIVER);
-    pwmStart(&AUDIO_PWM_DRIVER, &pwmCFG);
-    pwmEnableChannel(&AUDIO_PWM_DRIVER, AUDIO_PWM_CHANNEL - 1, 0);
     pwmStop(&AUDIO_PWM_DRIVER);
 }
 

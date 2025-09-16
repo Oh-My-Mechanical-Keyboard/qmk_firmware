@@ -60,7 +60,7 @@ open .
 The firmware file always follows this naming format:
 
 ```
-<keyboard>_<keymap>.{bin,hex}
+<keyboard_name>_<keymap_name>.{bin,hex}
 ```
 
 For example, the `planck/rev5` with a `default` keymap will have this filename:

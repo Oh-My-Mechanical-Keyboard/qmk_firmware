@@ -34,9 +34,9 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 }
             } else if (index == 1) {
                 if (clockwise) {
-                    tap_code(MS_WHLD);
+                    tap_code(KC_MS_WH_DOWN);
                 } else {
-                    tap_code(MS_WHLU);
+                    tap_code(KC_MS_WH_UP);
                 }
             }
             break;
@@ -49,9 +49,9 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
                 }
             } else if (index == 1) {
                 if (clockwise) {
-                    tap_code(MS_WHLR);
+                    tap_code(KC_WH_R);
                 } else {
-                    tap_code(MS_WHLL);
+                    tap_code(KC_WH_L);
                 }
             }
             break;
@@ -73,15 +73,15 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
         case _ADJUST:
             if (index == 0) {
                 if (clockwise) {
-                    tap_code(MS_RGHT);
+                    tap_code(KC_MS_RIGHT);
                 } else {
-                    tap_code(MS_LEFT);
+                    tap_code(KC_MS_LEFT);
                 }
             } else if (index == 1) {
                 if (clockwise) {
-                    tap_code(MS_DOWN);
+                    tap_code(KC_MS_DOWN);
                 } else {
-                    tap_code(MS_UP);
+                    tap_code(KC_MS_UP);
                 }
             }
             break;

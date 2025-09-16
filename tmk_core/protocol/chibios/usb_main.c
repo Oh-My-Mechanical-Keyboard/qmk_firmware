@@ -21,16 +21,16 @@
 #include "host.h"
 #include "suspend.h"
 #include "timer.h"
+#ifdef SLEEP_LED_ENABLE
+#    include "sleep_led.h"
+#    include "led.h"
+#endif
 #include "wait.h"
 #include "usb_endpoints.h"
 #include "usb_device_state.h"
 #include "usb_descriptor.h"
 #include "usb_driver.h"
 #include "usb_types.h"
-
-#ifdef RAW_ENABLE
-#    include "raw_hid.h"
-#endif
 
 #ifdef NKRO_ENABLE
 #    include "keycode_config.h"
@@ -53,6 +53,10 @@ extern keymap_config_t keymap_config;
 
 extern usb_endpoint_in_t  usb_endpoints_in[USB_ENDPOINT_IN_COUNT];
 extern usb_endpoint_out_t usb_endpoints_out[USB_ENDPOINT_OUT_COUNT];
+
+uint8_t _Alignas(2) keyboard_idle     = 0;
+uint8_t _Alignas(2) keyboard_protocol = 1;
+uint8_t keyboard_led_state            = 0;
 
 static bool __attribute__((__unused__)) send_report_buffered(usb_endpoint_in_lut_t endpoint, void *report, size_t size);
 static void __attribute__((__unused__)) flush_report_buffered(usb_endpoint_in_lut_t endpoint, bool padded);
@@ -127,11 +131,19 @@ static inline bool usb_event_queue_dequeue(usbevent_t *event) {
 
 static inline void usb_event_suspend_handler(void) {
     usb_device_state_set_suspend(USB_DRIVER.configuration != 0, USB_DRIVER.configuration);
+#ifdef SLEEP_LED_ENABLE
+    sleep_led_enable();
+#endif /* SLEEP_LED_ENABLE */
 }
 
 static inline void usb_event_wakeup_handler(void) {
     suspend_wakeup_init();
     usb_device_state_set_resume(USB_DRIVER.configuration != 0, USB_DRIVER.configuration);
+#ifdef SLEEP_LED_ENABLE
+    sleep_led_disable();
+    // NOTE: converters may not accept this
+    led_set(host_keyboard_leds());
+#endif /* SLEEP_LED_ENABLE */
 }
 
 bool last_suspend_state = false;
@@ -156,7 +168,6 @@ void usb_event_queue_task(void) {
                 break;
             case USB_EVENT_RESET:
                 usb_device_state_set_reset();
-                usb_device_state_set_protocol(USB_PROTOCOL_REPORT);
                 break;
             default:
                 // Nothing to do, we don't handle it.
@@ -190,6 +201,10 @@ static void usb_event_cb(USBDriver *usbp, usbevent_t event) {
         case USB_EVENT_UNCONFIGURED:
             /* Falls into.*/
         case USB_EVENT_RESET:
+            keyboard_protocol = 1;
+#   ifdef NKRO_ENABLE
+            keymap_config.nkro = !!keyboard_protocol;
+#   endif
             usb_event_queue_enqueue(event);
             chSysLockFromISR();
             for (int i = 0; i < USB_ENDPOINT_IN_COUNT; i++) {
@@ -239,10 +254,10 @@ static void set_led_transfer_cb(USBDriver *usbp) {
     if (setup->wLength == 2) {
         uint8_t report_id = set_report_buf[0];
         if ((report_id == REPORT_ID_KEYBOARD) || (report_id == REPORT_ID_NKRO)) {
-            usb_device_state_set_leds(set_report_buf[1]);
+            keyboard_led_state = set_report_buf[1];
         }
     } else {
-        usb_device_state_set_leds(set_report_buf[0]);
+        keyboard_led_state = set_report_buf[0];
     }
 }
 
@@ -258,9 +273,7 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
                         return usb_get_report_cb(usbp);
                     case HID_REQ_GetProtocol:
                         if (setup->wIndex == KEYBOARD_INTERFACE) {
-                            static uint8_t keyboard_protocol;
-                            keyboard_protocol = usb_device_state_get_protocol();
-                            usbSetupTransfer(usbp, &keyboard_protocol, sizeof(keyboard_protocol), NULL);
+                            usbSetupTransfer(usbp, &keyboard_protocol, sizeof(uint8_t), NULL);
                             return true;
                         }
                         break;
@@ -283,12 +296,12 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
                         break;
                     case HID_REQ_SetProtocol:
                         if (setup->wIndex == KEYBOARD_INTERFACE) {
-                            usb_device_state_set_protocol(setup->wValue.lbyte);
+                            keyboard_protocol = setup->wValue.word;
                         }
                         usbSetupTransfer(usbp, NULL, 0, NULL);
                         return true;
                     case HID_REQ_SetIdle:
-                        usb_device_state_set_idle_rate(setup->wValue.hbyte);
+                        keyboard_idle = setup->wValue.hbyte;
                         return usb_set_idle_cb(usbp);
                 }
                 break;
@@ -317,10 +330,24 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
     return false;
 }
 
+// static __attribute__((unused)) void dummy_cb(USBDriver *usbp) {
+//     (void)usbp;
+//     rgblight_setrgb_at(0,0,100,0);
+// }
+__attribute__((weak)) void dummy_cb(USBDriver *usbp) {
+    (void)usbp;
+}
+
+
+
 static const USBConfig usbcfg = {
     usb_event_cb,          /* USB events callback */
     usb_get_descriptor_cb, /* Device GET_DESCRIPTOR request callback */
     usb_requests_hook_cb,  /* Requests hook callback */
+#if STM32_USB_USE_OTG1 == TRUE || STM32_USB_USE_OTG2 == TRUE
+    dummy_cb, /* Workaround for OTG Peripherals not servicing new interrupts
+    after resuming from suspend. */
+#endif
 };
 
 void init_usb_driver(USBDriver *usbp) {
@@ -379,6 +406,11 @@ __attribute__((weak)) void restart_usb_driver(USBDriver *usbp) {
  * ---------------------------------------------------------
  */
 
+/* LED status */
+uint8_t keyboard_leds(void) {
+    return keyboard_led_state;
+}
+
 /**
  * @brief Send a report to the host, the report is enqueued into an output
  * queue and send once the USB endpoint becomes empty.
@@ -436,7 +468,7 @@ static bool receive_report(usb_endpoint_out_lut_t endpoint, void *report, size_t
 
 void send_keyboard(report_keyboard_t *report) {
     /* If we're in Boot Protocol, don't send any report ID or other funky fields */
-    if (usb_device_state_get_protocol() == USB_PROTOCOL_BOOT) {
+    if (!keyboard_protocol) {
         send_report(USB_ENDPOINT_IN_KEYBOARD, &report->mods, 8);
     } else {
         send_report(USB_ENDPOINT_IN_KEYBOARD, report, KEYBOARD_REPORT_SIZE);
@@ -507,11 +539,17 @@ void console_task(void) {
 #endif /* CONSOLE_ENABLE */
 
 #ifdef RAW_ENABLE
-void send_raw_hid(uint8_t *data, uint8_t length) {
+void raw_hid_send(uint8_t *data, uint8_t length) {
     if (length != RAW_EPSIZE) {
         return;
     }
     send_report(USB_ENDPOINT_IN_RAW, data, length);
+}
+
+__attribute__((weak)) void raw_hid_receive(uint8_t *data, uint8_t length) {
+    // Users should #include "raw_hid.h" in their own code
+    // and implement this function there. Leave this as weak linkage
+    // so users can opt to not handle data coming in.
 }
 
 void raw_hid_task(void) {

@@ -14,6 +14,8 @@
     },
     "features": {
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "mousekey": true,
         "extrakey": true,
         "encoder": true,
@@ -46,7 +48,7 @@
     },
     "encoder": {
         "rotary": [
-            {"pin_a": "GP7", "pin_b": "GP7"}
+            {"pin_a": "GP7", "pin_b": "GP7", "resolution": 4}
         ]
     },
     "usb": {

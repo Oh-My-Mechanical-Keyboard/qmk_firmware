@@ -7,12 +7,8 @@
     "processor": "STM32F411",
     "usb": {
         "vid": "0x7470",
-        "device_version": "1.0.0"
-    },
-    "host": {
-        "default": {
-            "nkro": true
-        }
+        "device_version": "1.0.0",
+        "force_nkro": true
     },
     "rgb_matrix": {
         "animations": {
@@ -38,6 +34,8 @@
     },
     "features": {
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "extrakey": true,
         "mousekey": true,
         "nkro": true,

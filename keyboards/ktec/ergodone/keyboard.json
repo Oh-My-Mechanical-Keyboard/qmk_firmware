@@ -2,7 +2,8 @@
     "keyboard_name": "Ergodone",
     "manufacturer": "K.T.E.C.",
     "maintainer": "Yu He",
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "usb": {
       "vid": "0x1209",
       "pid": "0x2328",

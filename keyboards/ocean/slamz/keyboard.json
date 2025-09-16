@@ -1,6 +1,7 @@
 {
     "keyboard_name": "Slamz",
     "manufacturer": "Ocean",
+    "url": "",
     "maintainer": "Ocean",
     "usb": {
         "vid": "0x9624",
@@ -9,6 +10,8 @@
     },
     "features": {
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "extrakey": true,
         "mousekey": true,
         "nkro": true
@@ -18,7 +21,8 @@
         "rows": ["D2", "D1", "D0", "D4"]
     },
     "diode_direction": "ROW2COL",
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layouts": {
         "LAYOUT": {
             "layout": [

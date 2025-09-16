@@ -62,16 +62,16 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             break;
         case _RAISE:
             if (clockwise) {
-            tap_code(MS_WHLD);
+            tap_code(KC_MS_WH_DOWN);
         } else {
-            tap_code(MS_WHLU);
+            tap_code(KC_MS_WH_UP);
         }
             break;
 		case _ADJUST:
 			if (clockwise) {
-            tap_code(MS_WHLR);
+            tap_code(KC_MS_WH_RIGHT);
         } else {
-            tap_code(MS_WHLL);
+            tap_code(KC_MS_WH_LEFT);
         }
 			break;
         case _GAME:

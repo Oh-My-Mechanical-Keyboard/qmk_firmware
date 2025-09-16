@@ -8,7 +8,7 @@ from pathlib import Path
 from dotty_dict import dotty
 
 from milc import cli
-from milc.questions import choice, question, yesno
+from milc.questions import choice, question
 
 from qmk.git import git_get_username
 from qmk.json_schema import load_jsonschema
@@ -131,70 +131,60 @@ def _question(*args, **kwargs):
     return ret
 
 
-def prompt_heading_subheading(heading, subheading):
-    cli.log.info(f"{{fg_yellow}}{heading}{{style_reset_all}}")
-    cli.log.info(subheading)
-
-
 def prompt_keyboard():
-    prompt_heading_subheading("Name Your Keyboard Project", """For more information, see:
-https://docs.qmk.fm/hardware_keyboard_guidelines#naming-your-keyboard-project""")
+    prompt = """{fg_yellow}Name Your Keyboard Project{style_reset_all}
+For more infomation, see:
+https://docs.qmk.fm/hardware_keyboard_guidelines#naming-your-keyboard-project
+
+Keyboard Name? """
 
     errmsg = 'Keyboard already exists! Please choose a different name:'
 
-    return _question("Keyboard Name?", reprompt=errmsg, validate=lambda x: not keyboard(x).exists())
+    return _question(prompt, reprompt=errmsg, validate=lambda x: not keyboard(x).exists())
 
 
 def prompt_user():
-    prompt_heading_subheading("Attribution", "Used for maintainer, copyright, etc.")
+    prompt = """
+{fg_yellow}Attribution{style_reset_all}
+Used for maintainer, copyright, etc
 
-    return question("Your GitHub Username?", default=git_get_username())
+Your GitHub Username? """
+    return question(prompt, default=git_get_username())
 
 
 def prompt_name(def_name):
-    prompt_heading_subheading("More Attribution", "Used for maintainer, copyright, etc.")
+    prompt = """
+{fg_yellow}More Attribution{style_reset_all}
+Used for maintainer, copyright, etc
 
-    return question("Your Real Name?", default=def_name)
+Your Real Name? """
+    return question(prompt, default=def_name)
 
 
 def prompt_layout():
-    prompt_heading_subheading("Pick Base Layout", """As a starting point, one of the common layouts can be used to
-bootstrap the process""")
+    prompt = """
+{fg_yellow}Pick Base Layout{style_reset_all}
+As a starting point, one of the common layouts can be used to bootstrap the process
 
+Default Layout? """
     # avoid overwhelming user - remove some?
     filtered_layouts = [x for x in available_layouts if not any(xs in x for xs in ['_split', '_blocker', '_tsangan', '_f13'])]
     filtered_layouts.append("none of the above")
 
-    return choice("Default Layout?", filtered_layouts, default=len(filtered_layouts) - 1)
-
-
-def prompt_mcu_type():
-    prompt_heading_subheading(
-        "What Powers Your Project", """Is your board using a separate development board, such as a Pro Micro,
-or is the microcontroller integrated onto the PCB?
-
-For more information, see:
-https://docs.qmk.fm/compatible_microcontrollers"""
-    )
-
-    return yesno("Using a Development Board?")
-
-
-def prompt_dev_board():
-    prompt_heading_subheading("Select Development Board", """For more information, see:
-https://docs.qmk.fm/compatible_microcontrollers""")
-
-    return choice("Development Board?", dev_boards, default=dev_boards.index("promicro"))
+    return choice(prompt, filtered_layouts, default=len(filtered_layouts) - 1)
 
 
 def prompt_mcu():
-    prompt_heading_subheading("Select Microcontroller", """For more information, see:
-https://docs.qmk.fm/compatible_microcontrollers""")
+    prompt = """
+{fg_yellow}What Powers Your Project{style_reset_all}
+For more infomation, see:
+https://docs.qmk.fm/#/compatible_microcontrollers
 
+MCU? """
     # remove any options strictly used for compatibility
-    filtered_mcu = [x for x in mcu_types if not any(xs in x for xs in ['cortex', 'unknown'])]
+    filtered_mcu = [x for x in (dev_boards + mcu_types) if not any(xs in x for xs in ['cortex', 'unknown'])]
 
-    return choice("Microcontroller?", filtered_mcu, default=filtered_mcu.index("atmega32u4"))
+    return choice(prompt, filtered_mcu, default=filtered_mcu.index("atmega32u4"))
 
 
 @cli.argument('-kb', '--keyboard', help='Specify the name for the new keyboard directory', arg_only=True, type=keyboard_name)
@@ -221,11 +211,7 @@ def new_keyboard(cli):
     user_name = cli.config.new_keyboard.name if cli.config.new_keyboard.name else prompt_user()
     real_name = cli.args.realname or cli.config.new_keyboard.name if cli.args.realname or cli.config.new_keyboard.name else prompt_name(user_name)
     default_layout = cli.args.layout if cli.args.layout else prompt_layout()
-
-    if cli.args.type:
-        mcu = cli.args.type
-    else:
-        mcu = prompt_dev_board() if prompt_mcu_type() else prompt_mcu()
+    mcu = cli.args.type if cli.args.type else prompt_mcu()
 
     config = {}
     if mcu in dev_boards:

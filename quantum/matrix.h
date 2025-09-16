@@ -35,12 +35,6 @@ typedef uint32_t matrix_row_t;
 #    error "MATRIX_COLS: invalid value"
 #endif
 
-#ifdef SPLIT_KEYBOARD
-#    define MATRIX_ROWS_PER_HAND (MATRIX_ROWS / 2)
-#else
-#    define MATRIX_ROWS_PER_HAND (MATRIX_ROWS)
-#endif
-
 #define MATRIX_ROW_SHIFTER ((matrix_row_t)1)
 
 #ifdef __cplusplus

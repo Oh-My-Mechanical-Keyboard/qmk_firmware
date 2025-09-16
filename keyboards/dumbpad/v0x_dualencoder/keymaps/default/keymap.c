@@ -95,9 +95,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             case 0:
                 // main layer - move mouse right (CW) and left (CCW)
                 if (clockwise) {
-                    tap_code(MS_RGHT);
+                    tap_code(KC_MS_R);
                 } else {
-                    tap_code(MS_LEFT);
+                    tap_code(KC_MS_L);
                 }
                 break;
 

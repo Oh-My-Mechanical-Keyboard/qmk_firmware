@@ -33,14 +33,14 @@ enum layer_names {
 };
 
 // For CUSTOM_GRADIENT
-hsv_t gradient_0          = {205, 250, 255};
-hsv_t gradient_100        = {140, 215, 125};
+HSV gradient_0          = {205, 250, 255};
+HSV gradient_100        = {140, 215, 125};
 bool reflected_gradient = false;
 uint8_t gp_i            = 0;
 
 typedef struct {
-    hsv_t gradient_0;
-    hsv_t gradient_1;
+    HSV gradient_0;
+    HSV gradient_1;
     bool reflected;
 } CUSTOM_PRESETS;
 
@@ -203,7 +203,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case G_FLIP:
             if (record->event.pressed) {
-                hsv_t temp_color = gradient_0;
+                HSV temp_color = gradient_0;
                 gradient_0 = gradient_100;
                 gradient_100 = temp_color;
             }
@@ -229,7 +229,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
             }
             return false;
-        case QK_RGB_MATRIX_TOGGLE:
+        case RGB_TOG:
             if (record->event.pressed) {
                 switch (rgb_matrix_get_flags()) {
                     case LED_FLAG_ALL: {
@@ -255,10 +255,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool rgb_matrix_indicators_user(void) {
     uint8_t  side_leds_left[3]  = {17, 18, 19};
     uint8_t  side_leds_right[3] = { 4,  5,  6};
-    hsv_t    hsv = rgb_matrix_config.hsv;
+    HSV      hsv = rgb_matrix_config.hsv;
     uint8_t time = scale16by8(g_rgb_timer, qadd8(32, 1));
     hsv.h        = time;
-    rgb_t    rgb = hsv_to_rgb(hsv);
+    RGB      rgb = hsv_to_rgb(hsv);
 
     if ((rgb_matrix_get_flags() & LED_FLAG_ALL)) {
         if (host_keyboard_led_state().caps_lock) {

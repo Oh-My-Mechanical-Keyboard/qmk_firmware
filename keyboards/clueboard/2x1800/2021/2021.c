@@ -134,16 +134,16 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
 #else
         // Encoder 1, left
         if (index == 0 && clockwise) {
-            tap_code(MS_RGHT);  // turned right
+            tap_code(KC_MS_R);  // turned right
         } else if (index == 0) {
-            tap_code(MS_LEFT);  // turned left
+            tap_code(KC_MS_L);  // turned left
         }
 
         // Encoder 2, right
         else if (index == 1 && clockwise) {
-            tap_code(MS_UP);  // turned right
+            tap_code(KC_MS_U);  // turned right
         } else if (index == 1) {
-            tap_code(MS_DOWN);  // turned left
+            tap_code(KC_MS_D);  // turned left
         }
 #endif
     }

@@ -1,0 +1,40 @@
+// Copyright 2022 Y&R-Biu (@jiaxin96)
+// SPDX-License-Identifier: GPL-2.0-or-later
+
+#pragma once
+#include "quantum.h"
+
+#define LAYOUT( \
+    K000, K001, K002, K003, K004, K005, K006, K007, K008, \
+    K010, K011, K012, K013, K014, K015, K016, K017,       \
+    K020, K021, K022, K023, K024, K025, K026, K027,       \
+    K030, K031, K032,       K034, K035, K036, K037,       \
+    K040, K041, K042,       K044, K045,       K047,       \
+    K050,       K052, K053, K054, K055, K056, K057, K058, \
+    K060, K061, K062, K063, K064, K065, K066, K067, K068, \
+    K070,       K072, K073, K074, K075, K076, K077, K078, \
+    K080, K081, K082, K083, K084, K085, K086, K087, K088, \
+          K091,       K093, K094,       K096, K097, K098, \
+    K100, K101, K102, K103, \
+    K110, K111, K112, K113, \
+    K120, K121, K122,       \
+    K130, K131, K132, K133, \
+          K141, K142        \
+) { \
+    { K000, K001, K002, K003, K004, K005, K006, K007, K008  }, \
+    { K010, K011, K012, K013, K014, K015, K016, K017, KC_NO }, \
+    { K020, K021, K022, K023, K024, K025, K026, K027, KC_NO }, \
+    { K030, K031, K032, KC_NO,K034, K035, K036, K037, KC_NO }, \
+    { K040, K041, K042, KC_NO,K044, K045, KC_NO,K047, KC_NO }, \
+    { K050, KC_NO,K052, K053, K054, K055, K056, K057, K058 }, \
+    { K060, K061, K062, K063, K064, K065, K066, K067, K068 }, \
+    { K070, KC_NO,K072, K073, K074, K075, K076, K077, K078 }, \
+    { K080, K081, K082, K083, K084, K085, K086, K087, K088 }, \
+    { KC_NO,K091, KC_NO,K093, K094, KC_NO,K096, K097, K098 }, \
+    { K100, K101, K102, K103, KC_NO,KC_NO,KC_NO,KC_NO,KC_NO }, \
+    { K110, K111, K112, K113, KC_NO,KC_NO,KC_NO,KC_NO,KC_NO }, \
+    { K120, K121, K122, KC_NO,KC_NO,KC_NO,KC_NO,KC_NO,KC_NO}, \
+    { K130, K131, K132, K133, KC_NO,KC_NO,KC_NO,KC_NO,KC_NO }, \
+    { KC_NO,K141, K142, KC_NO,KC_NO,KC_NO,KC_NO,KC_NO,KC_NO }  \
+}
+

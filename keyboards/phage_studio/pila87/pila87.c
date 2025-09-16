@@ -48,7 +48,7 @@ led_config_t g_led_config = { {
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case QK_RGB_MATRIX_TOGGLE:
+        case RGB_TOG:
             if (record->event.pressed) {
                 switch (rgb_matrix_get_flags()) {
                     case LED_FLAG_ALL: {
@@ -73,10 +73,10 @@ bool rgb_matrix_indicators_kb(void) {
         return false;
     }
 
-    hsv_t    hsv = rgb_matrix_config.hsv;
+    HSV      hsv = rgb_matrix_config.hsv;
     uint8_t time = scale16by8(g_rgb_timer, qadd8(32, 1));
     hsv.h        = time;
-    rgb_t    rgb = hsv_to_rgb(hsv);
+    RGB      rgb = hsv_to_rgb(hsv);
 
     if (host_keyboard_led_state().caps_lock) {
         rgb_matrix_set_color(40, rgb.r, rgb.g, rgb.b);

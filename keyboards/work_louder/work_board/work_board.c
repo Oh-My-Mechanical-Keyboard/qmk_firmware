@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "quantum.h"
+#include "work_board.h"
 
 #ifdef OLED_ENABLE
 #    ifdef RGB_MATRIX_ENABLE

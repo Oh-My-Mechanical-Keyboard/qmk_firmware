@@ -29,9 +29,6 @@ joystick_t joystick_state = {
             0
 #endif
         },
-#ifdef JOYSTICK_HAS_HAT
-    .hat = -1,
-#endif
     .dirty = false,
 };
 
@@ -147,13 +144,6 @@ void joystick_set_axis(uint8_t axis, int16_t value) {
         joystick_state.dirty      = true;
     }
 }
-
-#ifdef JOYSTICK_HAS_HAT
-void joystick_set_hat(int8_t value) {
-    joystick_state.hat   = value;
-    joystick_state.dirty = true;
-}
-#endif
 
 void joystick_init(void) {
     joystick_init_axes();

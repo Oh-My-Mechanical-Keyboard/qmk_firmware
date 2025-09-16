@@ -1,1 +1,3 @@
-include keyboards/cipulot/common/common_cipulot.mk
+ifeq ($(strip $(VIA_ENABLE)), yes)
+    SRC += keyboards/cipulot/common/via_ec.c
+endif

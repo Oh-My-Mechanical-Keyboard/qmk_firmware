@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) { /* left encoder */
         if (clockwise) {
-            tap_code(MS_WHLU);
+            tap_code(KC_WH_U);
         } else {
-            tap_code(MS_WHLD);
+            tap_code(KC_WH_D);
         }
     } else if (index == 1) { /* right encoder */
         if (clockwise) {

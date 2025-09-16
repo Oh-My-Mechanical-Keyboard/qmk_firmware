@@ -1,6 +1,7 @@
 {
   "keyboard_name": "Project Zen",
   "manufacturer": "Legonut",
+  "url": "",
   "maintainer": "qmk",
   "usb": {
     "vid": "0xFEED",
@@ -38,7 +39,8 @@
   "ws2812": {
     "pin": "D1"
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "layouts": {
     "LAYOUT": {
       "layout": [

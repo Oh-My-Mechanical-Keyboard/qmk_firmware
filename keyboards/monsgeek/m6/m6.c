@@ -167,7 +167,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record)
     }
     switch (keycode)
     {
-    case QK_RGB_MATRIX_TOGGLE:
+    case RGB_TOG:
         if (record->event.pressed)
         {
             switch (rgb_matrix_get_flags())

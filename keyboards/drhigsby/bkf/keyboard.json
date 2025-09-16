@@ -10,6 +10,8 @@
   },
   "features": {
     "bootmagic": false,
+    "command": false,
+    "console": false,
     "encoder": true,
     "extrakey": true,
     "mousekey": false,
@@ -31,7 +33,8 @@
           {"pin_a": "F4", "pin_b": "F5"}
       ]
   },
-  "development_board": "promicro",
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
   "layouts": {
     "LAYOUT_625uC": {
       "layout": [

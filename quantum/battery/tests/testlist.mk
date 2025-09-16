@@ -1,2 +1,0 @@
-TEST_LIST += \
-	battery \

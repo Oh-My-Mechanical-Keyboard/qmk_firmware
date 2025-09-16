@@ -391,15 +391,15 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
   else if(IS_LAYER_ON(ONE)) {
     if (index == 0) { /* First encoder */
       if (clockwise) {
-        tap_code(MS_WHLR);
+        tap_code(KC_WH_R);
       } else {
-        tap_code(MS_WHLL);
+        tap_code(KC_WH_L);
       }
     } else if (index == 1) { /* Second encoder */
       if (clockwise) {
-        tap_code(MS_WHLD);
+        tap_code(KC_WH_D);
       } else {
-        tap_code(MS_WHLU);
+        tap_code(KC_WH_U);
       }
     }
   }

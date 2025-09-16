@@ -25,7 +25,9 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  FN = SAFE_RANGE,
+  QWERTY = SAFE_RANGE,
+  MACROPAD,
+  FN,
   ADJ,
   BACKLIT,
   RGBRST
@@ -35,8 +37,7 @@ enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
 
-#define QWERT PDF(_QWERTY)
-#define MACROPAD PDF(_MACROPAD)
+
 
 #define FN_ESC  LT(_FN, KC_ESC)
 #define FN_CAPS  LT(_FN, KC_CAPS)
@@ -108,6 +109,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   //uint8_t shifted = get_mods() & (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT));
 
   switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case MACROPAD:
+      if(record->event.pressed) {
+        set_single_persistent_default_layer(_MACROPAD);
+      }
+      return false;
+      break;
     case FN:
       if (record->event.pressed) {
         //not sure how to have keyboard check mode and set it to a variable, so my work around

@@ -57,32 +57,27 @@ This driver needs one Timer per enabled/used DAC channel, to trigger conversion;
 
 Additionally, in the board config, you'll want to make changes to enable the DACs, GPT for Timers 6, 7 and 8:
 
-::: code-group
-```c [halconf.h]
-#pragma once
-
-#define HAL_USE_DAC TRUE // [!code focus]
-#define HAL_USE_GPT TRUE // [!code focus]
-
+```c
+//halconf.h:
+#define HAL_USE_DAC                 TRUE
+#define HAL_USE_GPT                 TRUE
 #include_next <halconf.h>
 ```
-```c [mcuconf.h]
-#pragma once
 
+```c
+// mcuconf.h:
 #include_next <mcuconf.h>
-
-#undef STM32_DAC_USE_DAC1_CH1 // [!code focus]
-#define STM32_DAC_USE_DAC1_CH1 TRUE // [!code focus]
-#undef STM32_DAC_USE_DAC1_CH2 // [!code focus]
-#define STM32_DAC_USE_DAC1_CH2 TRUE // [!code focus]
-#undef STM32_GPT_USE_TIM6 // [!code focus]
-#define STM32_GPT_USE_TIM6 TRUE // [!code focus]
-#undef STM32_GPT_USE_TIM7 // [!code focus]
-#define STM32_GPT_USE_TIM7 TRUE // [!code focus]
-#undef STM32_GPT_USE_TIM8 // [!code focus]
-#define STM32_GPT_USE_TIM8 TRUE // [!code focus]
+#undef STM32_DAC_USE_DAC1_CH1
+#define STM32_DAC_USE_DAC1_CH1              TRUE
+#undef STM32_DAC_USE_DAC1_CH2
+#define STM32_DAC_USE_DAC1_CH2              TRUE
+#undef STM32_GPT_USE_TIM6
+#define STM32_GPT_USE_TIM6                  TRUE
+#undef STM32_GPT_USE_TIM7
+#define STM32_GPT_USE_TIM7                  TRUE
+#undef STM32_GPT_USE_TIM8
+#define STM32_GPT_USE_TIM8                  TRUE
 ```
-:::
 
 ::: tip
 Note: DAC1 (A4) uses TIM6, DAC2 (A5) uses TIM7, and the audio state timer uses TIM8 (configurable). 
@@ -100,28 +95,23 @@ only needs one timer (GPTD6, Tim6) to trigger the DAC unit to do a conversion; t
 
 Additionally, in the board config, you'll want to make changes to enable the DACs, GPT for Timer 6:
 
-::: code-group
-```c [halconf.h]
-#pragma once
-
-#define HAL_USE_DAC TRUE // [!code focus]
-#define HAL_USE_GPT TRUE // [!code focus]
-
+```c
+//halconf.h:
+#define HAL_USE_DAC                 TRUE
+#define HAL_USE_GPT                 TRUE
 #include_next <halconf.h>
 ```
-```c [mcuconf.h]
-#pragma once
 
+```c
+// mcuconf.h:
 #include_next <mcuconf.h>
-
-#undef STM32_DAC_USE_DAC1_CH1 // [!code focus]
-#define STM32_DAC_USE_DAC1_CH1 TRUE // [!code focus]
-#undef STM32_DAC_USE_DAC1_CH2 // [!code focus]
-#define STM32_DAC_USE_DAC1_CH2 TRUE // [!code focus]
-#undef STM32_GPT_USE_TIM6 // [!code focus]
-#define STM32_GPT_USE_TIM6 TRUE // [!code focus]
+#undef STM32_DAC_USE_DAC1_CH1
+#define STM32_DAC_USE_DAC1_CH1              TRUE
+#undef STM32_DAC_USE_DAC1_CH2
+#define STM32_DAC_USE_DAC1_CH2              TRUE
+#undef STM32_GPT_USE_TIM6
+#define STM32_GPT_USE_TIM6                  TRUE
 ```
-:::
 
 ### DAC Config
 
@@ -180,25 +170,19 @@ This driver uses the ChibiOS-PWM system to produce a square-wave on specific out
 The hardware directly toggles the pin via its alternate function. See your MCU's data-sheet for which pin can be driven by what timer - looking for TIMx_CHy and the corresponding alternate function.
 
 A configuration example for the STM32F103C8 would be:
-
-::: code-group
-```c [halconf.h]
-#pragma once
-
-#define HAL_USE_PWM TRUE // [!code focus]
-#define HAL_USE_PAL TRUE // [!code focus]
-
+```c
+//halconf.h:
+#define HAL_USE_PWM                 TRUE
+#define HAL_USE_PAL                 TRUE
 #include_next <halconf.h>
 ```
-```c [mcuconf.h]
-#pragma once
 
+```c
+// mcuconf.h:
 #include_next <mcuconf.h>
-
-#undef STM32_PWM_USE_TIM1 // [!code focus]
-#define STM32_PWM_USE_TIM1 TRUE // [!code focus]
+#undef STM32_PWM_USE_TIM1
+#define STM32_PWM_USE_TIM1                  TRUE
 ```
-:::
 
 If we now target pin A8, looking through the data-sheet of the STM32F103C8, for the timers and alternate functions
 - TIM1_CH1 = PA8 <- alternate0

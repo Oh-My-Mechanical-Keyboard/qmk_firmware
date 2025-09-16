@@ -1,6 +1,7 @@
 {
     "keyboard_name": "[n]9",
     "manufacturer": "Neil Brian Ramirez",
+    "url": "",
     "maintainer": "Neil Brian Ramirez",
     "usb": {
         "vid": "0xD812",
@@ -9,6 +10,8 @@
     },
     "features": {
         "bootmagic": true,
+        "command": false,
+        "console": false,
         "extrakey": true,
         "mousekey": true,
         "nkro": false,
@@ -46,7 +49,8 @@
     "ws2812": {
         "pin": "F5"
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layouts": {
         "LAYOUT": {
             "layout": [

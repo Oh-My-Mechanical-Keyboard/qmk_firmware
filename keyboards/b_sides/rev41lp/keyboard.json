@@ -27,7 +27,8 @@
         "levels": 7,
         "max_brightness": 150
     },
-    "development_board": "promicro",
+    "processor": "atmega32u4",
+    "bootloader": "caterina",
     "layout_aliases": {
         "LAYOUT_rev41lp": "LAYOUT"
     },

@@ -17,7 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <stdio.h>
+#ifndef PROTOCOL_ARM_ATSAM
+#    include <stdio.h>
+#endif
+
 #include <stdbool.h>
 #include "print.h"
 
@@ -28,7 +31,7 @@ extern "C" {
 /*
  * Debug output control
  */
-typedef union debug_config_t {
+typedef union {
     struct {
         bool    enable : 1;
         bool    matrix : 1;

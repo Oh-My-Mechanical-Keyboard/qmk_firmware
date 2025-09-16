@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#define SELECT_SOFT_SERIAL_SPEED 1
 // #define USE_I2C
 #define SPLIT_USB_DETECT
 #define SPLIT_USB_TIMEOUT 500

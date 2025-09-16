@@ -30,12 +30,8 @@
     "usb": {
         "device_version": "1.0.0",
         "pid": "0xFABB",
-        "vid": "0xF35B"
-    },
-    "host": {
-        "default": {
-            "nkro": true
-        }
+        "vid": "0xF35B",
+        "force_nkro": true
     },
     "encoder": {
         "rotary": [

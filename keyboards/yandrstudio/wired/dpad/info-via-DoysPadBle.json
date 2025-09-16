@@ -1,0 +1,123 @@
+{
+    "name": "DoysPad",
+    "vendorId": "0xAA96",
+    "productId": "0xAAF6",
+    "matrix": {
+        "rows": 3,
+        "cols": 4
+    },
+    "keycodes": [
+        "qmk_lighting"
+    ],
+    "menus": [
+        "qmk_rgb_matrix"
+    ],
+    "customKeycodes": [
+        {
+            "name": "Toggle WinKey Lock",
+            "title": "Toggle WinKey Lock",
+            "shortName": "WinLock"
+        },
+        {
+            "name": "Swap Ctrl and Gui",
+            "title": "Swap Ctrl and Gui",
+            "shortName": "CG_TOG"
+        },
+        {
+            "name": "Mission Control",
+            "title": "Mission Control in macOS",
+            "shortName": "Mission Control"
+        },
+        {
+            "name": "Launch Pad",
+            "title": "Launch Pad in macOS",
+            "shortName": "Launch Pad"
+        },
+        {
+            "name": "Toggle TOP RGB",
+            "title": "Toggle TOP RGB",
+            "shortName": "TRGB_TOG"
+        },
+        {
+            "name": "Battery Level",
+            "title": "Show battery level light",
+            "shortName": "BAT_SHOW"
+        },
+        {
+            "name": "USB_TOG",
+            "title": "Toggle USB Output",
+            "shortName": "USB_TOG"
+        },
+        {
+            "name": "BLE_1",
+            "title": "Switch to BLE 1",
+            "shortName": "BLE_1"
+        },
+        {
+            "name": "BLE_2",
+            "title": "Switch to BLE 2",
+            "shortName": "BLE_2"
+        },
+        {
+            "name": "Disconnect BLE",
+            "title": "Disconnect BLE Channle",
+            "shortName": "BLE_OFF"
+        }
+    ],
+    "layouts": {
+        "presets": {
+            "default": [
+                0
+            ]
+        },
+        "labels": [
+            "2U Top Key"
+        ],
+        "keymap": [
+            [
+                {
+                    "x": 2.25,
+                    "w": 2
+                },
+                "0,1\n\n\n0,1"
+            ],
+            [
+                {
+                    "x": 2.25
+                },
+                "0,0\n\n\n0,0",
+                "0,2\n\n\n0,0"
+            ],
+            [
+                {
+                    "y": -0.5
+                },
+                "0,3\n\n\n\n\n\n\n\n\ne0"
+            ],
+            [
+                {
+                    "y": -0.5,
+                    "x": 1.25
+                },
+                "1,0",
+                "1,1",
+                "1,2"
+            ],
+            [
+                {
+                    "y": -0.5
+                },
+                "1,3\n\n\n\n\n\n\n\n\ne1"
+            ],
+            [
+                {
+                    "y": -0.5,
+                    "x": 1.25
+                },
+                "2,0",
+                "2,1",
+                "2,2"
+            ]
+        ]
+    }
+}

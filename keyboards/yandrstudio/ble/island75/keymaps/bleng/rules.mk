@@ -1,0 +1,2 @@
+VIA_ENABLE = yes
+BIU_BLE5_ENABLE = yes
