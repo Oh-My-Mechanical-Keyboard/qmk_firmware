@@ -134,3 +134,4 @@ void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
 
     // DO NOT call raw_hid_send(data,length) here, let caller do this
 }
+
