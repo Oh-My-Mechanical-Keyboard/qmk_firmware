@@ -24,7 +24,8 @@
         "array": "c",
         "string": "c",
         "string_view": "c",
-        "random": "c"
+        "random": "c",
+        "cstdint": "c"
     },
     "[markdown]": {
         "editor.trimAutoWhitespace": false,
