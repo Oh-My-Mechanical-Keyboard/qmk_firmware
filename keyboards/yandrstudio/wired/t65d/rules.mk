@@ -30,3 +30,21 @@ QUANTUM_SRC += matrix.c
 RGBLIGHT_ENABLE = yes
 WS2812_DRIVER_REQUIRED = yes
 WS2812_DRIVER = pwm
+
+# FlashDB Test
+FLASHDB_ROOT_PATH = $(KEYBOARD_PATH_2)/flashdb
+VPATH += $(FLASHDB_ROOT_PATH)
+VPATH += $(FLASHDB_ROOT_PATH)/inc
+VPATH += $(FLASHDB_ROOT_PATH)/port/fal/inc
+VPATH += $(FLASHDB_ROOT_PATH)/stm32f1
+
+SRC += $(FLASHDB_ROOT_PATH)/fal_flash_stm32f1_port.c
+
+SRC += $(FLASHDB_ROOT_PATH)/port/fal/src/fal_flash.c
+SRC += $(FLASHDB_ROOT_PATH)/port/fal/src/fal_partition.c
+SRC += $(FLASHDB_ROOT_PATH)/port/fal/src/fal.c
+
+SRC += $(FLASHDB_ROOT_PATH)/src/fdb.c
+SRC += $(FLASHDB_ROOT_PATH)/src/fdb_kvdb.c
+SRC += $(FLASHDB_ROOT_PATH)/src/fdb_utils.c
+
