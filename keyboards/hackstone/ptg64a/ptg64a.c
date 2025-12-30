@@ -236,7 +236,7 @@ bool via_command_kb(uint8_t *data, uint8_t length) {
                 command_data[2] = 0x44;
             }
         }
-        raw_hid_send(data, length);
+        replaced_hid_send(data, length);
         return true;
     }
 
@@ -247,7 +247,7 @@ bool via_command_kb(uint8_t *data, uint8_t length) {
         if (value_data == 0) {
             kb_cstm_config.key_rgb_sw = 0;
             eeprom_update_block(&kb_cstm_config, BOX_LED_EECONFIG_ADDR, sizeof(kb_cstm_config));
-            raw_hid_send(data, length);
+            replaced_hid_send(data, length);
             return true; // 接管
         } else {
             kb_cstm_config.key_rgb_sw = 1;

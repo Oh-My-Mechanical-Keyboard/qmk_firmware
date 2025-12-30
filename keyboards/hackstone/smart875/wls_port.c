@@ -8,7 +8,7 @@
 
 #include "wireless.h"
 #include "eeconfig.h"
-
+#include "usb_main.h"
 #include "wls_port.h"
 
 // 键盘回连超时时间
@@ -54,6 +54,7 @@ uint16_t wls_mode_keycode_shadow = 0x00;
 
 // 设备或者模式切换
 bool wls_mode_reset_f = false; // 需要重新绑定
+bool force_usb_restart_f = false; // 强制USB重启
 
 // 无线模式灯光
 bool wls_rgb_indicator_reset             = false;
@@ -89,16 +90,17 @@ void rgb_matrix_wls_indicator_set(uint8_t index, RGB rgb, uint32_t interval, uin
 }
 
 void wls_port_eeconfig_init(void) {
-    confinfo.flag = true;
-    confinfo.bt_devs = DEVS_BT1;
-    confinfo.devs = DEVS_USB;
-    // eeconfig_update_kb_datablock(&confinfo);
-    eeprom_update_dword((uint32_t *)WIRELESS_EECONFIG_ADDR, confinfo.raw);
+    confinfo.raw = eeprom_read_dword((uint32_t *)WIRELESS_EECONFIG_ADDR);
+    if (confinfo.flag != true) {
+        confinfo.flag = true;
+        confinfo.bt_devs = DEVS_BT1;
+        confinfo.devs = DEVS_USB;
+        // eeconfig_update_kb_datablock(&confinfo);
+        eeprom_update_dword((uint32_t *)WIRELESS_EECONFIG_ADDR, confinfo.raw);
+    }
 }
 
 void wls_port_init_pre(void) {
-    // eeconfig_read_kb_datablock(&confinfo);
-    confinfo.raw = eeprom_read_dword((uint32_t *)WIRELESS_EECONFIG_ADDR);
 
 #ifdef LED_POWER_EN_PIN
     gpio_set_pin_output(LED_POWER_EN_PIN);
@@ -116,6 +118,10 @@ void wls_port_init_pre(void) {
 
 #ifdef RF_MODE_SW_PIN
     gpio_set_pin_input_high(RF_MODE_SW_PIN);
+#endif
+
+#ifdef USB_CABLE_PIN
+    gpio_set_pin_input_low(USB_CABLE_PIN);
 #endif
 
 }
@@ -181,6 +187,7 @@ void wls_port_mode_scan(bool update) {
     if (readPin(BT_MODE_SW_PIN) && readPin(RF_MODE_SW_PIN)) {
         if (wireless_get_current_devs() != DEVS_USB) {
             wireless_devs_change(wireless_get_current_devs(), DEVS_USB, false); // usb mode
+            force_usb_restart_f = true; // USB模式下需要重启USB
         }
     }
 }
@@ -197,23 +204,38 @@ void usb_power_disconnect(void) {
 #    endif
 }
 
-void suspend_power_down_kb(void) {
+void lpwr_stop_hook_pre(void) {
 #    ifdef LED_POWER_EN_PIN
     gpio_write_pin_low(LED_POWER_EN_PIN);
 #    endif
+}
+
+void lpwr_stop_hook_post(void) {
+    matrix_scan();
+    #    ifdef LED_POWER_EN_PIN
+        gpio_write_pin_high(LED_POWER_EN_PIN);
+    #    endif
+}
+
+void lpwr_wakeup_hook(void) {
+    wireless_devs_change(wireless_get_current_devs(), wireless_get_current_devs(), false);
+    if (wireless_get_current_devs() == DEVS_USB && USB_DRIVER.state != USB_ACTIVE) {
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
+}
+
+void suspend_power_down_kb(void) {
     suspend_power_down_user();
 }
 
 void suspend_wakeup_init_kb(void) {
-#    ifdef LED_POWER_EN_PIN
-    gpio_write_pin_high(LED_POWER_EN_PIN);
-#    endif
     wls_port_mode_scan(true);
     suspend_wakeup_init_user();
 }
 
 bool lpwr_is_allow_timeout_hook(void) { /* USB 模式不休眠 */
-    if (wireless_get_current_devs() == DEVS_USB) {
+    if (wireless_get_current_devs() == DEVS_USB || gpio_read_pin(USB_CABLE_PIN)==1) {
         return false;
     }
     return true;
@@ -242,6 +264,7 @@ void wls_mode_key_process(bool reset) {
         case KC_USB: {
             if(wls_port_mio_scan() == mio_usb) {
                 wireless_devs_change(wireless_get_current_devs(), DEVS_USB, false);
+                force_usb_restart_f = true; // USB模式下需要重启USB
             }
         }
         default:
@@ -305,6 +328,11 @@ void wireless_post_task(void) {
     wls_process_long_press_task();
     // 功耗管理，管理RGB灯电源
     wls_power_scan();
+    if (force_usb_restart_f) {
+        force_usb_restart_f = false;
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
 }
 
 bool process_record_wls(uint16_t keycode, keyrecord_t *record) {
@@ -353,34 +381,34 @@ void wireless_devs_change_kb(uint8_t old_devs, uint8_t new_devs, bool reset) {
     switch (new_devs) {
         case DEVS_BT1: {
             if (reset) {
-                rgb_matrix_wls_indicator_set(30, (RGB){RGB_BLUE}, 200, 1);
+                rgb_matrix_wls_indicator_set(30, (RGB){.r=0, .g=0, .b=0xff}, 200, 1);
             } else {
-                rgb_matrix_wls_indicator_set(30, (RGB){RGB_BLUE}, 500, 1);
+                rgb_matrix_wls_indicator_set(30, (RGB){.r=0, .g=0xff, .b=0}, 500, 1);
             }
         } break;
         case DEVS_BT2: {
             if (reset) {
-                rgb_matrix_wls_indicator_set(29, (RGB){RGB_BLUE}, 200, 1);
+                rgb_matrix_wls_indicator_set(29, (RGB){.r=0, .g=0, .b=0xff}, 200, 1);
             } else {
-                rgb_matrix_wls_indicator_set(29, (RGB){RGB_BLUE}, 500, 1);
+                rgb_matrix_wls_indicator_set(29, (RGB){.r=0, .g=0xff, .b=0}, 500, 1);
             }
         } break;
         case DEVS_BT3: {
             if (reset) {
-                rgb_matrix_wls_indicator_set(28, (RGB){RGB_BLUE}, 200, 1);
+                rgb_matrix_wls_indicator_set(28, (RGB){.r=0, .g=0, .b=0xff}, 200, 1);
             } else {
-                rgb_matrix_wls_indicator_set(28, (RGB){RGB_BLUE}, 500, 1);
+                rgb_matrix_wls_indicator_set(28, (RGB){.r=0, .g=0xff, .b=0}, 500, 1);
             }
         } break;
         case DEVS_2G4: {
             if (reset) {
-                rgb_matrix_wls_indicator_set(27, (RGB){RGB_BLUE}, 200, 1);
+                rgb_matrix_wls_indicator_set(27, (RGB){.r=0, .g=0, .b=0xff}, 200, 1);
             } else {
-                rgb_matrix_wls_indicator_set(27, (RGB){RGB_BLUE}, 500, 1);
+                rgb_matrix_wls_indicator_set(27, (RGB){.r=0, .g=0xff, .b=0}, 500, 1);
             }
         } break;
         case DEVS_USB: {
-            rgb_matrix_wls_indicator_set(26, (RGB){RGB_BLUE}, 500, 1);
+            rgb_matrix_wls_indicator_set(26, (RGB){.r=0, .g=0xff, .b=0}, 500, 1);
         } break;
         default:
             break;
@@ -498,7 +526,18 @@ void wls_port_rgb_indicators_task(void) {
 }
 
 
+
+bool wls_can_send_key(void) {
+    if (*md_getp_state() != MD_STATE_CONNECTED && (MD_STATE_PAIRING == *md_getp_state() || wls_mode_reset_f)) {
+        return false;
+    }
+    return true;
+}
+
 void wireless_send_nkro(report_nkro_t *report) {
+    if (!wls_can_send_key()) {
+        return;
+    }
     static report_keyboard_t temp_report_keyboard = {0};
     uint8_t wls_report_nkro[MD_SND_CMD_NKRO_LEN]  = {0};
 

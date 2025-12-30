@@ -68,7 +68,7 @@ kb_cstm_config_t kb_cstm_config;
 /* 只会调用一次 */
 void eeconfig_init_kb_datablock(void) {
 
-    kb_cstm_config.flage = 1;
+    kb_cstm_config.flag = 1;
 
     kb_cstm_config.key_rgb_sw = 1;
     kb_cstm_config.box_rgb_mode = 2;
@@ -86,6 +86,12 @@ void eeconfig_init_kb_datablock(void) {
 
 void keyboard_post_init_kb(void) {
     eeprom_read_block(&kb_cstm_config, (void *)BOX_LED_EECONFIG_ADDR, sizeof(kb_cstm_config));
+    if (kb_cstm_config.flag == 0) {
+        eeconfig_init_kb_datablock();
+    }
+    // 同时初始化无线EECONFIG
+    wls_port_eeconfig_init();
+
     // 无线PRE
     wls_port_init_pre();
 
@@ -182,7 +188,7 @@ bool via_command_kb(uint8_t *data, uint8_t length) {
                 command_data[2] = 0x44;
             }
         }
-        raw_hid_send(data, length);
+        replaced_hid_send(data, length);
         return true;
     }
     return false;

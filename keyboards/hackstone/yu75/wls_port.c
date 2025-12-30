@@ -5,7 +5,7 @@
 
 #include "wireless.h"
 #include "eeconfig.h"
-
+#include "usb_main.h"
 #include "wls_port.h"
 
 // 键盘回连超时时间
@@ -51,6 +51,7 @@ uint16_t wls_mode_keycode_shadow = 0x00;
 
 // 设备或者模式切换
 bool wls_mode_reset_f = false; // 需要重新绑定
+bool force_usb_restart_f = false; // 强制USB重启
 
 // 无线模式灯光
 bool wls_rgb_indicator_reset             = false;
@@ -110,6 +111,10 @@ void wls_port_init_pre(void) {
     gpio_set_pin_input_high(RF_MODE_SW_PIN);
 #endif
 
+#ifdef USB_CABLE_PIN
+    gpio_set_pin_input_low(USB_CABLE_PIN);
+#endif
+
 }
 void wls_port_init_post(void) {
     wireless_init(); // 无线UART初始化
@@ -147,19 +152,23 @@ void usb_power_disconnect(void) {
 
 void lpwr_stop_hook_pre(void) {
 #    ifdef LED_POWER_EN_PIN
-    gpio_write_pin_high(LED_POWER_EN_PIN);
+    gpio_write_pin_low(LED_POWER_EN_PIN);
 #    endif
 }
 
 void lpwr_stop_hook_post(void) {
     matrix_scan();
+    #    ifdef LED_POWER_EN_PIN
+        gpio_write_pin_high(LED_POWER_EN_PIN);
+    #    endif
 }
 
 void lpwr_wakeup_hook(void) {
-#    ifdef LED_POWER_EN_PIN
-    gpio_write_pin_low(LED_POWER_EN_PIN);
-#    endif
     wireless_devs_change(wireless_get_current_devs(), wireless_get_current_devs(), false);
+    if (wireless_get_current_devs() == DEVS_USB && USB_DRIVER.state != USB_ACTIVE) {
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
 }
 
 
@@ -171,7 +180,13 @@ void suspend_wakeup_init_kb(void) {
     suspend_wakeup_init_user();
 }
 
-bool lpwr_is_allow_timeout_hook(void) { /* USB 模式不休眠 */
+bool lpwr_is_allow_timeout_hook(void) {
+#ifdef USB_CABLE_PIN
+    if (wireless_get_current_devs() == DEVS_USB || gpio_read_pin(USB_CABLE_PIN)==1) {
+        return false;
+    }
+#endif
+    /* USB ACT模式不休眠, 库会自己处理 */
     return true;
 }
 
@@ -192,6 +207,7 @@ void wls_mode_key_process(bool reset) {
         } break;
         case KC_USB: {
             wireless_devs_change(wireless_get_current_devs(), DEVS_USB, false);
+            force_usb_restart_f = true; // USB模式下需要重启USB
         }
         default:
             break;
@@ -229,6 +245,11 @@ void wireless_post_task(void) {
     wls_process_long_press_task();
     // 超时判断
     timeout_task();
+    if (force_usb_restart_f) {
+        force_usb_restart_f = false;
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
 }
 
 bool process_record_wls(uint16_t keycode, keyrecord_t *record) {
@@ -391,7 +412,18 @@ void timeout_task(void) {
 }
 
 
+
+bool wls_can_send_key(void) {
+    if (*md_getp_state() != MD_STATE_CONNECTED && (MD_STATE_PAIRING == *md_getp_state() || wls_mode_reset_f)) {
+        return false;
+    }
+    return true;
+}
+
 void wireless_send_nkro(report_nkro_t *report) {
+    if (!wls_can_send_key()) {
+        return;
+    }
     static report_keyboard_t temp_report_keyboard = {0};
     uint8_t wls_report_nkro[MD_SND_CMD_NKRO_LEN]  = {0};
 

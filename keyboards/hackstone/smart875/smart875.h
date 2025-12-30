@@ -45,7 +45,7 @@ enum wl_port_keys {
 };
 
 typedef struct {
-    uint8_t  flage : 1;
+    uint8_t  flag : 1;
     uint8_t  key_rgb_sw : 8;
     uint8_t  box_rgb_mode : 8;
     uint8_t  box_rgb_colored : 1;

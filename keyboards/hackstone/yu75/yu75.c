@@ -50,7 +50,7 @@ bool via_command_kb(uint8_t *data, uint8_t length) {
                 command_data[2] = 0x44;
             }
         }
-        raw_hid_send(data, length);
+        replaced_hid_send(data, length);
         return true;
     }
     return false;

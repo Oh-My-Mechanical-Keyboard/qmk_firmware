@@ -6,7 +6,7 @@
 #include "wireless.h"
 #include "usb_main.h"
 #include "eeconfig.h"
-
+#include "usb_main.h"
 #include "wls_port.h"
 
 // 键盘回连超时时间
@@ -52,6 +52,7 @@ uint16_t wls_mode_keycode_shadow = 0x00;
 
 // 设备或者模式切换
 bool wls_mode_reset_f = false; // 需要重新绑定
+bool force_usb_restart_f = false; // 强制USB重启
 
 // 无线模式灯光
 bool wls_rgb_indicator_reset             = false;
@@ -84,16 +85,16 @@ void rgb_matrix_wls_indicator_set(uint8_t index, RGB rgb, uint32_t interval, uin
 }
 
 void wls_port_eeconfig_init(void) {
-    confinfo.flag = true;
-    confinfo.bt_devs = DEVS_BT1;
-    confinfo.devs = DEVS_USB;
-    // eeconfig_update_kb_datablock(&confinfo);
-    eeprom_update_dword((uint32_t *)WIRELESS_EECONFIG_ADDR, confinfo.raw);
+    confinfo.raw = eeprom_read_dword((uint32_t *)WIRELESS_EECONFIG_ADDR);
+    if (confinfo.flag != true) {
+        confinfo.flag = true;
+        confinfo.bt_devs = DEVS_BT1;
+        confinfo.devs = DEVS_USB;
+        eeprom_update_dword((uint32_t *)WIRELESS_EECONFIG_ADDR, confinfo.raw);
+    }
 }
 
 void wls_port_init_pre(void) {
-    // eeconfig_read_kb_datablock(&confinfo);
-    confinfo.raw = eeprom_read_dword((uint32_t *)WIRELESS_EECONFIG_ADDR);
 
 #ifdef LED_POWER_EN_PIN
     gpio_set_pin_output(LED_POWER_EN_PIN);
@@ -104,6 +105,11 @@ void wls_port_init_pre(void) {
     gpio_write_pin_low(USB_POWER_EN_PIN);
     gpio_set_pin_output(USB_POWER_EN_PIN);
 #endif
+
+#ifdef USB_CABLE_PIN
+    gpio_set_pin_input_low(USB_CABLE_PIN);
+#endif
+
 }
 void wls_port_init_post(void) {
     wireless_init(); // 无线UART初始化
@@ -148,13 +154,17 @@ void lpwr_stop_hook_pre(void) {
 
 void lpwr_stop_hook_post(void) {
     matrix_scan();
+    #    ifdef LED_POWER_EN_PIN
+        gpio_write_pin_high(LED_POWER_EN_PIN);
+    #    endif
 }
 
 void lpwr_wakeup_hook(void) {
-#    ifdef LED_POWER_EN_PIN
-    gpio_write_pin_high(LED_POWER_EN_PIN);
-#    endif
     wireless_devs_change(wireless_get_current_devs(), wireless_get_current_devs(), false);
+    if (wireless_get_current_devs() == DEVS_USB && USB_DRIVER.state != USB_ACTIVE) {
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
 }
 
 
@@ -167,10 +177,12 @@ void suspend_wakeup_init_kb(void) {
 }
 
 bool lpwr_is_allow_timeout_hook(void) {
-    // /* USB 模式不休眠 */ 判断重复
-    if (wireless_get_current_devs() == DEVS_USB && USB_DRIVER.state == USB_ACTIVE) {
+#ifdef USB_CABLE_PIN
+    if (wireless_get_current_devs() == DEVS_USB || gpio_read_pin(USB_CABLE_PIN)==1) {
         return false;
     }
+#endif
+    /* USB ACT模式不休眠, 库会自己处理 */
     return true;
 }
 
@@ -191,6 +203,7 @@ void wls_mode_key_process(bool reset) {
         } break;
         case KC_USB: {
             wireless_devs_change(wireless_get_current_devs(), DEVS_USB, false);
+            force_usb_restart_f = true; // USB模式下需要重启USB
         }
         default:
             break;
@@ -251,6 +264,11 @@ void wireless_post_task(void) {
     wls_process_long_press_task();
     // 功耗管理，管理RGB灯电源
     wls_power_scan();
+    if (force_usb_restart_f) {
+        force_usb_restart_f = false;
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
 }
 
 bool process_record_wls(uint16_t keycode, keyrecord_t *record) {
@@ -437,7 +455,18 @@ void wls_port_rgb_indicators_task(void) {
     }
 }
 
+
+bool wls_can_send_key(void) {
+    if (*md_getp_state() != MD_STATE_CONNECTED && (MD_STATE_PAIRING == *md_getp_state() || wls_mode_reset_f)) {
+        return false;
+    }
+    return true;
+}
+
 void wireless_send_nkro(report_nkro_t *report) {
+    if (!wls_can_send_key()) {
+        return;
+    }
     static report_keyboard_t temp_report_keyboard = {0};
     uint8_t wls_report_nkro[MD_SND_CMD_NKRO_LEN]  = {0};
 

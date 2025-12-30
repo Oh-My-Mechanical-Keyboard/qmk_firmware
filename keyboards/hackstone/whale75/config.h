@@ -24,10 +24,10 @@
 #define LPWR_TIMEOUT (5 * 60000) // 无线休眠用时
 #define WLS_KEYBOARD_REPORT_KEYS 5 // 无线模式默认按键无冲数量，最大是6
 
+#define USB_CABLE_PIN A15 // USB线接入时为高
 #define LED_POWER_EN_PIN B9 // 灯光电源或者GND控制
 
 /* 充电 */
-// #  define BT_CABLE_PIN A15 // 充电接入时为高
 
 /* UART */
 #define UART_TX_PIN A9
@@ -85,7 +85,7 @@
 // #define WS2812_T0H 400
 
 #define RGB_MATRIX_LED_COUNT (35)
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 200
+#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255
 #define RGB_MATRIX_SPD_STEP 70
 #define RGB_MATRIX_VAL_STEP 70
 #define RGB_MATRIX_HUE_STEP 32
