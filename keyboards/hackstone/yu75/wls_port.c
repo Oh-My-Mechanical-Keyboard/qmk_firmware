@@ -50,7 +50,6 @@ uint32_t wls_mode_long_press_timer = 0;
 uint16_t wls_mode_keycode_shadow = 0x00;
 
 // 设备或者模式切换
-bool wls_mode_change_f = false; // 模式进行了一次按键切换
 bool wls_mode_reset_f = false; // 需要重新绑定
 
 // 无线模式灯光

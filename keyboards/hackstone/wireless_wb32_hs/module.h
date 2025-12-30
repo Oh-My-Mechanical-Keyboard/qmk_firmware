@@ -29,6 +29,7 @@ enum {
     MD_SND_CMD_SYSTEM_LEN       = 1,
     MD_SND_CMD_FN_LEN           = 1,
     MD_SND_CMD_MOUSE_LEN        = 5,
+    MD_SND_CMD_BAT_LEN          = 1,
     MD_SND_CMD_DEVINFO_LEN      = 18,
     MD_SND_CMD_MANUFACTURER_LEN = 46,
     MD_SND_CMD_PRODUCT_LEN      = 46,
@@ -41,6 +42,7 @@ enum {
     MD_SND_CMD_SEND_CONSUMER = 0xA3,
     MD_SND_CMD_SEND_SYSTEM   = 0xA4,
     MD_SND_CMD_SEND_FN       = 0xA5,
+    MD_SND_CMD_SEND_BAT      = 0xA7,
     MD_SND_CMD_SEND_MOUSE    = 0xA8,
     MD_SND_CMD_SEND_DEVINFO  = 0xA9,
     /* Dongle */
@@ -109,6 +111,7 @@ void md_send_consumer(uint8_t *data);
 void md_send_system(uint8_t *data);
 void md_send_fn(uint8_t *data);
 void md_send_mouse(uint8_t *data);
+void md_send_bat(uint8_t *data);
 void md_send_devctrl(uint8_t cmd);
 void md_send_manufacturer(char *str, uint8_t len);
 void md_send_product(char *str, uint8_t len);

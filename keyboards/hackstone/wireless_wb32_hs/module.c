@@ -371,6 +371,15 @@ void md_send_mouse(uint8_t *data) {
     smsg_push(sdata, sizeof(sdata));
 }
 
+void md_send_bat(uint8_t *data) {
+    uint8_t sdata[MD_SND_CMD_BAT_LEN + 2] = {0x00};
+
+    sdata[0] = MD_SND_CMD_SEND_BAT;
+    memcpy(&sdata[1], data, sizeof(sdata) - 2);
+    md_calc_check_sum(sdata, sizeof(sdata) - 1);
+    smsg_push(sdata, sizeof(sdata));
+}
+
 void md_send_devinfo(const char *name) {
     uint8_t sdata[MD_SND_CMD_DEVINFO_LEN + 3] = {0x00};
     uint8_t infolen                           = strlen((const char *)name);

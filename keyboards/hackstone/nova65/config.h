@@ -23,8 +23,9 @@
 // #define RGB_MATRIX_TIMEOUT (5 * 60000) // 5 min
 
 #define LPWR_TIMEOUT (10 * 60000) // 无线休眠用时
-#define WLS_KEYBOARD_REPORT_KEYS 5 // 无线模式默认按键无冲数量，最大是6
+#define WLS_KEYBOARD_REPORT_KEYS 6 // 无线模式默认按键无冲数量，最大是6
 
+#define USB_CABLE_PIN A15 // USB线接入时为高
 #define LED_POWER_EN_PIN C15 // 灯光电源或者GND控制
 
 /* UART */

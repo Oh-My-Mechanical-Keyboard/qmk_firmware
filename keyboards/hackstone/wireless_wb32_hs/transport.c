@@ -153,6 +153,8 @@ void usb_remote_host(void) {
     if (USB_DRIVER.state == USB_SUSPENDED) {
         if ((USB_DRIVER.status & 2U) && suspend_wakeup_condition()) {
             usbWakeupHost(&USB_DRIVER);
+            wait_ms(5);
+            usbWakeupHost(&USB_DRIVER);
 #    if USB_SUSPEND_WAKEUP_DELAY > 0
             // Some hubs, kvm switches, and monitors do
             // weird things, with USB device state bouncing

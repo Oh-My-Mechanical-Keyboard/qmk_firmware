@@ -51,6 +51,7 @@ uint16_t wls_mode_keycode_shadow = 0x00;
 
 // 设备或者模式切换
 bool wls_mode_reset_f = false; // 需要重新绑定
+bool force_usb_restart_f = false; // 强制USB重启
 
 // 无线模式灯光
 bool wls_rgb_indicator_reset             = false;
@@ -96,10 +97,9 @@ void wls_port_eeconfig_init(void) {
 }
 
 void wls_port_init_pre(void) {
-    wls_port_eeconfig_init();
-
     gpio_set_pin_output(LED_POWER_EN_PIN);
     gpio_write_pin_high(LED_POWER_EN_PIN);
+    gpio_set_pin_input_low(USB_CABLE_PIN);
 
 }
 void wls_port_init_post(void) {
@@ -136,6 +136,9 @@ void lpwr_stop_hook_pre(void) {
 
 void lpwr_stop_hook_post(void) {
     matrix_scan();
+    #    ifdef LED_POWER_EN_PIN
+        gpio_write_pin_high(LED_POWER_EN_PIN);
+    #    endif
 }
 
 void lpwr_wakeup_hook(void) {
@@ -155,7 +158,13 @@ void suspend_wakeup_init_kb(void) {
     suspend_wakeup_init_user();
 }
 
-bool lpwr_is_allow_timeout_hook(void) { /* USB 模式不休眠,wl lib已经处理 */
+bool lpwr_is_allow_timeout_hook(void) { /* USB 模式不休眠 */
+#ifdef USB_CABLE_PIN
+    if (wireless_get_current_devs() == DEVS_USB || gpio_read_pin(USB_CABLE_PIN)==1) {
+        return false;
+    }
+#endif
+    /* USB ACT模式不休眠, 库会自己处理 */
     return true;
 }
 
@@ -176,6 +185,7 @@ void wls_mode_key_process(bool reset) {
         } break;
         case KC_USB: {
             wireless_devs_change(wireless_get_current_devs(), DEVS_USB, false);
+            force_usb_restart_f = true; // USB模式下需要重启USB
         }
         default:
             break;
@@ -237,6 +247,11 @@ void wireless_post_task(void) {
     wls_process_long_press_task();
     // 功耗管理，管理RGB灯电源
     wls_power_scan();
+    if (force_usb_restart_f) {
+        force_usb_restart_f = false;
+        usb_power_connect();
+        restart_usb_driver(&USBD1);
+    }
 }
 
 bool process_record_wls(uint16_t keycode, keyrecord_t *record) {

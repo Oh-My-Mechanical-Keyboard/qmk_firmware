@@ -31,7 +31,8 @@ enum wl_port_keys {
     KC_BT3,
     KC_2G4,
     KC_USB,
-    KC_BATQ
+    KC_BATQ,
+    WIN_LOCK
 };
 
 typedef struct {

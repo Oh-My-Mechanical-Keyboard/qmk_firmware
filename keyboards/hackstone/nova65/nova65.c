@@ -33,7 +33,7 @@ bool via_command_kb(uint8_t *data, uint8_t length) {
                 command_data[2] = 0x44;
             }
         }
-        raw_hid_send(data, length);
+        replaced_hid_send(data, length);
         return true;
     }
 
@@ -44,7 +44,7 @@ bool via_command_kb(uint8_t *data, uint8_t length) {
         if (value_data == 0) {
             kb_cstm_config.key_rgb_sw = 0;
             eeprom_update_block(&kb_cstm_config, BOX_LED_EECONFIG_ADDR, sizeof(kb_cstm_config));
-            raw_hid_send(data, length);
+            replaced_hid_send(data, length);
             return true; // 接管
         } else {
             kb_cstm_config.key_rgb_sw = 1;
@@ -53,6 +53,65 @@ bool via_command_kb(uint8_t *data, uint8_t length) {
         }
     }
     return false;
+}
+
+bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
+    if (process_record_user(keycode, record) != true) {
+        return false;
+    }
+
+    // 无线模式长短按
+    if (process_record_wls(keycode, record) != true) {
+        return false;
+    }
+
+    if (hs_factory_test) {
+        switch(keycode) {
+            case MO(1): {
+                if (record->event.pressed) {
+                    tap_code_delay(KC_APP, 30);
+                }
+                return false;
+            }
+            case KC_SPC: {
+                if (record->event.pressed) {
+                    if (wireless_get_current_devs() != DEVS_2G4) {
+                        wireless_devs_change(wireless_get_current_devs(), DEVS_2G4, false);
+                    } else {
+                        tap_code_delay(KC_SPC, 30);
+                    }
+                }
+                return false;
+            }
+        }
+    }
+
+    switch (keycode) {
+        case RGB_TOG:
+            if (record->event.pressed) {
+                if (kb_cstm_config.key_rgb_sw) {
+                    kb_cstm_config.key_rgb_sw = 0;
+                } else {
+                    kb_cstm_config.key_rgb_sw = 1;
+                }
+                eeprom_update_block(&kb_cstm_config, BOX_LED_EECONFIG_ADDR, sizeof(kb_cstm_config));
+            }
+            return false;
+        case WIN_LOCK:
+            if (record->event.pressed) {
+                keymap_config.raw = eeconfig_read_keymap();
+                if (keymap_config.no_gui) {
+                    keymap_config.no_gui = false;
+                } else {
+                    keymap_config.no_gui = true;
+                }
+                    eeconfig_update_keymap(keymap_config.raw);
+            }
+            return false;
+        default:
+            return true;
+    }
+    return true;
 }
 
 #undef ___
@@ -99,8 +158,9 @@ void keyboard_post_init_kb(void) {
 
     keyboard_post_init_user();
 
-    debug_enable = true;
-
+#ifdef CONSOLE_ENABLE
+    debug_enable=true;
+#endif
     // 无线POST
     wls_port_init_post();
 }
@@ -154,52 +214,3 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     return true;
 }
 
-bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-
-    if (process_record_user(keycode, record) != true) {
-        return false;
-    }
-
-    // 无线模式长短按
-    if (process_record_wls(keycode, record) != true) {
-        return false;
-    }
-
-    if (hs_factory_test) {
-        switch(keycode) {
-            case MO(1): {
-                if (record->event.pressed) {
-                    tap_code_delay(KC_APP, 30);
-                }
-                return false;
-            }
-            case KC_SPC: {
-                if (record->event.pressed) {
-                    if (wireless_get_current_devs() != DEVS_2G4) {
-                        wireless_devs_change(wireless_get_current_devs(), DEVS_2G4, false);
-                    } else {
-                        tap_code_delay(KC_SPC, 30);
-                    }
-                }
-                return false;
-            }
-        }
-    }
-
-    switch (keycode) {
-        case RGB_TOG:
-            if (record->event.pressed) {
-                if (kb_cstm_config.key_rgb_sw) {
-                    kb_cstm_config.key_rgb_sw = 0;
-                } else {
-                    kb_cstm_config.key_rgb_sw = 1;
-                }
-                eeprom_update_block(&kb_cstm_config, BOX_LED_EECONFIG_ADDR, sizeof(kb_cstm_config));
-            }
-            return false;
-        default:
-            return true;
-    }
-
-    return true;
-}
