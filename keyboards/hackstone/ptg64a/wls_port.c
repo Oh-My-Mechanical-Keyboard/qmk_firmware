@@ -219,15 +219,23 @@ bool rgb_power_is_allow_off(void) {
 }
 
 void wls_power_scan(void) {
+    static bool last_allow_off = false;
     static uint32_t power_scan_timer = 0x00;
+    bool allow_off = false;
     if (timer_elapsed32(power_scan_timer) <= WLS_POWER_DETECTION_TIME) {
         return;
     }
     power_scan_timer = timer_read32();
-    if (rgb_power_is_allow_off()) {
-        gpio_write_pin_low(LED_POWER_EN_PIN);
-    } else {
-        gpio_write_pin_high(LED_POWER_EN_PIN);
+
+    allow_off = rgb_power_is_allow_off();
+    if (allow_off != last_allow_off) {
+        last_allow_off = allow_off;
+        if (allow_off) {
+            gpio_write_pin_low(LED_POWER_EN_PIN);
+        } else {
+            gpio_write_pin_high(LED_POWER_EN_PIN);
+        }
+        rgb_matrix_set_color_all(0, 0, 0);
     }
 }
 
